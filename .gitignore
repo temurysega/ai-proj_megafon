@@ -1,0 +1,35 @@
+# Секреты — никогда не коммитить
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Локальный режим разработки правил агента (см. docs/architecture.md, хук pre_write)
+.dev-mode
+
+# Кэш и временные файлы
+.cache/
+__pycache__/
+*.pyc
+*.tmp
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Локальные настройки IDE
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# Тяжёлые сырые медиа (храним только расшифровки и описания)
+projects/*/sources/raw/**/*.mp4
+projects/*/sources/raw/**/*.mov
+projects/*/sources/raw/**/*.wav
+projects/*/sources/raw/**/*.mp3
+
+# Песочница smoke-тестов
+projects/_smoke*/
