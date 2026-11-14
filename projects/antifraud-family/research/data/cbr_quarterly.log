@@ -1,0 +1,21 @@
+# запуск 2026-11-14T11:55:40+03:00 · код возврата 0
+# script sha256 9166e3917cfa4c24
+# inputs {'cbr_quarterly.csv': '488b9a2d931b4652'}
+# outputs {'cbr_quarterly_summary.csv': 'ac336c2e74e4390c', 'cbr_quarterly.png': 'e461936d80be549c', 'cbr_quarterly_findings.json': '4a54bc7468ba854e'}
+
+{
+ "q4_2024_derived": 9.1,
+ "q4_2025_derived": 7.92,
+ "q1_2026_derived": 7.44,
+ "h2_2025_vs_h2_2024_pct": -12.5,
+ "h1_2026_vs_h1_2025_pct": 12.4,
+ "q2_2026_vs_q2_2025_pct": 17.5,
+ "range_since_new_method_bn": [
+  6.3,
+  9.3
+ ],
+ "mean_since_new_method_bn": 7.82,
+ "annual_2025_vs_2024_pct_reported": 6.5,
+ "note": "Годовой рост 2025/2024 (+6,5% по расчёту, ЦБ: +6,4%) несопоставим: I–II кв. 2024 считались по старой методике (3 признака)."
+}
+

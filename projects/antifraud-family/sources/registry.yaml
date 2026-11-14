@@ -322,3 +322,147 @@
   sha256: 2923f00e3d316198133fa821ffcf4f6f87504fcf5bb145ae19afab39d7ce2dd7
   injection_flags: []
   notes: ''
+- id: S028
+  title: Во втором квартале 2024 г. мошенники похитили у клиентов банков в РФ 4,8 млрд руб.
+  kind: web
+  url: https://www.interfax.ru/business/977258
+  path: sources/raw/S028.md
+  publisher: Интерфакс (данные Банка России)
+  published: 2024-08
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: d2bd80072cb50bd1960d05fea3dc0c3b83d9823226b06787f6c01b5ddbfe2254
+  injection_flags: []
+  notes: ''
+- id: S029
+  title: Объем похищенных мошенниками в РФ средств в III кв. вырос почти вдвое относительно II кв.
+  kind: web
+  url: https://www.interfax.ru/russia/996734
+  path: sources/raw/S029.md
+  publisher: Интерфакс (данные Банка России)
+  published: 2024-12
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 0dd49822220985ead248694f16cf583921f946ff54068b55c6781df384e2d012
+  injection_flags: []
+  notes: ''
+- id: S030
+  title: ЦБ зафиксировал рекордную сумму хищений у банковских клиентов в 2024 году
+  kind: web
+  url: https://www.rbc.ru/finances/18/02/2025/67b489749a794780d1527516
+  path: sources/raw/S030.md
+  publisher: РБК (данные Банка России)
+  published: '2025-02-18'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: c665eee190e549a9bffbf9e13cb6aa58224fc4ac4233d5d474f271bb5e286b43
+  injection_flags: []
+  notes: ''
+- id: S031
+  title: Мошенники похитили у банковских клиентов за первые три месяца 6,9 млрд рублей
+  kind: web
+  url: https://expert.ru/news/moshenniki-pokhitili-u-bankovskikh-klientov-za-pervye-tri-mesyatsa-6-9-mlrd-rubley
+  path: sources/raw/S031.md
+  publisher: Эксперт (данные Банка России)
+  published: 2025-05
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 122528e2025f9f85f4ab4a823ea08638854b167fa41062bde0fa9c316790d26f
+  injection_flags: []
+  notes: ''
+- id: S032
+  title: Обзор отчетности об инцидентах информационной безопасности при переводе денежных средств (III квартал 2025)
+  kind: web
+  url: https://www.cbr.ru/statistics/ib/review_3q_2025
+  path: sources/raw/S032.md
+  publisher: Банк России
+  published: 2025-11
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: 0e2c98e7d6c6d54ef6e86b810104439a529d67b521b456e3e694ff546562e1ee
+  injection_flags: []
+  notes: ''
+- id: S033
+  title: 'ЦБ: объем похищенных мошенниками средств в 2025 году превысил 29 млрд рублей'
+  kind: web
+  url: https://www.kommersant.ru/doc/8438895
+  path: sources/raw/S033.md
+  publisher: Коммерсантъ (данные Банка России)
+  published: 2026-02
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: fd58e61f6edd6aadfb929e40d5b20561fa96c14e04228032d056024fe5ab8f05
+  injection_flags: []
+  notes: ''
+- id: S034
+  title: Объем хищений с банковских счетов россиян оказался рекордным за 4 года
+  kind: web
+  url: https://www.rbc.ru/finances/09/12/2024/6756dfb09a79477dd39360b6
+  path: sources/raw/S034.md
+  publisher: РБК
+  published: '2024-12-09'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: f2bf139706ab294dae9fbef09d3c733f2fafb203e352f790a1ddcdc404c0d20d
+  injection_flags: []
+  notes: ''
+- id: S035
+  title: Синтетическое интервью P1 (Claude Haiku, режим без ключа)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P1.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модельный респондент; не доказывает спрос
+- id: S036
+  title: Синтетическое интервью P2 (Claude Haiku, режим без ключа)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P2.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модельный респондент; не доказывает спрос
+- id: S037
+  title: Синтетическое интервью P3 (Claude Haiku, режим без ключа)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P3.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модельный респондент; не доказывает спрос
+- id: S038
+  title: Синтетическое интервью P4 (Claude Haiku, режим без ключа)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P4.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модельный респондент; не доказывает спрос
+- id: S039
+  title: Синтетическое интервью P5 (Claude Haiku, режим без ключа)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P5.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модельный респондент; не доказывает спрос

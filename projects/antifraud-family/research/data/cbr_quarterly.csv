@@ -1,0 +1,11 @@
+quarter,theft_bn_rub,derived,methodology,basis_claims,note
+2024Q1,4.3,0,old_3_signs,C039,из публикации за II кв. 2024
+2024Q2,4.8,0,old_3_signs,C039,
+2024Q3,9.3,0,new_6_signs,C040;C045,смена формы отчётности с III кв. 2024
+2024Q4,,1,new_6_signs,C041;C039;C040,= год 27.5 − (I+II+III)
+2025Q1,6.9,0,new_6_signs,C042,
+2025Q2,6.3,0,new_6_signs,C013,
+2025Q3,8.18,0,new_6_signs,C043,8 176 075.88 тыс. руб.
+2025Q4,,1,new_6_signs,C044;C042;C013;C043,= год 29.3 − (I+II+III)
+2026Q1,,1,new_6_signs,C013,= II кв. 2026 / (1 − 0.006)
+2026Q2,7.4,0,new_6_signs,C013,

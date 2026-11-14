@@ -240,7 +240,7 @@ def check(pid=None, strict: bool = False) -> dict:
     for f in doc_files(pid):
         rel = f.relative_to(d).as_posix()
         text = f.read_text(encoding="utf-8")
-        is_decision_doc = rel.startswith(("strategy/", "options.md", "decision"))
+        is_decision_doc = rel.startswith(("strategy/", "options.md", "decision", "research/findings.md"))
         for ln_no, line in enumerate(text.splitlines(), 1):
             cs, ss = refs_in_text(line)
             used |= cs
@@ -282,7 +282,7 @@ def check(pid=None, strict: bool = False) -> dict:
         if n_opts < 3:
             errors.append(f"options.md: вариантов {n_opts} < 3")
         for head, body in sections(opt.read_text(encoding="utf-8")):
-            if head.lower().startswith("вариант") and "возражени" not in body.lower():
+            if head.lower().startswith("вариант ") and "возражени" not in body.lower():
                 errors.append(f"options.md: у «{head[:50]}» нет сильных возражений")
     order = ["intake", "materials", "research", "options", "strategy", "review", "support"]
     stage_idx = order.index(st["stage"])

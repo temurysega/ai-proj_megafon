@@ -5,9 +5,9 @@ request: Базовую защиту от мошенников все опера
   звонки) — развивать как платную, сделать бесплатной ради удержания или свернуть? И что говорить людям, чтобы ей
   реально пользовались?
 created: '2026-11-14T11:36:11+03:00'
-updated: '2026-11-14T11:48:58+03:00'
+updated: '2026-11-14T12:01:33+03:00'
 mode: checkpoints
-stage: research
+stage: options
 stage_status: in_progress
 gates:
   G1_brief:
@@ -19,7 +19,7 @@ gates:
     status: pending
   G3_strategy:
     status: pending
-next_action: Ответить на решающие вопросы из research/plan.md (навык research) и написать research/findings.md
+next_action: учесть факт-чекинг и красную команду в options.md, затем показать варианты человеку (G2)
 open_questions:
 - id: Q1
   question: 'Что важнее при выборе модели продукта: удержание абонентов и доверие к бренду, прямая выручка от подписки
@@ -64,6 +64,12 @@ history:
   to: research
   status: in_progress
   note: материалы собираются вместе с исследованием (импорт результатов субагентов)
+- ts: '2026-11-14T12:00:22+03:00'
+  event: stage
+  from: research
+  to: options
+  status: in_progress
+  note: исследование завершено, варианты по навыку options
 last_checkpoint:
-  ts: '2026-11-14T11:36:40+03:00'
-  note: бриф заполнен, вопросы Q1–Q3 заданы
+  ts: '2026-11-14T12:01:33+03:00'
+  note: findings, данные ЦБ, экономика порогов, синтетические интервью, options.md (5 вариантов) готовы
