@@ -1,0 +1,44 @@
+{
+  "base_monthly_churn": 0.015,
+  "window": "квартал",
+  "alpha": 0.05,
+  "power": 0.8,
+  "grid": [
+    {
+      "relative_reduction_pct": 3,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 4.3,
+      "n_per_group": 370643
+    },
+    {
+      "relative_reduction_pct": 5,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 4.21,
+      "n_per_group": 132136
+    },
+    {
+      "relative_reduction_pct": 8,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 4.08,
+      "n_per_group": 50855
+    },
+    {
+      "relative_reduction_pct": 10,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 3.99,
+      "n_per_group": 32222
+    },
+    {
+      "relative_reduction_pct": 15,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 3.77,
+      "n_per_group": 13958
+    },
+    {
+      "relative_reduction_pct": 25,
+      "quarterly_churn_control_pct": 4.43,
+      "quarterly_churn_test_pct": 3.32,
+      "n_per_group": 4762
+    }
+  ]
+}

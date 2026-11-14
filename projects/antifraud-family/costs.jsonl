@@ -1,0 +1,14 @@
+{"type": "subagent", "usd": 0.41, "note": "researcher DQ1", "tokens": 68937, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:02:54+03:00"}
+{"type": "subagent", "usd": 0.45, "note": "researcher DQ2", "tokens": 74953, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:02:55+03:00"}
+{"type": "subagent", "usd": 0.43, "note": "researcher DQ3", "tokens": 71738, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:02:55+03:00"}
+{"type": "subagent", "usd": 0.48, "note": "researcher DQ4", "tokens": 79384, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:02:56+03:00"}
+{"type": "subagent", "usd": 0.45, "note": "researcher DQ5", "tokens": 74869, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:02:56+03:00"}
+{"type": "subagent", "usd": 0.113, "note": "respondent (синт. интервью)", "tokens": 56568, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:02:57+03:00"}
+{"type": "subagent", "usd": 0.115, "note": "respondent (синт. интервью)", "tokens": 57465, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:02:58+03:00"}
+{"type": "subagent", "usd": 0.117, "note": "respondent (синт. интервью)", "tokens": 58565, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:02:58+03:00"}
+{"type": "subagent", "usd": 0.116, "note": "respondent (синт. интервью)", "tokens": 58219, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:02:59+03:00"}
+{"type": "subagent", "usd": 0.116, "note": "respondent (синт. интервью)", "tokens": 58045, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:03:00+03:00"}
+{"type": "subagent", "usd": 0.47, "note": "ux-analyst", "tokens": 78193, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:03:00+03:00"}
+{"type": "subagent", "usd": 0.63, "note": "кодирование синт. интервью", "tokens": 104722, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:03:01+03:00"}
+{"type": "subagent", "usd": 0.36, "note": "fact-checker 20 утверждений", "tokens": 182068, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:03:01+03:00"}
+{"type": "subagent", "usd": 0.59, "note": "red-team options v1", "tokens": 98720, "stage": "options", "model": "claude-sonnet", "ts": "2026-11-14T12:07:07+03:00"}
