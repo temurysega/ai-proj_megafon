@@ -223,6 +223,8 @@ def check(pid=None, strict: bool = False) -> dict:
             errors.append(f"{c['id']}: {c['kind']} без источника")
         if c["kind"] == "fact" and c.get("status") == "active" and not (c.get("quote") or c.get("locator")):
             warnings.append(f"{c['id']}: факт без цитаты/локатора — сложно проверить")
+        if c["kind"] == "fact" and c.get("status") == "active" and c.get("quote_status") in ("not_found", "no_snapshot"):
+            warnings.append(f"{c['id']}: цитата не подтверждена снимком источника ({c.get('quote_status')}) — сверить")
         if c["kind"] == "estimate" and not c.get("method"):
             warnings.append(f"{c['id']}: расчёт без указания метода/скрипта (--method)")
         src_kinds = {srcs[s]["kind"] for s in c.get("sources", []) if s in srcs}

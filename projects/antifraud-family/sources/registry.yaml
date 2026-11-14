@@ -1,0 +1,324 @@
+- id: S001
+  title: 'Скриншот: megafon-eva'
+  kind: image
+  url: https://moscow.megafon.ru/services/security/eva/
+  path: research/ux/megafon-eva.png
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: a66b7d60a83fa18f34e549d6ea4760e51f6fb59726426c6fa6baadc66e6bcb14
+  injection_flags: []
+  notes: 'снят 2026-11-14, видимый текст: research/ux/megafon-eva.txt'
+- id: S002
+  title: 'Скриншот: mts-zashchitnik'
+  kind: image
+  url: https://moskva.mts.ru/personal/mobilnaya-svyaz/uslugi/mobilnaya-svyaz/zashchitnik
+  path: research/ux/mts-zashchitnik.png
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: fef1fdba3f6535f09591472a2d012b36ce320cad48d8c8ebff17d34fa468077b
+  injection_flags: []
+  notes: 'снят 2026-11-14, видимый текст: research/ux/mts-zashchitnik.txt'
+- id: S003
+  title: 'Скриншот: t2-safewall'
+  kind: image
+  url: https://msk.t2.ru/safewall
+  path: research/ux/t2-safewall.png
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: b2245b0bda07abca24cfa9faaef24412b8d50c6cd3e2ea65a36819ed3d373fad
+  injection_flags: []
+  notes: 'снят 2026-11-14, видимый текст: research/ux/t2-safewall.txt'
+- id: S004
+  title: Сервисы безопасности в мобильных приложениях операторов
+  kind: web
+  url: https://www.comnews.ru/content/246361/2026-07-16/2026-w29/1180/servisy-bezopasnosti-mobilnykh-prilozheniyakh-operatorov
+  path: sources/raw/S004.md
+  publisher: ComNews
+  published: '2026-07-16'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 31ad626c03ed44c50ec67eefccf01eb8947ec77d8263477eb017e4d8b3ea9738
+  injection_flags: []
+  notes: ''
+- id: S005
+  title: МТС запустил уведомления членов семьи о звонках мошенников
+  kind: web
+  url: https://www.rbc.ru/rbcfreenews/698498d19a7947ebe684f67b
+  path: sources/raw/S005.md
+  publisher: РБК
+  published: '2026-02-06'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 7cb925b41f5edfcba931c988057d0b5e79233f49dc6b5ae5b863f13594bd51b7
+  injection_flags: []
+  notes: ''
+- id: S006
+  title: Бабушка скажет спасибо. МегаФон запустил защиту близких от телефонных мошенников
+  kind: web
+  url: https://www.iphones.ru/iNotes/eva-new-feature-megafon-overview
+  path: sources/raw/S006.md
+  publisher: iphones.ru
+  published: '2025-06-26'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 6ed138ccafbd5ca9f89839741761cfab9334528af60e246c2d82eb75e192e6ac
+  injection_flags: []
+  notes: ''
+- id: S007
+  title: Обзор операций, совершенных без добровольного согласия клиентов финансовых организаций (2025)
+  kind: web
+  url: https://www.cbr.ru/analytics/ib/operations_survey/2025/
+  path: sources/raw/S007.md
+  publisher: Банк России
+  published: '2026'
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: a716918e2271df0a512e8de4dfc3ad60ee6e578d5e631dd8242567c45296950a
+  injection_flags: []
+  notes: ''
+- id: S008
+  title: ЦБ оценил объем хищений мошенников во II квартале в 7,4 млрд рублей
+  kind: web
+  url: https://www.interfax.ru/russia/1107372
+  path: sources/raw/S008.md
+  publisher: Интерфакс (по данным Банка России)
+  published: '2026-08-04'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 08abb4ba66b29daa2aec4490afbfccf1bf2108c2dbfe24127c4f3527595797c7
+  injection_flags: []
+  notes: ''
+- id: S009
+  title: 'Эффективные каналы мошенников в 2026 году: от звонка до вывода средств'
+  kind: web
+  url: https://www.kommersant.ru/doc/9006308
+  path: sources/raw/S009.md
+  publisher: Коммерсантъ
+  published: '2026-10-06'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 2b0d86a9e85387b828eb8c2dfc9bd042eba2f09814b846b8e774fbd59d7a7d81
+  injection_flags: []
+  notes: ''
+- id: S010
+  title: Кто нас бережет
+  kind: web
+  url: https://rg.ru/2026/11/10/kto-nas-berezhet.html
+  path: sources/raw/S010.md
+  publisher: Российская газета (данные МВД)
+  published: '2026-11-10'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 0c35346b044445b339792e26cbe983ed9e4393dd3a3d7c790b13c8a1f2485b5b
+  injection_flags: []
+  notes: ''
+- id: S011
+  title: Ущерб от кибермошенничества в России снизился за семь месяцев на 21%
+  kind: web
+  url: https://www.interfax.ru/russia/1112758
+  path: sources/raw/S011.md
+  publisher: Интерфакс
+  published: '2026-09-02'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 96e32fc92754e7348c4f04e4362714661dd16c5fef7afc645fc6aa84443337d1
+  injection_flags: []
+  notes: ''
+- id: S012
+  title: Ограничения по WhatsApp и Telegram в первый месяц снизили число звонков от мошенников на 40%
+  kind: web
+  url: https://www.interfax.ru/digital/1053987
+  path: sources/raw/S012.md
+  publisher: Интерфакс
+  published: '2025-10-22'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 030a274cbc267ea05d3441874a0e2fde81d3f3b6bcb38556866d97059397a0d1
+  injection_flags: []
+  notes: ''
+- id: S013
+  title: 'Спам-звонки, определение номеров, снятие наличных и прочее: закон о борьбе с мошенниками опубликован'
+  kind: web
+  url: https://www.consultant.ru/legalnews/28151/
+  path: sources/raw/S013.md
+  publisher: КонсультантПлюс
+  published: '2025-04-01'
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: 2d49fb0431eb08a6ab02388d9f5b81d87ea30399b9b9842b9684ac93f40dac18
+  injection_flags: []
+  notes: ''
+- id: S014
+  title: Федеральный закон от 26.06.2026 N 210-ФЗ, ст. 9
+  kind: web
+  url: https://www.consultant.ru/document/cons_doc_LAW_537891/b5315c892df7002ac987a311b4a242874fdcf420/
+  path: sources/raw/S014.md
+  publisher: КонсультантПлюс
+  published: '2026-06-26'
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: 789ef52bba47fdc64ed15a9ebdc63654e1b11121d39aec0ba8764c996f42396c
+  injection_flags: []
+  notes: ''
+- id: S015
+  title: 'От детского интернета до базы IMEI: Путин подписал масштабный закон о защите от телефонных мошенников'
+  kind: web
+  url: https://www.securitylab.ru/news/574218.php
+  path: sources/raw/S015.md
+  publisher: SecurityLab.ru
+  published: '2026-06-27'
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: 1b079c624576cc8471cde76c950bfab263fec9120d67d8d7c2487edb5511f293
+  injection_flags: []
+  notes: 'СНИМОК НЕДЕЙСТВИТЕЛЕН: сайт вернул страницу 403 (антибот); не использовать как основание'
+- id: S016
+  title: Операторы связи заблокируют звонки крупнейших банков с 15 октября 2026
+  kind: web
+  url: https://www.kommersant.ru/doc/9024375
+  path: sources/raw/S016.md
+  publisher: Коммерсантъ
+  published: '2026-10-12'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: b3686c9cb134ef469349ac88e209d6c8ef1cf8ae28a1b90f1468d5552a3dae33
+  injection_flags: []
+  notes: ''
+- id: S017
+  title: 76% абонентов считают цифровую защиту бесплатной
+  kind: web
+  url: https://techora.ru/news/76-abonentov-schitayut-tsifrovuyu-zashchitu-besplatnoy-2026-08-05
+  path: sources/raw/S017.md
+  publisher: techora.ru (агрегатор)
+  published: '2026-08-05'
+  retrieved: '2026-11-14'
+  reliability: C
+  sha256: e7fa2748f490d95babaf5701e5a405e24deb68f051a2d07e79713da1c906a5d8
+  injection_flags: []
+  notes: ''
+- id: S018
+  title: 94% россиян сталкивались с мошенничеством за последний год
+  kind: web
+  url: https://nafi.ru/polls/94-rossiyan-stalkivalis-s-moshennichestvom-za-posledniy-god/
+  path: sources/raw/S018.md
+  publisher: НАФИ
+  published: '2025-06-18'
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: cd71c00f65f9f68028e0c0dbe1879a448ad608ec352f3db9f5654afe4321d5d5
+  injection_flags: []
+  notes: ''
+- id: S019
+  title: 'Банк России: кто наиболее уязвим к атакам кибермошенников'
+  kind: web
+  url: https://cbr.ru/press/event/?id=28308
+  path: sources/raw/S019.md
+  publisher: Банк России
+  published: '2026-02-16'
+  retrieved: '2026-11-14'
+  reliability: A
+  sha256: 9947ad926f40b37fbf02f90f77da7fd6dd82b0cde35fd2de6fcec4b3d346a2d4
+  injection_flags: []
+  notes: ''
+- id: S020
+  title: 'Опрос ВТБ: почти половина россиян взяли на себя управление финансами пожилых родных'
+  kind: web
+  url: https://altapress.ru/story/opros-vtb-pochti-polovina-rossiyan-vzyali-na-sebya-upravlenie-finansami-pozhilih-rodnih-392920
+  path: ''
+  publisher: altapress.ru (пересказ опроса ВТБ)
+  published: '2026-08-24'
+  retrieved: '2026-11-14'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: домен вне allowlist — не загружен; нужно разрешение человека
+- id: S021
+  title: '80 000 руб. в среднем: дети помогают мошенникам красть деньги родителей'
+  kind: web
+  url: https://www.anti-malware.ru/news/2025-03-11-111332/45489
+  path: sources/raw/S021.md
+  publisher: anti-malware.ru (данные F6)
+  published: '2025-03-11'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: d16ac0391d56b2df0af818009c86ec7fe063e88b205cbb48315765b16b1583f6
+  injection_flags: []
+  notes: ''
+- id: S022
+  title: J'son & Partners признала МТС лидером по цифровой безопасности абонентов
+  kind: web
+  url: https://www.iphones.ru/iNotes/json--partners-priznala-mts-liderom-po-cifrovoy-bezopasnosti-abonentov
+  path: sources/raw/S022.md
+  publisher: iPhones.ru (со ссылкой на «Известия»)
+  published: '2025-12-17'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: e12b97c2428171c21f3a09e4c59e587201b8cd520da3e165f9f5e5e42475b1ff
+  injection_flags: []
+  notes: ''
+- id: S023
+  title: Входят в тариф. ИБ-услуги стали конкурентным преимуществом у операторов связи
+  kind: web
+  url: https://www.comnews.ru/content/242442/2025-11-20/2025-w47/1008/vkhodyat-tarif-ib-uslugi-stali-konkurentnym-preimuschestvom-u-operatorov-svyazi
+  path: sources/raw/S023.md
+  publisher: ComNews
+  published: '2025-11-20'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 48b96c11db4dd1b21c7a7132bc581eea426a7feba0fb81e59a00558d91b1e374
+  injection_flags: []
+  notes: ''
+- id: S024
+  title: Голосовой помощник Ева принудительно разрывает каждый десятый звонок мошенника
+  kind: web
+  url: https://360.ru/news/tehnologii/stali-izvestny-pervye-itogi-vnedrenija-optsii-zaschita-blizkih/
+  path: sources/raw/S024.md
+  publisher: 360.ru (данные МегаФона)
+  published: '2025-04-08'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: d78ec2a51b804b0d285371ce06105bd07dbf1f833321553a76f300a8000386b8
+  injection_flags: []
+  notes: ''
+- id: S025
+  title: Т2 и ВТБ обеспечат дополнительную защиту от телефонных мошенников
+  kind: web
+  url: https://www.anti-malware.ru/news/2025-04-09-121598/45748
+  path: sources/raw/S025.md
+  publisher: Anti-Malware.ru
+  published: '2025-04-09'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 6bd9f6345b1b0bd80adea4a8e4f06072ad5c2122426731717a27689f510c298b
+  injection_flags: []
+  notes: ''
+- id: S026
+  title: Страхование от мошенничества становится отдельным направлением рынка
+  kind: web
+  url: https://rg.ru/2026/09/10/polis-ot-obmana.html
+  path: sources/raw/S026.md
+  publisher: Российская газета
+  published: '2026-09-10'
+  retrieved: '2026-11-14'
+  reliability: B
+  sha256: 38380dbd6758c483c7fb5ceba6b645aa327d0cb8ddf49f167e7c89dddb8ac032
+  injection_flags: []
+  notes: ''
+- id: S027
+  title: 68% россиян готовы к просмотру рекламы в обмен на бесплатные цифровые сервисы
+  kind: web
+  url: https://www.comnews.ru/content/243899/2026-02-19/2026-w08/1010/68-rossiyan-gotovy-k-prosmotru-reklamy-obmen-besplatnye-cifrovye-servisy
+  path: sources/raw/S027.md
+  publisher: ComNews
+  published: '2026-02-19'
+  retrieved: '2026-11-14'
+  reliability: C
+  sha256: 2923f00e3d316198133fa821ffcf4f6f87504fcf5bb145ae19afab39d7ce2dd7
+  injection_flags: []
+  notes: ''

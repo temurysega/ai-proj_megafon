@@ -57,14 +57,28 @@ def pdf_to_text(data: bytes) -> str:
     return "\n".join(parts)
 
 
+BLOCK_PATTERNS = re.compile(
+    r"(403 error|403 forbidden|access denied|доступ к сайту .{0,40}запрещ|checking your browser|just a moment|"
+    r"enable javascript and cookies|captcha|подтвердите, что вы не робот|проверка браузера|ddos-guard|"
+    r"guru meditation|request id: .{10,})", re.I)
+
+
+def looks_blocked(text: str) -> bool:
+    """Заглушка антибота/ошибки вместо содержимого — не сохранять как источник."""
+    return len(text) < 2500 and bool(BLOCK_PATTERNS.search(text))
+
+
 def render_with_browser(url: str) -> str:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(user_agent=UA, locale="ru-RU")
-        pg.goto(url, wait_until="networkidle", timeout=60000)
+        resp = pg.goto(url, wait_until="domcontentloaded", timeout=90000)
+        pg.wait_for_timeout(5000)  # тяжёлые сайты никогда не «затихают» в сети — ждём отрисовку
         html = pg.content()
         b.close()
+    if resp is not None and resp.status >= 400:
+        raise StrategistError(f"HTTP {resp.status} при браузерной загрузке")
     return html
 
 
@@ -105,6 +119,11 @@ def fetch(url: str, title: str = "", publisher: str = "", published: str = "", r
                 auto_title, text = html_to_text(render_with_browser(url))
             except Exception as e:
                 journal("render_failed", f"{url}: {e}", pid=pid, status="failed", actor="tool")
+    if looks_blocked(text):
+        journal("fetch_blocked_page", f"{url}: получена заглушка антибота/ошибки, снимок не сохранён", pid=pid,
+                status="failed", actor="tool")
+        raise StrategistError(f"{url}: сайт вернул заглушку (антибот/ошибка) вместо содержимого. Сохраните страницу "
+                              f"вручную (Ctrl+S) и выполните `sf ingest`, или найдите другой источник.")
     flags = scan_injection(text)
     digest = sha256_bytes(raw)
     src = add_source(title or auto_title or url, kind=kind, url=url, publisher=publisher, published=published,
@@ -138,8 +157,13 @@ def capture(url: str, name: str = "", mobile: bool = False, full_page: bool = Tr
         ctx = b.new_context(viewport={"width": 390, "height": 844} if mobile else {"width": 1366, "height": 900},
                             device_scale_factor=1, locale="ru-RU", user_agent=UA, is_mobile=mobile)
         pg = ctx.new_page()
-        pg.goto(url, wait_until="networkidle", timeout=60000)
-        pg.wait_for_timeout(1500)
+        pg.goto(url, wait_until="domcontentloaded", timeout=90000)
+        pg.wait_for_timeout(6000)
+        for _ in range(6):  # прокрутка для ленивой загрузки блоков
+            pg.mouse.wheel(0, 1400)
+            pg.wait_for_timeout(500)
+        pg.evaluate("window.scrollTo(0, 0)")
+        pg.wait_for_timeout(800)
         pg.screenshot(path=str(out_png), full_page=full_page)
         visible = pg.inner_text("body")
         b.close()

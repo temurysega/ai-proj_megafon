@@ -18,6 +18,14 @@ GATES = {
     "G3_strategy": "Стратегия принята человеком",
 }
 GATE_ALIASES = {"G1": "G1_brief", "G2": "G2_option", "G3": "G3_strategy"}
+DEFAULT_NEXT = {
+    "materials": "Собрать материалы по навыку source-collection; параллельно составить research/plan.md",
+    "research": "Ответить на решающие вопросы из research/plan.md (навык research) и написать research/findings.md",
+    "options": "Составить options.md по навыку options и провести красную команду",
+    "strategy": "Написать strategy/product.md, communication.md, validation.md по выбранному варианту",
+    "review": "Ворота качества и отчёт (навык report): one-pager, check, fact-checker, render --pdf",
+    "support": "Заполнить decisions.yaml и регулярно проверять `sf decisions due` (навык decision-support)",
+}
 
 
 # ---------- пути ----------
@@ -129,6 +137,8 @@ def set_stage(stage: str, status: str = "in_progress", pid: str | None = None, n
                                   f"человека: `python sf.py gate {need[:2]} pass --note \"...\"`.")
     prev = st.get("stage")
     st["stage"], st["stage_status"] = stage, status
+    if prev != stage:
+        st["next_action"] = DEFAULT_NEXT.get(stage, st.get("next_action", ""))
     st.setdefault("history", []).append({"ts": now(), "event": "stage", "from": prev, "to": stage,
                                          "status": status, "note": note})
     save_state(st, pid)

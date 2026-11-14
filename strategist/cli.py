@@ -273,6 +273,11 @@ def cmd_models(a):
             print(f"{task:<15} {ms}\n{'':<15} зачем: {cfg.get('why', '')}")
 
 
+def cmd_research_import(a):
+    from .importer import import_research
+    _print(import_research(a.file, not a.no_fetch, pid=a.project))
+
+
 def cmd_respondents(a):
     from .research import run_synthetic
     _print(run_synthetic(a.personas, a.guide, a.followups, a.rotate, _split(a.only), pid=a.project))
@@ -570,6 +575,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--out")
     s = add("models", cmd_models, "модели: sync (цены OpenRouter) / list (маршруты)")
     s.add_argument("action", choices=["sync", "list"])
+    s = add("research-import", cmd_research_import, "импорт JSON субагента researcher: снимки + сверка цитат")
+    s.add_argument("file")
+    s.add_argument("--no-fetch", action="store_true")
     s = add("respondents", cmd_respondents, "синтетические интервью с модельными респондентами")
     s.add_argument("--personas", required=True)
     s.add_argument("--guide", required=True)
