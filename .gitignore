@@ -32,4 +32,4 @@ projects/*/sources/raw/**/*.wav
 projects/*/sources/raw/**/*.mp3
 
 # Песочница smoke-тестов
-projects/_smoke*/
+projects/zz-smoke*/

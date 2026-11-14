@@ -1,0 +1,86 @@
+# Разрешённые источники. Агент загружает страницы ТОЛЬКО с этих доменов (поддомены включены).
+# Добавить домен может только человек (файл защищён хуком). Принцип: открытые источники и собственные
+# материалы; никаких закрытых данных МегаФона и других компаний.
+# mode: allowlist — только список ниже; open — любые, кроме deny (не рекомендуется).
+mode: allowlist
+
+allow:
+  # Государство, регуляторы, право, статистика
+  - cbr.ru
+  - gov.ru
+  - digital.gov.ru
+  - rkn.gov.ru
+  - xn--b1aew.xn--p1ai        # мвд.рф
+  - mvd.ru
+  - pravo.gov.ru
+  - consultant.ru
+  - garant.ru
+  - rosstat.gov.ru
+  - data.gov.ru
+  - duma.gov.ru
+  - kremlin.ru
+  - fas.gov.ru
+  # Исследования и опросы
+  - nafi.ru
+  - wciom.ru
+  - fom.ru
+  - json.tv                   # J'son & Partners Consulting
+  - telecomdaily.ru
+  - mediascope.net
+  - hse.ru
+  - ranepa.ru
+  - fa.ru
+  # Операторы и цифровые сервисы (публичные страницы продуктов)
+  - megafon.ru
+  - mts.ru
+  - beeline.ru
+  - t2.ru
+  - tele2.ru
+  - rt.ru
+  - yota.ru
+  - sber.ru
+  - sberbank.ru
+  - tbank.ru
+  - kaspersky.ru
+  - yandex.ru
+  - vk.com
+  # Деловые и отраслевые СМИ
+  - comnews.ru
+  - rbc.ru
+  - kommersant.ru
+  - vedomosti.ru
+  - interfax.ru
+  - tass.ru
+  - ria.ru
+  - rg.ru
+  - iz.ru
+  - expert.ru
+  - forbes.ru
+  - cnews.ru
+  - habr.com
+  - vc.ru
+  - iphones.ru
+  - 3dnews.ru
+  - securitylab.ru
+  - anti-malware.ru
+  - banki.ru
+  - frankmedia.ru
+  - mobile-review.com
+  - dp.ru
+  - pnp.ru
+  - mail.ru
+  - 360.ru
+  - bosfera.ru
+  - techora.ru
+  # Магазины приложений (отзывы и описания)
+  - apps.apple.com
+  - play.google.com
+  - rustore.ru
+  # Справочные
+  - wikipedia.org
+  - github.com
+  - openrouter.ai
+
+deny:
+  - "*.onion"
+  - pastebin.com

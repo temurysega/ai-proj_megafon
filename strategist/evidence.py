@@ -33,6 +33,16 @@ def load_sources(pid=None) -> list[dict]:
     return read_yaml(_reg_path(pid), []) or []
 
 
+def update_source(sid: str, pid=None, **fields) -> dict:
+    srcs = load_sources(pid)
+    for s in srcs:
+        if s["id"] == sid:
+            s.update({k: v for k, v in fields.items() if v is not None})
+            write_yaml(_reg_path(pid), srcs)
+            return s
+    raise StrategistError(f"Источник {sid} не найден")
+
+
 def get_source(sid: str, pid=None) -> dict:
     for s in load_sources(pid):
         if s["id"] == sid:
@@ -49,8 +59,8 @@ def add_source(title: str, kind: str = "web", url: str = "", path: str = "", pub
         raise StrategistError(f"Надёжность: {list(RELIABILITY)}")
     srcs = load_sources(pid)
     if url:
-        for s in srcs:  # идемпотентность: тот же URL не регистрируется дважды
-            if s.get("url") == url:
+        for s in srcs:  # идемпотентность: тот же URL того же типа не регистрируется дважды
+            if s.get("url") == url and s.get("kind") == kind and (not path or s.get("path") == path):
                 return s
     sid = next_id("S", [s["id"] for s in srcs])
     rec = {"id": sid, "title": title, "kind": kind, "url": url, "path": path, "publisher": publisher,

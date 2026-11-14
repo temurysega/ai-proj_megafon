@@ -1,0 +1,92 @@
+# Маршрутизация задач по моделям (OpenRouter).
+# Принцип: рассуждение и синтез стратегии делает основная IDE-модель (самая сильная, дорогая ошибка);
+# массовые узкие операции уходят на дешёвые китайские модели. У каждой задачи — цепочка фолбэков:
+# при сбое, невалидном JSON или провале проверки качества запрос эскалируется к следующей модели
+# (исправление ошибочного выбора), а факт эскалации пишется в журнал.
+# Цены (USD за 1 млн токенов) сверены с https://openrouter.ai/api/v1/models 2026-11-14.
+# Обновить список и цены: python sf.py models sync ; проверить ID: python sf.py doctor
+
+provider:
+  base_url: https://openrouter.ai/api/v1
+  key_env: OPENROUTER_API_KEY
+
+defaults:
+  timeout_s: 120
+  max_retries: 2          # повторы на одной модели при 429/5xx/таймауте (с экспоненциальной паузой)
+  temperature: 0.3
+  max_tokens: 2000
+
+tasks:
+  classify:
+    why: "Выбор навыка/процесса по запросу, короткий JSON. Достаточно самой дешёвой быстрой модели."
+    models: [qwen/qwen3.7-flash, z-ai/glm-5.3-flash, deepseek/deepseek-v4-flash]
+    temperature: 0
+    max_tokens: 400
+    json: true
+  rerank:
+    why: "Переупорядочивание результатов поиска по смыслу (после BM25)."
+    models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    temperature: 0
+    max_tokens: 300
+    json: true
+  extract:
+    why: "Извлечение утверждений с дословными цитатами из длинного источника: длинный контекст + дёшево."
+    models: [deepseek/deepseek-v4.1-flash, qwen/qwen3.8-flash]
+    temperature: 0
+    max_tokens: 4000
+    json: true
+  summarize:
+    why: "Сжатие длинных материалов перед чтением основной моделью — экономия контекста IDE-модели."
+    models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    max_tokens: 1500
+  respondent:
+    why: "Модельный респондент в заданной роли (только для поиска гипотез). Одна модель по умолчанию;
+      ротация — опция --rotate, без заявлений о «репрезентативности»."
+    models: [deepseek/deepseek-v4-flash, qwen/qwen3.8-flash]
+    rotate_pool: [deepseek/deepseek-v4-flash, qwen/qwen3.8-flash, z-ai/glm-5.3-flash]
+    temperature: 0.8
+    max_tokens: 700
+  interviewer:
+    why: "Уточняющий вопрос интервьюера по ответу респондента (пробинг)."
+    models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    temperature: 0.4
+    max_tokens: 200
+  code_interview:
+    why: "Кодирование транскриптов интервью: задачи, боли, барьеры, дословные цитаты."
+    models: [deepseek/deepseek-v4.1-flash, qwen/qwen3.8-flash]
+    temperature: 0
+    max_tokens: 3000
+    json: true
+  judge:
+    why: "Оценка по рубрике. Модель другого семейства, чем основная (Claude), — меньше самоподтверждения."
+    models: [deepseek/deepseek-v4-pro, qwen/qwen3.7-plus]
+    temperature: 0
+    max_tokens: 2500
+    json: true
+  critic:
+    why: "Вторая точка зрения / красная команда от модели другого семейства."
+    models: [moonshotai/kimi-k2.6, deepseek/deepseek-v4-pro]
+    temperature: 0.5
+    max_tokens: 2500
+  vision:
+    why: "Описание скриншотов и изображений: только то, что видно, с координатами/текстом элементов."
+    models: [qwen/qwen3.8-flash, z-ai/glm-5.3-flash]
+    temperature: 0
+    max_tokens: 2000
+  audio:
+    why: "Расшифровка аудио (интервью, звонки-примеры) — омни-модель с аудиовходом."
+    models: [qwen/qwen3.8-omni-flash, xiaomi/mimo-v2.6-flash]
+    temperature: 0
+    max_tokens: 4000
+  baseline_chat:
+    why: "Базовая линия для сравнения: «обычный чат с ИИ» одним промптом без инструментов."
+    models: [deepseek/deepseek-v4-pro]
+    temperature: 0.5
+    max_tokens: 6000
+
+# Оценка стоимости IDE-модели по токенам (USD за 1 млн). Подписка IDE не даёт цены за токен,
+# поэтому это ориентир «сколько стоило бы через API».
+ide_models:
+  claude-opus: {in: 5.0, out: 25.0, cache_read: 0.5, cache_write: 6.25}
+  claude-sonnet: {in: 3.0, out: 15.0, cache_read: 0.3, cache_write: 3.75}
+  claude-haiku: {in: 1.0, out: 5.0, cache_read: 0.1, cache_write: 1.25}
