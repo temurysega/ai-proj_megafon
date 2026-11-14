@@ -146,8 +146,11 @@ def update_claim(cid: str, pid=None, **fields) -> dict:
 
 
 def retract_claim(cid: str, reason: str, superseded_by: str = "", pid=None) -> dict:
+    """Отозвать/заменить утверждение и сразу пометить зависимые разделы и решения к пересмотру."""
     status = "superseded" if superseded_by else "retracted"
-    return update_claim(cid, status=status, note=reason, superseded_by=superseded_by or None, pid=pid)
+    rec = update_claim(cid, status=status, note=reason, superseded_by=superseded_by or None, pid=pid)
+    rec["impact"] = impact(cid, pid, mark_stale=True)
+    return rec
 
 
 # ---------- ссылки в документах ----------
