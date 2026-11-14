@@ -1,0 +1,4440 @@
+{
+"inclusionai/ling-3.2-flash:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"google/gemini-4-hydrogen": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"google/gemini-4-hydrogen:batch": {
+"prompt": 7.5e-07,
+"completion": 3.75e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"baidu/ernie-5.5-flash-preview:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1024000,
+"input": [
+"text"
+]
+},
+"baidu/ernie-light-dt-1.0-intl": {
+"prompt": 1.13e-06,
+"completion": 3.94e-06,
+"context": 1024000,
+"input": [
+"text"
+]
+},
+"google/gemini-4-carbon": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"google/gemini-4-carbon:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"nex-agi/nex-n2.6": {
+"prompt": 1.2e-07,
+"completion": 4e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"thinkingmachines/inkling-2-small": {
+"prompt": 3e-07,
+"completion": 1e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"thinkingmachines/inkling-2-small:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"anthropic/claude-fable-5.2": {
+"prompt": 8e-06,
+"completion": 4e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-fable-5.2:batch": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"meta/muse-ember": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"liquid/lfm-3-1.7b": {
+"prompt": 8e-08,
+"completion": 2e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"liquid/lfm-3-1.7b:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"google/gemini-omni-1.2-flash": {
+"prompt": 1.5e-06,
+"completion": 9e-06,
+"context": 131072,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"kt/midm-k-3.0-pro": {
+"prompt": 2e-07,
+"completion": 8e-07,
+"context": 261795,
+"input": [
+"text"
+]
+},
+"google/gemini-omni-1.1-flash": {
+"prompt": 1.5e-06,
+"completion": 9e-06,
+"context": 131072,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"ricursiveai/ripple-65b-preview": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"tencent/hy4": {
+"prompt": 4.17e-07,
+"completion": 1.2505e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"motif-technologies/motif-3": {
+"prompt": 3e-07,
+"completion": 1.2e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5.3-flashx-legal": {
+"prompt": 3.7e-07,
+"completion": 1.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"particle-ai/particle-1": {
+"prompt": 5e-08,
+"completion": 5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"particle-ai/particle-1:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-6.1-terra-pro": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-terra-pro:batch": {
+"prompt": 5e-07,
+"completion": 2.5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-terra": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-terra:batch": {
+"prompt": 5e-07,
+"completion": 2.5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"moonshotai/kimi-k3.1-pro": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"moonshotai/kimi-k3.1-pro:batch": {
+"prompt": 7e-07,
+"completion": 6e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"recursive/flint-v1.0:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"minimax/minimax-m3.1-flash": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"deepseek/deepseek-v4.1-flash-1017": {
+"prompt": 3.8e-08,
+"completion": 5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"deepseek/deepseek-v4.1-flash-1017:batch": {
+"prompt": 5e-08,
+"completion": 1.5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"elorian/glimpse": {
+"prompt": 6e-07,
+"completion": 3e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"reflection/beam-1.0-501b-a23b": {
+"prompt": 3e-07,
+"completion": 1e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"prism-ml/ternary-bonsai-2-9b": {
+"prompt": 8e-08,
+"completion": 1.3e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"moondream/moondream3-preview": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 32000,
+"input": [
+"text",
+"image"
+]
+},
+"moondream/moondream3.1-9b-a2b": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 32000,
+"input": [
+"text",
+"image"
+]
+},
+"meta/muse-spark-open": {
+"prompt": 1.25e-06,
+"completion": 4.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"nvidia/nemotron-3.5-super-vl": {
+"prompt": 1.5e-07,
+"completion": 4.7e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"nvidia/nemotron-3.5-super-vl:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"unbiased/pareto-26.10": {
+"prompt": 8e-07,
+"completion": 3.2e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"~unbiased/pareto-latest": {
+"prompt": 8e-07,
+"completion": 3.2e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"unbiased/pareto-26.9": {
+"prompt": 2.5e-06,
+"completion": 7.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"liquid/lfm-2.5-24b-a2b": {
+"prompt": 5e-08,
+"completion": 7e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"google/gemini-4-argon": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"google/gemini-4-argon:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"scaledown/summarize": {
+"prompt": 4e-08,
+"completion": 0.0,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"scaledown/extract": {
+"prompt": 4e-08,
+"completion": 0.0,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"meta/muse-wonder": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"stepfun/step-5-preview": {
+"prompt": 1e-06,
+"completion": 2.7e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"anthropic/claude-haiku-5.5": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-haiku-5.5:batch": {
+"prompt": 5e-08,
+"completion": 2.5e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/gemini-nano-banana-2.1": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 65536,
+"input": [
+"image",
+"text"
+]
+},
+"mistralai/mistral-large-4-0": {
+"prompt": 7e-07,
+"completion": 2.1e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"inclusionai/ling-3.1-flash": {
+"prompt": 4.5e-08,
+"completion": 1.35e-07,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"unbiased/pareto-26.10-preview": {
+"prompt": 8e-07,
+"completion": 3.2e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-6.1-sol-pro": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-sol-pro:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-sol": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6.1-sol:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"anthropic/claude-sonnet-5.5": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-sonnet-5.5:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"perceptron/perceptron-mk1.5": {
+"prompt": 1.5e-07,
+"completion": 1.5e-06,
+"context": 36864,
+"input": [
+"text",
+"image",
+"video",
+"audio"
+]
+},
+"fireworks/ember-1": {
+"prompt": 3e-06,
+"completion": 1.5e-05,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"z-ai/glm-5.3-prime": {
+"prompt": 2.8e-06,
+"completion": 8.8e-06,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"qwen/qwen3.8-max-prime": {
+"prompt": 4e-06,
+"completion": 1.2e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"aion-labs/aion-3.5-mini": {
+"prompt": 7e-07,
+"completion": 1.4e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"aion-labs/aion-3.5": {
+"prompt": 3e-06,
+"completion": 6e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"upstage/solar-mini4": {
+"prompt": 5e-08,
+"completion": 2e-07,
+"context": 524288,
+"input": [
+"text"
+]
+},
+"cohere/command-a-plus": {
+"prompt": 3e-07,
+"completion": 1.5e-06,
+"context": 192000,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-6-luna-pro": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-luna-pro:batch": {
+"prompt": 5e-08,
+"completion": 2.5e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-luna": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-luna:batch": {
+"prompt": 5e-08,
+"completion": 2.5e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-sol-pro": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-sol-pro:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-sol": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-sol:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"anthropic/claude-opus-5.5": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-opus-5.5:batch": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"xiaomi/mimo-v2.6-pro-ultraspeed": {
+"prompt": 4.35e-06,
+"completion": 8.7e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"audio"
+]
+},
+"xiaomi/mimo-v2.6-flash": {
+"prompt": 1.4e-07,
+"completion": 2.8e-07,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"video",
+"audio"
+]
+},
+"xiaomi/mimo-v2.6-pro": {
+"prompt": 4.35e-07,
+"completion": 8.7e-07,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"video",
+"audio"
+]
+},
+"x-ai/grok-4.7": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"x-ai/grok-4.7:batch": {
+"prompt": 1.6e-06,
+"completion": 4.8e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3.8-omni-flash": {
+"prompt": 1.5e-07,
+"completion": 4.7e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"audio",
+"video"
+]
+},
+"prism-ml/ternary-bonsai-2-27b": {
+"prompt": 7.5e-08,
+"completion": 5e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"z-ai/glm-5.3-flashx": {
+"prompt": 3.7e-07,
+"completion": 1.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"~deepseek/deepseek-pro-latest": {
+"prompt": 9.99e-08,
+"completion": 8e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"~deepseek/deepseek-flash-latest": {
+"prompt": 3.8e-08,
+"completion": 5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"inference-net/schematron-v2-turbo": {
+"prompt": 3e-08,
+"completion": 1.5e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"inference-net/schematron-v2-small": {
+"prompt": 5e-08,
+"completion": 2.3e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"~openai/gpt-astra-latest": {
+"prompt": 1e-05,
+"completion": 5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"~openai/gpt-sol-latest": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"~openai/gpt-terra-latest": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"~openai/gpt-luna-latest": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"sakana/fugu-ultra-v2": {
+"prompt": 5e-06,
+"completion": 3e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"sakana/fugu-max": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"inclusionai/ling-3.0-flash-vl": {
+"prompt": 6e-08,
+"completion": 1.8e-07,
+"context": 131072,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"deepseek/deepseek-v4.1-flash": {
+"prompt": 5.07e-08,
+"completion": 2.028e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"deepseek/deepseek-v4.1-flash:batch": {
+"prompt": 1.12e-07,
+"completion": 3.36e-07,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"nex-agi/nex-n2.5-mini": {
+"prompt": 2.5e-08,
+"completion": 1e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"nex-agi/nex-n2.5-pro": {
+"prompt": 7.5e-08,
+"completion": 2.5e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-6-astra": {
+"prompt": 1e-05,
+"completion": 5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-astra:batch": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-astra-pro": {
+"prompt": 1e-05,
+"completion": 5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-6-astra-pro:batch": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"qwen/qwen3.8-max-0902": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.8-max-0902:batch": {
+"prompt": 1.15e-06,
+"completion": 3.45e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"meta/muse-spark-1.3-contributor": {
+"prompt": 1e-07,
+"completion": 2e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"meta/muse-spark-1.3": {
+"prompt": 1.25e-06,
+"completion": 4.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"google/gemini-3.8-flash": {
+"prompt": 8.25e-07,
+"completion": 4.125e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.8-flash:batch": {
+"prompt": 3.75e-07,
+"completion": 1.875e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"anthropic/claude-fable-5.1": {
+"prompt": 1e-05,
+"completion": 5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-fable-5.1:batch": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"ibm-granite/granite-4.2-8b": {
+"prompt": 6e-08,
+"completion": 2.5e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"tencent/hy4-preview": {
+"prompt": 8.34e-07,
+"completion": 2.501e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"~z-ai/glm-flash-latest": {
+"prompt": 3.99e-08,
+"completion": 7.84e-08,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.8-flash": {
+"prompt": 1.5e-07,
+"completion": 4.7e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"z-ai/glm-5.3-flash": {
+"prompt": 3.99e-08,
+"completion": 7.84e-08,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"z-ai/glm-5.3-flash:batch": {
+"prompt": 5e-08,
+"completion": 1.8e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"meta/muse-spark-1.2-contributor": {
+"prompt": 1e-07,
+"completion": 2e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"deepseek/deepseek-v4-flash-vision-exp": {
+"prompt": 4.4e-07,
+"completion": 1.32e-06,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"tencent/hy-mt2-1.8b": {
+"prompt": 4.4e-08,
+"completion": 1.77e-07,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"tencent/hy-mt2-30b-a3b": {
+"prompt": 7.4e-08,
+"completion": 2.95e-07,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"~z-ai/glm-latest": {
+"prompt": 6.99e-08,
+"completion": 1.4e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"tencent/hy-mt2-7b": {
+"prompt": 7.4e-08,
+"completion": 2.95e-07,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5.3": {
+"prompt": 8.4e-08,
+"completion": 3.6e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5.3:batch": {
+"prompt": 4.5e-07,
+"completion": 2e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"qwen/qwen3.8-27b": {
+"prompt": 1.5e-07,
+"completion": 1.875e-06,
+"context": 1024000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.8-27b:batch": {
+"prompt": 1.6e-07,
+"completion": 2e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"dots-studio/dots-3-note-preview:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 512000,
+"input": [
+"text",
+"image"
+]
+},
+"google/gemini-3.7-flash": {
+"prompt": 7.5e-07,
+"completion": 3.75e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.7-flash:batch": {
+"prompt": 3.75e-07,
+"completion": 1.875e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"bytedance-seed/seed-2-1-turbo": {
+"prompt": 5e-07,
+"completion": 2.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.8-2.4t-a95b": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-v4-pro-0813": {
+"prompt": 1.11e-07,
+"completion": 4.44e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"x-ai/grok-4.6": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"x-ai/grok-4.6:batch": {
+"prompt": 1.6e-06,
+"completion": 4.8e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"nvidia/nemotron-3.5-lightning": {
+"prompt": 7e-08,
+"completion": 2e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"nvidia/nemotron-3.5-lightning:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"sakana/sakana-namazu": {
+"prompt": 9.5e-07,
+"completion": 4e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"upstage/solar-pro4": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 524288,
+"input": [
+"text"
+]
+},
+"meta/muse-glimmer-30b": {
+"prompt": 3e-07,
+"completion": 1.2e-06,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"meta/muse-glimmer-30b:batch": {
+"prompt": 2.4e-07,
+"completion": 9.6e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"inclusionai/ling-3.0-tiny": {
+"prompt": 1.5e-08,
+"completion": 4.5e-08,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"meta/muse-spark-1.2": {
+"prompt": 1.25e-06,
+"completion": 4.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"~deepseek/deepseek-v4-flash-latest": {
+"prompt": 4.34e-08,
+"completion": 3e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-v4-flash-0731": {
+"prompt": 4.34e-08,
+"completion": 3e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-v4-flash-0731:batch": {
+"prompt": 4.8e-08,
+"completion": 1.44e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"thinkingmachines/inkling-small": {
+"prompt": 4.5e-07,
+"completion": 1.2e-06,
+"context": 524288,
+"input": [
+"text",
+"image",
+"audio"
+]
+},
+"thinkingmachines/inkling-small:batch": {
+"prompt": 3.6e-07,
+"completion": 9.6e-07,
+"context": 524288,
+"input": [
+"text",
+"image",
+"audio"
+]
+},
+"qwen/qwen3.7-flash": {
+"prompt": 3e-08,
+"completion": 1.3e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"anthropic/claude-opus-5": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-opus-5:batch": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"inclusionai/ling-3.0-flash": {
+"prompt": 2.1e-08,
+"completion": 6.3e-08,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"google/gemini-3.6-flash": {
+"prompt": 7.5e-07,
+"completion": 3.75e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.6-flash:batch": {
+"prompt": 3.75e-07,
+"completion": 1.875e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.5-flash-lite": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.5-flash-lite:batch": {
+"prompt": 1.5e-07,
+"completion": 1.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"meituan/longcat-2.0": {
+"prompt": 3e-07,
+"completion": 1.2e-06,
+"context": 1048756,
+"input": [
+"text"
+]
+},
+"thinkingmachines/inkling": {
+"prompt": 1e-06,
+"completion": 4.05e-06,
+"context": 524288,
+"input": [
+"text",
+"image",
+"audio"
+]
+},
+"moonshotai/kimi-k3": {
+"prompt": 1.92e-07,
+"completion": 1.6e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"moonshotai/kimi-k3:batch": {
+"prompt": 2.28e-06,
+"completion": 1.14e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"meta/muse-spark-1.1": {
+"prompt": 1.25e-06,
+"completion": 4.25e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"openai/gpt-5.6-luna-pro": {
+"prompt": 2e-07,
+"completion": 1.2e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-luna-pro:batch": {
+"prompt": 1e-07,
+"completion": 6e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-luna": {
+"prompt": 2e-07,
+"completion": 1.2e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-luna:batch": {
+"prompt": 1e-07,
+"completion": 6e-07,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-terra-pro": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-terra-pro:batch": {
+"prompt": 1e-06,
+"completion": 6e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-terra": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-terra:batch": {
+"prompt": 1e-06,
+"completion": 6e-06,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-sol-pro": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-sol-pro:batch": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-sol": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.6-sol:batch": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"x-ai/grok-4.5": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"~x-ai/grok-latest": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 500000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"aion-labs/aion-3.0-mini": {
+"prompt": 7e-07,
+"completion": 1.4e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"aion-labs/aion-3.0": {
+"prompt": 3e-06,
+"completion": 6e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"tencent/hy3": {
+"prompt": 1.32e-07,
+"completion": 5.28e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"anthropic/claude-sonnet-5": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-sonnet-5:batch": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/gemini-3.1-flash-lite-image": {
+"prompt": 2.5e-07,
+"completion": 1.5e-06,
+"context": 65536,
+"input": [
+"image",
+"text"
+]
+},
+"sakana/fugu-ultra": {
+"prompt": 5e-06,
+"completion": 3e-05,
+"context": 1000000,
+"input": [
+"text",
+"image"
+]
+},
+"google/gemini-3.1-flash-image": {
+"prompt": 5e-07,
+"completion": 3e-06,
+"context": 131072,
+"input": [
+"image",
+"text"
+]
+},
+"google/gemini-3-pro-image": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 131072,
+"input": [
+"image",
+"text"
+]
+},
+"cohere/north-mini-code:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 256000,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5.2": {
+"prompt": 7e-09,
+"completion": 6.8e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5.2:batch": {
+"prompt": 2.98e-07,
+"completion": 9.16e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"moonshotai/kimi-k2.7-code": {
+"prompt": 6e-07,
+"completion": 3.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"~anthropic/claude-fable-latest": {
+"prompt": 8e-06,
+"completion": 4e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-fable-5": {
+"prompt": 1e-05,
+"completion": 5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-fable-5:batch": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"nvidia/nemotron-3.5-content-safety": {
+"prompt": 2e-07,
+"completion": 2e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"nvidia/nemotron-3-ultra-550b-a55b": {
+"prompt": 6e-07,
+"completion": 2.4e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"nvidia/nemotron-3-ultra-550b-a55b:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"qwen/qwen3.7-plus": {
+"prompt": 3.2e-07,
+"completion": 1.28e-06,
+"context": 1000000,
+"input": [
+"text",
+"image"
+]
+},
+"qwen/qwen3.7-plus:batch": {
+"prompt": 2.3e-07,
+"completion": 9.2e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"minimax/minimax-m3": {
+"prompt": 3e-07,
+"completion": 1.2e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"minimax/minimax-m3:batch": {
+"prompt": 2.24e-07,
+"completion": 8.8e-07,
+"context": 524288,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"stepfun/step-3.7-flash": {
+"prompt": 2e-07,
+"completion": 1.15e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"anthropic/claude-opus-4.8": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-opus-4.8:batch": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3.7-max": {
+"prompt": 1.475e-06,
+"completion": 4.425e-06,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"x-ai/grok-build-0.1": {
+"prompt": 1e-06,
+"completion": 2e-06,
+"context": 256000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/gemini-3.5-flash": {
+"prompt": 1.5e-06,
+"completion": 9e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.5-flash:batch": {
+"prompt": 7.5e-07,
+"completion": 4.5e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"perceptron/perceptron-mk1": {
+"prompt": 1.5e-07,
+"completion": 1.5e-06,
+"context": 32768,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"google/gemini-3.1-flash-lite": {
+"prompt": 2.5e-07,
+"completion": 1.5e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"google/gemini-3.1-flash-lite:batch": {
+"prompt": 1.25e-07,
+"completion": 7.5e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"openai/gpt-chat-latest": {
+"prompt": 5e-06,
+"completion": 3e-05,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"x-ai/grok-4.3": {
+"prompt": 1.25e-06,
+"completion": 2.5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"x-ai/grok-4.3:batch": {
+"prompt": 1e-06,
+"completion": 2e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"mistralai/mistral-medium-3-5": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"mistralai/mistral-medium-3-5:batch": {
+"prompt": 7.5e-07,
+"completion": 3.75e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 256000,
+"input": [
+"text",
+"audio",
+"image",
+"video"
+]
+},
+"~anthropic/claude-haiku-latest": {
+"prompt": 1e-07,
+"completion": 5e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"~openai/gpt-mini-latest": {
+"prompt": 7.5e-07,
+"completion": 4.5e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"~google/gemini-pro-latest": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"~moonshotai/kimi-latest": {
+"prompt": 1.824e-07,
+"completion": 1.10055e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"~google/gemini-flash-latest": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"~anthropic/claude-sonnet-latest": {
+"prompt": 2e-06,
+"completion": 1e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3.5-plus-20260420": {
+"prompt": 3e-07,
+"completion": 1.8e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.6-flash": {
+"prompt": 1.875e-07,
+"completion": 1.125e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.6-35b-a3b": {
+"prompt": 1e-07,
+"completion": 9e-07,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.6-27b": {
+"prompt": 3.2e-07,
+"completion": 3.2e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"openai/gpt-5.5-pro": {
+"prompt": 3e-05,
+"completion": 0.00018,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.5-pro:batch": {
+"prompt": 1.5e-05,
+"completion": 9e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.5": {
+"prompt": 5e-06,
+"completion": 3e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.5:batch": {
+"prompt": 2.5e-06,
+"completion": 1.5e-05,
+"context": 1050000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"deepseek/deepseek-v4-pro": {
+"prompt": 9e-07,
+"completion": 1.5e-06,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-v4-flash": {
+"prompt": 9e-08,
+"completion": 1.8e-07,
+"context": 1048576,
+"input": [
+"text"
+]
+},
+"tencent/hy3-preview": {
+"prompt": 1.8e-07,
+"completion": 6e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"xiaomi/mimo-v2.5-pro": {
+"prompt": 4.35e-07,
+"completion": 8.7e-07,
+"context": 1024000,
+"input": [
+"text"
+]
+},
+"xiaomi/mimo-v2.5": {
+"prompt": 4e-07,
+"completion": 2e-06,
+"context": 1000000,
+"input": [
+"text",
+"audio",
+"image",
+"video"
+]
+},
+"openai/gpt-5.4-image-2": {
+"prompt": 8e-06,
+"completion": 1.5e-05,
+"context": 272000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"~anthropic/claude-opus-latest": {
+"prompt": 4e-06,
+"completion": 2e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"moonshotai/kimi-k2.6": {
+"prompt": 6.5e-07,
+"completion": 3.41e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"anthropic/claude-opus-4.7": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-opus-4.7:batch": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"z-ai/glm-5.1": {
+"prompt": 1.4e-06,
+"completion": 4.4e-06,
+"context": 204800,
+"input": [
+"text"
+]
+},
+"google/gemma-4-26b-a4b-it": {
+"prompt": 6.75e-08,
+"completion": 2.25e-07,
+"context": 262144,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"google/gemma-4-26b-a4b-it:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 262144,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"google/gemma-4-31b-it": {
+"prompt": 2e-07,
+"completion": 4e-07,
+"context": 262144,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"google/gemma-4-31b-it:free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 262144,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"qwen/qwen3.6-plus": {
+"prompt": 3.25e-07,
+"completion": 1.95e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"z-ai/glm-5v-turbo": {
+"prompt": 1.2e-06,
+"completion": 4e-06,
+"context": 202752,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"x-ai/grok-4.20-multi-agent": {
+"prompt": 1.25e-06,
+"completion": 2.5e-06,
+"context": 2000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"x-ai/grok-4.20": {
+"prompt": 1.25e-06,
+"completion": 2.5e-06,
+"context": 2000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/lyria-3-pro-preview": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"google/lyria-3-clip-preview": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 1048576,
+"input": [
+"text",
+"image"
+]
+},
+"rekaai/reka-edge": {
+"prompt": 1e-07,
+"completion": 1e-07,
+"context": 16384,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"minimax/minimax-m2.7": {
+"prompt": 2.1e-07,
+"completion": 8.4e-07,
+"context": 196608,
+"input": [
+"text"
+]
+},
+"openai/gpt-5.4-nano": {
+"prompt": 2e-07,
+"completion": 1.25e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.4-nano:batch": {
+"prompt": 1e-07,
+"completion": 6.25e-07,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.4-mini": {
+"prompt": 7.5e-07,
+"completion": 4.5e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.4-mini:batch": {
+"prompt": 3.75e-07,
+"completion": 2.25e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"mistralai/mistral-small-2603": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"z-ai/glm-5-turbo": {
+"prompt": 1.2e-06,
+"completion": 4e-06,
+"context": 202752,
+"input": [
+"text"
+]
+},
+"nvidia/nemotron-3-super-120b-a12b": {
+"prompt": 7.5e-08,
+"completion": 4e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"bytedance-seed/seed-2.0-lite": {
+"prompt": 2.5e-07,
+"completion": 2e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.5-9b": {
+"prompt": 1.59e-07,
+"completion": 2.33e-07,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"openai/gpt-5.4-pro": {
+"prompt": 3e-05,
+"completion": 0.00018,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5.4-pro:batch": {
+"prompt": 1.5e-05,
+"completion": 9e-05,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5.4": {
+"prompt": 2.5e-06,
+"completion": 1.5e-05,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5.4:batch": {
+"prompt": 1.25e-06,
+"completion": 7.5e-06,
+"context": 1050000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/gemini-3.1-flash-lite-preview": {
+"prompt": 2.5e-07,
+"completion": 1.5e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"video",
+"file",
+"audio"
+]
+},
+"bytedance-seed/seed-2.0-mini": {
+"prompt": 1e-07,
+"completion": 4e-07,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"google/gemini-3.1-flash-image-preview": {
+"prompt": 5e-07,
+"completion": 3e-06,
+"context": 65536,
+"input": [
+"image",
+"text"
+]
+},
+"qwen/qwen3.5-35b-a3b": {
+"prompt": 1.4e-07,
+"completion": 1e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.5-27b": {
+"prompt": 2.6e-07,
+"completion": 2.6e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.5-122b-a10b": {
+"prompt": 2.6e-07,
+"completion": 2.08e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.5-flash-02-23": {
+"prompt": 6.5e-08,
+"completion": 2.6e-07,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"google/gemini-3.1-pro-preview-customtools": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 1048576,
+"input": [
+"text",
+"audio",
+"image",
+"video",
+"file"
+]
+},
+"openai/gpt-5.3-codex": {
+"prompt": 1.75e-06,
+"completion": 1.4e-05,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"aion-labs/aion-2.0": {
+"prompt": 8e-07,
+"completion": 1.6e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"google/gemini-3.1-pro-preview": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"google/gemini-3.1-pro-preview:batch": {
+"prompt": 1e-06,
+"completion": 6e-06,
+"context": 1048576,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"anthropic/claude-sonnet-4.6": {
+"prompt": 3e-06,
+"completion": 1.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-sonnet-4.6:batch": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3.5-plus-02-15": {
+"prompt": 2.6e-07,
+"completion": 1.56e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"qwen/qwen3.5-397b-a17b": {
+"prompt": 6e-07,
+"completion": 3.6e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"video"
+]
+},
+"minimax/minimax-m2.5": {
+"prompt": 2.7e-07,
+"completion": 9.5e-07,
+"context": 198000,
+"input": [
+"text"
+]
+},
+"z-ai/glm-5": {
+"prompt": 1e-06,
+"completion": 3.2e-06,
+"context": 204800,
+"input": [
+"text"
+]
+},
+"anthropic/claude-opus-4.6": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-opus-4.6:batch": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3-coder-next": {
+"prompt": 1.2e-07,
+"completion": 8e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"stepfun/step-3.5-flash": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"moonshotai/kimi-k2.5": {
+"prompt": 5e-07,
+"completion": 2.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"writer/palmyra-x5": {
+"prompt": 6e-07,
+"completion": 6e-06,
+"context": 1040000,
+"input": [
+"text"
+]
+},
+"openai/gpt-audio": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 128000,
+"input": [
+"text",
+"audio"
+]
+},
+"openai/gpt-audio-mini": {
+"prompt": 6e-07,
+"completion": 2.4e-06,
+"context": 128000,
+"input": [
+"text",
+"audio"
+]
+},
+"z-ai/glm-4.7-flash": {
+"prompt": 6.05e-08,
+"completion": 4e-07,
+"context": 200000,
+"input": [
+"text"
+]
+},
+"openai/gpt-5.2-codex": {
+"prompt": 1.75e-06,
+"completion": 1.4e-05,
+"context": 400000,
+"input": [
+"text",
+"image"
+]
+},
+"z-ai/glm-4.7": {
+"prompt": 6e-07,
+"completion": 2.2e-06,
+"context": 204800,
+"input": [
+"text"
+]
+},
+"google/gemini-3-flash-preview": {
+"prompt": 5e-07,
+"completion": 3e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"file",
+"audio",
+"video"
+]
+},
+"google/gemini-3-flash-preview:batch": {
+"prompt": 2.5e-07,
+"completion": 1.5e-06,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"file",
+"audio",
+"video"
+]
+},
+"nvidia/nemotron-3-nano-30b-a3b": {
+"prompt": 6e-08,
+"completion": 2.4e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"openai/gpt-5.2-chat": {
+"prompt": 1.75e-06,
+"completion": 1.4e-05,
+"context": 128000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.2-pro": {
+"prompt": 2.1e-05,
+"completion": 0.000168,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-5.2-pro:batch": {
+"prompt": 1.05e-05,
+"completion": 8.4e-05,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-5.2": {
+"prompt": 1.75e-06,
+"completion": 1.4e-05,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"openai/gpt-5.2:batch": {
+"prompt": 8.75e-07,
+"completion": 7e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"mistralai/devstral-2512": {
+"prompt": 4e-07,
+"completion": 2e-06,
+"context": 262144,
+"input": [
+"text",
+"file"
+]
+},
+"relace/relace-search": {
+"prompt": 1e-06,
+"completion": 3e-06,
+"context": 256000,
+"input": [
+"text"
+]
+},
+"z-ai/glm-4.6v": {
+"prompt": 3e-07,
+"completion": 9e-07,
+"context": 131072,
+"input": [
+"image",
+"text",
+"video"
+]
+},
+"openai/gpt-5.1-codex-max": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 400000,
+"input": [
+"text",
+"image"
+]
+},
+"amazon/nova-2-lite-v1": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"video",
+"file"
+]
+},
+"mistralai/ministral-14b-2512": {
+"prompt": 2e-07,
+"completion": 2e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"mistralai/ministral-8b-2512": {
+"prompt": 1.5e-07,
+"completion": 1.5e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"mistralai/ministral-3b-2512": {
+"prompt": 1e-07,
+"completion": 1e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"mistralai/mistral-large-2512": {
+"prompt": 5e-07,
+"completion": 1.5e-06,
+"context": 262144,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"deepseek/deepseek-v3.2": {
+"prompt": 2.6e-07,
+"completion": 3.8e-07,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"anthropic/claude-opus-4.5": {
+"prompt": 5e-06,
+"completion": 2.5e-05,
+"context": 200000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"anthropic/claude-opus-4.5:batch": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 200000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"google/gemini-3-pro-image-preview": {
+"prompt": 2e-06,
+"completion": 1.2e-05,
+"context": 65536,
+"input": [
+"image",
+"text"
+]
+},
+"openai/gpt-5.1": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-5.1:batch": {
+"prompt": 6.25e-07,
+"completion": 5e-06,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-5.1-codex": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 400000,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-5.1-codex-mini": {
+"prompt": 2.5e-07,
+"completion": 2e-06,
+"context": 400000,
+"input": [
+"image",
+"text"
+]
+},
+"moonshotai/kimi-k2-thinking": {
+"prompt": 6e-07,
+"completion": 2.5e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"amazon/nova-premier-v1": {
+"prompt": 2.5e-06,
+"completion": 1.25e-05,
+"context": 1000000,
+"input": [
+"text",
+"image"
+]
+},
+"perplexity/sonar-pro-search": {
+"prompt": 3e-06,
+"completion": 1.5e-05,
+"context": 200000,
+"input": [
+"text",
+"image"
+]
+},
+"mistralai/voxtral-small-24b-2507": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 32768,
+"input": [
+"text",
+"audio",
+"file"
+]
+},
+"openai/gpt-oss-safeguard-20b": {
+"prompt": 7.5e-08,
+"completion": 3e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/gpt-5-image-mini": {
+"prompt": 2.5e-06,
+"completion": 2e-06,
+"context": 400000,
+"input": [
+"file",
+"image",
+"text"
+]
+},
+"anthropic/claude-haiku-4.5": {
+"prompt": 1e-06,
+"completion": 5e-06,
+"context": 200000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-haiku-4.5:batch": {
+"prompt": 5e-07,
+"completion": 2.5e-06,
+"context": 200000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"qwen/qwen3-vl-8b-instruct": {
+"prompt": 2.5e-07,
+"completion": 7.5e-07,
+"context": 262144,
+"input": [
+"image",
+"text"
+]
+},
+"openai/gpt-5-image": {
+"prompt": 1e-05,
+"completion": 1e-05,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"google/gemini-2.5-flash-image": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 32768,
+"input": [
+"image",
+"text"
+]
+},
+"qwen/qwen3-vl-30b-a3b-thinking": {
+"prompt": 2.9e-07,
+"completion": 1e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"qwen/qwen3-vl-30b-a3b-instruct": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-5-pro": {
+"prompt": 1.5e-05,
+"completion": 0.00012,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-5-pro:batch": {
+"prompt": 7.5e-06,
+"completion": 6e-05,
+"context": 400000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"z-ai/glm-4.6": {
+"prompt": 5e-07,
+"completion": 2e-06,
+"context": 204800,
+"input": [
+"text"
+]
+},
+"anthropic/claude-sonnet-4.5": {
+"prompt": 3e-06,
+"completion": 1.5e-05,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"anthropic/claude-sonnet-4.5:batch": {
+"prompt": 1.5e-06,
+"completion": 7.5e-06,
+"context": 1000000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"deepseek/deepseek-v3.2-exp": {
+"prompt": 2.7e-07,
+"completion": 4.1e-07,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"thedrummer/cydonia-24b-v4.1": {
+"prompt": 3e-07,
+"completion": 5e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"relace/relace-apply-3": {
+"prompt": 8.5e-07,
+"completion": 1.25e-06,
+"context": 256000,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-vl-235b-a22b-instruct": {
+"prompt": 2.1e-07,
+"completion": 1.9e-06,
+"context": 262144,
+"input": [
+"text",
+"image"
+]
+},
+"deepseek/deepseek-v3.1-terminus": {
+"prompt": 2.7e-07,
+"completion": 1e-06,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-coder-flash": {
+"prompt": 1.95e-07,
+"completion": 9.75e-07,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-next-80b-a3b-instruct": {
+"prompt": 9e-08,
+"completion": 1.1e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"moonshotai/kimi-k2-0905": {
+"prompt": 6e-07,
+"completion": 2.5e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"nousresearch/hermes-4-405b": {
+"prompt": 1e-06,
+"completion": 3e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-chat-v3.1": {
+"prompt": 2.5e-07,
+"completion": 9.5e-07,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-medium-3.1": {
+"prompt": 4e-07,
+"completion": 2e-06,
+"context": 131072,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"z-ai/glm-4.5v": {
+"prompt": 6e-07,
+"completion": 1.8e-06,
+"context": 65536,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-5": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5:batch": {
+"prompt": 6.25e-07,
+"completion": 5e-06,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5-mini": {
+"prompt": 2.5e-07,
+"completion": 2e-06,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5-mini:batch": {
+"prompt": 1.25e-07,
+"completion": 1e-06,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5-nano": {
+"prompt": 5e-08,
+"completion": 4e-07,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-5-nano:batch": {
+"prompt": 2.5e-08,
+"completion": 2e-07,
+"context": 400000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-oss-120b": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/gpt-oss-120b:batch": {
+"prompt": 2.96e-08,
+"completion": 1.36e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/gpt-oss-20b": {
+"prompt": 3e-08,
+"completion": 1.3e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/gpt-oss-20b:batch": {
+"prompt": 2.4e-08,
+"completion": 1.12e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"anthropic/claude-opus-4.1": {
+"prompt": 1.5e-05,
+"completion": 7.5e-05,
+"context": 200000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"anthropic/claude-opus-4.1:batch": {
+"prompt": 7.5e-06,
+"completion": 3.75e-05,
+"context": 200000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"mistralai/codestral-2508": {
+"prompt": 3e-07,
+"completion": 9e-07,
+"context": 256000,
+"input": [
+"text",
+"file"
+]
+},
+"qwen/qwen3-coder-30b-a3b-instruct": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-30b-a3b-instruct-2507": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"z-ai/glm-4.5": {
+"prompt": 6e-07,
+"completion": 2.2e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"z-ai/glm-4.5-air": {
+"prompt": 2e-07,
+"completion": 1.1e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-235b-a22b-thinking-2507": {
+"prompt": 4.5e-07,
+"completion": 3.5e-06,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-coder": {
+"prompt": 3e-07,
+"completion": 1e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"bytedance/ui-tars-1.5-7b": {
+"prompt": 1e-07,
+"completion": 2e-07,
+"context": 128000,
+"input": [
+"image",
+"text"
+]
+},
+"google/gemini-2.5-flash-lite": {
+"prompt": 1e-07,
+"completion": 4e-07,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"file",
+"audio",
+"video"
+]
+},
+"qwen/qwen3-235b-a22b-2507": {
+"prompt": 1.4e-07,
+"completion": 8e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"moonshotai/kimi-k2": {
+"prompt": 5.7e-07,
+"completion": 2.3e-06,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"cognitivecomputations/dolphin-mistral-24b-venice-edition": {
+"prompt": 2e-07,
+"completion": 9e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"tencent/hunyuan-a13b-instruct": {
+"prompt": 1.4e-07,
+"completion": 5.7e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"morph/morph-v3-large": {
+"prompt": 9e-07,
+"completion": 1.9e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"morph/morph-v3-large:batch": {
+"prompt": 4.5e-07,
+"completion": 9.5e-07,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"morph/morph-v3-fast": {
+"prompt": 8e-07,
+"completion": 1.2e-06,
+"context": 262144,
+"input": [
+"text"
+]
+},
+"morph/morph-v3-fast:batch": {
+"prompt": 4e-07,
+"completion": 6e-07,
+"context": 81920,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-small-3.2-24b-instruct": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 256000,
+"input": [
+"image",
+"text"
+]
+},
+"google/gemini-2.5-flash": {
+"prompt": 3e-07,
+"completion": 2.5e-06,
+"context": 1048576,
+"input": [
+"file",
+"image",
+"text",
+"audio",
+"video"
+]
+},
+"google/gemini-2.5-pro": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"text",
+"image",
+"file",
+"audio",
+"video"
+]
+},
+"openai/o3-pro": {
+"prompt": 2e-05,
+"completion": 8e-05,
+"context": 200000,
+"input": [
+"text",
+"file",
+"image"
+]
+},
+"google/gemini-2.5-pro-preview": {
+"prompt": 1.25e-06,
+"completion": 1e-05,
+"context": 1048576,
+"input": [
+"file",
+"image",
+"text",
+"audio"
+]
+},
+"deepseek/deepseek-r1-0528": {
+"prompt": 5e-07,
+"completion": 2.15e-06,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-medium-3": {
+"prompt": 4e-07,
+"completion": 2e-06,
+"context": 131072,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"meta-llama/llama-guard-4-12b": {
+"prompt": 1.8e-07,
+"completion": 1.8e-07,
+"context": 163840,
+"input": [
+"image",
+"text"
+]
+},
+"qwen/qwen3-30b-a3b": {
+"prompt": 1.2e-07,
+"completion": 5e-07,
+"context": 40960,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-14b": {
+"prompt": 1.2e-07,
+"completion": 2.4e-07,
+"context": 40960,
+"input": [
+"text"
+]
+},
+"qwen/qwen3-32b": {
+"prompt": 8e-08,
+"completion": 2.8e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/o3": {
+"prompt": 2e-06,
+"completion": 8e-06,
+"context": 200000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/o3:batch": {
+"prompt": 1e-06,
+"completion": 4e-06,
+"context": 200000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/o4-mini:batch": {
+"prompt": 5.5e-07,
+"completion": 2.2e-06,
+"context": 200000,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1": {
+"prompt": 2e-06,
+"completion": 8e-06,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1:batch": {
+"prompt": 1e-06,
+"completion": 4e-06,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1-mini": {
+"prompt": 4e-07,
+"completion": 1.6e-06,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1-mini:batch": {
+"prompt": 2e-07,
+"completion": 8e-07,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1-nano": {
+"prompt": 1e-07,
+"completion": 4e-07,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"openai/gpt-4.1-nano:batch": {
+"prompt": 5e-08,
+"completion": 2e-07,
+"context": 1047576,
+"input": [
+"image",
+"text",
+"file"
+]
+},
+"meta-llama/llama-4-maverick": {
+"prompt": 3.5e-07,
+"completion": 1e-06,
+"context": 524288,
+"input": [
+"text",
+"image"
+]
+},
+"meta-llama/llama-4-scout": {
+"prompt": 1e-07,
+"completion": 3e-07,
+"context": 1310720,
+"input": [
+"text",
+"image"
+]
+},
+"deepseek/deepseek-chat-v3-0324": {
+"prompt": 2.9e-07,
+"completion": 1.14e-06,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-small-3.1-24b-instruct": {
+"prompt": 3.51e-07,
+"completion": 5.55e-07,
+"context": 128000,
+"input": [
+"text",
+"image"
+]
+},
+"google/gemma-3-4b-it": {
+"prompt": 5e-08,
+"completion": 1e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"google/gemma-3-12b-it": {
+"prompt": 5e-08,
+"completion": 1.5e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"cohere/command-a": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 256000,
+"input": [
+"text"
+]
+},
+"rekaai/reka-flash-3": {
+"prompt": 1e-07,
+"completion": 2e-07,
+"context": 65536,
+"input": [
+"text"
+]
+},
+"google/gemma-3-27b-it": {
+"prompt": 8e-08,
+"completion": 3.5e-07,
+"context": 131072,
+"input": [
+"text",
+"image"
+]
+},
+"thedrummer/skyfall-36b-v2": {
+"prompt": 5.5e-07,
+"completion": 8e-07,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"perplexity/sonar-reasoning-pro": {
+"prompt": 2e-06,
+"completion": 8e-06,
+"context": 128000,
+"input": [
+"text",
+"image"
+]
+},
+"perplexity/sonar-pro": {
+"prompt": 3e-06,
+"completion": 1.5e-05,
+"context": 200000,
+"input": [
+"text",
+"image"
+]
+},
+"perplexity/sonar-deep-research": {
+"prompt": 2e-06,
+"completion": 8e-06,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-saba": {
+"prompt": 2e-07,
+"completion": 6e-07,
+"context": 32768,
+"input": [
+"text",
+"file"
+]
+},
+"aion-labs/aion-rp-llama-3.1-8b": {
+"prompt": 8e-07,
+"completion": 1.6e-06,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"qwen/qwen2.5-vl-72b-instruct": {
+"prompt": 8e-07,
+"completion": 1e-06,
+"context": 128000,
+"input": [
+"text",
+"image"
+]
+},
+"qwen/qwen-plus": {
+"prompt": 2.6e-07,
+"completion": 7.8e-07,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"openai/o3-mini:batch": {
+"prompt": 5.5e-07,
+"completion": 2.2e-06,
+"context": 200000,
+"input": [
+"text",
+"file"
+]
+},
+"mistralai/mistral-small-24b-instruct-2501": {
+"prompt": 5e-08,
+"completion": 8e-08,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"perplexity/sonar": {
+"prompt": 1e-06,
+"completion": 1e-06,
+"context": 127072,
+"input": [
+"text",
+"image"
+]
+},
+"microsoft/phi-4": {
+"prompt": 7e-08,
+"completion": 1.4e-07,
+"context": 16384,
+"input": [
+"text"
+]
+},
+"deepseek/deepseek-chat": {
+"prompt": 2.574e-07,
+"completion": 1.0287e-06,
+"context": 163840,
+"input": [
+"text"
+]
+},
+"cohere/command-r7b-12-2024": {
+"prompt": 3.75e-08,
+"completion": 1.5e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"meta-llama/llama-3.3-70b-instruct": {
+"prompt": 7.1e-07,
+"completion": 7.1e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"amazon/nova-lite-v1": {
+"prompt": 6e-08,
+"completion": 2.4e-07,
+"context": 300000,
+"input": [
+"text",
+"image"
+]
+},
+"amazon/nova-micro-v1": {
+"prompt": 3.5e-08,
+"completion": 1.4e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"amazon/nova-pro-v1": {
+"prompt": 8e-07,
+"completion": 3.2e-06,
+"context": 300000,
+"input": [
+"text",
+"image"
+]
+},
+"openai/gpt-4o-2024-11-20": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"mistralai/mistral-large-2407": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 131072,
+"input": [
+"text",
+"file"
+]
+},
+"qwen/qwen-2.5-coder-32b-instruct": {
+"prompt": 6.6e-07,
+"completion": 1e-06,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"thedrummer/unslopnemo-12b": {
+"prompt": 4e-07,
+"completion": 4e-07,
+"context": 1024000,
+"input": [
+"text"
+]
+},
+"anthracite-org/magnum-v4-72b": {
+"prompt": 2.5e-06,
+"completion": 5e-06,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"meta-llama/llama-3.2-1b-instruct": {
+"prompt": 2.7e-08,
+"completion": 2.01e-07,
+"context": 60000,
+"input": [
+"text"
+]
+},
+"meta-llama/llama-3.2-3b-instruct": {
+"prompt": 5.09e-08,
+"completion": 3.35e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"qwen/qwen-2.5-72b-instruct": {
+"prompt": 3.6e-07,
+"completion": 4e-07,
+"context": 32768,
+"input": [
+"text"
+]
+},
+"cohere/command-r-08-2024": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"cohere/command-r-plus-08-2024": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 128000,
+"input": [
+"text"
+]
+},
+"sao10k/l3.1-euryale-70b": {
+"prompt": 8.5e-07,
+"completion": 8.5e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"sao10k/l3-lunaris-8b": {
+"prompt": 4e-08,
+"completion": 5e-08,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"openai/gpt-4o-2024-08-06": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"meta-llama/llama-3.1-70b-instruct": {
+"prompt": 7.2e-07,
+"completion": 7.2e-07,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"meta-llama/llama-3.1-8b-instruct": {
+"prompt": 2e-08,
+"completion": 4e-08,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"mistralai/mistral-nemo": {
+"prompt": 2.9e-08,
+"completion": 3e-08,
+"context": 131072,
+"input": [
+"text"
+]
+},
+"openai/gpt-4o-mini": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-4o-mini-2024-07-18": {
+"prompt": 1.5e-07,
+"completion": 6e-07,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-4o-mini:batch": {
+"prompt": 7.5e-08,
+"completion": 3e-07,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"google/gemma-2-27b-it": {
+"prompt": 6.5e-07,
+"completion": 6.5e-07,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"openai/gpt-4o": {
+"prompt": 2.5e-06,
+"completion": 1e-05,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-4o-2024-05-13": {
+"prompt": 5e-06,
+"completion": 1.5e-05,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"openai/gpt-4o:batch": {
+"prompt": 1.25e-06,
+"completion": 5e-06,
+"context": 128000,
+"input": [
+"text",
+"image",
+"file"
+]
+},
+"mistralai/mixtral-8x22b-instruct": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 65536,
+"input": [
+"text",
+"file"
+]
+},
+"openai/gpt-4-turbo:batch": {
+"prompt": 5e-06,
+"completion": 1.5e-05,
+"context": 128000,
+"input": [
+"text",
+"image"
+]
+},
+"mistralai/mistral-large": {
+"prompt": 2e-06,
+"completion": 6e-06,
+"context": 128000,
+"input": [
+"text",
+"file"
+]
+},
+"openai/gpt-3.5-turbo-0613": {
+"prompt": 1e-06,
+"completion": 2e-06,
+"context": 4095,
+"input": [
+"text"
+]
+},
+"openai/gpt-3.5-turbo-16k": {
+"prompt": 3e-06,
+"completion": 4e-06,
+"context": 16385,
+"input": [
+"text"
+]
+},
+"mancer/weaver": {
+"prompt": 3e-07,
+"completion": 5e-07,
+"context": 8000,
+"input": [
+"text"
+]
+},
+"undi95/remm-slerp-l2-13b": {
+"prompt": 3e-07,
+"completion": 5e-07,
+"context": 6144,
+"input": [
+"text"
+]
+},
+"gryphe/mythomax-l2-13b": {
+"prompt": 8e-08,
+"completion": 1.1e-07,
+"context": 8192,
+"input": [
+"text"
+]
+},
+"openai/gpt-4": {
+"prompt": 3e-05,
+"completion": 6e-05,
+"context": 8191,
+"input": [
+"text"
+]
+},
+"openrouter/auto": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 2000000,
+"input": [
+"text",
+"image",
+"audio",
+"file",
+"video"
+]
+},
+"openrouter/auto-code": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 2000000,
+"input": [
+"text",
+"image",
+"audio",
+"file",
+"video"
+]
+},
+"typesafe/jev-router": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 1000000,
+"input": [
+"audio",
+"file",
+"image",
+"text",
+"video"
+]
+},
+"nvidia/switchyard": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"openrouter/auto-beta": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 2000000,
+"input": [
+"text",
+"image",
+"audio",
+"file",
+"video"
+]
+},
+"openrouter/fusion": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 1000000,
+"input": [
+"text"
+]
+},
+"openrouter/pareto-code": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 2000000,
+"input": [
+"text"
+]
+},
+"openrouter/free": {
+"prompt": 0.0,
+"completion": 0.0,
+"context": 200000,
+"input": [
+"text",
+"image"
+]
+},
+"openrouter/bodybuilder": {
+"prompt": -1.0,
+"completion": -1.0,
+"context": 128000,
+"input": [
+"text"
+]
+}
+}

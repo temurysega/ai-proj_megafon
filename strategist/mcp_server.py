@@ -8,11 +8,14 @@ from __future__ import annotations
 
 import json
 
-from mcp.server.fastmcp import FastMCP
+try:  # MCP SDK 2.x
+    from mcp.server.mcpserver import MCPServer as _Server
+except ImportError:  # MCP SDK 1.x
+    from mcp.server.fastmcp import FastMCP as _Server
 
 from .common import load_env, setup_console
 
-mcp = FastMCP("strategist")
+mcp = _Server("strategist")
 
 
 def _j(x) -> str:

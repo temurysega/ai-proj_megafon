@@ -1,0 +1,20 @@
+# Журнал решений проекта (projects/<id>/decisions.yaml). Проверка: python sf.py decisions check
+- id: D1
+  title: "<что решили>"
+  date: "YYYY-MM-DD"
+  question: "<какой вопрос решали>"
+  options_considered: [A, B, C, D]
+  chosen: "B"
+  decided_by: "руководитель продукта (роль)"
+  rationale_claims: [C001, C002]      # основания — утверждения из реестра
+  assumptions: [C010]                  # допущения — пересматриваются
+  owners: {product: "PM", marketing: "бренд-менеджер", analytics: "аналитик"}
+  metrics:
+    - {name: "доля подключивших", baseline: "нет данных", target: ">= 5%", by: "YYYY-MM-DD"}
+  commitments:
+    - {id: K1, what: "запустить пилот", owner: "PM", due: "YYYY-MM-DD", status: open}
+  review_triggers:
+    - {type: date, value: "YYYY-MM-DD", note: "плановый пересмотр"}
+    - {type: claim_status, claim: C002, when: [retracted, disputed], note: "если основание опровергнуто"}
+    - {type: metric, metric: "доля подключивших", op: "<", threshold: 2, note: "kill criteria"}
+  status: active

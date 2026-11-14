@@ -374,7 +374,7 @@ def cmd_doctor(a):
     ok = ok and not sec
     hook = ROOT / ".git" / "hooks" / "pre-commit"
     if a.install_git_hook and (ROOT / ".git").exists():
-        hook.write_text("#!/bin/sh\npython -m strategist.hooks git_pre_commit\n", encoding="utf-8")
+        hook.write_text((ROOT / "scripts" / "pre-commit").read_text(encoding="utf-8"), encoding="utf-8")
         rows.append("✅ git pre-commit хук на секреты установлен")
     elif (ROOT / ".git").exists():
         rows.append("✅ git pre-commit хук установлен" if hook.exists() else

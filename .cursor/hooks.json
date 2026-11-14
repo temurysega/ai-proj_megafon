@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "python scripts/hook.py cursor_before_shell"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "python scripts/hook.py cursor_after_edit"
+      }
+    ],
+    "stop": [
+      {
+        "command": "python scripts/hook.py cursor_stop"
+      }
+    ]
+  }
+}

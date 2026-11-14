@@ -1,0 +1,3 @@
+#!/bin/sh
+# Установка: python sf.py doctor --install-git-hook
+python scripts/hook.py git_pre_commit

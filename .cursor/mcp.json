@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "strategist": {
+      "command": "python",
+      "args": [
+        "-m",
+        "strategist.mcp_server"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}
