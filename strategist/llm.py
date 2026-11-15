@@ -68,6 +68,23 @@ def _extract_json(text: str):
     raise ValueError("ответ не содержит корректного JSON")
 
 
+_USER_ID = re.compile(r"user_[A-Za-z0-9]{10,}")
+
+
+def _clean(err: str) -> str:
+    """Убрать идентификаторы аккаунта провайдера из текста ошибки (они попадают в журнал и git)."""
+    return _USER_ID.sub("user_[скрыто]", err)
+
+
+def _reasoning(cfg: dict) -> dict | None:
+    r = cfg.get("reasoning")
+    if r is None or r == "default":
+        return None
+    if r in ("off", False):
+        return {"enabled": False}
+    return {"effort": str(r)}
+
+
 def has_key() -> bool:
     load_env()
     key_env = routing().get("provider", {}).get("key_env", "OPENROUTER_API_KEY")
@@ -126,6 +143,8 @@ def ask(task: str, prompt: str | None = None, *, messages: list | None = None, s
                 f"1) добавить ключ в .env; 2) выполнить шаг силами IDE-модели/субагента (см. AGENTS.md → «Без ключа»).")
         body = dict(payload)
         body["usage"] = {"include": True}
+        if _reasoning(cfg):
+            body["reasoning"] = _reasoning(cfg)
         if json_mode:
             body["response_format"] = {"type": "json_object"}
         headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json",
@@ -140,18 +159,25 @@ def ask(task: str, prompt: str | None = None, *, messages: list | None = None, s
                     body.pop("response_format")  # модель не умеет json_object — просим JSON текстом
                     raise LLMError("400: response_format не поддержан, повтор без него")
                 if r.status_code in (408, 429) or r.status_code >= 500:
-                    raise LLMError(f"HTTP {r.status_code}: {r.text[:200]}")
+                    raise LLMError(_clean(f"HTTP {r.status_code}: {r.text[:200]}"))
                 if r.status_code != 200:
-                    last_err = f"HTTP {r.status_code}: {r.text[:300]}"
+                    last_err = _clean(f"HTTP {r.status_code}: {r.text[:300]}")
                     break  # 4xx (кроме 408/429) — не повторяем на той же модели
                 data = r.json()
                 if "error" in data:
-                    raise LLMError(str(data["error"])[:300])
+                    raise LLMError(_clean(str(data["error"])[:300]))
                 msg = data["choices"][0]["message"]
+                finish = data["choices"][0].get("finish_reason")
                 text = msg.get("content") or ""
                 if isinstance(text, list):
                     text = "".join(p.get("text", "") for p in text if isinstance(p, dict))
                 usage = data.get("usage", {}) or {}
+                if not str(text).strip():
+                    _costs.log({"type": "llm", "task": task, "model": m, "usd": float(usage.get("cost") or 0),
+                                "status": "failed", "error": f"empty_content:{finish}", "stage": stage, "label": label}, pid)
+                    last_err = ("пустой ответ: лимит токенов израсходован на скрытые рассуждения" if finish == "length"
+                                else f"пустой ответ (finish_reason={finish})")
+                    break  # эскалация на следующую модель
                 usd = usage.get("cost")
                 if usd is None:
                     pr = model_prices().get(m, {})
@@ -188,7 +214,7 @@ def ask(task: str, prompt: str | None = None, *, messages: list | None = None, s
                             pid=pid, actor="tool", reasons=[a.get("error") for a in attempts])
                 return res
             except (requests.RequestException, LLMError) as e:
-                last_err = str(e)
+                last_err = _clean(str(e))
                 time.sleep(min(2 ** retry, 8))
         attempts.append({"model": m, "error": last_err})
         _costs.log({"type": "llm", "task": task, "model": m, "usd": 0, "status": "failed", "error": last_err[:200],

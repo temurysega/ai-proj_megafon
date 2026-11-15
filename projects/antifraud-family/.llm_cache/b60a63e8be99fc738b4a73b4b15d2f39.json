@@ -1,0 +1,32 @@
+{
+ "text": "Это было прошлой зимой, звонили в семь утра, когда я только чай поставила. Голос был очень настойчивый: «Ваша пенсия под угрозой, срочно продиктуйте код из СМС». Я сразу вспомнила Зину и её триста тысяч, которые она отдала за такой же бред. Мне стало так обидно, что они думают, будто я глупая старуха, которая не знает разницу между банком и мошенником. Я не стала спорить или ругаться, просто молча нажала красную кнопку, потому что знала: если начну объяснять, они будут давить дальше. После этого я выключила телефон на весь день, чтобы ни одна душа не смела меня трогать.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2503,
+  "completion_tokens": 167,
+  "total_tokens": 2670,
+  "cost": 0.000145204,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000145204,
+   "upstream_inference_prompt_cost": 6.6714e-05,
+   "upstream_inference_completions_cost": 7.849e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000145204,
+ "cached": false,
+ "ts": "2026-11-15T12:03:46+03:00",
+ "duration_s": 4.58
+}

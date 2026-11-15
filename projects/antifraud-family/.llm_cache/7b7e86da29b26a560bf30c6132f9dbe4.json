@@ -1,0 +1,32 @@
+{
+ "text": "Игнорировать? Да если бы я просто сказала «брось трубку», она бы так и делала, пока не перевела бы всё на «срочный ремонт». В тот раз соседка физически выдернула телефон из рук бабушки, потому что та уже диктовала код из СМС — это был не совет, а экстренная остановка кражи. Понимаете, для 88-летней женщины с кнопочным телефоном фраза «это мошенники» звучит абстрактно, а конкретное вмешательство и блокировка номера — единственный работающий инструмент.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 579,
+  "completion_tokens": 134,
+  "total_tokens": 713,
+  "cost": 0.000115526,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 256,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000115526,
+   "upstream_inference_prompt_cost": 5.2546e-05,
+   "upstream_inference_completions_cost": 6.298e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000115526,
+ "cached": false,
+ "ts": "2026-11-15T12:04:23+03:00",
+ "duration_s": 3.62
+}

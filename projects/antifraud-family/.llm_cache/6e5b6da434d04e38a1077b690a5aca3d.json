@@ -1,0 +1,32 @@
+{
+ "text": "Мне мешает то, что я не понимаю, как это работает и кто там за кулисами сидит. Внук мне говорил про такие «умные фильтры», но он сам всё настроил, а я боюсь нажать не туда и потерять связь с дочерью. А родителей у меня уже нет, слава Богу, а вот дочь бы точно отказалась: она считает себя умнее всех и не потерпит, чтобы ей звонки блокировали без спроса. Я ведь экономлю на всём, даже на интернете, а вдруг эта услуга платная? И главное — я боюсь, что они будут слушать мои разговоры под предлогом «защиты», как операторы в тех фильмах по телевизору.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2698,
+  "completion_tokens": 154,
+  "total_tokens": 2852,
+  "cost": 0.000168344,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000168344,
+   "upstream_inference_prompt_cost": 9.5964e-05,
+   "upstream_inference_completions_cost": 7.238e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000168344,
+ "cached": false,
+ "ts": "2026-11-15T12:03:51+03:00",
+ "duration_s": 4.64
+}

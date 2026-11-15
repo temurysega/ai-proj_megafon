@@ -1,0 +1,32 @@
+{
+ "text": "Зина — моя ровесница и подруга, мы с ней на равных говорим, а дочь только нравоучения читает. Я не хочу, чтобы Марина потом месяцами твердила: «Я же предупреждала», мне это обидно до слез. Зина понимает, что я не глупая, она сама через этот кошмар прошла и знает, как больно терять деньги. Мы вместе пьем чай и обсуждаем новости по телевизору, там тоже про мошенников часто говорят. А дочь мне звонит только чтобы проверить, жива ли я и ела ли суп, это совсем другое общение.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1338,
+  "completion_tokens": 135,
+  "total_tokens": 1473,
+  "cost": 0.000126934,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1024,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000126934,
+   "upstream_inference_prompt_cost": 6.3484e-05,
+   "upstream_inference_completions_cost": 6.345e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000126934,
+ "cached": false,
+ "ts": "2026-11-15T12:03:09+03:00",
+ "duration_s": 4.23
+}

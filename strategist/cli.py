@@ -560,7 +560,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--by")
     s.add_argument("--all", action="store_true")
     s = add("route", cmd_route, "выбрать навык/процесс для запроса")
-    s.add_argument("request")
+    s.add_argument("request", nargs="?", default="")
     s.add_argument("--no-llm", action="store_true")
     s.add_argument("--correct", help="правильный навык (исправление ошибочного выбора)")
     s.add_argument("--wrong")

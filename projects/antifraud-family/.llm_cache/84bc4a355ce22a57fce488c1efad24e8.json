@@ -1,0 +1,83 @@
+{
+ "text": "{\n  \"X\": {\n    \"K1\": 2,\n    \"K2\": 6,\n    \"K3\": 7,\n    \"K4\": 8,\n    \"K5\": 8,\n    \"K6\": 8,\n    \"K7\": 7,\n    \"K8\": 7\n  },\n  \"Y\": {\n    \"K1\": 10,\n    \"K2\": 10,\n    \"K3\": 10,\n    \"K4\": 10,\n    \"K5\": 10,\n    \"K6\": 10,\n    \"K7\": 10,\n    \"K8\": 10\n  },\n  \"facts_X\": {\n    \"F1\": \"absent\",\n    \"F2\": \"absent\",\n    \"F3\": \"absent\",\n    \"F4\": \"absent\",\n    \"F5\": \"absent\",\n    \"F6\": \"absent\",\n    \"F7\": \"absent\",\n    \"F8\": \"absent\",\n    \"F9\": \"absent\",\n    \"F10\": \"absent\",\n    \"F11\": \"absent\",\n    \"F12\": \"absent\"\n  },\n  \"facts_Y\": {\n    \"F1\": \"present_correct\",\n    \"F2\": \"present_correct\",\n    \"F3\": \"present_correct\",\n    \"F4\": \"present_correct\",\n    \"F5\": \"present_correct\",\n    \"F6\": \"present_correct\",\n    \"F7\": \"present_correct\",\n    \"F8\": \"present_correct\",\n    \"F9\": \"present_correct\",\n    \"F10\": \"present_correct\",\n    \"F11\": \"present_correct\",\n    \"F12\": \"present_correct\"\n  },\n  \"better\": \"Y\",\n  \"why\": \"Документ Y опирается на проверяемые источники с конкретными ссылками, чётко разделяет факты, гипотезы и прогнозы, содержит все решающие факты и честно указывает пробелы. Варианты решения проработаны глубоко, с сильными возражениями и экономическими порогами. Продуктовая и коммуникационная стратегии детализированы, план проверки реалистичен и включает конкретные затраты, сроки и ответственных. Документ X, напротив, лишён конкретных данных, большинство решающих фактов отсутствует, а рекомендации остаются общими и непроверяемыми.\"\n}",
+ "json": {
+  "X": {
+   "K1": 2,
+   "K2": 6,
+   "K3": 7,
+   "K4": 8,
+   "K5": 8,
+   "K6": 8,
+   "K7": 7,
+   "K8": 7
+  },
+  "Y": {
+   "K1": 10,
+   "K2": 10,
+   "K3": 10,
+   "K4": 10,
+   "K5": 10,
+   "K6": 10,
+   "K7": 10,
+   "K8": 10
+  },
+  "facts_X": {
+   "F1": "absent",
+   "F2": "absent",
+   "F3": "absent",
+   "F4": "absent",
+   "F5": "absent",
+   "F6": "absent",
+   "F7": "absent",
+   "F8": "absent",
+   "F9": "absent",
+   "F10": "absent",
+   "F11": "absent",
+   "F12": "absent"
+  },
+  "facts_Y": {
+   "F1": "present_correct",
+   "F2": "present_correct",
+   "F3": "present_correct",
+   "F4": "present_correct",
+   "F5": "present_correct",
+   "F6": "present_correct",
+   "F7": "present_correct",
+   "F8": "present_correct",
+   "F9": "present_correct",
+   "F10": "present_correct",
+   "F11": "present_correct",
+   "F12": "present_correct"
+  },
+  "better": "Y",
+  "why": "Документ Y опирается на проверяемые источники с конкретными ссылками, чётко разделяет факты, гипотезы и прогнозы, содержит все решающие факты и честно указывает пробелы. Варианты решения проработаны глубоко, с сильными возражениями и экономическими порогами. Продуктовая и коммуникационная стратегии детализированы, план проверки реалистичен и включает конкретные затраты, сроки и ответственных. Документ X, напротив, лишён конкретных данных, большинство решающих фактов отсутствует, а рекомендации остаются общими и непроверяемыми."
+ },
+ "model": "deepseek/deepseek-v4-pro",
+ "usage": {
+  "prompt_tokens": 33040,
+  "completion_tokens": 5238,
+  "total_tokens": 38278,
+  "cost": 0.0043298508,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 24850,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043298508,
+   "upstream_inference_prompt_cost": 0.002142462,
+   "upstream_inference_completions_cost": 0.0021873888
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 4693,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0043298508,
+ "cached": false,
+ "ts": "2026-11-15T11:59:06+03:00",
+ "duration_s": 86.88
+}

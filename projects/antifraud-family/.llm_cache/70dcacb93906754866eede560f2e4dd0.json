@@ -1,0 +1,32 @@
+{
+ "text": "Г1: Расскажите, пожалуйста, о последнем звонке мошенников.\nГ2: Меня зовут Анна, мне шестьдесят восемь лет. Позвонили якобы из банка, сказали, что с моей карты пытаются снять деньги, и попросили продиктовать код из СМС. Я испугалась, но перезвонила дочери, и она сказала положить трубку. Номер мой плюс семь девятьсот двенадцать триста сорок пять шестьдесят семь восемьдесят девять, они его откуда-то знали.\nГ1: Что могло бы вам помочь в такой ситуации?\nГ2: Чтобы такие звонки вообще не доходили. И чтобы дочь знала, но не слушала мои разговоры.",
+ "json": null,
+ "model": "qwen/qwen3.8-omni-flash",
+ "usage": {
+  "prompt_tokens": 426,
+  "completion_tokens": 160,
+  "total_tokens": 586,
+  "cost": 0.0001391,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001391,
+   "upstream_inference_prompt_cost": 6.39e-05,
+   "upstream_inference_completions_cost": 7.52e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001391,
+ "cached": false,
+ "ts": "2026-11-15T12:11:15+03:00",
+ "duration_s": 4.55
+}

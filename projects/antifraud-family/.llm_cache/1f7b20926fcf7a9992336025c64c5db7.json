@@ -1,0 +1,32 @@
+{
+ "text": "Она всегда начинает разговор с вопросов типа «ты поела?», «таблетки выпила?» или «почему ты не берешь трубку сразу?». Для меня это как допрос, а не общение с взрослым человеком, который тридцать лет балансы сводил. Однажды она приехала и стала переставлять мои лекарства на полку, якобы я могу их забыть, хотя я помню лучше неё. Я ей прямо сказала: «Марина, я не беспомощная старуха, а самостоятельный человек», но она только вздохнула и продолжила свою опеку. Мне обидно, когда родной человек считает меня за глупую, хотя я всю жизнь работала и деньги считала сама.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 596,
+  "completion_tokens": 159,
+  "total_tokens": 755,
+  "cost": 0.000129826,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 256,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000129826,
+   "upstream_inference_prompt_cost": 5.5096e-05,
+   "upstream_inference_completions_cost": 7.473e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000129826,
+ "cached": false,
+ "ts": "2026-11-15T12:02:48+03:00",
+ "duration_s": 4.04
+}

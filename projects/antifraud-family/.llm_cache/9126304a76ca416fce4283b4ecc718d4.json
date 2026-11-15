@@ -1,0 +1,32 @@
+{
+ "text": "Такого случая не было, потому что я принципиально отказываюсь подключать подобные «умные» фильтры из-за страха ложных срабатываний. Меня бесит сама идея, что оператор будет диктовать мне, кому звонить: я уже трачу часы на ручную настройку блокировщиков для мамы, и добавлять ещё один слой уведомлений, где нужно доказывать легитимность каждого пропущенного звонка, — это прямой путь к нервному срыву. Мне проще самой контролировать входящие, чем разбирать алгоритмы, которые могут отрубить звонок от моего врача или начальника по ошибке.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2664,
+  "completion_tokens": 137,
+  "total_tokens": 2801,
+  "cost": 0.000155254,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000155254,
+   "upstream_inference_prompt_cost": 9.0864e-05,
+   "upstream_inference_completions_cost": 6.439e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000155254,
+ "cached": false,
+ "ts": "2026-11-15T12:05:20+03:00",
+ "duration_s": 4.18
+}

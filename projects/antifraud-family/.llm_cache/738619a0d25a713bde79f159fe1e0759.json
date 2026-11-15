@@ -1,0 +1,32 @@
+{
+ "text": "Сразу после этого я отключила все входящие вызовы на её номере через приложение оператора и сменила ей пароль от Госуслуг, потому что она уже почти продиктовала код. Потом позвонила в банк и написала жалобу на мошенников, но толку от этого, как от козла молока — мне просто сказали «спасибо за обращение». Рассказала всем родственникам эту историю с подробностями, чтобы они не попадались на удочку, а себе поставила блокировщик спама, который хоть как-то фильтрует этот мусор.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1071,
+  "completion_tokens": 125,
+  "total_tokens": 1196,
+  "cost": 0.000116488,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 768,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000116488,
+   "upstream_inference_prompt_cost": 5.7738e-05,
+   "upstream_inference_completions_cost": 5.875e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000116488,
+ "cached": false,
+ "ts": "2026-11-15T12:04:37+03:00",
+ "duration_s": 3.61
+}

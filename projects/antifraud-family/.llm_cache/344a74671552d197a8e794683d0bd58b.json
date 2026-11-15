@@ -1,0 +1,37 @@
+{
+ "text": "{\"skill\": \"interviews\", \"confidence\": 0.72, \"reason\": \"Запрос о мнении конкретной аудитории (родители-пенсионеры) — это задача сбора качественных данных через интервью: гайд, анализ ответов. Остальные навыки (research, data-analysis) не дают прямого ответа на вопрос «что думают».\", \"clarify\": \"Уточните: нужны новые интервью с родителями-пенсионерами или анализ уже собранных данных/отзывов? И что именно «предлагаем» — какой продукт/оффер?\"}",
+ "json": {
+  "skill": "interviews",
+  "confidence": 0.72,
+  "reason": "Запрос о мнении конкретной аудитории (родители-пенсионеры) — это задача сбора качественных данных через интервью: гайд, анализ ответов. Остальные навыки (research, data-analysis) не дают прямого ответа на вопрос «что думают».",
+  "clarify": "Уточните: нужны новые интервью с родителями-пенсионерами или анализ уже собранных данных/отзывов? И что именно «предлагаем» — какой продукт/оффер?"
+ },
+ "model": "z-ai/glm-5.3-flash",
+ "usage": {
+  "prompt_tokens": 350,
+  "completion_tokens": 132,
+  "total_tokens": 482,
+  "cost": 8.068e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 8.068e-05,
+   "upstream_inference_prompt_cost": 4.9e-05,
+   "upstream_inference_completions_cost": 3.168e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 8.068e-05,
+ "cached": false,
+ "ts": "2026-11-15T11:53:14+03:00",
+ "duration_s": 2.91
+}

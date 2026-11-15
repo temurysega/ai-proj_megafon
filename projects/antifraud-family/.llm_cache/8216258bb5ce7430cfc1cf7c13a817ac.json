@@ -1,0 +1,32 @@
+{
+ "text": "Я просто кладу трубку при первом же странном вопросе, даже если это «банк» или «полиция», мне не нужны их объяснения. Раньше я пыталась задавать вопросы, чтобы запутать их, но поняла, что лучше не тратить время и нервы на этих болтунов. Внук настроил мне белый список, но я всё равно часто беру трубку от незнакомых номеров из любопытства, а потом ругаю себя за доверчивость. Дочери я запретила звонить с новых телефонов, чтобы она меня не пугала лишними звонками. Зина теперь вообще не берет трубку после девяти вечера, говорит, что там только мошенники сидят, а я так не могу, привычка старая.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1510,
+  "completion_tokens": 167,
+  "total_tokens": 1677,
+  "cost": 0.00013347,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1280,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00013347,
+   "upstream_inference_prompt_cost": 5.498e-05,
+   "upstream_inference_completions_cost": 7.849e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00013347,
+ "cached": false,
+ "ts": "2026-11-15T12:03:14+03:00",
+ "duration_s": 4.44
+}

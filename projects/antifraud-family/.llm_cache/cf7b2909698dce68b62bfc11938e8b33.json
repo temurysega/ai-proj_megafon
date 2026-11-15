@@ -1,0 +1,32 @@
+{
+ "text": "На прошлой неделе маме позвонили «из банка», сказали, что её кредитная карта заблокирована из-за подозрительной операции в Дубае. Она чуть не заплакала, потому что реально испугалась за деньги и начала искать в телефоне приложение банка под диктовку звонящего. Я тогда только нажала кнопку отбоя и объяснила ей, что настоящий банк никогда не будет требовать коды или переводы по телефону, а просто заблокирует карту сам. Это был классический скрипт, но для людей нашего возраста паника работает лучше логики, поэтому я теперь сразу перенаправляю такие звонки на себя.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 749,
+  "completion_tokens": 143,
+  "total_tokens": 892,
+  "cost": 0.000110952,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000110952,
+   "upstream_inference_prompt_cost": 4.3742e-05,
+   "upstream_inference_completions_cost": 6.721e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000110952,
+ "cached": false,
+ "ts": "2026-11-15T12:04:28+03:00",
+ "duration_s": 4.46
+}

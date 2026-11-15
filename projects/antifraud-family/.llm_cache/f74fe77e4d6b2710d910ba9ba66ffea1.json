@@ -1,0 +1,32 @@
+{
+ "text": "Неудобно то, что я превращаюсь в постоянного технического администратора для 62-летней женщины: мне нужно сидеть в её личном кабинете, разбираться с настройками и каждый раз объяснять, почему блокировщик не спас. Тревожит, что даже если я всё сделаю правильно, мошенники могут просто позвонить с нового номера или через мессенджер, который фильтры часто пропускают как «легитимный трафик». Получается замкнутый круг: операторы и банки собирают данные, но не защищают их бесплатно, а я трачу своё время на ручное управление чужой безопасностью, хотя это должна быть их базовая функция.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1707,
+  "completion_tokens": 151,
+  "total_tokens": 1858,
+  "cost": 0.0001555,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1280,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001555,
+   "upstream_inference_prompt_cost": 8.453e-05,
+   "upstream_inference_completions_cost": 7.097e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001555,
+ "cached": false,
+ "ts": "2026-11-15T12:04:54+03:00",
+ "duration_s": 3.53
+}

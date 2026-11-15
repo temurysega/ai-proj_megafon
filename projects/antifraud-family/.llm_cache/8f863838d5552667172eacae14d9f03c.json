@@ -1,0 +1,32 @@
+{
+ "text": "Тревога возникает от того, что я не могу сразу определить, кто звонит, ведь на экране только цифры. А вдруг это действительно внук или дочь с нового номера? Я боюсь пропустить важный звонок из-за своей осторожности, а потом мне будет стыдно перед родными. Зина говорит, что ей проще вообще не брать трубку от незнакомцев, но я привыкла отвечать, пока не проверю. И ещё меня злит, что мошенники используют такие стандартные фразы, которые звучат почти как настоящие банковские уведомления.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1938,
+  "completion_tokens": 117,
+  "total_tokens": 2055,
+  "cost": 0.000139866,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000139866,
+   "upstream_inference_prompt_cost": 8.4876e-05,
+   "upstream_inference_completions_cost": 5.499e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000139866,
+ "cached": false,
+ "ts": "2026-11-15T12:03:28+03:00",
+ "duration_s": 4.23
+}

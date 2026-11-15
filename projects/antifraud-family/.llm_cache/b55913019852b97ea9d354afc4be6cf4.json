@@ -1,0 +1,32 @@
+{
+ "text": "Расскажите подробнее о случае, когда фильтры пропустили мошенников как «легитимный трафик»: что именно произошло и как вы это обнаружили?",
+ "json": null,
+ "model": "qwen/qwen3.7-flash",
+ "usage": {
+  "prompt_tokens": 251,
+  "completion_tokens": 32,
+  "total_tokens": 283,
+  "cost": 1.169e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 1.169e-05,
+   "upstream_inference_prompt_cost": 7.53e-06,
+   "upstream_inference_completions_cost": 4.16e-06
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 1.169e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:04:56+03:00",
+ "duration_s": 1.64
+}

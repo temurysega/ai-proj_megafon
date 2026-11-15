@@ -51,6 +51,14 @@ def test_pii_scrub():
     assert c
 
 
+def test_pii_spoken_phone():
+    # регрессия 15.11.2026: телефон, продиктованный словами в расшифровке аудио, не вычищался
+    t, c = scrub_pii("Номер мой плюс семь девятьсот двенадцать триста сорок пять шестьдесят семь восемьдесят девять, они знали")
+    assert "девятьсот двенадцать" not in t and "[ТЕЛЕФОН]" in t
+    t2, _ = scrub_pii("мне шестьдесят восемь лет")  # возраст — не телефон
+    assert "шестьдесят восемь" in t2
+
+
 def test_secrets():
     assert find_secrets("OPENROUTER_API_KEY=sk-or-v1-" + "ab12" * 12)
     assert not find_secrets("OPENROUTER_API_KEY=")

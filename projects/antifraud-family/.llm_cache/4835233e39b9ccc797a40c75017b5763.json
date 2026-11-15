@@ -1,0 +1,32 @@
+{
+ "text": "Он не представился толком, а сразу начал командовать: «Немедленно блокируйте карту», хотя я знаю, что банк так никогда не говорит. У меня в голове щелкнуло, как при проверке баланса — цифры не бились и интонация была неправильная, слишком торопливая. Я ведь бухгалтером тридцать лет проработала, меня на понт не возьмешь, тут же почувствовала фальшь. Зина моя подруга тоже поначалу усомнилась, но ей сказали про «секретного сотрудника» и она растерялась от страха. А мне просто стало смешно, что кто-то думает, будто я поверю в такие детские сказки.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 982,
+  "completion_tokens": 156,
+  "total_tokens": 1138,
+  "cost": 0.000117708,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 768,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000117708,
+   "upstream_inference_prompt_cost": 4.4388e-05,
+   "upstream_inference_completions_cost": 7.332e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000117708,
+ "cached": false,
+ "ts": "2026-11-15T12:02:59+03:00",
+ "duration_s": 3.97
+}

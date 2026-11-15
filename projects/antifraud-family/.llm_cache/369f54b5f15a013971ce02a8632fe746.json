@@ -1,0 +1,32 @@
+{
+ "text": "Меня больше пугает прослушка, потому что я знаю: если кто-то слушает, то они знают всё о моих деньгах и слабостях. Риск заблокировать важный звонок — это просто неудобство, я могу перезвонить или дочь сама дозвонится, она у меня настойчивая. А вот тайное подслушивание... Это как в кино про шпионов показывают, там всегда обманывают через телефоны. Я ведь не доверяю этим «защитникам», вдруг они те же мошенники, только с официальными бумажками? Лучше уж я сама буду класть трубку, чем чужие уши будут слушать мои разговоры с Зинаидой.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2896,
+  "completion_tokens": 152,
+  "total_tokens": 3048,
+  "cost": 0.0001628,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2560,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001628,
+   "upstream_inference_prompt_cost": 9.136e-05,
+   "upstream_inference_completions_cost": 7.144e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001628,
+ "cached": false,
+ "ts": "2026-11-15T12:04:01+03:00",
+ "duration_s": 8.14
+}

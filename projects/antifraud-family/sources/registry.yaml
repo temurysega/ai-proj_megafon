@@ -491,3 +491,66 @@
   sha256: 383177e96a0fb90647c5ccdc92996c9d209d998ebb4ebdbb65835f35692c79c6
   injection_flags: []
   notes: ''
+- id: S042
+  title: 'Синтетическое интервью (qwen/qwen3.8-flash): Пенсионерка 70 лет, уверена, что её не обманут'
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic-openrouter/P2.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модель qwen/qwen3.8-flash; стоимость $0.0024; не доказывает спрос
+- id: S043
+  title: 'Синтетическое интервью (qwen/qwen3.8-flash): Дочь 35 лет, скептик к платным услугам'
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic-openrouter/P4.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модель qwen/qwen3.8-flash; стоимость $0.0022; не доказывает спрос
+- id: S044
+  title: 'Скриншот: МегаФон Ева, первый экран (описание vision-моделью)'
+  kind: image
+  url: ''
+  path: sources/raw/ux-megafon-top.png
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: e23b170d1accacdf0a04b75d5242e4898889bad575f1c0110951b29ccb1e6eb1
+  injection_flags: []
+  notes: ''
+  text_path: sources/raw/S044.md
+- id: S045
+  title: 'Демо-аудио: синтезированный фрагмент интервью (TTS Windows, не реальный человек)'
+  kind: audio
+  url: ''
+  path: sources/raw/demo-interview.mp3
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: 0bc752e17f8165ee0b0a094df942f17e1f00158473387281b40297cc04ee0f6f
+  injection_flags: []
+  notes: ''
+  text_path: sources/raw/S045.md
+- id: S046
+  title: 'Демо-видео: скриншот страницы + синтезированный голос (не реальный человек)'
+  kind: video
+  url: ''
+  path: sources/raw/demo-video.mp4
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: 268600b3af1420582284baf7fd21506d571f1234198b23216cd6f14784b2b162
+  injection_flags: []
+  notes: ''
+  text_path: sources/raw/S046.md

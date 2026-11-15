@@ -1,0 +1,32 @@
+{
+ "text": "Я поставила на телефоны мамы и бабушки блокировщик спама, но он пропускает слишком много «умных» звонков, которые маскируются под реальные организации. Раньше пробовали просто игнорировать незнакомые номера, но это не работает, когда мошенники знают имена или данные из утечек. Сейчас я периодически захожу в личный кабинет оператора и вручную добавляю черные списки, хотя это костыль, а не решение.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1374,
+  "completion_tokens": 100,
+  "total_tokens": 1474,
+  "cost": 0.000115884,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1024,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000115884,
+   "upstream_inference_prompt_cost": 6.8884e-05,
+   "upstream_inference_completions_cost": 4.7e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000115884,
+ "cached": false,
+ "ts": "2026-11-15T12:04:45+03:00",
+ "duration_s": 3.15
+}

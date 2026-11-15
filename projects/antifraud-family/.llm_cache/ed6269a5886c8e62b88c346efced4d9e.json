@@ -1,0 +1,32 @@
+{
+ "text": "Я просто выключила телефон и пошла пить чай, чтобы не нервничать. Внук мне сказал: «Бабушка, заблокируй номер», но я не умею в этом вашем смартфоне лазить, он сам всё сделает, когда приедет. Дочери я звонить не стала, а то она сразу начнет причитать: «Ах, ты могла попасться!», а я и так знаю, что не попалась. Подруге Зине рассказала, но она только вздохнула и сказала: «Мне бы твоя наглость», потому что у неё-то деньги украли.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1173,
+  "completion_tokens": 133,
+  "total_tokens": 1306,
+  "cost": 0.000135548,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 768,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000135548,
+   "upstream_inference_prompt_cost": 7.3038e-05,
+   "upstream_inference_completions_cost": 6.251e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000135548,
+ "cached": false,
+ "ts": "2026-11-15T12:03:03+03:00",
+ "duration_s": 4.03
+}

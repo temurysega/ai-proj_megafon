@@ -1,0 +1,32 @@
+{
+ "text": "Мне сказали: «Спасибо за сигнал, мы примем меры», но никаких конкретных действий по защите номера не предложили. Я спросила, могут ли они временно заблокировать подозрительные звонки или хотя бы прислать предупреждение при входе в приложение, а оператор просто повторил стандартный скрипт про безопасность. Это же обязанность банка — защищать клиентов от таких схем, а не перекладывать всю ответственность на меня и мои нервы.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1237,
+  "completion_tokens": 100,
+  "total_tokens": 1337,
+  "cost": 9.5334e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1024,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.5334e-05,
+   "upstream_inference_prompt_cost": 4.8334e-05,
+   "upstream_inference_completions_cost": 4.7e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.5334e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:04:41+03:00",
+ "duration_s": 3.17
+}

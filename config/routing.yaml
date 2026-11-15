@@ -20,69 +20,80 @@ tasks:
   classify:
     why: "Выбор навыка/процесса по запросу, короткий JSON. Достаточно самой дешёвой быстрой модели."
     models: [qwen/qwen3.7-flash, z-ai/glm-5.3-flash, deepseek/deepseek-v4-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 400
     json: true
   rerank:
     why: "Переупорядочивание результатов поиска по смыслу (после BM25)."
     models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 300
     json: true
   extract:
     why: "Извлечение утверждений с дословными цитатами из длинного источника: длинный контекст + дёшево."
     models: [deepseek/deepseek-v4.1-flash, qwen/qwen3.8-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 4000
     json: true
   summarize:
     why: "Сжатие длинных материалов перед чтением основной моделью — экономия контекста IDE-модели."
     models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     max_tokens: 1500
   respondent:
     why: "Модельный респондент в заданной роли (только для поиска гипотез). Одна модель по умолчанию;
       ротация — опция --rotate, без заявлений о «репрезентативности»."
     models: [deepseek/deepseek-v4-flash, qwen/qwen3.8-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     rotate_pool: [deepseek/deepseek-v4-flash, qwen/qwen3.8-flash, z-ai/glm-5.3-flash]
     temperature: 0.8
     max_tokens: 700
   interviewer:
     why: "Уточняющий вопрос интервьюера по ответу респондента (пробинг)."
     models: [qwen/qwen3.7-flash, deepseek/deepseek-v4-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0.4
     max_tokens: 200
   code_interview:
     why: "Кодирование транскриптов интервью: задачи, боли, барьеры, дословные цитаты."
     models: [deepseek/deepseek-v4.1-flash, qwen/qwen3.8-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 3000
     json: true
   judge:
     why: "Оценка по рубрике. Модель другого семейства, чем основная (Claude), — меньше самоподтверждения."
     models: [deepseek/deepseek-v4-pro, qwen/qwen3.7-plus]
+    reasoning: low
     temperature: 0
-    max_tokens: 2500
+    max_tokens: 8000
     json: true
   critic:
     why: "Вторая точка зрения / красная команда от модели другого семейства."
     models: [moonshotai/kimi-k2.6, deepseek/deepseek-v4-pro]
+    reasoning: low
     temperature: 0.5
-    max_tokens: 2500
+    max_tokens: 8000
   vision:
     why: "Описание скриншотов и изображений: только то, что видно, с координатами/текстом элементов."
     models: [qwen/qwen3.8-flash, z-ai/glm-5.3-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 2000
   audio:
     why: "Расшифровка аудио (интервью, звонки-примеры) — омни-модель с аудиовходом."
     models: [qwen/qwen3.8-omni-flash, xiaomi/mimo-v2.6-flash]
+    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
     temperature: 0
     max_tokens: 4000
   baseline_chat:
     why: "Базовая линия для сравнения: «обычный чат с ИИ» одним промптом без инструментов."
     models: [deepseek/deepseek-v4-pro]
     temperature: 0.5
-    max_tokens: 6000
+    max_tokens: 16000
 
 # Оценка стоимости IDE-модели по токенам (USD за 1 млн). Подписка IDE не даёт цены за токен,
 # поэтому это ориентир «сколько стоило бы через API».

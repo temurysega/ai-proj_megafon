@@ -33,3 +33,4 @@ projects/*/sources/raw/**/*.mp3
 
 # Песочница smoke-тестов
 projects/zz-smoke*/
+projects/.active

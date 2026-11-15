@@ -1,0 +1,32 @@
+{
+ "text": "Она судорожно пыталась найти раздел «Безопасность» или кнопку «Разблокировать карту», потому что мошенник убедил её, что нужно срочно подтвердить личность через приложение. Я кричала в трубку: «Мама, не трогай ничего!», но она уже нажимала на уведомления и искала код для входа, который звонящий требовал продиктовать. В итоге я просто забрала у неё телефон, пока она не успела отправить этот код по SMS на неизвестный номер.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 924,
+  "completion_tokens": 112,
+  "total_tokens": 1036,
+  "cost": 0.000122632,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000122632,
+   "upstream_inference_prompt_cost": 6.9992e-05,
+   "upstream_inference_completions_cost": 5.264e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000122632,
+ "cached": false,
+ "ts": "2026-11-15T12:04:33+03:00",
+ "duration_s": 3.49
+}

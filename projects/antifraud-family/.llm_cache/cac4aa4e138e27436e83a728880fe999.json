@@ -1,0 +1,32 @@
+{
+ "text": "Звонили через WhatsApp, а не по мобильной сети, поэтому все наши телефонные фильтры были абсолютно бесполезны и молчали как партизаны. Мошенники использовали поддельный профиль с логотипом крупного банка, который выглядел до боли реалистично, и мама просто нажала «принять», потому что увидела знакомое название в мессенджере. Я обнаружила это случайно, когда зашла к ней в гости и увидела открытую переписку с просьбой «подтвердить транзакцию» кодом из СМС. Понимаете, операторы контролируют только голосовые каналы, а такие звонки идут поверх интернета, где их правила защиты даже не пахнут.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1904,
+  "completion_tokens": 161,
+  "total_tokens": 2065,
+  "cost": 0.000155446,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000155446,
+   "upstream_inference_prompt_cost": 7.9776e-05,
+   "upstream_inference_completions_cost": 7.567e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000155446,
+ "cached": false,
+ "ts": "2026-11-15T12:05:00+03:00",
+ "duration_s": 4.31
+}

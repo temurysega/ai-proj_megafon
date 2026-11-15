@@ -1,0 +1,254 @@
+[
+  {
+    "judge": "deepseek/deepseek-v4-pro",
+    "pair": "agent vs chat_sonnet",
+    "order": [
+      "chat_sonnet",
+      "agent"
+    ],
+    "usd": 0.0043298508,
+    "scores": {
+      "chat_sonnet": {
+        "K1": 2,
+        "K2": 6,
+        "K3": 7,
+        "K4": 8,
+        "K5": 8,
+        "K6": 8,
+        "K7": 7,
+        "K8": 7
+      },
+      "agent": {
+        "K1": 10,
+        "K2": 10,
+        "K3": 10,
+        "K4": 10,
+        "K5": 10,
+        "K6": 10,
+        "K7": 10,
+        "K8": 10
+      }
+    },
+    "facts": {
+      "chat_sonnet": {
+        "F1": "absent",
+        "F2": "absent",
+        "F3": "absent",
+        "F4": "absent",
+        "F5": "absent",
+        "F6": "absent",
+        "F7": "absent",
+        "F8": "absent",
+        "F9": "absent",
+        "F10": "absent",
+        "F11": "absent",
+        "F12": "absent"
+      },
+      "agent": {
+        "F1": "present_correct",
+        "F2": "present_correct",
+        "F3": "present_correct",
+        "F4": "present_correct",
+        "F5": "present_correct",
+        "F6": "present_correct",
+        "F7": "present_correct",
+        "F8": "present_correct",
+        "F9": "present_correct",
+        "F10": "present_correct",
+        "F11": "present_correct",
+        "F12": "present_correct"
+      }
+    },
+    "better": "agent",
+    "why": "Документ Y опирается на проверяемые источники с конкретными ссылками, чётко разделяет факты, гипотезы и прогнозы, содержит все решающие факты и честно указывает пробелы. Варианты решения проработаны глубоко, с сильными возражениями и экономическими порогами. Продуктовая и коммуникационная стратегии детализированы, план проверки реалистичен и включает конкретные затраты, сроки и ответственных. Документ X, напротив, лишён конкретных данных, большинство решающих фактов отсутствует, а рекомендации остаются общими и непроверяемыми."
+  },
+  {
+    "judge": "deepseek/deepseek-v4-pro",
+    "pair": "agent vs chat_deepseek",
+    "order": [
+      "chat_deepseek",
+      "agent"
+    ],
+    "usd": 0.0034922844,
+    "scores": {
+      "chat_deepseek": {
+        "K1": 2,
+        "K2": 3,
+        "K3": 4,
+        "K4": 7,
+        "K5": 6,
+        "K6": 5,
+        "K7": 5,
+        "K8": 5
+      },
+      "agent": {
+        "K1": 9,
+        "K2": 9,
+        "K3": 9,
+        "K4": 9,
+        "K5": 9,
+        "K6": 9,
+        "K7": 9,
+        "K8": 9
+      }
+    },
+    "facts": {
+      "chat_deepseek": {
+        "F1": "present_wrong",
+        "F2": "absent",
+        "F3": "present_correct",
+        "F4": "absent",
+        "F5": "absent",
+        "F6": "absent",
+        "F7": "absent",
+        "F8": "absent",
+        "F9": "present_correct",
+        "F10": "absent",
+        "F11": "absent",
+        "F12": "absent"
+      },
+      "agent": {
+        "F1": "present_correct",
+        "F2": "present_correct",
+        "F3": "present_correct",
+        "F4": "present_correct",
+        "F5": "present_correct",
+        "F6": "present_correct",
+        "F7": "present_correct",
+        "F8": "present_correct",
+        "F9": "present_correct",
+        "F10": "present_correct",
+        "F11": "present_correct",
+        "F12": "present_correct"
+      }
+    },
+    "better": "agent",
+    "why": "Документ Y обеспечивает высокую проверяемость благодаря ссылкам на источники для каждого утверждения, строго разделяет факты, гипотезы и прогнозы, честно указывает пробелы и противоречия. Он предлагает семь проработанных вариантов с сильными возражениями, детальные продуктовую и коммуникационную стратегии, реалистичный план проверки с учётом статистических ограничений и чёткими критериями решения. Документ X, напротив, содержит неподтверждённые утверждения, опечатки, неверную цену и упускает ключевые факты, что делает его непригодным для обоснованного решения."
+  },
+  {
+    "judge": "qwen/qwen3.7-plus",
+    "pair": "agent vs chat_sonnet",
+    "order": [
+      "agent",
+      "chat_sonnet"
+    ],
+    "usd": 0.01396832,
+    "scores": {
+      "agent": {
+        "K1": 10,
+        "K2": 10,
+        "K3": 10,
+        "K4": 10,
+        "K5": 10,
+        "K6": 10,
+        "K7": 10,
+        "K8": 10
+      },
+      "chat_sonnet": {
+        "K1": 3,
+        "K2": 6,
+        "K3": 5,
+        "K4": 7,
+        "K5": 6,
+        "K6": 6,
+        "K7": 5,
+        "K8": 4
+      }
+    },
+    "facts": {
+      "agent": {
+        "F1": "present_correct",
+        "F2": "present_correct",
+        "F3": "present_correct",
+        "F4": "present_correct",
+        "F5": "present_correct",
+        "F6": "present_correct",
+        "F7": "present_correct",
+        "F8": "present_correct",
+        "F9": "present_correct",
+        "F10": "present_correct",
+        "F11": "present_correct",
+        "F12": "present_correct"
+      },
+      "chat_sonnet": {
+        "F1": "absent",
+        "F2": "absent",
+        "F3": "present_correct",
+        "F4": "absent",
+        "F5": "absent",
+        "F6": "present_correct",
+        "F7": "absent",
+        "F8": "absent",
+        "F9": "present_correct",
+        "F10": "absent",
+        "F11": "absent",
+        "F12": "absent"
+      }
+    },
+    "better": "agent",
+    "why": "Документ X представляет собой эталонное продуктовое исследование: все утверждения верифицируемы, факты строго отделены от гипотез, учтены противоречия в статистике ЦБ и методологии, а план проверки включает расчёт мощности выборки и пороги окупаемости. Документ Y — это набор общих гипотез без конкретных цифр, цен конкурентов, ссылок на источники и дизайна эксперимента, что делает его непригодным для принятия управленческого решения."
+  },
+  {
+    "judge": "qwen/qwen3.7-plus",
+    "pair": "agent vs chat_deepseek",
+    "order": [
+      "agent",
+      "chat_deepseek"
+    ],
+    "usd": 0.00774272,
+    "scores": {
+      "agent": {
+        "K1": 10,
+        "K2": 10,
+        "K3": 10,
+        "K4": 10,
+        "K5": 10,
+        "K6": 10,
+        "K7": 10,
+        "K8": 10
+      },
+      "chat_deepseek": {
+        "K1": 1,
+        "K2": 2,
+        "K3": 3,
+        "K4": 6,
+        "K5": 4,
+        "K6": 3,
+        "K7": 3,
+        "K8": 2
+      }
+    },
+    "facts": {
+      "agent": {
+        "F1": "present_correct",
+        "F2": "present_correct",
+        "F3": "present_correct",
+        "F4": "present_correct",
+        "F5": "present_correct",
+        "F6": "present_correct",
+        "F7": "present_correct",
+        "F8": "present_correct",
+        "F9": "present_correct",
+        "F10": "present_correct",
+        "F11": "present_correct",
+        "F12": "present_correct"
+      },
+      "chat_deepseek": {
+        "F1": "present_wrong",
+        "F2": "absent",
+        "F3": "present_correct",
+        "F4": "absent",
+        "F5": "absent",
+        "F6": "absent",
+        "F7": "absent",
+        "F8": "absent",
+        "F9": "absent",
+        "F10": "absent",
+        "F11": "absent",
+        "F12": "absent"
+      }
+    },
+    "better": "agent",
+    "why": "Документ X — эталон продуктовой аналитики: все утверждения верифицируемы, факты отделены от гипотез, учтены регуляторные сдвиги и статистическая мощность эксперимента. Документ Y содержит фактические ошибки (цена 199 ₽ вместо 249 ₽), игнорирует ключевые факты рынка и законодательства (210-ФЗ, компенсации конкурентов), предлагает статистически некорректный план проверки и изобилует опечатками, что делает его непригодным для принятия бизнес-решений."
+  }
+]
