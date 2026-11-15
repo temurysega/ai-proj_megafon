@@ -11,10 +11,11 @@
 | | |
 |---|---|
 | **Демо-проект** | [`projects/antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников: что делать с продуктом и как о нём говорить» (брифа МегаФона ещё нет — задача сформулирована командой, только открытые данные). Читать: [one-pager](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [HTML](projects/antifraud-family/report/index.html) |
-| **Результат демо** | 41 источник, 72 активных утверждения с цитатами, 7 вариантов, продуктовая и коммуникационная стратегии, план проверки, журнал решений; 0 ошибок `sf check` |
+| **Результат демо** | 46 источников, 72 активных утверждения с цитатами, 7 вариантов, продуктовая и коммуникационная стратегии, план проверки, журнал решений; 0 ошибок `sf check` |
 | **Второй проект** | [`projects/esim-travel`](projects/esim-travel) — «eSIM для путешествий», проведён отдельным агентом **с нуля без участия человека** ([one-pager](projects/esim-travel/strategy/one-pager.md), [PDF](projects/esim-travel/report/index.pdf)) |
-| **Сравнение с обычным чатом** | 6 слепых оценок судьями двух производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12 — [`evals/results/summary.md`](evals/results/summary.md) |
+| **Сравнение с обычным чатом** | 6 слепых оценок судьями трёх производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12 — [`evals/results/summary.md`](evals/results/summary.md) |
 | **Сайт** | **https://mgim.neblanki.tech** — основные пути работы агента: новая задача, проверяемость, пауза и продолжение, пересмотр при новых данных, сопровождение решения; там же PDF. Исходник — [`site/index.html`](site/index.html), выкладка — `scripts/deploy_site.py` |
+| **Видео** | [mgim.neblanki.tech/#video](https://mgim.neblanki.tech/#video) — сквозной путь за 7,5 минуты: запрос, исследование, варианты, обрыв сессии и продолжение, стратегия, новые данные, сопровождение, защита, второй проект. Сценарий и главы — [`docs/video/script.md`](docs/video/script.md), запись — `scripts/record_video.py` |
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |

@@ -19,6 +19,7 @@ FILES = {
     "files/antifraud-family.pdf": ROOT / "projects" / "antifraud-family" / "report" / "index.pdf",
     "files/esim-travel.pdf": ROOT / "projects" / "esim-travel" / "report" / "index.pdf",
 }
+VIDEO = [ROOT / "docs" / "video" / n for n in ("demo.mp4", "demo.vtt", "demo-poster.jpg")]
 
 
 def main():
@@ -40,7 +41,11 @@ def main():
     subprocess.run(["ssh", *ssh_opts, host, f"mkdir -p {remote}/files"], check=True)
     subprocess.run(["scp", *ssh_opts, "-q", str(dist / "index.html"), f"{host}:{remote}/index.html"], check=True)
     subprocess.run(["scp", *ssh_opts, "-q", *[str(dist / r) for r in FILES], f"{host}:{remote}/files/"], check=True)
-    print(f"Выложено: index.html и {len(FILES)} PDF → {host}:{remote}")
+    # Видео демо (scripts/record_video.py): большой файл не хранится в git, выкладывается, если записан локально.
+    media = [p for p in VIDEO if p.exists()]
+    if media:
+        subprocess.run(["scp", *ssh_opts, "-q", *[str(p) for p in media], f"{host}:{remote}/files/"], check=True)
+    print(f"Выложено: index.html, {len(FILES)} PDF и {len(media)} файлов видео → {host}:{remote}")
 
 
 if __name__ == "__main__":
