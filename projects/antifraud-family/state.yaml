@@ -89,3 +89,6 @@ history:
 last_checkpoint:
   ts: '2026-11-15T11:35:24+03:00'
   note: стратегия v2, сравнение с чатом, README, архитектура, описание работы PDF, скриншоты
+session_cost_mixed: true
+session_cost_note: в том же чате Claude Code разрабатывался сам агент; чистый замер нового проекта — esim-travel
+  ($1,76)

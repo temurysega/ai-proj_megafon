@@ -88,8 +88,11 @@ def build(pid=None, pdf: bool = False) -> dict:
             f"<div><b>{len(srcs)}</b>источников</div>"
             f"<div><b>{sum(1 for c in claims.values() if c.get('status') == 'active')}</b>утверждений</div>"
             f"<div><b>{sum(1 for c in claims.values() if c['kind'] == 'fact' and c.get('status') == 'active')}</b>фактов с источником</div>"
-            f"<div><b>${cs['external_usd']:.3f}</b>внешние модели</div>"
-            f"<div><b>≈${cs['ide_usd']:.2f}</b>IDE-модель (оценка)</div></div>",
+            f"<div><b>≈${cs['project_usd']:.2f}</b>стоимость проекта</div>"
+            f"<div><b>${cs['external_usd']:.3f}</b>из них внешние модели</div></div>"
+            + (f"<p class='meta'>Стоимость проекта = субагенты + внешние модели (оценка по токенам, цены API). Основной чат IDE "
+               f"(≈${cs['session_usd']:.2f}) показан отдельно: {html.escape(cs['session_note'] or 'в том же чате шла другая работа')}.</p>"
+               if cs["session_mixed"] else ""),
             "<p class='legend'><span><a class='c'>C001</a> факт/расчёт</span><span><a class='c k-hypothesis'>C002</a> гипотеза/прогноз/допущение</span>"
             "<span><a class='c k-synthetic'>C003</a> синтетика</span><span><a class='c st-retracted'>C004</a> отозвано</span>"
             " — наведите курсор на метку, чтобы увидеть утверждение и источник.</p>"]
@@ -139,7 +142,9 @@ def build(pid=None, pdf: bool = False) -> dict:
     sections.append("<section class='doc' id='transparency'><h2>Прозрачность: что сделано и сколько стоило</h2>"
                     f"<p>Действий в журнале: {len(jr)}; сбоев: {sum(1 for r in jr if r.get('status') == 'failed')}. "
                     f"Внешние модели: ${cs['external_usd']:.4f} за {cs['external_calls']} вызовов (из кэша без оплаты: {cs['cached_calls']}). "
-                    f"IDE-модель и субагенты: ≈${cs['ide_usd']:.2f} (оценка по токенам).</p>"
+                    f"Субагенты и ручные записи: ≈${cs['subagent_usd']:.2f}; основной чат IDE: ≈${cs['session_usd']:.2f}"
+                    f"{' — не входит в стоимость проекта: ' + html.escape(cs['session_note']) if cs['session_mixed'] else ''}. "
+                    f"<b>Стоимость проекта: ≈${cs['project_usd']:.2f}</b> (оценка по токенам по ценам API).</p>"
                     "<div class='chips'>" + "".join(f"<span>{html.escape(k)}: {v}</span>" for k, v in sorted(acts.items(), key=lambda x: -x[1])) + "</div>"
                     f"<h3>Внешние модели по задачам</h3><table><tr><th>Задача</th><th>USD</th></tr>{by_task}</table></section>")
     toc += ["<li><a href='#claims'>Реестр утверждений</a></li>", "<li><a href='#sources'>Источники</a></li>",

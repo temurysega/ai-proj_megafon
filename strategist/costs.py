@@ -118,6 +118,16 @@ def summary(pid: str | None) -> dict:
             out["ide_usd"] += float(r.get("usd") or 0)
     out["external_usd"] = round(out["external_usd"], 6)
     out["ide_usd"] = round(out["ide_usd"], 4)
+    # Разбивка: основной чат IDE (транскрипт) отдельно от субагентов и внешних моделей.
+    out["session_usd"] = round(sum(float(r.get("usd") or 0) for r in recs if r.get("type") == "ide_session"), 4)
+    out["subagent_usd"] = round(sum(float(r.get("usd") or 0) for r in recs if r.get("type") in ("subagent", "manual")), 4)
+    out["total_usd"] = round(out["external_usd"] + out["ide_usd"], 4)
+    # Если в том же чате шла другая работа (например, разработка самого агента), основной чат не входит в стоимость
+    # проекта и показывается отдельно: state.yaml → session_cost_mixed: true, session_cost_note: "...".
+    st = read_yaml(PROJECTS / pid / "state.yaml", {}) if pid else {}
+    out["session_mixed"] = bool(st.get("session_cost_mixed"))
+    out["session_note"] = st.get("session_cost_note", "")
+    out["project_usd"] = round(out["total_usd"] - (out["session_usd"] if out["session_mixed"] else 0), 4)
     return out
 
 

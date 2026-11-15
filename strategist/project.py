@@ -236,8 +236,10 @@ def status_text(pid: str | None = None, brief: bool = False) -> str:
     except Exception:
         pass
     tot = _costs.summary(d.name)
-    lines.append(f"Стоимость: внешние модели ${tot['external_usd']:.4f} ({tot['external_calls']} вызовов), "
-                 f"IDE-модель ≈${tot['ide_usd']:.2f} (оценка по токенам)")
+    lines.append(f"Стоимость проекта ≈${tot['project_usd']:.2f}: внешние модели ${tot['external_usd']:.4f} "
+                 f"({tot['external_calls']} вызовов), субагенты ≈${tot['subagent_usd']:.2f}"
+                 + (f"; основной чат ≈${tot['session_usd']:.2f} — отдельно ({tot['session_note']})" if tot["session_mixed"]
+                    else (f", основной чат ≈${tot['session_usd']:.2f}" if tot["session_usd"] else "")))
     if not brief:
         tail = read_jsonl(d / "journal.jsonl")[-8:]
         if tail:

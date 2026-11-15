@@ -324,13 +324,16 @@ def cmd_cost(a):
         t.add_column("Значение", justify="right")
         t.add_row("Внешние модели (OpenRouter), USD", f"{s['external_usd']:.4f}")
         t.add_row("  вызовов / из кэша / неудачных", f"{s['external_calls']} / {s['cached_calls']} / {s['failed_calls']}")
-        t.add_row("IDE-модель + субагенты, USD (оценка)", f"{s['ide_usd']:.2f}")
-        t.add_row("  токенов IDE / субагентов", f"{s['ide_tokens']:,} / {s['subagent_tokens']:,}".replace(",", " "))
+        t.add_row("Субагенты и ручные записи, USD (оценка)", f"{s['subagent_usd']:.2f}")
+        t.add_row("Основной чат IDE, USD (оценка по транскрипту)", f"{s['session_usd']:.2f}")
+        if s["session_mixed"]:
+            t.add_row(f"  [dim]не входит в проект: {s['session_note'][:60]}[/dim]", "")
+        t.add_row("  токенов основного чата / субагентов", f"{s['ide_tokens']:,} / {s['subagent_tokens']:,}".replace(",", " "))
         for k, v in sorted(s["by_task"].items(), key=lambda x: -x[1]):
             t.add_row(f"  задача: {k}", f"{v:.4f}")
         for k, v in sorted(s["by_model"].items(), key=lambda x: -x[1]):
             t.add_row(f"  модель: {k}", f"{v:.4f}")
-        t.add_row("[bold]Итого, USD[/bold]", f"[bold]{s['external_usd'] + s['ide_usd']:.2f}[/bold]")
+        t.add_row("[bold]Стоимость проекта, USD[/bold]", f"[bold]{s['project_usd']:.2f}[/bold]")
         con.print(t)
     else:
         _print(s)

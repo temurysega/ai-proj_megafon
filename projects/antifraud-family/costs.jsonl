@@ -17,7 +17,6 @@
 {"type": "subagent", "usd": 0.36, "note": "базовая линия: обычный чат", "tokens": 60071, "stage": "eval", "model": "claude-sonnet", "ts": "2026-11-15T11:24:45+03:00"}
 {"type": "subagent", "usd": 0.35, "note": "jury слепая оценка", "tokens": 58310, "stage": "eval", "model": "claude-sonnet", "ts": "2026-11-15T11:28:52+03:00"}
 {"type": "subagent", "usd": 0.14, "note": "jury слепая оценка", "tokens": 71297, "stage": "eval", "model": "claude-haiku", "ts": "2026-11-15T11:28:53+03:00"}
-{"ts": "2026-11-15T11:49:08+03:00", "type": "ide_session", "tool": "claude-code", "session_id": "43f1901c-a146-46dd-b79d-7f68911bd1df", "input": 294, "output": 287832, "cache_read": 73346558, "cache_write": 871349, "usd": 49.3165, "model": "claude-opus-5-5", "messages": 146, "estimate": true}
 {"type": "llm", "task": "classify", "model": "qwen/qwen3.7-flash", "usd": 3.557e-05, "status": "ok", "tokens_in": 20, "tokens_out": 269, "duration_s": 4.61, "stage": null, "label": "проверка ключа", "ts": "2026-11-15T11:52:04+03:00"}
 {"type": "llm", "task": "classify", "model": "qwen/qwen3.7-flash", "usd": 6.202e-05, "status": "failed", "error": "invalid_json", "stage": null, "label": "route", "tokens_in": 334, "tokens_out": 400, "ts": "2026-11-15T11:53:12+03:00"}
 {"type": "llm", "task": "classify", "model": "qwen/qwen3.7-flash", "usd": 0, "status": "failed", "error": "невалидный JSON: ответ не содержит корректного JSON", "stage": null, "label": "route", "ts": "2026-11-15T11:53:12+03:00"}
@@ -261,3 +260,4 @@
 {"type": "llm", "task": "classify", "model": "moonshotai/kimi-k3.1-pro", "usd": 0.00027026, "status": "ok", "tokens_in": 476, "tokens_out": 20, "duration_s": 1.19, "stage": "eval", "label": "routing-bench:moonshotai/kimi-k3.1-pro", "ts": "2026-11-15T12:29:08+03:00"}
 {"type": "llm", "task": "classify", "model": "moonshotai/kimi-k3.1-pro", "usd": 0.0010242, "status": "ok", "tokens_in": 474, "tokens_out": 19, "duration_s": 1.0, "stage": "eval", "label": "routing-bench:moonshotai/kimi-k3.1-pro", "ts": "2026-11-15T12:29:09+03:00"}
 {"type": "llm", "task": "classify", "model": "z-ai/glm-5.3-flash", "usd": 7.638e-05, "status": "ok", "tokens_in": 374, "tokens_out": 105, "duration_s": 1.89, "stage": null, "label": "route", "ts": "2026-11-15T12:29:34+03:00"}
+{"ts": "2026-11-15T19:58:18+03:00", "type": "ide_session", "tool": "claude-code", "session_id": "43f1901c-a146-46dd-b79d-7f68911bd1df", "input": 466, "output": 379804, "cache_read": 134085456, "cache_write": 1763861, "usd": 87.5643, "model": "claude-opus-5-5", "messages": 229, "estimate": true}
