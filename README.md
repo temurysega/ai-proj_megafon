@@ -6,6 +6,8 @@
 Это не программа, а **папка-агент**: инструкции (`AGENTS.md`, навыки, субагенты), база знаний (`knowledge/`), инструменты на Python
 (CLI `sf` и MCP-сервер) и проекты с состоянием (`projects/`). Открывается в Claude Code, Cursor, Codex, Copilot и других средах.
 
+<p align="center"><a href="https://mgim.neblanki.tech"><img src="docs/screenshots/site-hero.png" alt="Сайт агента: главный экран" width="820"></a><br><sub>Сайт: <a href="https://mgim.neblanki.tech">mgim.neblanki.tech</a></sub></p>
+
 | | |
 |---|---|
 | **Демо-проект** | [`projects/antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников: что делать с продуктом и как о нём говорить» (брифа МегаФона ещё нет — задача сформулирована командой, только открытые данные). Читать: [one-pager](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [HTML](projects/antifraud-family/report/index.html) |
@@ -16,6 +18,12 @@
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |
+
+
+<p align="center">
+  <img src="docs/screenshots/site-stages.png" alt="Семь шагов, три решения — за человеком" width="49%">
+  <img src="docs/screenshots/site-proof-dark.png" alt="Каждое утверждение — с источником и цитатой" width="49%">
+</p>
 
 ## Быстрый старт (3 шага, ≈5 минут)
 
