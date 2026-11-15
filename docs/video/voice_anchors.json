@@ -1,0 +1,192 @@
+{
+ "voice": "запись диктора (не хранится в репозитории)",
+ "note": "Опорные точки: начало фразы в записи → подпись видео (индекс в timeline.json). Найдены локальным распознаванием речи faster-whisper small; голос во внешние сервисы не отправлялся. Поле phrase — начало фразы так, как его распознала модель (с её ошибками), используется только для поиска.",
+ "anchors": [
+  {
+   "caption": 0,
+   "audio_start": 0.0,
+   "phrase": "это стратег",
+   "audio_end": 17.1
+  },
+  {
+   "caption": 1,
+   "audio_start": 19.14,
+   "phrase": "руководитель приносит",
+   "audio_end": 35.22
+  },
+  {
+   "caption": 2,
+   "audio_start": 35.68,
+   "phrase": "человек ответил",
+   "audio_end": 39.82
+  },
+  {
+   "caption": 3,
+   "audio_start": 40.7,
+   "phrase": "этот журнал",
+   "audio_end": 54.68
+  },
+  {
+   "caption": 6,
+   "audio_start": 54.68,
+   "phrase": "команда sfi",
+   "audio_end": 63.7
+  },
+  {
+   "caption": 8,
+   "audio_start": 64.26,
+   "phrase": "данное цб",
+   "audio_end": 67.78
+  },
+  {
+   "caption": 9,
+   "audio_start": 68.32,
+   "phrase": "в картинной",
+   "audio_end": 72.96
+  },
+  {
+   "caption": 11,
+   "audio_start": 73.64,
+   "phrase": "агент разработал",
+   "audio_end": 80.06
+  },
+  {
+   "caption": 12,
+   "audio_start": 80.16,
+   "phrase": "у каждого варианта",
+   "audio_end": 83.26
+  },
+  {
+   "caption": 13,
+   "audio_start": 83.82,
+   "phrase": "до показа",
+   "audio_end": 90.52
+  },
+  {
+   "caption": 14,
+   "audio_start": 90.8,
+   "phrase": "рекомендация сформулирована",
+   "audio_end": 94.76
+  },
+  {
+   "caption": 15,
+   "audio_start": 95.4,
+   "phrase": "в настоящий",
+   "audio_end": 101.84
+  },
+  {
+   "caption": 16,
+   "audio_start": 101.84,
+   "phrase": "хук при старте",
+   "audio_end": 106.91
+  },
+  {
+   "caption": 17,
+   "audio_start": 107.4,
+   "phrase": "агент не переспрашивал",
+   "audio_end": 114.26
+  },
+  {
+   "caption": 18,
+   "audio_start": 114.6,
+   "phrase": "резимент на",
+   "audio_end": 116.52
+  },
+  {
+   "caption": 19,
+   "audio_start": 116.72,
+   "phrase": "продуктовая стратегия",
+   "audio_end": 119.96
+  },
+  {
+   "caption": 20,
+   "audio_start": 120.12,
+   "phrase": "коммуникация стратегия",
+   "audio_end": 123.62
+  },
+  {
+   "caption": 21,
+   "audio_start": 124.18,
+   "phrase": "обещание о",
+   "audio_end": 127.22
+  },
+  {
+   "caption": 22,
+   "audio_start": 127.72,
+   "phrase": "план проверки",
+   "audio_end": 130.08
+  },
+  {
+   "caption": 23,
+   "audio_start": 130.7,
+   "phrase": "перед показом",
+   "audio_end": 134.24
+  },
+  {
+   "caption": 25,
+   "audio_start": 134.84,
+   "phrase": "появились новые",
+   "audio_end": 140.78
+  },
+  {
+   "caption": 26,
+   "audio_start": 141.58,
+   "phrase": "пографы",
+   "audio_end": 156.16
+  },
+  {
+   "caption": 27,
+   "audio_start": 156.52,
+   "phrase": "после решения агент",
+   "audio_end": 160.84
+  },
+  {
+   "caption": 28,
+   "audio_start": 162.56,
+   "phrase": "команда decisions",
+   "audio_end": 168.06
+  },
+  {
+   "caption": 29,
+   "audio_start": 168.84,
+   "phrase": "защитные хуки",
+   "audio_end": 196.22
+  },
+  {
+   "caption": 30,
+   "audio_start": 196.98,
+   "phrase": "новая задача",
+   "audio_end": 202.24
+  },
+  {
+   "caption": 31,
+   "audio_start": 202.78,
+   "phrase": "в результате",
+   "audio_end": 206.54
+  },
+  {
+   "caption": 32,
+   "audio_start": 207.58,
+   "phrase": "на сайте",
+   "audio_end": 214.82
+  },
+  {
+   "caption": 33,
+   "audio_start": 215.26,
+   "phrase": "итог два",
+   "audio_end": 229.14
+  },
+  {
+   "caption": 34,
+   "audio_start": 229.8,
+   "phrase": "пдф описания",
+   "audio_end": 233.7
+  },
+  {
+   "caption": "end",
+   "audio_start": 235.84,
+   "phrase": "стратег фабрики",
+   "audio_end": 241.38
+  }
+ ]
+}

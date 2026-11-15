@@ -19,7 +19,12 @@ FILES = {
     "files/antifraud-family.pdf": ROOT / "projects" / "antifraud-family" / "report" / "index.pdf",
     "files/esim-travel.pdf": ROOT / "projects" / "esim-travel" / "report" / "index.pdf",
 }
-VIDEO = [ROOT / "docs" / "video" / n for n in ("demo.mp4", "demo.vtt", "demo-poster.jpg")]
+# Видео: имя на сайте → локальные файлы по приоритету (версия с голосом из scripts/voiceover.py, если собрана).
+VIDEO = {
+    "demo.mp4": ["demo-voice.mp4", "demo.mp4"],
+    "demo.vtt": ["demo-voice.vtt", "demo.vtt"],
+    "demo-poster.jpg": ["demo-poster.jpg"],
+}
 
 
 def main():
@@ -42,10 +47,13 @@ def main():
     subprocess.run(["scp", *ssh_opts, "-q", str(dist / "index.html"), f"{host}:{remote}/index.html"], check=True)
     subprocess.run(["scp", *ssh_opts, "-q", *[str(dist / r) for r in FILES], f"{host}:{remote}/files/"], check=True)
     # Видео демо (scripts/record_video.py): большой файл не хранится в git, выкладывается, если записан локально.
-    media = [p for p in VIDEO if p.exists()]
-    if media:
-        subprocess.run(["scp", *ssh_opts, "-q", *[str(p) for p in media], f"{host}:{remote}/files/"], check=True)
-    print(f"Выложено: index.html, {len(FILES)} PDF и {len(media)} файлов видео → {host}:{remote}")
+    media = 0
+    for name, candidates in VIDEO.items():
+        src = next((ROOT / "docs" / "video" / c for c in candidates if (ROOT / "docs" / "video" / c).exists()), None)
+        if src:
+            subprocess.run(["scp", *ssh_opts, "-q", str(src), f"{host}:{remote}/files/{name}"], check=True)
+            media += 1
+    print(f"Выложено: index.html, {len(FILES)} PDF и {media} файлов видео → {host}:{remote}")
 
 
 if __name__ == "__main__":

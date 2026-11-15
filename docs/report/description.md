@@ -1,7 +1,7 @@
 # Стратег Фабрики продуктов — описание работы
 
 *ИИ-агент для руководителя цифрового продукта: от размытого запроса до продуктовой и коммуникационной стратегии и сопровождения решения.
-Сайт: mgim.neblanki.tech · видео (7,5 мин): mgim.neblanki.tech/#video · репозиторий: github.com/temurysega/ai-proj_megafon · версия от 15.11.2026*
+Сайт: mgim.neblanki.tech · видео (8 мин): mgim.neblanki.tech/#video · репозиторий: github.com/temurysega/ai-proj_megafon · версия от 15.11.2026*
 
 ## 1. Коротко
 - **Что это.** Папка-агент для Claude Code / Cursor / Codex / Copilot: постоянные правила (`AGENTS.md`), 13 навыков, 6 субагентов,
