@@ -18,12 +18,21 @@ def _read(path: Path):
     return pd.read_csv(path, sep=None, engine="python")
 
 
+def _resolve(path: str, pid, what: str) -> Path:
+    """Путь от текущей папки или от папки проекта (`research/data/x.py` работает из корня репозитория)."""
+    p = Path(path)
+    if p.exists():
+        return p
+    q = project_dir(pid) / path
+    if q.exists():
+        return q
+    raise StrategistError(f"Нет {what} {path} (искали от текущей папки и от папки проекта {project_dir(pid).name})")
+
+
 def profile(file: str, pid=None) -> dict:
     import numpy as np
     import pandas as pd
-    p = Path(file)
-    if not p.exists():
-        raise StrategistError(f"Нет файла {file}")
+    p = _resolve(file, pid, "файла")
     df = _read(p)
     issues, cols = [], []
     dups = int(df.duplicated().sum())
@@ -91,9 +100,7 @@ def run_script(script: str, pid=None) -> dict:
     """Запуск аналитического скрипта проекта с фиксацией хэшей (воспроизводимость).
     В шапке скрипта: `# inputs: a.csv, b.csv` и `# outputs: out.csv, chart.png` (пути от папки скрипта)."""
     d = project_dir(pid)
-    sp = Path(script).resolve()
-    if not sp.exists():
-        raise StrategistError(f"Нет скрипта {script}")
+    sp = _resolve(script, pid, "скрипта").resolve()
     head = sp.read_text(encoding="utf-8")[:2000]
     ins = [x.strip() for m in re.findall(r"#\s*inputs?:\s*(.+)", head) for x in m.split(",") if x.strip()]
     outs = [x.strip() for m in re.findall(r"#\s*outputs?:\s*(.+)", head) for x in m.split(",") if x.strip()]

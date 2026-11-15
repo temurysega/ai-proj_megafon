@@ -175,3 +175,9 @@
 {"ts": "2026-11-15T12:34:33+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 4", "status": "ok"}
 {"ts": "2026-11-15T20:00:43+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
 {"ts": "2026-11-15T20:38:49+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 4", "status": "ok"}
+{"ts": "2026-11-15T21:58:21+03:00", "actor": "tool", "action": "fetch_failed", "detail": "https://msk.t2.ru/journal/article/how-to-connect-esim: HTTP 503", "status": "failed"}
+{"ts": "2026-11-15T21:58:22+03:00", "actor": "tool", "action": "fetch_failed", "detail": "https://msk.t2.ru/roaming: HTTP 503", "status": "failed"}
+{"ts": "2026-11-15T21:58:41+03:00", "actor": "tool", "action": "fetched", "detail": "S023 https://msk.t2.ru/journal/article/how-to-connect-esim (18582 симв., инъекций: 0)", "status": "ok", "key": "fetch:https://msk.t2.ru/journal/article/how-to-connect-esim"}
+{"ts": "2026-11-15T21:58:52+03:00", "actor": "tool", "action": "fetched", "detail": "S027 https://msk.t2.ru/roaming (3531 симв., инъекций: 0)", "status": "ok", "key": "fetch:https://msk.t2.ru/roaming"}
+{"ts": "2026-11-15T21:59:05+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 4", "status": "ok"}
+{"ts": "2026-11-15T22:04:12+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 4", "status": "ok"}

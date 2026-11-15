@@ -32,8 +32,11 @@ DEFAULT_NEXT = {
 def project_dir(pid: str | None = None) -> Path:
     pid = pid or active_project()
     if not pid:
-        raise StrategistError("Нет активного проекта. Создайте: `python sf.py new <id> --title \"...\"` "
-                              "или выберите: `python sf.py use <id>` (список: `python sf.py list`).")
+        existing = sorted(p.parent.name for p in PROJECTS.glob("*/state.yaml") if not p.parent.name.startswith("zz-"))
+        hint = (f" Есть проекты: {', '.join(existing)} — например, `python sf.py use {existing[0]}`, затем `python sf.py status`."
+                if existing else "")
+        raise StrategistError("Нет активного проекта (на свежем клоне он не выбран)." + hint +
+                              " Новая задача: `python sf.py new <id> --title \"...\"` или просто напишите её агенту в IDE.")
     d = PROJECTS / pid
     if not (d / "state.yaml").exists():
         raise StrategistError(f"Проект '{pid}' не найден ({d}).")

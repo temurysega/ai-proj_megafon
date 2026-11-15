@@ -21,6 +21,26 @@ from .safety import domain_allowed, scan_injection
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) StrategistAgent/1.0 (open-source research agent)"
 
 
+_META_CHARSET = re.compile(rb"""<meta[^>]+charset\s*=\s*["']?\s*([\w-]+)""", re.I)
+
+
+def decode_html(raw: bytes, ctype: str = "") -> str:
+    """Кодировка страницы: charset из заголовка → <meta charset> → строгий UTF-8 → cp1251.
+    Без charset в заголовке requests считает HTML кодировкой ISO-8859-1, и русский текст в UTF-8 превращается в «кракозябры»."""
+    m = re.search(r"charset\s*=\s*[\"']?([\w-]+)", ctype or "", re.I)
+    candidates = [m.group(1)] if m else []
+    mm = _META_CHARSET.search(raw[:8192])
+    if mm:
+        candidates.append(mm.group(1).decode("ascii", "ignore"))
+    candidates += ["utf-8", "cp1251"]
+    for enc in candidates:
+        try:
+            return raw.decode(enc)
+        except (LookupError, UnicodeDecodeError):
+            continue
+    return raw.decode("utf-8", "replace")
+
+
 def html_to_text(html: str) -> tuple[str, str]:
     soup = BeautifulSoup(html, "html.parser")
     title = (soup.title.string or "").strip() if soup.title and soup.title.string else ""
@@ -115,8 +135,7 @@ def fetch(url: str, title: str = "", publisher: str = "", published: str = "", r
     if "pdf" in ctype or url.lower().endswith(".pdf"):
         text, kind, auto_title = pdf_to_text(raw), "pdf", ""
     else:
-        html = raw.decode(requests.utils.get_encoding_from_headers({"content-type": ctype}) or "utf-8", "replace") \
-            if isinstance(raw, bytes) else raw
+        html = decode_html(raw, ctype) if isinstance(raw, bytes) else raw
         auto_title, text = html_to_text(html)
         kind = "web"
         if len(text) < 400 and not render:

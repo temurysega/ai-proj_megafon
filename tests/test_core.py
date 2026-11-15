@@ -6,7 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from strategist.importer import locate_quote, verify_quote  # noqa: E402
 from strategist.safety import domain_allowed, find_secrets, scan_injection, scrub_pii  # noqa: E402
-from strategist.web import looks_blocked  # noqa: E402
+from strategist.web import decode_html, looks_blocked  # noqa: E402
 from strategist.kb import tokens, bm25  # noqa: E402
 from strategist.router import route  # noqa: E402
 from strategist.evals import text_metrics  # noqa: E402
@@ -110,3 +110,12 @@ def test_article_preferred_over_sidebar():
     art = "<article><h1>Заголовок</h1>" + "".join(f"<p>Абзац статьи {i}: ЦБ расширил перечень признаков операций.</p>" for i in range(30)) + "</article>"
     _, text = html_to_text(f"<html><body>{side}{art}</body></html>")
     assert "Абзац статьи" in text and "Новость ленты" not in text
+
+
+def test_html_without_charset_is_not_mojibake():
+    # Без charset в заголовке requests считал страницу ISO-8859-1 → «Ð Ð¾Ñ…» вместо русского текста (снимки T2, SecurityLab).
+    page = "<html><body>Роуминг — Москва. Доступ к сайту запрещен.</body></html>"
+    assert "Роуминг" in decode_html(page.encode("utf-8"), "text/html")
+    assert "Роуминг" in decode_html(page.encode("cp1251"), "text/html")
+    assert "Роуминг" in decode_html(('<meta charset="windows-1251">' + page).encode("cp1251"), "text/html")
+    assert looks_blocked("403 Error\nForbidden\nДоступ к сайту www.example.ru запрещен.")
