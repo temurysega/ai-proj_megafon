@@ -203,6 +203,39 @@ def doc_files(pid=None) -> list[Path]:
     return sorted(out)
 
 
+_BLOCK_START = re.compile(r"^\s*([-*+]\s|\d+[.)]\s|#|\||>|<!--|```)")
+
+
+def logical_paragraphs(text: str) -> list[str]:
+    """Абзацы документа: пункт списка, строка таблицы, заголовок или абзац до пустой строки.
+    Строки-продолжения (перенос длинного абзаца) присоединяются к своему абзацу."""
+    paras: list[str] = []
+    cur: list[str] = []
+    for line in text.splitlines():
+        s = line.strip()
+        if not s:
+            if cur:
+                paras.append(" ".join(cur))
+                cur = []
+            continue
+        if s.startswith("|---") or s.startswith("| ---") or s.startswith("|:-"):
+            if paras and paras[-1].startswith("|"):  # строка над разделителем — шапка таблицы, не утверждение
+                paras.pop()
+            continue
+        if _BLOCK_START.match(line) or s.startswith("|") or not cur:
+            if cur:
+                paras.append(" ".join(cur))
+            cur = [s]
+            if s.startswith(("#", "|")):  # заголовок и строка таблицы — отдельные абзацы
+                paras.append(s)
+                cur = []
+        else:
+            cur.append(s)
+    if cur:
+        paras.append(" ".join(cur))
+    return paras
+
+
 def refs_in_text(text: str) -> tuple[set[str], set[str]]:
     cs, ss = set(), set()
     for m in REF_BLOCK.finditer(text):
@@ -283,6 +316,12 @@ def check(pid=None, strict: bool = False) -> dict:
         rel = f.relative_to(d).as_posix()
         text = f.read_text(encoding="utf-8")
         is_decision_doc = rel.startswith(("strategy/", "options.md", "decision", "research/findings.md"))
+        if is_decision_doc:  # покрытие считаем по логическим абзацам, а не по строкам переноса
+            for para in logical_paragraphs(text):
+                if len(para) > 40 and not para.startswith(("#", "|---", "<!--", ">")):
+                    total_paras += 1
+                    pc, ps = refs_in_text(para)
+                    covered += 1 if (pc or ps) else 0
         for ln_no, line in enumerate(text.splitlines(), 1):
             cs, ss = refs_in_text(line)
             used |= cs
@@ -303,12 +342,10 @@ def check(pid=None, strict: bool = False) -> dict:
             if is_decision_doc:
                 body = line.strip()
                 if body and not body.startswith(("#", "|---", "<!--", ">")) and len(body) > 40:
-                    total_paras += 1
                     is_factual = bool(NUMBER_PAT.search(body) or FACT_MARKERS.search(body))
                     if is_factual:
                         factual_total += 1
                     if cs or ss:
-                        covered += 1
                         factual_covered += 1 if is_factual else 0
                     elif is_factual and not re.search(r"(цель|целев|порог|target|бюджет|срок)", body, re.I):
                         factual_uncovered.append(f"{rel}:{ln_no}: {body[:90]}")

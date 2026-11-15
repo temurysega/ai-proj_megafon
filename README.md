@@ -20,6 +20,14 @@
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |
 
+### Проверить за 5 минут
+1. **Посмотреть:** [видео](https://mgim.neblanki.tech/#video) или [one-pager](projects/antifraud-family/strategy/one-pager.md) → [отчёт PDF](projects/antifraud-family/report/index.pdf).
+2. **Запустить** (без сети и ключей): `pip install -r requirements.txt` → `python scripts/smoke_test.py` (36 проверок) →
+   `python sf.py use antifraud-family` → `python sf.py check` (0 ошибок и метрики доказательной базы) → `python sf.py decisions due`.
+3. **Проверить любую цифру:** метка `[C023]` в документе → утверждение в `projects/antifraud-family/evidence/claims.jsonl` (цитата, источник) →
+   снимок источника `projects/antifraud-family/sources/raw/S0xx.md`.
+4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
+
 
 <p align="center">
   <img src="docs/screenshots/site-stages.png" alt="Семь шагов, три решения — за человеком" width="49%">
