@@ -283,3 +283,22 @@
 {"ts": "2026-11-14T12:07:07+03:00", "actor": "agent", "action": "check", "detail": "ошибок 6, предупреждений 1", "status": "failed"}
 {"ts": "2026-11-14T12:07:08+03:00", "actor": "agent", "action": "checkpoint", "detail": "options.md v2 после красной команды и факт-чекинга: 7 вариантов, правовой блок, поэтапная рекомендация", "status": "ok", "next_action": "показать варианты человеку и получить выбор (ворота G2)"}
 {"ts": "2026-11-14T12:07:37+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:09:59+03:00", "actor": "human", "action": "gate", "detail": "G2_option: pass — Человек выбрал вариант A+ (убрать трение: цена на экране, прозрачность анализа и записей, подключение родителя с его согласием) + эксперимент на неплатящих → решение о C/B через 3–4 месяца", "status": "ok"}
+{"ts": "2026-11-15T11:09:59+03:00", "actor": "agent", "action": "stage", "detail": "options → strategy (in_progress) G2 пройдены в новой сессии после перерыва", "status": "ok"}
+{"ts": "2026-11-15T11:10:11+03:00", "actor": "agent", "action": "claim_added", "detail": "C068 [fact] МегаФон (страница Евы, снимок 14.11.2026): блокировка мошеннических звонков работает на уровне сети — звонок не поступае", "status": "ok"}
+{"ts": "2026-11-15T11:10:13+03:00", "actor": "agent", "action": "claim_added", "detail": "C069 [fact] МегаФон (страница Евы): если разговор покажется Еве подозрительным, она его разъединяет, и абонент или его близкий слыши", "status": "ok"}
+{"ts": "2026-11-15T11:10:25+03:00", "actor": "agent", "action": "claim_updated", "detail": "C068: {'text': 'МегаФон (страница Евы, снимок 14.11.2026): мошеннический звонок блокируется до поступления — он не поступает ни на номер владельца, ни на номер близкого, а владелец получает SMS о блокировке.', 'note': 'самопроверка: вывод «приложение близкому не нужно» вынесен в отдельную гипотезу, т.к. его нет в цитате'}", "status": "ok"}
+{"ts": "2026-11-15T11:10:25+03:00", "actor": "agent", "action": "claim_added", "detail": "C070 [hypothesis] Для защиты номера близкого не требуется приложение или смартфон у самого близкого: блокировка происходит до поступления ", "status": "ok"}
+{"ts": "2026-11-15T11:10:25+03:00", "actor": "agent", "action": "claim_added", "detail": "C071 [fact] Записи и расшифровки разговоров, которые ведёт Ева, доступны владельцу в Личном кабинете и приложении «МегаФон» (раздел ", "status": "ok"}
+{"ts": "2026-11-15T11:10:25+03:00", "actor": "agent", "action": "claim_added", "detail": "C072 [estimate] Прямые затраты эксперимента «бесплатная семейная база для неплатящих» — порядка 2,25 млн ₽ за 3 месяца (50 тыс. домохозя", "status": "ok"}
+{"ts": "2026-11-15T11:11:09+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/product.md", "status": "ok"}
+{"ts": "2026-11-15T11:11:42+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/communication.md", "status": "ok"}
+{"ts": "2026-11-15T11:12:11+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/validation.md", "status": "ok"}
+{"ts": "2026-11-15T11:12:13+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 2", "status": "ok"}
+{"ts": "2026-11-15T11:12:40+03:00", "actor": "agent", "action": "file_write", "detail": "decisions.yaml", "status": "ok"}
+{"ts": "2026-11-15T11:12:53+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/one-pager.md", "status": "ok"}
+{"ts": "2026-11-15T11:12:55+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 1", "status": "ok"}
+{"ts": "2026-11-15T11:13:53+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:14:02+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:14:15+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:14:32+03:00", "actor": "agent", "action": "checkpoint", "detail": "стратегии написаны: product, communication, validation, one-pager, decisions.yaml; check 0 ошибок, покрытие фактических строк 94%", "status": "ok", "next_action": "красная команда и факт-чек по стратегии, затем отчёт и ворота G3"}

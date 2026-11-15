@@ -22,7 +22,9 @@ RELIABILITY = {"A": "первичный/официальный", "B": "авто�
 DEMAND_WORDS = re.compile(r"(спрос|доля|распростран|большинств|\d+\s?%|процент|рын(ок|ка)|готов[аы]? платить)",
                           re.I)
 NUMBER_PAT = re.compile(r"(\d[\d\s,.]*\s?(%|млн|млрд|тыс|руб|₽|\$|раз[а]?\b|п\.\s?п\.))", re.I)
-
+# «Фактические» строки: числа с единицами или упоминания организаций/законов — им нужна ссылка на утверждение.
+FACT_MARKERS = re.compile(r"(МТС|МегаФон|Билайн|Т2|Банк[а-я]* России|ЦБ|МВД|Минцифр|РКН|НАФИ|ВТБ|"
+                          r"\d+-ФЗ|закон[а-я]* «|J'son|ComNews|Коммерсант|по данным|сообщил|заявил)")
 
 # ---------- источники ----------
 def _reg_path(pid=None) -> Path:
@@ -240,6 +242,7 @@ def check(pid=None, strict: bool = False) -> dict:
     used: set[str] = set()
     unsourced_numbers = 0
     covered, total_paras = 0, 0
+    factual_covered, factual_total, factual_uncovered = 0, 0, []
     for f in doc_files(pid):
         rel = f.relative_to(d).as_posix()
         text = f.read_text(encoding="utf-8")
@@ -265,9 +268,15 @@ def check(pid=None, strict: bool = False) -> dict:
                 body = line.strip()
                 if body and not body.startswith(("#", "|---", "<!--", ">")) and len(body) > 40:
                     total_paras += 1
+                    is_factual = bool(NUMBER_PAT.search(body) or FACT_MARKERS.search(body))
+                    if is_factual:
+                        factual_total += 1
                     if cs or ss:
                         covered += 1
-                    elif NUMBER_PAT.search(body) and not re.search(r"(цель|целев|порог|target|бюджет|срок)", body, re.I):
+                        factual_covered += 1 if is_factual else 0
+                    elif is_factual and not re.search(r"(цель|целев|порог|target|бюджет|срок)", body, re.I):
+                        factual_uncovered.append(f"{rel}:{ln_no}: {body[:90]}")
+                    if not (cs or ss) and NUMBER_PAT.search(body) and not re.search(r"(цель|целев|порог|target|бюджет|срок)", body, re.I):
                         unsourced_numbers += 1
                         warnings.append(f"{rel}:{ln_no}: число без ссылки на утверждение: «{body[:90]}»")
     # 3. структура
@@ -305,6 +314,8 @@ def check(pid=None, strict: bool = False) -> dict:
         "facts_with_quote_pct": round(100 * sum(1 for c in facts if c.get("quote")) / len(facts), 1) if facts else 0,
         "claims_used_in_docs": len(used & set(claims)),
         "decision_paragraph_coverage_pct": round(100 * covered / total_paras, 1) if total_paras else 0,
+        "factual_line_coverage_pct": round(100 * factual_covered / factual_total, 1) if factual_total else 0,
+        "factual_lines_without_ref": len(factual_uncovered),
         "unsourced_numbers": unsourced_numbers,
         "reliability_mix": {r: sum(1 for s in srcs.values() if s.get("reliability") == r) for r in RELIABILITY},
     }
