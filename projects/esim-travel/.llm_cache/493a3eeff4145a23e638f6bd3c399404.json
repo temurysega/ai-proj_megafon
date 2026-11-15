@@ -1,0 +1,32 @@
+{
+ "text": "Да вот в прошлый раз я полезла в один канал, где цены были вообще смешные — 150 рублей за 10 гигов. Я уже хотела купить, но заметила, что у них в описании нет никаких контактов, только кнопка «оплатить», и отзывы какие-то странные — даты все одинаковые, как будто боты накрутили. Я такая: «Ну нет, это же классический развод», — и закрыла. В итоге взяла в другом канале, где хотя бы лет три отзыва от живых людей с фото и скринами. Но всё равно каждый раз думаю: «А вдруг и эти — фейк?»",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 1740,
+  "completion_tokens": 164,
+  "total_tokens": 1904,
+  "cost": 9.5004e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1280,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.5004e-05,
+   "upstream_inference_prompt_cost": 6.5156e-05,
+   "upstream_inference_completions_cost": 2.9848e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.5004e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:04:14+03:00",
+ "duration_s": 2.24
+}

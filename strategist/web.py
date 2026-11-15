@@ -28,6 +28,12 @@ def html_to_text(html: str) -> tuple[str, str]:
         t.decompose()
     for t in soup.select("nav, footer, header [role=navigation], .cookie, #cookie"):
         t.decompose()
+    # если на странице есть тело статьи — берём его, а не боковые ленты и подборки (замечание: снимок РБК без статьи)
+    for sel in ("article", "[itemprop=articleBody]", "main"):
+        node = soup.select_one(sel)
+        if node is not None and len(node.get_text(" ", strip=True)) > 800:
+            soup = node
+            break
     lines = []
     for el in soup.find_all(["h1", "h2", "h3", "h4", "p", "li", "td", "th", "blockquote", "figcaption", "span", "div"]):
         if el.name in ("span", "div") and el.find(["p", "div", "li", "h1", "h2", "h3", "table"]):
@@ -96,7 +102,7 @@ def fetch(url: str, title: str = "", publisher: str = "", published: str = "", r
     try:
         if render:
             raw = render_with_browser(url).encode("utf-8")
-            ctype = "text/html"
+            ctype = "text/html; charset=utf-8"  # без charset requests решал, что это ISO-8859-1 → «кракозябры»
         else:
             r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "ru,en;q=0.8"}, timeout=60)
             if r.status_code >= 400:

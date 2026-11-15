@@ -1,0 +1,32 @@
+{
+ "text": "В прошлый раз в Анталье мы просто купили три местные симки в аэропорту по прилёту, это было быстрее всего. Жена боялась роуминга из-за цен, а я не хотел возиться с настройками eSIM, тем более у неё телефон старый. Мы договорились, что звонить будем только через мессенджеры по Wi-Fi в отеле, чтобы не переплачивать за минуты. Местные операторы там понятные: вставил карту, активировал пакет и всё работает. Никаких приложений скачивать не пришлось, поэтому и проблем не возникло.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 736,
+  "completion_tokens": 134,
+  "total_tokens": 870,
+  "cost": 0.000104772,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000104772,
+   "upstream_inference_prompt_cost": 4.1792e-05,
+   "upstream_inference_completions_cost": 6.298e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000104772,
+ "cached": false,
+ "ts": "2026-11-15T12:02:38+03:00",
+ "duration_s": 3.79
+}

@@ -1,0 +1,35 @@
+{
+ "text": "{\"skill\": \"revisit\", \"confidence\": 0.9}",
+ "json": {
+  "skill": "revisit",
+  "confidence": 0.9
+ },
+ "model": "z-ai/glm-5.3-flash",
+ "usage": {
+  "prompt_tokens": 318,
+  "completion_tokens": 16,
+  "total_tokens": 334,
+  "cost": 4.836e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 4.836e-05,
+   "upstream_inference_prompt_cost": 4.452e-05,
+   "upstream_inference_completions_cost": 3.84e-06
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 4.836e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:26:33+03:00",
+ "duration_s": 0.92
+}

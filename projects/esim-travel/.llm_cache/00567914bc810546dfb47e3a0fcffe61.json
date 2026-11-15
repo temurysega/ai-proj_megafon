@@ -1,0 +1,32 @@
+{
+ "text": "Обычно просто гуглю в духе «лучшая eSIM для Турции 2024» или захожу в телеграм-каналы про путешествия. Там часто ребята делятся ссылками на проверенные сервисы. Ещё смотрю отзывы в магазине приложений — если у сервиса рейтинг ниже 4,2 и много жалоб на поддержку, я не рискну. Доверяю в основном сарафану от знакомых фрилансеров, которые тоже много мотаются, — пару раз они советовали конкретные приложения, и ни разу не подвели.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 1774,
+  "completion_tokens": 152,
+  "total_tokens": 1926,
+  "cost": 7.72772e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 7.72772e-05,
+   "upstream_inference_prompt_cost": 4.96132e-05,
+   "upstream_inference_completions_cost": 2.7664e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 7.72772e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:37+03:00",
+ "duration_s": 2.86
+}

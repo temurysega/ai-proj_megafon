@@ -1,0 +1,32 @@
+{
+ "text": "Ездим раз в год, обычно с женой и двумя детьми в Турцию или ОАЭ, стараемся уложиться в неделю-две. Телефон для меня — это просто способ быть на связи, а не гаджет для экспериментов. Раньше всегда включал роуминг на пару дней перед вылетом или покупал местную симку прямо в аэропорту, потому что так привычнее и понятнее. С eSIM я вообще не дружу: слышал про неё, но сам ставить боюсь, да и у жены телефон старый, там её даже нет. Мне главное, чтобы связь работала без лишних заморочек, а то потеряю детей из вида и начну паниковать.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 387,
+  "completion_tokens": 153,
+  "total_tokens": 540,
+  "cost": 0.00012996,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00012996,
+   "upstream_inference_prompt_cost": 5.805e-05,
+   "upstream_inference_completions_cost": 7.191e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00012996,
+ "cached": false,
+ "ts": "2026-11-15T12:02:29+03:00",
+ "duration_s": 4.1
+}

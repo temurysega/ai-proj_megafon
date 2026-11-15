@@ -1,0 +1,32 @@
+{
+ "text": "Один коллега-дизайнер посоветовал Airalo — сказал, что он постоянно так делает в Азии и ни разу не было проблем. Я попробовал: там и интерфейс на русском, и поддержка на месте отвечает, и карты МИР проходили. В Турции у меня всё взлетело с первого раза, скорость была нормальная, раздавал на ноутбук без задержек. После этого я ещё пару раз покупал у них, и пока без сбоев — так что совет оправдал себя.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 1972,
+  "completion_tokens": 133,
+  "total_tokens": 2105,
+  "cost": 9.18372e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.18372e-05,
+   "upstream_inference_prompt_cost": 6.76312e-05,
+   "upstream_inference_completions_cost": 2.4206e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.18372e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:41+03:00",
+ "duration_s": 2.24
+}

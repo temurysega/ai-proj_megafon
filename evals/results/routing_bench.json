@@ -1,0 +1,61 @@
+[
+  {
+    "model": "z-ai/glm-5.3-flash",
+    "accuracy_pct": 93.8,
+    "usd_total": 0.002757,
+    "usd_per_1000_calls": 0.172,
+    "sec_per_call": 4.74,
+    "errors": [
+      "Почему у нас падает удержание в приложен… → product-strategy (нужно intake)"
+    ]
+  },
+  {
+    "model": "z-ai/glm-5.3",
+    "accuracy_pct": 81.2,
+    "usd_total": 0.013768,
+    "usd_per_1000_calls": 0.861,
+    "sec_per_call": 4.34,
+    "errors": [
+      "Почему у нас падает удержание в приложен… → data-analysis (нужно intake)",
+      "Хочу понять, что думают родители-пенсион… → intake (нужно interviews)",
+      "Конкуренты снизили цену — нужно ли нам п… → ошибка: Задача 'classify': ни одна модель не дала годный ответ: [{'model': 'z-ai/glm-5.3', 'error': 'пустой ответ (finish_reason"
+    ]
+  },
+  {
+    "model": "qwen/qwen3.7-flash",
+    "accuracy_pct": 62.5,
+    "usd_total": 0.000185,
+    "usd_per_1000_calls": 0.012,
+    "sec_per_call": 1.33,
+    "errors": [
+      "Почему у нас падает удержание в приложен… → data-analysis (нужно intake)",
+      "Сравни, как МТС и Билайн продают защиту … → source-collection (нужно research)",
+      "Подготовь вопросы для разговоров с родит… → intake (нужно interviews)",
+      "Кто отвечает за запуск пилота и какие ср… → intake (нужно decision-support)",
+      "Хочу понять, что думают родители-пенсион… → intake (нужно interviews)",
+      "Конкуренты снизили цену — нужно ли нам п… → data-analysis (нужно revisit)"
+    ]
+  },
+  {
+    "model": "deepseek/deepseek-v4-flash",
+    "accuracy_pct": 81.2,
+    "usd_total": 0.000155,
+    "usd_per_1000_calls": 0.01,
+    "sec_per_call": 1.28,
+    "errors": [
+      "Почему у нас падает удержание в приложен… → research (нужно intake)",
+      "Опиши аудиторию, альтернативы и от чего … → options (нужно product-strategy)",
+      "Кто отвечает за запуск пилота и какие ср… → intake (нужно decision-support)"
+    ]
+  },
+  {
+    "model": "moonshotai/kimi-k3.1-pro",
+    "accuracy_pct": 93.8,
+    "usd_total": 0.01357,
+    "usd_per_1000_calls": 0.848,
+    "sec_per_call": 1.23,
+    "errors": [
+      "Почему у нас падает удержание в приложен… → data-analysis (нужно intake)"
+    ]
+  }
+]

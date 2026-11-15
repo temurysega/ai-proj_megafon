@@ -1,0 +1,32 @@
+{
+ "text": "Честно? Ничего особо не убедило, просто цена — 300 рублей против 600–700. Я пролистала отзывы в том же канале — там какие-то люди писали «спасибо, всё работает», но это же может быть накрутка, я понимаю. Но Airalo я тоже не доверяю на сто процентов, потому что читала, что у них поддержка тупит. В общем, я просто подумала: «Если канал кикнет, потеряю 300 рублей, а если Airalo, то 600 — и та же лотерея». Так что выбрала более дешёвый вариант, хоть и с мыслью «ну, будь что будет».",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 964,
+  "completion_tokens": 170,
+  "total_tokens": 1134,
+  "cost": 9.5428e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.5428e-05,
+   "upstream_inference_prompt_cost": 6.6528e-05,
+   "upstream_inference_completions_cost": 2.89e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.5428e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:04:01+03:00",
+ "duration_s": 2.43
+}

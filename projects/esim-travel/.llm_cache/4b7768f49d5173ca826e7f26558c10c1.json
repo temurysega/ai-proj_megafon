@@ -1,0 +1,32 @@
+{
+ "text": "Расскажите подробнее о случае, когда вам пришлось искать альтернативу из-за отсутствия поддержки МИР или СБП.",
+ "json": null,
+ "model": "qwen/qwen3.7-flash",
+ "usage": {
+  "prompt_tokens": 209,
+  "completion_tokens": 28,
+  "total_tokens": 237,
+  "cost": 9.91e-06,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.91e-06,
+   "upstream_inference_prompt_cost": 6.27e-06,
+   "upstream_inference_completions_cost": 3.64e-06
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.91e-06,
+ "cached": false,
+ "ts": "2026-11-15T12:01:52+03:00",
+ "duration_s": 1.58
+}

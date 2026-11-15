@@ -1,0 +1,32 @@
+{
+ "text": "Первое — цена, конечно. Если у оператора пакет стоит 800 рублей, а на стороне 300, я даже думать не буду. Второе — я не верю, что у них там всё гладко работает: вдруг в роуминге скорость режут или он вообще не ловит, а поддержка скажет «ну вы же в другой стране, норм». Ещё меня бесит, что у операторов вечно какие-то скрытые условия: например, «пакет действует 7 дней», а ты летишь на 10 — и доплачивай. Короче, если нет прозрачности и халявы, я лучше пойду к тем, кто хоть и страшный, но дешёвый.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2811,
+  "completion_tokens": 171,
+  "total_tokens": 2982,
+  "cost": 0.000145206,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000145206,
+   "upstream_inference_prompt_cost": 0.000116136,
+   "upstream_inference_completions_cost": 2.907e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000145206,
+ "cached": false,
+ "ts": "2026-11-15T12:04:32+03:00",
+ "duration_s": 3.32
+}

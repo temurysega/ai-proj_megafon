@@ -1,0 +1,32 @@
+{
+ "text": "Понятно, что это быстро и не нужно тащить лишние пластик в карман. Но мне непонятно, как именно я буду ставить её на телефон жены, у которого нет eSIM, и что делать, если у меня самого возникнет ошибка при активации за пару минут до вылета. Я боюсь остаться без связи прямо перед полётом из-за технического сбоя или неверного QR-кода, который «не открывается». А главное — кто будет отвечать, если пакет не заработает? В аэропорту я могу сразу вернуться к стойке оператора, а с электронной симкой я останусь один на один со своим телефоном и паникой.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2217,
+  "completion_tokens": 143,
+  "total_tokens": 2360,
+  "cost": 0.000159632,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1792,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000159632,
+   "upstream_inference_prompt_cost": 9.2422e-05,
+   "upstream_inference_completions_cost": 6.721e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000159632,
+ "cached": false,
+ "ts": "2026-11-15T12:03:20+03:00",
+ "duration_s": 4.42
+}

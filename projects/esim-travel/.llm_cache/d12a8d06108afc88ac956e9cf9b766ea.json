@@ -1,0 +1,32 @@
+{
+ "text": "Меня пугает, что я нажму не туда и всё сломается, а разбираться потом будет некогда. В отпуске у меня нет времени читать инструкции или звонить в поддержку, чтобы объяснять свои ошибки. Я привык просто купить симку в киоске и вставить её, это понятный и надёжный путь. А с eSIM мне кажется, что можно случайно удалить основной номер или остаться без связи вообще. Лучше уж переплатить за роуминг или взять местную карту, чем рисковать связью с семьёй из-за какой-то непонятной настройки.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 566,
+  "completion_tokens": 133,
+  "total_tokens": 699,
+  "cost": 0.000113106,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 256,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000113106,
+   "upstream_inference_prompt_cost": 5.0596e-05,
+   "upstream_inference_completions_cost": 6.251e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000113106,
+ "cached": false,
+ "ts": "2026-11-15T12:02:34+03:00",
+ "duration_s": 3.36
+}

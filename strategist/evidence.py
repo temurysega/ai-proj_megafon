@@ -26,6 +26,29 @@ NUMBER_PAT = re.compile(r"(\d[\d\s,.]*\s?(%|млн|млрд|тыс|руб|₽|\$
 FACT_MARKERS = re.compile(r"(\bМТС\b|МегаФон|Билайн|\bТ2\b|Банк[а-я]* России|\bЦБ\b|\bМВД\b|Минцифр|\bРКН\b|НАФИ|\bВТБ\b|"
                           r"\d+-ФЗ|закон[а-я]* «|J'son|ComNews|Коммерсант|по данным|сообщил|заявил)")
 
+NEGATION = re.compile(r"(не\s+(является\s+|служ\w+\s+|использ\w+\s+как\s+)?довод|не\s+доказыва|не\s+подтвержда|"
+                      r"не\s+измеря|не\s+показыва\w*\s+(спрос|дол)|только\s+гипотез|не\s+используем)", re.I)
+
+
+def synthetic_as_demand(line: str) -> bool:
+    """Строка использует синтетику как довод о спросе/доле? Отрицания («не доказывает спрос») — не нарушение."""
+    return bool(DEMAND_WORDS.search(line)) and not NEGATION.search(line)
+
+
+def snapshot_text(src: dict, d: Path) -> str:
+    """Текст снимка источника: sources/raw/<S>.md, text_path или .txt рядом со скриншотом."""
+    cands = [src.get("text_path"), src.get("path"), f"sources/raw/{src['id']}.md"]
+    for rel in cands:
+        if not rel:
+            continue
+        p = d / rel
+        if p.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            p = p.with_suffix(".txt")
+        if p.exists() and p.suffix.lower() in (".md", ".txt"):
+            return p.read_text(encoding="utf-8", errors="replace")
+    return ""
+
+
 # ---------- источники ----------
 def _reg_path(pid=None) -> Path:
     return project_dir(pid) / "sources" / "registry.yaml"
@@ -117,13 +140,26 @@ def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str
     for c in claims:  # идемпотентность по тексту
         if c["text"].strip() == text.strip() and c.get("status") == "active":
             return c
+    # автоматическая сверка цитаты со снимком источника (замечание агента второго проекта)
+    quote_status = ""
+    if quote.strip() and sources:
+        from .importer import verify_quote
+        d = project_dir(pid)
+        statuses = [verify_quote(quote, snapshot_text(known_s[s], d)) for s in sources]
+        rank = ["verbatim", "partial", "not_found", "no_snapshot", "no_quote"]
+        quote_status = min(statuses, key=lambda x: rank.index(x) if x in rank else 99)
     cid = next_id("C", known_c)
     rec = {"id": cid, "text": text.strip(), "kind": kind, "sources": sources, "quote": quote.strip(),
            "locator": locator, "confidence": confidence, "tags": tags or [], "depends_on": depends_on,
            "method": method, "status": "active", "created": now(), "updated": now(), "note": note}
+    if quote_status:
+        rec["quote_status"] = quote_status
     claims.append(rec)
     write_jsonl(_claims_path(pid), claims)
-    journal("claim_added", f"{cid} [{kind}] {text[:120]}", pid=pid)
+    journal("claim_added", f"{cid} [{kind}] {text[:120]}" + (f" (цитата: {quote_status})" if quote_status else ""), pid=pid)
+    if quote_status in ("not_found", "no_snapshot"):
+        rec["_warning"] = ("цитата не найдена в снимке источника — проверьте дословность или укажите локатор (PDF/скан)"
+                           if quote_status == "not_found" else "у источника нет текстового снимка — цитату нельзя сверить")
     return rec
 
 
@@ -259,7 +295,7 @@ def check(pid=None, strict: bool = False) -> dict:
                     errors.append(f"{rel}:{ln_no}: опора на отозванное утверждение {cid} ({c.get('note', '')[:80]})")
                 elif is_decision_doc and c.get("status") == "disputed":
                     warnings.append(f"{rel}:{ln_no}: опора на оспоренное утверждение {cid}")
-                if c["kind"] == "synthetic" and DEMAND_WORDS.search(line):
+                if c["kind"] == "synthetic" and synthetic_as_demand(line):
                     errors.append(f"{rel}:{ln_no}: синтетика {cid} используется как довод о спросе/доле")
             for sid in ss:
                 if sid not in srcs:
@@ -339,7 +375,7 @@ def lint_file(path: Path, pid=None) -> list[str]:
                 problems.append(f"строка {ln_no}: нет утверждения {cid} — добавьте `sf claim add` или исправьте ссылку")
             elif claims[cid].get("status") in ("retracted", "superseded"):
                 problems.append(f"строка {ln_no}: {cid} отозвано ({claims[cid].get('note', '')[:60]})")
-            elif claims[cid]["kind"] == "synthetic" and DEMAND_WORDS.search(line):
+            elif claims[cid]["kind"] == "synthetic" and synthetic_as_demand(line):
                 problems.append(f"строка {ln_no}: синтетика {cid} как довод о спросе — недопустимо")
         for sid in ss:
             if sid not in srcs:

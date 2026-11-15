@@ -1,0 +1,32 @@
+{
+ "text": "Я не искал информацию в интернете или блогах, потому что там слишком много противоречивых советов и рекламы непонятных сервисов. Доверяю только оператору связи в аэропорту — он живой человек, который объяснит на пальцах, как активировать карту, и гарантирует, что она заработает. Жена иногда смотрит отзывы про отели, но по поводу связи мы всегда ориентируемся на опыт прошлых поездок: купил симку в киоске, вставил, всё работает. Мне проще спросить у сотрудника стойки «какой пакет выбрать для недели», чем самому разбираться в тарифах через приложение неизвестного оператора.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1834,
+  "completion_tokens": 142,
+  "total_tokens": 1976,
+  "cost": 0.000136016,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000136016,
+   "upstream_inference_prompt_cost": 6.9276e-05,
+   "upstream_inference_completions_cost": 6.674e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000136016,
+ "cached": false,
+ "ts": "2026-11-15T12:03:09+03:00",
+ "duration_s": 4.05
+}

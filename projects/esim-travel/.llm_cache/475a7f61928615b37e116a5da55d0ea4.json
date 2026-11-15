@@ -1,0 +1,32 @@
+{
+ "text": "Я вообще не представляю, как мне помогут удалённо в аэропорту, если у меня слетит настройка. Кто будет звонить? Из какой страны? Я боюсь, что поддержка будет висеть на линии часами или говорить по-английски с непонятным акцентом. В физическом киоске я могу просто показать телефон и сказать: «Не работает», и они сразу дадут новую карту. А с eSIM мне нужно будет искать Wi-Fi, чтобы связаться с поддержкой, но если интернета нет из-за сбоя, то я застряну в замкнутом круге. Мне нужен живой человек рядом, который решит проблему здесь и сейчас, а не обещания дистанционной помощи.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2412,
+  "completion_tokens": 158,
+  "total_tokens": 2570,
+  "cost": 0.000161628,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000161628,
+   "upstream_inference_prompt_cost": 8.7368e-05,
+   "upstream_inference_completions_cost": 7.426e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000161628,
+ "cached": false,
+ "ts": "2026-11-15T12:03:26+03:00",
+ "duration_s": 4.62
+}

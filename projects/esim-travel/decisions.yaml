@@ -1,0 +1,26 @@
+- id: D1
+  title: "Запустить пилот «Поездка» (гибрид роуминг + eSIM) вместо отдельного бренда eSIM"
+  date: "2026-11-15"
+  question: "Запускать ли отдельный продукт «eSIM для путешествий» или усиливать роуминговые опции?"
+  options_considered: [A, B, C, D, E, F]
+  chosen: "C"
+  decided_by: "руководитель продукта (роль) — режим autopilot: принято как допущение, подтвердить"
+  rationale_claims: [C005, C007, C018, C033, C046]
+  assumptions: [C001, C002, C044, C045, C048]
+  owners: {product: "руководитель продукта", legal: "юрист", analytics: "аналитик", partnerships: "менеджер по партнёрам"}
+  metrics:
+    - {name: "прирост доли купивших пакет до вылета (п. п.)", baseline: "нет данных", target: ">= 3", by: "2027-03-31"}
+    - {name: "доля инкрементальных покупателей eSIM (%)", baseline: "нет данных", target: ">= 82", by: "2027-03-31"}
+    - {name: "маржа с продажи eSIM (%)", baseline: "нет данных", target: ">= 20", by: "2027-03-31"}
+  commitments:
+    - {id: K1, what: "запросить оптовые условия у 2-3 партнёров", owner: "менеджер по партнёрам", due: "2026-12-01", status: open}
+    - {id: K2, what: "юридическая оценка: eSIM из-за границы, реклама, ПДн", owner: "юрист", due: "2026-12-01", status: open}
+    - {id: K3, what: "провести 8-10 реальных интервью с путешественниками", owner: "аналитик", due: "2026-12-15", status: open}
+    - {id: K4, what: "запустить пилот с holdout на 5-6 направлениях", owner: "руководитель продукта", due: "2027-01-31", status: open}
+  review_triggers:
+    - {type: date, value: "2027-03-31", note: "решение «масштабируем / стоп» по итогам 8-12 недель пилота"}
+    - {type: claim_status, claim: C020, when: [retracted, disputed], note: "изменилась позиция регулятора по eSIM из-за границы"}
+    - {type: claim_status, claim: C033, when: [retracted, disputed], note: "изменился ценовой разрыв роуминг/eSIM"}
+    - {type: metric, metric: "доля инкрементальных покупателей eSIM (%)", op: "<", threshold: 44, note: "kill criteria: каннибализация выше порога"}
+    - {type: metric, metric: "маржа с продажи eSIM (%)", op: "<", threshold: 20, note: "kill criteria: ниже допущенной маржи, вернуться к варианту B"}
+  status: active

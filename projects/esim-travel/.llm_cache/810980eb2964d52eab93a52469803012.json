@@ -1,0 +1,32 @@
+{
+ "text": "Охотнее всего плачу за понятные пакеты с фиксированной ценой, где нет скрытых платежей и нужно просто вставить симку. Решаю по принципу «цена за спокойствие»: если местная карта стоит 500 рублей и гарантирует связь на неделю — беру, не торгуясь. А вот за eSIM или приложения от неизвестных сервисов платить боюсь, потому что там цена может вырасти из-за ошибок или блокировок. Мне важнее переплатить за надёжность и простоту, чем сэкономить пару сотен и остаться без связи с семьёй.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 2883,
+  "completion_tokens": 129,
+  "total_tokens": 3012,
+  "cost": 0.00015004,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2560,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00015004,
+   "upstream_inference_prompt_cost": 8.941e-05,
+   "upstream_inference_completions_cost": 6.063e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00015004,
+ "cached": false,
+ "ts": "2026-11-15T12:03:42+03:00",
+ "duration_s": 3.95
+}

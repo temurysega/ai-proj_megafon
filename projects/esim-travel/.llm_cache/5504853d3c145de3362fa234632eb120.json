@@ -1,0 +1,32 @@
+{
+ "text": "Ой, это было в прошлом году, когда я купила eSIM в каком-то канале за 200 рублей — там было написано «7 дней, 5 ГБ». Я думала, что если гиги закончатся, то просто докуплю, но нет, через 7 дней она просто отключилась, хотя трафик остался. Я тогда сидела в кафе в Тбилиси и материлась, потому что надо было найти новый вариант. В итоге я просто нашла вайфай в отеле и купила ещё одну eSIM в другом канале уже на 10 дней — вышло дороже, около 400 рублей, но выбора не было. Теперь я всегда смотрю, чтобы срок был с запасом, а то эти «7 дней» — ловушка.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 3026,
+  "completion_tokens": 185,
+  "total_tokens": 3211,
+  "cost": 0.000122668,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2560,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000122668,
+   "upstream_inference_prompt_cost": 8.8998e-05,
+   "upstream_inference_completions_cost": 3.367e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000122668,
+ "cached": false,
+ "ts": "2026-11-15T12:04:36+03:00",
+ "duration_s": 2.44
+}

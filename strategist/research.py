@@ -73,7 +73,9 @@ def run_synthetic(personas_file: str, guide_file: str, max_followups: int = 1, r
         persona_txt = yaml.safe_dump({k: v for k, v in p.items() if k != "id"}, allow_unicode=True)
         msgs = [{"role": "system", "content": RESPONDENT_SYSTEM.format(persona=persona_txt)}]
         transcript, usd, used_model = [], 0.0, model_chain[0]
+        import sys as _sys
         for qi, q in enumerate(guide, 1):
+            print(f"[sf] респондент {p['id']}: вопрос {qi}/{len(guide)}", file=_sys.stderr, flush=True)
             asks = [q]
             n_follow = 0
             while asks:

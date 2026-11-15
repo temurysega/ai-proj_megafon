@@ -1,0 +1,32 @@
+{
+ "text": "Охотнее всего плачу за то, что экономит время и нервы — например, за нормальный интернет, чтобы сразу включился, или за такси с фиксированной ценой, чтобы не торговаться. Если я вижу, что услуга решает конкретную проблему без риска, я не жадничаю. А если что-то кажется разводом или слишком замороченным — даже дёшево не возьму. В случае с eSIM я готов заплатить чуть больше, но за гарантию, что она сработает сразу и поддержка ответит на русском.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2926,
+  "completion_tokens": 140,
+  "total_tokens": 3066,
+  "cost": 0.000105378,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2560,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000105378,
+   "upstream_inference_prompt_cost": 7.9898e-05,
+   "upstream_inference_completions_cost": 2.548e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000105378,
+ "cached": false,
+ "ts": "2026-11-15T12:02:21+03:00",
+ "duration_s": 26.68
+}

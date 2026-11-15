@@ -1,0 +1,32 @@
+{
+ "text": "Было дело в Индонезии: местный продавец на улице предлагал физическую сим-карту за копейки, но нужно было идти с ним в какой-то салон, регистрировать паспорт, ждать активации часа два. Я сразу отказался — слишком много телодвижений, а ещё непонятно, не спишут ли потом чего лишнего. В итоге просто купил eSIM через приложение за 10 долларов, установил за минуту, и пошёл по делам. Вот тот случай: дёшево, но замороченно — я не повелся.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 3102,
+  "completion_tokens": 147,
+  "total_tokens": 3249,
+  "cost": 0.0001040312,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001040312,
+   "upstream_inference_prompt_cost": 7.72772e-05,
+   "upstream_inference_completions_cost": 2.6754e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001040312,
+ "cached": false,
+ "ts": "2026-11-15T12:02:25+03:00",
+ "duration_s": 2.12
+}

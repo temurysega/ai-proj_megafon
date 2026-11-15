@@ -1,0 +1,32 @@
+{
+ "text": "В последний раз летал в Стамбул на четыре дня. Заранее зашёл в знакомое приложение для eSIM, посмотрел тарифы на Турцию — там было два варианта: подешевле, но только передача данных, и подороже, но с голосом. Мне звонки не нужны, все дела через вотсап, поэтому взял чисто интернет на 10 гигабайт. Карту МИР они принимали, оплатил сразу, код пришёл на почту — установил до вылета, в аэропорту уже включил. Всё работало нормально, раздавал на ноутбук.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 774,
+  "completion_tokens": 158,
+  "total_tokens": 932,
+  "cost": 6.19164e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 6.19164e-05,
+   "upstream_inference_prompt_cost": 3.31604e-05,
+   "upstream_inference_completions_cost": 2.8756e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 6.19164e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:15+03:00",
+ "duration_s": 2.13
+}

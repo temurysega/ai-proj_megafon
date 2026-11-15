@@ -1,0 +1,32 @@
+{
+ "text": "Понятно, что это удобно — не надо ничего искать на стороне, всё в одном приложении оператора. Но у меня уже есть негативный опыт с их роумингом, я не уверен, что они не накрутят цену или не подключат какие-то скрытые услуги. Плюс я не знаю, можно ли будет раздавать интернет на ноутбук — у некоторых операторов это запрещено в роуминге. И главное: возьмут ли они карту МИР? Если да, то я бы попробовал, но скорее всего останусь на сторонних сервисах, пока не увижу реальные отзывы путешественников об этом тарифе.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2155,
+  "completion_tokens": 170,
+  "total_tokens": 2325,
+  "cost": 9.65874e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1792,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 9.65874e-05,
+   "upstream_inference_prompt_cost": 6.56474e-05,
+   "upstream_inference_completions_cost": 3.094e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 9.65874e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:43+03:00",
+ "duration_s": 2.32
+}

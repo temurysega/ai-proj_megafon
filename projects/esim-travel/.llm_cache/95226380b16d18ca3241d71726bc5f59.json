@@ -1,0 +1,32 @@
+{
+ "text": "Ну, я тогда поехал в Турцию на неделю, включил стандартную опцию от «большой тройки» — думал, там всё включено. А оказалось, что фоновые обновления и мессенджеры сожрали мегабайты, и мне прилетело сообщение о списании около 3 500 рублей сверх пакета. В техподдержку дозвониться не мог, а когда дозвонился — сказали, что это тариф такой, мол, надо было другой подключать. С тех пор к операторскому роумингу не прикасаюсь, только eSIM.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 587,
+  "completion_tokens": 155,
+  "total_tokens": 742,
+  "cost": 8.1627e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 8.1627e-05,
+   "upstream_inference_prompt_cost": 5.3417e-05,
+   "upstream_inference_completions_cost": 2.821e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 8.1627e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:13+03:00",
+ "duration_s": 2.43
+}

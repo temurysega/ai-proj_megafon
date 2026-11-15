@@ -1,0 +1,32 @@
+{
+ "text": "Ну, понятно, что это должно быть удобно — не надо бегать в офис или искать местную симку на месте. Но я сразу думаю: «Операторы же дерут три шкуры, наверняка ценник будет как за космический шаттл». Я бы полезла сравнивать с тем, что есть на рынке, и если у них выйдет дороже 500 рублей, то смысла нет — я лучше рискну с каким-нибудь каналом. Ещё непонятно, будет ли этот пакет работать в Грузии и Казахстане без доплат, или они напишут мелким шрифтом «роуминг» и сдерут ещё. В общем, если цена не смешная, я скорее всего пройду мимо.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2383,
+  "completion_tokens": 185,
+  "total_tokens": 2568,
+  "cost": 0.0001387022,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1536,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001387022,
+   "upstream_inference_prompt_cost": 0.0001050322,
+   "upstream_inference_completions_cost": 3.367e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001387022,
+ "cached": false,
+ "ts": "2026-11-15T12:04:24+03:00",
+ "duration_s": 2.87
+}

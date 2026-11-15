@@ -1,0 +1,32 @@
+{
+ "text": "Охотнее всего плачу за то, что экономит время и нервы — например, за нормальный интернет, если я потерялась и надо найти дорогу. Или за такси, если идти далеко и лень тащиться с чемоданом. Я решаю просто: если цена кажется адекватной (до 500 рублей) и это реально упрощает жизнь, я плачу. Но если вижу, что ценник накручен только потому, что я туристка — типа «экскурсия за 3000 рублей, хотя сама могу всё посмотреть бесплатно», — то сразу отказ. В общем, я скупая, но в критический момент могу расщедриться, главное, чтобы не было ощущения, что меня разводят.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 3239,
+  "completion_tokens": 182,
+  "total_tokens": 3421,
+  "cost": 0.000149284,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000149284,
+   "upstream_inference_prompt_cost": 0.000118344,
+   "upstream_inference_completions_cost": 3.094e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000149284,
+ "cached": false,
+ "ts": "2026-11-15T12:04:40+03:00",
+ "duration_s": 3.8
+}

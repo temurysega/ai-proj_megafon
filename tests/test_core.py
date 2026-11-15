@@ -87,3 +87,26 @@ def test_route_rules():
 def test_text_metrics_baseline():
     m = text_metrics("## Вариант 1\nОставить как есть.\n## Вариант 2\nЗакрыть.\nРиск: x. https://cbr.ru/a")
     assert m["options"] == 2 and m["has_status_quo"] and m["has_close"] and m["distinct_urls"] == 1
+
+
+def test_project_flag_after_subcommand():
+    # регрессия (агент второго проекта): `sf check -p esim-travel` падал — -p работал только до подкоманды
+    from strategist.cli import build_parser
+    a = build_parser().parse_args(["check", "-p", "esim-travel"])
+    assert a.project_sub == "esim-travel"
+
+
+def test_synthetic_negation_is_not_demand_claim():
+    # регрессия: строка «синтетика — не довод о спросе» ложно считалась нарушением
+    from strategist.evidence import synthetic_as_demand
+    assert synthetic_as_demand("По модельным интервью 4 из 5 готовы платить — значит спрос есть")
+    assert not synthetic_as_demand("Модельные интервью не доказывают спрос и долю — только гипотезы")
+
+
+def test_article_preferred_over_sidebar():
+    # регрессия: снимок РБК содержал только боковую ленту, без текста статьи
+    from strategist.web import html_to_text
+    side = "<aside>" + "".join(f"<p>Новость ленты номер {i} про погоду и курс валют</p>" for i in range(40)) + "</aside>"
+    art = "<article><h1>Заголовок</h1>" + "".join(f"<p>Абзац статьи {i}: ЦБ расширил перечень признаков операций.</p>" for i in range(30)) + "</article>"
+    _, text = html_to_text(f"<html><body>{side}{art}</body></html>")
+    assert "Абзац статьи" in text and "Новость ленты" not in text

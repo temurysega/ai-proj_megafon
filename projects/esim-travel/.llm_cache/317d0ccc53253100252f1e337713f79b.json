@@ -1,0 +1,32 @@
+{
+ "text": "Ну, блин, страшно же, что оплата не прошла, или симка не активировалась, и я останусь без карт и навигации в незнакомом городе. Особенно когда выходишь из аэропорта, а вокруг все на русском не говорят, и ты понимаешь, что без интернета ты как слепой котёнок. Плюс я картой МИР оплачивала, а она не везде работает, так что если eSIM глюканет, придётся искать вайфай и паниковать. В общем, первый час — это такой адреналинчик, пока не увидишь, что Telegram открывается.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 1354,
+  "completion_tokens": 160,
+  "total_tokens": 1514,
+  "cost": 0.000152334,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000152334,
+   "upstream_inference_prompt_cost": 0.000123214,
+   "upstream_inference_completions_cost": 2.912e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000152334,
+ "cached": false,
+ "ts": "2026-11-15T12:04:07+03:00",
+ "duration_s": 2.18
+}

@@ -1,0 +1,32 @@
+{
+ "text": "В последний раз в Грузию летала — я просто загуглила «дешёвая eSIM для Грузии 2024», наткнулась на какой-то блог на vc.ru, где сравнивали цены. Там какой-то сервис типа Airalo или что-то подобное рекламировали, но я полезла в тот же Telegram-канал, потому что там было 300 рублей против 600. Звонки я вообще не делаю — только мессенджеры, так что мне чисто интернет нужен. И да, я вечно мучаюсь выбором: то ли снова рискнуть с каналом, то ли взять нормальную симку в аэропорту, но там ценник конский.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 757,
+  "completion_tokens": 175,
+  "total_tokens": 932,
+  "cost": 0.0001068137,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001068137,
+   "upstream_inference_prompt_cost": 7.31262e-05,
+   "upstream_inference_completions_cost": 3.36875e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001068137,
+ "cached": false,
+ "ts": "2026-11-15T12:03:57+03:00",
+ "duration_s": 2.49
+}

@@ -1,0 +1,32 @@
+{
+ "text": "Главный стоп-фактор — это цена. Если оператор предложит такой же пакет, но в два раза дороже, чем у Airalo или другого независимого сервиса, я не буду брать. Ещё важно, чтобы можно было оплатить картой МИР или через СБП — если только Visa, то я отпадаю. Ну и раздача на ноутбук должна работать, без этого я не могу. Если хотя бы один из этих пунктов не выполнен, я пойду искать у других.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2574,
+  "completion_tokens": 123,
+  "total_tokens": 2697,
+  "cost": 8.88888e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 8.88888e-05,
+   "upstream_inference_prompt_cost": 6.65028e-05,
+   "upstream_inference_completions_cost": 2.2386e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 8.88888e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:50+03:00",
+ "duration_s": 2.11
+}

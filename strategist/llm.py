@@ -11,6 +11,7 @@ import base64
 import json
 import os
 import re
+import sys
 import time
 from pathlib import Path
 from typing import Callable
@@ -152,9 +153,17 @@ def ask(task: str, prompt: str | None = None, *, messages: list | None = None, s
         last_err = ""
         for retry in range(int(cfg.get("max_retries", 2)) + 1):
             t0 = time.time()
+            if os.environ.get("STRATEGIST_QUIET") != "1":  # прогресс для долгих вызовов (в stderr, не мешает JSON)
+                print(f"[sf] {task}: {m}{' (повтор ' + str(retry) + ')' if retry else ''} {label}".rstrip(),
+                      file=sys.stderr, flush=True)
             try:
                 r = requests.post(f"{base}/chat/completions", headers=headers, json=body,
                                   timeout=cfg.get("timeout_s", 120))
+                if r.status_code == 400 and "reasoning" in body and "reasoning" in r.text.lower():
+                    # модель не позволяет отключить рассуждения (GLM-5.3): повтор без параметра и с запасом токенов
+                    body.pop("reasoning")
+                    body["max_tokens"] = max(int(body.get("max_tokens", 1000)) * 4, 2000)
+                    raise LLMError("400: рассуждения у модели обязательны — повтор без отключения и с запасом токенов")
                 if r.status_code == 400 and "response_format" in body:
                     body.pop("response_format")  # модель не умеет json_object — просим JSON текстом
                     raise LLMError("400: response_format не поддержан, повтор без него")

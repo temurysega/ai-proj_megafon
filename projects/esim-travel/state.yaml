@@ -1,0 +1,72 @@
+project: esim-travel
+title: 'eSIM для путешествий: запускать ли продукт и кому продавать'
+request: Мы думаем, запускать ли отдельный продукт „eSIM для путешествий" — чтобы люди покупали связь за границей
+  у нас, а не у сервисов вроде зарубежных eSIM-магазинов. Кому это продавать, что предлагать и как говорить, чтобы
+  покупали? Или лучше усиливать обычные роуминговые опции?
+created: '2026-11-15T11:53:03+03:00'
+updated: '2026-11-15T12:17:58+03:00'
+mode: autopilot
+stage: support
+stage_status: in_progress
+gates:
+  G1_brief:
+    status: passed
+    at: '2026-11-15T11:53:36+03:00'
+    by: assumed
+    note: 'autopilot: бриф принят с допущениями C001-C004'
+  G2_option:
+    status: passed
+    at: '2026-11-15T12:14:51+03:00'
+    by: assumed
+    note: 'autopilot: выбран вариант C (гибрид, пилот) по рекомендации агента; подтвердить'
+  G3_strategy:
+    status: passed
+    at: '2026-11-15T12:17:53+03:00'
+    by: assumed
+    note: 'autopilot: стратегия принята как допущение; подтвердить допущения C001-C004, C044-C048'
+next_action: человек подтверждает допущения и G1-G3 (assume), запускает юр. проверку и запрос оптовых условий
+open_questions: []
+stale:
+- file: research/findings.md
+  section: Что предполагаем (гипотезы, допущения)
+  reason: изменилось основание C039
+  claims:
+  - C039
+  ts: '2026-11-15T12:03:50+03:00'
+history:
+- ts: '2026-11-15T11:53:03+03:00'
+  event: created
+  stage: intake
+- ts: '2026-11-15T11:53:37+03:00'
+  event: stage
+  from: intake
+  to: materials
+  status: in_progress
+  note: ''
+- ts: '2026-11-15T11:53:59+03:00'
+  event: stage
+  from: materials
+  to: research
+  status: in_progress
+  note: ''
+- ts: '2026-11-15T12:09:25+03:00'
+  event: stage
+  from: research
+  to: options
+  status: in_progress
+  note: ''
+- ts: '2026-11-15T12:14:51+03:00'
+  event: stage
+  from: options
+  to: strategy
+  status: in_progress
+  note: ''
+- ts: '2026-11-15T12:17:54+03:00'
+  event: stage
+  from: strategy
+  to: support
+  status: in_progress
+  note: ''
+last_checkpoint:
+  ts: '2026-11-15T12:17:58+03:00'
+  note: стратегия, one-pager, решение D1, отчёт готовы

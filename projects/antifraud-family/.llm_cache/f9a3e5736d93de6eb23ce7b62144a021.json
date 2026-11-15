@@ -1,0 +1,35 @@
+{
+ "text": "{\"skill\": \"decision-support\", \"confidence\": 0.9}",
+ "json": {
+  "skill": "decision-support",
+  "confidence": 0.9
+ },
+ "model": "z-ai/glm-5.3",
+ "usage": {
+  "prompt_tokens": 317,
+  "completion_tokens": 505,
+  "total_tokens": 822,
+  "cost": 0.00164523,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 192,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00164523,
+   "upstream_inference_prompt_cost": 0.00013023,
+   "upstream_inference_completions_cost": 0.001515
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 491,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00164523,
+ "cached": false,
+ "ts": "2026-11-15T12:27:31+03:00",
+ "duration_s": 3.26
+}

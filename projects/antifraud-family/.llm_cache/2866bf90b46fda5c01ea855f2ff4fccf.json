@@ -1,0 +1,35 @@
+{
+ "text": "{\"skill\": \"product-strategy\", \"confidence\": 0.82}",
+ "json": {
+  "skill": "product-strategy",
+  "confidence": 0.82
+ },
+ "model": "z-ai/glm-5.3-flash",
+ "usage": {
+  "prompt_tokens": 329,
+  "completion_tokens": 488,
+  "total_tokens": 817,
+  "cost": 0.000187644,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 256,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000187644,
+   "upstream_inference_prompt_cost": 1.6844e-05,
+   "upstream_inference_completions_cost": 0.0001708
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 471,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.000187644,
+ "cached": false,
+ "ts": "2026-11-15T12:25:58+03:00",
+ "duration_s": 3.95
+}

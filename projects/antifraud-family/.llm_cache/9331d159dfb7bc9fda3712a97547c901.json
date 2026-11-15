@@ -1,0 +1,35 @@
+{
+ "text": "{\"skill\": \"source-collection\", \"confidence\": 0.95}",
+ "json": {
+  "skill": "source-collection",
+  "confidence": 0.95
+ },
+ "model": "z-ai/glm-5.3",
+ "usage": {
+  "prompt_tokens": 324,
+  "completion_tokens": 184,
+  "total_tokens": 508,
+  "cost": 0.00039488,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 256,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00039488,
+   "upstream_inference_prompt_cost": 6.368e-05,
+   "upstream_inference_completions_cost": 0.0003312
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 167,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00039488,
+ "cached": false,
+ "ts": "2026-11-15T12:26:49+03:00",
+ "duration_s": 1.94
+}

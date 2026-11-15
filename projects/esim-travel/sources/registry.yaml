@@ -1,0 +1,384 @@
+- id: S001
+  title: 'CNews: Билайн запускает eSIM для путешествий в 164 страны'
+  kind: web
+  url: https://www.cnews.ru/news/line/2026-11-06_bilajn_zapuskaet_esim_dlya_puteshestvij
+  path: sources/raw/S001.md
+  publisher: CNews
+  published: '2026-11-06'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: f9cbaab19520a4822909ded4f10f752841e078e2a2c7ee2b29f932e63a9c8e10
+  injection_flags: []
+  notes: ''
+- id: S002
+  title: 'МегаФон: обновлённые пакеты для связи за границей'
+  kind: web
+  url: https://moscow.megafon.ru/help/info/popular/information/20251222-1519.html
+  path: sources/raw/S002.md
+  publisher: МегаФон
+  published: '2025-12-22'
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 33a212622d4987679356f18b85d21bb8834dcb6ff1ee4e98a0764b6025f8ba84
+  injection_flags: []
+  notes: ''
+- id: S003
+  title: 'Hi-Tech Mail: как россияне подключают интернет в поездках (опрос RuStore)'
+  kind: web
+  url: https://hi-tech.mail.ru/news/146804-kazhdyj-vtoroj-rossiyanin-polzuetsya-mobilnym-internetom-za-granicej/
+  path: sources/raw/S003.md
+  publisher: Hi-Tech Mail
+  published: '2026-04-28'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: c41570eb819fabc4b35a143bdb92662cc44414cf19c6b82440e87c490820eac9
+  injection_flags: []
+  notes: ''
+- id: S004
+  title: 'CNews: каждый второй россиянин пользуется интернетом за границей'
+  kind: web
+  url: https://www.cnews.ru/news/line/2026-04-28_kazhdyj_vtoroj_rossiyanin_1
+  path: sources/raw/S004.md
+  publisher: CNews
+  published: '2026-04-28'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: be0e73a9a049148446d700070679cda3b0f2a01a7f4573aa21e8d44836d7046e
+  injection_flags: []
+  notes: ''
+- id: S005
+  title: 'Интерфакс: выездной турпоток вырос на 11% в 1 кв. 2025'
+  kind: web
+  url: https://www.interfax.ru/russia/1025645
+  path: sources/raw/S005.md
+  publisher: Интерфакс
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: e478153e25ff4203aa7805ee421096e13f140db2f0618b8ec6230b2d570a30fa
+  injection_flags: []
+  notes: ''
+- id: S006
+  title: 'РБК: Россияне стали чаще отдыхать за границей'
+  kind: web
+  url: https://www.rbc.ru/business/09/08/2025/689602169a79474700e36eef
+  path: sources/raw/S006.md
+  publisher: РБК
+  published: '2025-08-09'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 0ef14957b1247fbd2f04556fc0657d901dc5b4e8226e42213ef3215a108c12eb
+  injection_flags: []
+  notes: ''
+- id: S007
+  title: 'vc.ru: интернет в Китае, eSIM за 490 ₽ выгоднее роуминга'
+  kind: web
+  url: https://vc.ru/travel/3188691-internet-v-kitae-dlya-rossiyan-esim-vygodnee-rouminga
+  path: sources/raw/S007.md
+  publisher: vc.ru
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: C
+  sha256: 73ddeb118e0222c710dc0fff9754bfcb439a3c59d556fde347ab97cad6d86ffe
+  injection_flags: []
+  notes: ''
+- id: S008
+  title: 'vc.ru: какой eSIM выбрать в России'
+  kind: web
+  url: https://vc.ru/services/3054560-kak-vybrat-esim-dlya-interneta-za-granicey
+  path: sources/raw/S008.md
+  publisher: vc.ru
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: C
+  sha256: 7d570685fd3bd1733bbb4ab2b85c334d28fe76fae387a69a45afb2fcbe5da22d
+  injection_flags: []
+  notes: ''
+- id: S009
+  title: 'vc.ru: Airalo обзор'
+  kind: web
+  url: https://vc.ru/life/2980674-airalo-obzor-esim-tarify-i-kak-polzovatsya-v-poezdkah
+  path: sources/raw/S009.md
+  publisher: vc.ru
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: C
+  sha256: 57b8c8d5d16f4e1c48bbaa9127567e7be384bd9188f1248f47e3d378e06c3364
+  injection_flags: []
+  notes: ''
+- id: S010
+  title: 'МТС Оплата: eSIM для путешествий (страница продукта)'
+  kind: web
+  url: https://payment.mts.ru/esim
+  path: sources/raw/S010.md
+  publisher: МТС
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: f0f8bcfc79cb6b67d7331b106ffe1da20b7dcebaa5d6b1da9322c233efce9496
+  injection_flags: []
+  notes: ''
+- id: S011
+  title: 'МТС: запуск продажи eSIM для зарубежных поездок (пресс-релиз)'
+  kind: web
+  url: https://moskva.mts.ru/about/media-centr/soobshheniya-kompanii/novosti-mts-v-rossii-i-mire/2024-11-28/mts-zapustila-prodazhu-esim-dlya-zarubezhnyh-poezdok
+  path: sources/raw/S011.md
+  publisher: МТС
+  published: '2024-11-28'
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 34fd747d7c7f316bce893bdbd2551e212bf342c89be9f21f7976ec3aa5054193
+  injection_flags: []
+  notes: ''
+- id: S012
+  title: 'Коммерсантъ: могут ограничить оборот eSIM и M2M'
+  kind: web
+  url: https://www.kommersant.ru/doc/8762344
+  path: sources/raw/S012.md
+  publisher: Коммерсантъ
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 340db1e62476c5689419e413af2df146bee76748ab1f512079bdeb1538b2aba0
+  injection_flags: []
+  notes: ''
+- id: S013
+  title: 'Хабр: запрет закупать иностранные SIM'
+  kind: web
+  url: https://habr.com/ru/news/971902/
+  path: sources/raw/S013.md
+  publisher: Хабр
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: C
+  sha256: 6b5afbc6b9009f12f3d759779a4ebae3d1c147b93396c11d370ed56f972d9d20
+  injection_flags: []
+  notes: ''
+- id: S014
+  title: 'ЦБ: оценка платёжного баланса 2025'
+  kind: pdf
+  url: https://www.cbr.ru/Collection/Collection/File/59672/Balance_of_Payments_2025-4_25.pdf
+  path: sources/raw/S014.md
+  publisher: Банк России
+  published: '2026-02-12'
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 794455029e194f8d3374267fbc32718fd0061c357d026083db0a2af486d421ec
+  injection_flags: []
+  notes: ''
+- id: S015
+  title: 'Mail Финансы: способы оплаты за границей'
+  kind: web
+  url: https://finance.mail.ru/article/banki-nazvali-populyarnye-u-rossiyan-sposoby-oplaty-za-granicej-69221446/
+  path: sources/raw/S015.md
+  publisher: Mail
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: de13796413f0328763e42f0049edc5c89e69dda10126e44bb1c215ab83dd046f
+  injection_flags: []
+  notes: ''
+- id: S016
+  title: 'Эксперт: запрет иностранных SIM'
+  kind: web
+  url: https://expert.ru/news/operatoram-svyazi-zapretyat-pokupat-inostrannye-sim-karty/
+  path: sources/raw/S016.md
+  publisher: Эксперт
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 7ff9f7b425e0ec5cd332f873f4c8fa1486e3712958a8ac83a2479fa79c9d1305
+  injection_flags: []
+  notes: ''
+- id: S017
+  title: 'МегаФон: eSIM-роутер (пресс-релиз)'
+  kind: web
+  url: https://corp.megafon.ru/press/news/federalnye_novosti/federal/20260619-1105.html
+  path: sources/raw/S017.md
+  publisher: МегаФон
+  published: '2026-06-19'
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 92828df0a20570b738c1a047fdc026b84819ad3053763cf5e818e4d88b4044a4
+  injection_flags: []
+  notes: ''
+- id: S018
+  title: 'Коммерсантъ: новые требования к сим-картам'
+  kind: web
+  url: https://www.kommersant.ru/doc/8248265
+  path: sources/raw/S018.md
+  publisher: Коммерсантъ
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: a4534a1f2d0ce9dfe87e9032f1d3f7e6afad83d5e05c9a557d82462c03e30e84
+  injection_flags: []
+  notes: ''
+- id: S019
+  title: 'РИА: опрос — сколько россиян планируют отпуск в путешествии (май 2026)'
+  kind: web
+  url: https://ria.ru/20260526/otpusk-2094719012.html
+  path: sources/raw/S019.md
+  publisher: РИА Новости
+  published: '2026-05-26'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 0997fd97f1dfa0dbe299536af64445411ef013e9aabeb036606dd242f73a9dc8
+  injection_flags: []
+  notes: ''
+- id: S020
+  title: 'Mail: Русский стандарт — за рубежом отпуск планируют 15%'
+  kind: web
+  url: https://finance.mail.ru/article/russkij-standart-otpusk-za-rubezhom-v-2026-godu-planiruyut-provesti-15-rossiyan-69217361/
+  path: sources/raw/S020.md
+  publisher: Mail Финансы
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 0689941fa028f961dd652e9b8591ddbe90f1460e95568b2a5dc0eb77691f57de
+  injection_flags: []
+  notes: ''
+- id: S021
+  title: 'Mail: Роскачество — планы на 2026'
+  kind: web
+  url: https://finance.mail.ru/article/stalo-izvestno-gde-budut-otdyhat-rossiyane-v-2026-godu-69218776/
+  path: sources/raw/S021.md
+  publisher: Mail Финансы
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 5f2bdece85122d6386945df4ad16d85d04652b319fc555b1742a20da942c3116
+  injection_flags: []
+  notes: ''
+- id: S022
+  title: 'Ведомости: МегаФон выпустил eSIM-роутер'
+  kind: web
+  url: https://www.vedomosti.ru/technology/news/2026/06/19/1207170-esim-router
+  path: sources/raw/S022.md
+  publisher: Ведомости
+  published: '2026-06-19'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: e2d2f3d4979bbff3ed021287d4a12c16fd2ddea127e27e2439f0c691f82f4f2f
+  injection_flags: []
+  notes: ''
+- id: S023
+  title: 'T2: eSIM — как подключить'
+  kind: web
+  url: https://msk.t2.ru/journal/article/how-to-connect-esim
+  path: sources/raw/S023.md
+  publisher: T2
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 2a8ad3bf1ea7870ccc419e43025fbfa51390c675804625a48c1fa919887c94d1
+  injection_flags: []
+  notes: ''
+- id: S024
+  title: 'РГ: дефицит смартфонов — барьер распространения eSIM'
+  kind: web
+  url: https://rg.ru/2026/07/29/deficit-premialnyh-smartfonov-stal-glavnym-barerom-dlia-rasprostraneniia-esim.html
+  path: sources/raw/S024.md
+  publisher: Российская газета
+  published: '2026-07-29'
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 348f84f5bf6469187250c3f2ae1b72aeb0dda64f406a2c2d201c9ac862406e0f
+  injection_flags: []
+  notes: ''
+- id: S025
+  title: 'Hi-Tech: тренды eSIM в России 2026'
+  kind: web
+  url: https://hi-tech.mail.ru/news/149845-tret-rossiyan-s-esim-podklyuchaet-tri-i-bolee-nomera/
+  path: sources/raw/S025.md
+  publisher: Hi-Tech Mail
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: aa428f960e297e6839ffb29e60b89bf5900c3e38d3f317ae162d9338e435a244
+  injection_flags: []
+  notes: ''
+- id: S026
+  title: 'МегаФон: роуминг (страница)'
+  kind: web
+  url: https://moscow.megafon.ru/roaming/
+  path: sources/raw/S026.md
+  publisher: МегаФон
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 1e0c1c757175acf30f3b9d174a0a8a0447e35547c242ea5f1d41b5aef5b35741
+  injection_flags: []
+  notes: ''
+- id: S027
+  title: 'T2: роуминг'
+  kind: web
+  url: https://msk.t2.ru/roaming
+  path: sources/raw/S027.md
+  publisher: T2
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: bd822a4766d18a75688e76f67d5cd38efea00852986a2b4c461bf3668ee6fdf0
+  injection_flags: []
+  notes: ''
+- id: S028
+  title: 'МТС: интернет и звонки для поездок'
+  kind: web
+  url: https://moskva.mts.ru/personal/mobilnaya-svyaz/uslugi/mobilnaya-svyaz/vse-dlya-poezdki
+  path: sources/raw/S028.md
+  publisher: МТС
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: A
+  sha256: 017f399ca02a81d1c618527b107af7c462fb35442cbdc8040d455e8d85e90f2f
+  injection_flags: []
+  notes: ''
+- id: S029
+  title: 'Синтетическое интервью (deepseek/deepseek-v4-flash): Частый путешественник-фрилансер'
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P1.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модель deepseek/deepseek-v4-flash; стоимость $0.0013; не доказывает спрос
+- id: S030
+  title: 'Синтетическое интервью (qwen/qwen3.8-flash): Семья в отпуск, скептик'
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P2.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модель qwen/qwen3.8-flash; стоимость $0.0022; не доказывает спрос
+- id: S031
+  title: 'Синтетическое интервью (deepseek/deepseek-v4-flash): Студентка, экономит'
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic/P3.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: модель deepseek/deepseek-v4-flash; стоимость $0.0018; не доказывает спрос
+- id: S032
+  title: Модельные интервью P1-P3 (синтетика, DeepSeek/Qwen)
+  kind: synthetic
+  url: ''
+  path: research/interviews/synthetic
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: ''
+  injection_flags: []
+  notes: 'Синтетика: гипотезы, не доказательство спроса'

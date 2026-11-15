@@ -1,0 +1,32 @@
+{
+ "text": "Обычно я просто забиваю в поиск «лучшие eSIM для поездок» и читаю статьи на vc.ru или в каких-нибудь блогах про путешествия. Там часто сравнивают цены и сервисы, но я всё равно не доверяю рекламе — сразу вижу, когда текст заказной. Ещё спрашиваю у знакомых, кто часто ездит: подруга, например, посоветовала тот Telegram-канал, и я поверила, потому что она реально им пользовалась, а не за спасибо рекламирует. Но в целом я как тот параноик — перепроверяю всё по три раза, потому что боюсь остаться без денег и без связи.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 1926,
+  "completion_tokens": 178,
+  "total_tokens": 2104,
+  "cost": 0.0001385,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1280,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001385,
+   "upstream_inference_prompt_cost": 0.00010824,
+   "upstream_inference_completions_cost": 3.026e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001385,
+ "cached": false,
+ "ts": "2026-11-15T12:04:17+03:00",
+ "duration_s": 2.55
+}

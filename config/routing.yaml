@@ -18,11 +18,12 @@ defaults:
 
 tasks:
   classify:
-    why: "Выбор навыка/процесса по запросу, короткий JSON. Достаточно самой дешёвой быстрой модели."
-    models: [qwen/qwen3.7-flash, z-ai/glm-5.3-flash, deepseek/deepseek-v4-flash]
-    reasoning: off  # без скрытых рассуждений: иначе лимит уходит на них и ответ пустой
+    why: "Выбор навыка/процесса по запросу, короткий JSON. Выбор по замеру evals/routing_bench.py (16 размеченных запросов,
+      15.11.2026): GLM-5.3-flash 93,8% за $0,17/1000 вызовов; Kimi K3.1 Pro 93,8% за $0,85; GLM-5.3 81% за $0,86;
+      DeepSeek V4 flash 81–88% за $0,01; Qwen 3.7 flash 62,5%. Вызывается только когда правила не уверены."
+    models: [z-ai/glm-5.3-flash, deepseek/deepseek-v4-flash, qwen/qwen3.7-flash]
     temperature: 0
-    max_tokens: 400
+    max_tokens: 2000   # GLM-5.3 рассуждает всегда (отключить нельзя) — нужен запас токенов
     json: true
   rerank:
     why: "Переупорядочивание результатов поиска по смыслу (после BM25)."
@@ -71,12 +72,16 @@ tasks:
     temperature: 0
     max_tokens: 8000
     json: true
+    timeout_s: 300
   critic:
-    why: "Вторая точка зрения / красная команда от модели другого семейства."
-    models: [moonshotai/kimi-k2.6, deepseek/deepseek-v4-pro]
+    why: "Вторая точка зрения / красная команда от модели другого семейства. Первой — DeepSeek (≈1 мин); Kimi K2.6 давал
+      сильные возражения, но отвечал 3–6 мин и не укладывался в общий таймаут (живой прогон 15.11.2026) — он запасной."
+    models: [deepseek/deepseek-v4-pro, moonshotai/kimi-k2.6, qwen/qwen3.7-plus]
     reasoning: low
     temperature: 0.5
     max_tokens: 8000
+    timeout_s: 420
+    max_retries: 1
   vision:
     why: "Описание скриншотов и изображений: только то, что видно, с координатами/текстом элементов."
     models: [qwen/qwen3.8-flash, z-ai/glm-5.3-flash]

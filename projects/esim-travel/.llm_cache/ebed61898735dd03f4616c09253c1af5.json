@@ -1,0 +1,32 @@
+{
+ "text": "Тревожно было только в момент покупки, потому что очереди в аэропорту огромные, и я боялся, что дети начнут капризничать или мы пропустим трансфер. Дорого — это не столько сама симка, сколько то, что нужно покупать три штуки сразу, а деньги с собой всегда ограничены. Неудобно потом хранить эти пластиковые карточки, они теряются в сумках, а выбрасывать жалко на всякий случай. Но по сравнению с риском остаться без связи из-за сбоя в настройках eSIM, эта возня мне кажется вполне приемлемой платой за спокойствие.",
+ "json": null,
+ "model": "qwen/qwen3.8-flash",
+ "usage": {
+  "prompt_tokens": 1461,
+  "completion_tokens": 136,
+  "total_tokens": 1597,
+  "cost": 0.00011155,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 1280,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00011155,
+   "upstream_inference_prompt_cost": 4.763e-05,
+   "upstream_inference_completions_cost": 6.392e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00011155,
+ "cached": false,
+ "ts": "2026-11-15T12:02:59+03:00",
+ "duration_s": 4.64
+}

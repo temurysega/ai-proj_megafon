@@ -427,6 +427,8 @@ def build_parser() -> argparse.ArgumentParser:
     def add(name, fn, help_):
         s = sp.add_parser(name, help=help_)
         s.set_defaults(fn=fn)
+        # -p можно писать и после подкоманды: `sf check -p esim-travel` (замечание агента второго проекта)
+        s.add_argument("-p", "--project", dest="project_sub", default=None, help=argparse.SUPPRESS)
         return s
 
     s = add("new", cmd_new, "создать проект")
@@ -625,6 +627,8 @@ def main(argv=None):
     setup_console()
     load_env()
     args = build_parser().parse_args(argv)
+    if getattr(args, "project_sub", None):
+        args.project = args.project_sub
     try:
         args.fn(args)
     except StrategistError as e:

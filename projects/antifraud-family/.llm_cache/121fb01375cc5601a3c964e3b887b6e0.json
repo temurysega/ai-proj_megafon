@@ -1,0 +1,35 @@
+{
+ "text": "{\"skill\": \"comms-strategy\", \"confidence\": 0.8}",
+ "json": {
+  "skill": "comms-strategy",
+  "confidence": 0.8
+ },
+ "model": "z-ai/glm-5.3-flash",
+ "usage": {
+  "prompt_tokens": 320,
+  "completion_tokens": 1664,
+  "total_tokens": 1984,
+  "cost": 0.00088,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00088,
+   "upstream_inference_prompt_cost": 4.8e-05,
+   "upstream_inference_completions_cost": 0.000832
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 1646,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.00088,
+ "cached": false,
+ "ts": "2026-11-15T12:26:12+03:00",
+ "duration_s": 11.57
+}

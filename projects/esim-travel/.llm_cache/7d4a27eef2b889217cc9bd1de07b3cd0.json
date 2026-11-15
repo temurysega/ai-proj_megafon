@@ -1,0 +1,32 @@
+{
+ "text": "«Смешная» цена — это 200-300 рублей за 5-10 гигов, чтобы хватило на карты и Telegram. Если больше 500, я уже начинаю думать: «А не проще ли местную симку купить?» Обычно я просто гуглю «интернет в Грузии цена» и смотрю, сколько стоят местные операторы — в Грузии, например, можно за 10 лари взять норм пакет. А потом сравниваю с eSIM-вариантами: если разница в 2 раза, я беру дешевле, даже если это сомнительный канал. Роуминг от наших операторов я даже не смотрю — там ценник сразу в 1000+ рублей, это сразу мимо.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 2603,
+  "completion_tokens": 181,
+  "total_tokens": 2784,
+  "cost": 0.0001020838,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2304,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0001020838,
+   "upstream_inference_prompt_cost": 6.91418e-05,
+   "upstream_inference_completions_cost": 3.2942e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 0.0001020838,
+ "cached": false,
+ "ts": "2026-11-15T12:04:28+03:00",
+ "duration_s": 2.52
+}

@@ -1,0 +1,32 @@
+{
+ "text": "Потому что у меня просто нет другой карты. Все мои карты — МИР или СБП, а некоторые сервисы иностранные платёжки не принимают. Я сталкивался, что при попытке оплатить Visa или Mastercard с российского банка платёж отклоняли, даже если карта есть. Поэтому если сервис не берёт МИР или СБП — я его даже не рассматриваю. А этот конкретный магазин принимал, и отзывы были нормальные, так что остановился на нём.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 958,
+  "completion_tokens": 128,
+  "total_tokens": 1086,
+  "cost": 5.45636e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 768,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 5.45636e-05,
+   "upstream_inference_prompt_cost": 3.12676e-05,
+   "upstream_inference_completions_cost": 2.3296e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 5.45636e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:01:19+03:00",
+ "duration_s": 2.88
+}

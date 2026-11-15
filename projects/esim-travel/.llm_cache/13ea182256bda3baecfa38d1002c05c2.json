@@ -1,0 +1,32 @@
+{
+ "text": "Ой, ну я не то чтобы прям заядлый путешественник — так, раз-два в год выбираюсь куда-нибудь, чаще всего в Грузию или Казахстан. В основном сижу на вайфае в отелях и кафешках, потому что покупать симки у операторов как-то дороговато. Пару раз брала eSIM в Telegram-каналах, там цены смешные — рублей 200-300, и норм работает, хотя страшновато, что нарвусь на мошенников.",
+ "json": null,
+ "model": "deepseek/deepseek-v4-flash",
+ "usage": {
+  "prompt_tokens": 405,
+  "completion_tokens": 131,
+  "total_tokens": 536,
+  "cost": 7.087e-05,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 7.087e-05,
+   "upstream_inference_prompt_cost": 4.86e-05,
+   "upstream_inference_completions_cost": 2.227e-05
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "usd": 7.087e-05,
+ "cached": false,
+ "ts": "2026-11-15T12:03:50+03:00",
+ "duration_s": 2.49
+}
