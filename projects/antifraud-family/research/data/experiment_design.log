@@ -1,0 +1,96 @@
+# запуск 2026-11-15T11:18:22+03:00 · код возврата 0
+# script sha256 9a8588fa2aad6066
+# inputs {'economics_assumptions.yaml': 'e55170f9d47e8555'}
+# outputs {'experiment_design.md': 'a319465bc9ef14cb', 'experiment_design.json': 'ab566d87b4be6c4c'}
+
+{
+ "quarterly_churn_pct": 4.43,
+ "rows": [
+  {
+   "uptake_pct": 10,
+   "cace_effect_pct": 4,
+   "itt_effect_pct": 0.4,
+   "n_per_group": 21111314,
+   "direct_cost_mln_rub": 95.0
+  },
+  {
+   "uptake_pct": 10,
+   "cace_effect_pct": 8,
+   "itt_effect_pct": 0.8,
+   "n_per_group": 5267738,
+   "direct_cost_mln_rub": 23.7
+  },
+  {
+   "uptake_pct": 10,
+   "cace_effect_pct": 15,
+   "itt_effect_pct": 1.5,
+   "n_per_group": 1493353,
+   "direct_cost_mln_rub": 6.72
+  },
+  {
+   "uptake_pct": 10,
+   "cace_effect_pct": 25,
+   "itt_effect_pct": 2.5,
+   "n_per_group": 535021,
+   "direct_cost_mln_rub": 2.41
+  },
+  {
+   "uptake_pct": 20,
+   "cace_effect_pct": 4,
+   "itt_effect_pct": 0.8,
+   "n_per_group": 5267738,
+   "direct_cost_mln_rub": 47.41
+  },
+  {
+   "uptake_pct": 20,
+   "cace_effect_pct": 8,
+   "itt_effect_pct": 1.6,
+   "n_per_group": 1311886,
+   "direct_cost_mln_rub": 11.81
+  },
+  {
+   "uptake_pct": 20,
+   "cace_effect_pct": 15,
+   "itt_effect_pct": 3.0,
+   "n_per_group": 370643,
+   "direct_cost_mln_rub": 3.34
+  },
+  {
+   "uptake_pct": 20,
+   "cace_effect_pct": 25,
+   "itt_effect_pct": 5.0,
+   "n_per_group": 132136,
+   "direct_cost_mln_rub": 1.19
+  },
+  {
+   "uptake_pct": 50,
+   "cace_effect_pct": 4,
+   "itt_effect_pct": 2.0,
+   "n_per_group": 837991,
+   "direct_cost_mln_rub": 18.85
+  },
+  {
+   "uptake_pct": 50,
+   "cace_effect_pct": 8,
+   "itt_effect_pct": 4.0,
+   "n_per_group": 207475,
+   "direct_cost_mln_rub": 4.67
+  },
+  {
+   "uptake_pct": 50,
+   "cace_effect_pct": 15,
+   "itt_effect_pct": 7.5,
+   "n_per_group": 58006,
+   "direct_cost_mln_rub": 1.31
+  },
+  {
+   "uptake_pct": 50,
+   "cace_effect_pct": 25,
+   "itt_effect_pct": 12.5,
+   "n_per_group": 20361,
+   "direct_cost_mln_rub": 0.46
+  }
+ ],
+ "reading": "Порог варианта C (эффект 2,7–4,1% на защищённое домохозяйство) напрямую не проверяется при реалистичной доле принявших: даже при uptake 50% эффект 4% требует более миллиона домохозяйств на группу. Эксперимент на заинтересованных (uptake ≈50%) различает эффект ≥15% при десятках тысяч домохозяйств. Поэтому решение о C — по нижней границе доверительного интервала, опережающим индикаторам и экономике каннибализации из выгрузки, а «незначимо» не трактуется как «эффекта нет»."
+}
+

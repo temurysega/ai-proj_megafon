@@ -57,10 +57,17 @@ def validate(pid=None) -> list[str]:
             for k in ("name", "baseline", "target", "by"):
                 if k not in m:
                     errs.append(f"{did}: у метрики {m.get('name', '?')} нет поля {k}")
+        ids = {k.get("id") for k in d.get("commitments", [])}
         for k in d.get("commitments", []):
             for f in ("id", "what", "owner", "due"):
                 if f not in k:
                     errs.append(f"{did}: у обязательства {k.get('id', '?')} нет поля {f}")
+            for dep in k.get("depends_on", []):
+                if dep not in ids:
+                    errs.append(f"{did}: обязательство {k.get('id')} зависит от несуществующего {dep}")
+            deps_due = [_date(x.get("due")) for x in d.get("commitments", []) if x.get("id") in k.get("depends_on", [])]
+            if deps_due and _date(k.get("due")) and any(dd and dd > _date(k.get("due")) for dd in deps_due):
+                errs.append(f"{did}: срок {k['id']} раньше срока его зависимостей {k.get('depends_on')}")
     return errs
 
 
@@ -82,9 +89,13 @@ def due_items(pid=None, today: _dt.date | None = None, horizon_days: int = 14) -
         if d.get("status") not in ("active", "under_review"):
             continue
         did = d["id"]
+        status_by_id = {k["id"]: k.get("status", "open") for k in d.get("commitments", [])}
         for k in d.get("commitments", []):
             if k.get("status", "open") == "done":
                 continue
+            blockers = [b for b in k.get("depends_on", []) if status_by_id.get(b) != "done"]
+            if blockers:
+                out.append(f"⏸ {did}/{k['id']} заблокировано до выполнения {', '.join(blockers)}: {k['what']}")
             due = _date(k.get("due"))
             if due and due < today:
                 out.append(f"⛔ {did}/{k['id']} просрочено с {due}: {k['what']} (ответственный: {k['owner']})")

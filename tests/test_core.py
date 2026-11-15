@@ -34,6 +34,8 @@ def test_blocked_page_detection():
     # регрессия: страница 403 антибота SecurityLab сохранялась как источник
     assert looks_blocked("403 Error\nForbidden\nДоступ к сайту www.securitylab.ru запрещен. Guru meditation: x")
     assert looks_blocked("Just a moment... Checking your browser before accessing")
+    # регрессия 15.11.2026: антибот ТАСС («пройдите проверку») проскочил и сохранился как источник S040
+    assert looks_blocked("Мы хотим убедиться, что имеем дело именно с вами, а не с ботом. Пожалуйста, пройдите проверку. Ваш IP: 1.2.3.4")
     assert not looks_blocked("Обычная статья. " * 300)
 
 

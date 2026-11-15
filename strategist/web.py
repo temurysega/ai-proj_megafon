@@ -60,7 +60,7 @@ def pdf_to_text(data: bytes) -> str:
 BLOCK_PATTERNS = re.compile(
     r"(403 error|403 forbidden|access denied|доступ к сайту .{0,40}запрещ|checking your browser|just a moment|"
     r"enable javascript and cookies|captcha|подтвердите, что вы не робот|проверка браузера|ddos-guard|"
-    r"guru meditation|request id: .{10,})", re.I)
+    r"guru meditation|request id: .{10,}|убедиться, что имеем дело именно с вами|не с ботом|пройдите проверку|ваш ip:)", re.I)
 
 
 def looks_blocked(text: str) -> bool:

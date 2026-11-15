@@ -3,9 +3,10 @@ q4_2024_derived,9.1
 q4_2025_derived,7.92
 q1_2026_derived,7.44
 h2_2025_vs_h2_2024_pct,-12.5
-h1_2026_vs_h1_2025_pct,12.4
-q2_2026_vs_q2_2025_pct,17.5
+h1_2026_vs_h1_2025_pct_NOT_COMPARABLE,12.4
+q2_2026_vs_q2_2025_pct_NOT_COMPARABLE,17.5
+comparable_note,"""2026 — 12 признаков, 2025 — 6 признаков (C073): разница не равна динамике мошенничества"""
 range_since_new_method_bn,"[6.3, 9.3]"
-mean_since_new_method_bn,7.82
+mean_since_new_method_bn,7.95
 annual_2025_vs_2024_pct_reported,6.5
 note,"""Годовой рост 2025/2024 (+6,5% по расчёту, ЦБ: +6,4%) несопоставим: I–II кв. 2024 считались по старой методике (3 признака)."""

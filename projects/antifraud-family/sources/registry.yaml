@@ -466,3 +466,28 @@
   sha256: ''
   injection_flags: []
   notes: модельный респондент; не доказывает спрос
+- id: S040
+  title: ЦБ введет с 2026 года новый перечень признаков мошеннических операций
+  kind: web
+  url: https://tass.ru/ekonomika/25621853
+  path: sources/raw/S040.md
+  publisher: ТАСС
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: D
+  sha256: 886ff106fb9e1b30a6248b1ea86ef8f8353726469142bf3237c802a5652207ed
+  injection_flags: []
+  notes: 'СНИМОК НЕДЕЙСТВИТЕЛЕН: страница антибота ТАСС («пройдите проверку»); детектор заглушек дополнен, тест
+    добавлен'
+- id: S041
+  title: ЦБ обновил перечень мошеннических операций с 1 января 2026 года
+  kind: web
+  url: https://www.rbc.ru/quote/news/article/6915eb229a79471fafdc8856
+  path: sources/raw/S041.md
+  publisher: РБК
+  published: ''
+  retrieved: '2026-11-15'
+  reliability: B
+  sha256: 383177e96a0fb90647c5ccdc92996c9d209d998ebb4ebdbb65835f35692c79c6
+  injection_flags: []
+  notes: ''

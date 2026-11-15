@@ -7,5 +7,5 @@ quarter,theft_bn_rub,derived,methodology,basis_claims,note
 2025Q2,6.3,0,new_6_signs,C013,
 2025Q3,8.18,0,new_6_signs,C043,8 176 075.88 тыс. руб.
 2025Q4,,1,new_6_signs,C044;C042;C013;C043,= год 29.3 − (I+II+III)
-2026Q1,,1,new_6_signs,C013,= II кв. 2026 / (1 − 0.006)
-2026Q2,7.4,0,new_6_signs,C013,
+2026Q1,,1,new_12_signs,C013;C073,= II кв. 2026 / (1 − 0.006)
+2026Q2,7.4,0,new_12_signs,C013;C073,

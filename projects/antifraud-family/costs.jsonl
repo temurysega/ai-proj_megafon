@@ -12,3 +12,6 @@
 {"type": "subagent", "usd": 0.63, "note": "кодирование синт. интервью", "tokens": 104722, "stage": "research", "model": "claude-sonnet", "ts": "2026-11-14T12:03:01+03:00"}
 {"type": "subagent", "usd": 0.36, "note": "fact-checker 20 утверждений", "tokens": 182068, "stage": "research", "model": "claude-haiku", "ts": "2026-11-14T12:03:01+03:00"}
 {"type": "subagent", "usd": 0.59, "note": "red-team options v1", "tokens": 98720, "stage": "options", "model": "claude-sonnet", "ts": "2026-11-14T12:07:07+03:00"}
+{"type": "subagent", "usd": 0.37, "note": "red-team стратегии", "tokens": 62262, "stage": "strategy", "model": "claude-sonnet", "ts": "2026-11-15T11:24:44+03:00"}
+{"type": "subagent", "usd": 0.24, "note": "fact-checker стратегии", "tokens": 119465, "stage": "strategy", "model": "claude-haiku", "ts": "2026-11-15T11:24:44+03:00"}
+{"type": "subagent", "usd": 0.36, "note": "базовая линия: обычный чат", "tokens": 60071, "stage": "eval", "model": "claude-sonnet", "ts": "2026-11-15T11:24:45+03:00"}

@@ -3,7 +3,8 @@
 """Динамика хищений со счетов клиентов банков (Банк России), 2024–2026.
 
 Вопрос DQ2: растёт или сокращается проблема. Проверки качества данных:
-- смена методики с III кв. 2024 (6 признаков вместо 3) → сравнения год к году только внутри новой методики;
+- смена методики с III кв. 2024 (6 признаков вместо 3) и с I кв. 2026 (12 признаков вместо 6, C073) →
+  сравнения только внутри одной методики (v2 после пересмотра 15.11.2026);
 - IV кварталы и I кв. 2026 не опубликованы отдельно → восстанавливаются вычитанием (помечены derived);
 - единицы: млрд руб., номинал (без поправки на инфляцию).
 Запуск: python sf.py data run research/data/cbr_quarterly.py
@@ -29,13 +30,15 @@ df["theft_bn_rub"] = df.quarter.map(v)
 
 # 2. Сопоставимые сравнения (только новая методика)
 new = df[df.methodology == "new_6_signs"].set_index("quarter").theft_bn_rub
+all_q = df.set_index("quarter").theft_bn_rub
 res = {
     "q4_2024_derived": v["2024Q4"],
     "q4_2025_derived": v["2025Q4"],
     "q1_2026_derived": v["2026Q1"],
     "h2_2025_vs_h2_2024_pct": round(100 * ((new["2025Q3"] + new["2025Q4"]) / (new["2024Q3"] + new["2024Q4"]) - 1), 1),
-    "h1_2026_vs_h1_2025_pct": round(100 * ((new["2026Q1"] + new["2026Q2"]) / (new["2025Q1"] + new["2025Q2"]) - 1), 1),
-    "q2_2026_vs_q2_2025_pct": round(100 * (new["2026Q2"] / new["2025Q2"] - 1), 1),
+    "h1_2026_vs_h1_2025_pct_NOT_COMPARABLE": round(100 * ((all_q["2026Q1"] + all_q["2026Q2"]) / (all_q["2025Q1"] + all_q["2025Q2"]) - 1), 1),
+    "q2_2026_vs_q2_2025_pct_NOT_COMPARABLE": round(100 * (all_q["2026Q2"] / all_q["2025Q2"] - 1), 1),
+    "comparable_note": "2026 — 12 признаков, 2025 — 6 признаков (C073): разница не равна динамике мошенничества",
     "range_since_new_method_bn": [float(new.min()), float(new.max())],
     "mean_since_new_method_bn": round(float(new.mean()), 2),
     "annual_2025_vs_2024_pct_reported": round(100 * (29.3 / 27.5 - 1), 1),
@@ -47,7 +50,7 @@ pd.DataFrame([{"metric": k, "value": json.dumps(val, ensure_ascii=False)} for k,
 
 # 3. График: показатель, единица, период, источник — в подписи
 fig, ax = plt.subplots(figsize=(9, 4.2), dpi=130)
-colors = ["#9aa3ad" if m == "old_3_signs" else "#00a650" for m in df.methodology]
+colors = [{"old_3_signs": "#9aa3ad", "new_6_signs": "#00a650", "new_12_signs": "#e8a33d"}[m] for m in df.methodology]
 bars = ax.bar(df.quarter, df.theft_bn_rub, color=colors)
 for b, d, val in zip(bars, df.derived, df.theft_bn_rub):
     if d:
@@ -60,7 +63,7 @@ ax.set_ylabel("млрд руб. за квартал (номинал)")
 ax.set_ylim(0, 10.5)
 ax.set_title("Хищения со счетов клиентов банков, Банк России, 2024–2026", fontsize=10)
 ax.spines[["top", "right"]].set_visible(False)
-fig.text(0.01, 0.01, "Штриховка — восстановлено вычитанием из годовых итогов. Источники: утверждения C013, C039–C045.",
+fig.text(0.01, 0.01, "Цвет — методика (серый 3, зелёный 6, оранжевый 12 признаков). Штриховка — восстановлено вычитанием. Источники: C013, C039–C047, C073.",
          fontsize=7, color="#555")
 fig.tight_layout(rect=(0, 0.04, 1, 1))
 fig.savefig(HERE / "cbr_quarterly.png")

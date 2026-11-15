@@ -35,9 +35,13 @@ def candidates(source_id: str, top: int = 8, use_llm: bool = False, pid=None) ->
         if not scored:
             continue
         s, best = scored[0]
+        # нормировка на длину запроса: длинные общие утверждения не должны вытеснять короткие точные совпадения
+        from .kb import tokens
+        qlen = max(len(set(tokens(c["text"]))), 1)
+        s = s / (qlen ** 0.5)
         nums_c = set(NUM.findall(c["text"]))
         nums_p = set(NUM.findall(best["text"]))
-        bonus = 1.0 if nums_c & nums_p else 0.0
+        bonus = 0.5 * len(nums_c & nums_p)
         out.append({"claim": c["id"], "claim_text": c["text"], "score": round(s + bonus, 2),
                     "evidence": best["text"][:600]})
     out = sorted(out, key=lambda x: -x["score"])[:top]
