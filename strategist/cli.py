@@ -251,10 +251,11 @@ def cmd_route(a):
 def cmd_llm(a):
     from .llm import ask
     prompt = Path(a.prompt_file).read_text(encoding="utf-8") if a.prompt_file else a.prompt
-    res = ask(a.task, prompt, system=a.system, pid=a.project, model=a.model, stage=a.stage, label=a.label or "")
+    res = ask(a.task, prompt, system=a.system, pid=a.project, model=a.model, stage=a.stage, label=a.label or "",
+              models=_split(a.chain) or None, cache=not a.no_cache)
     if a.out:
         Path(a.out).write_text(res["text"], encoding="utf-8")
-    _print({"model": res["model"], "usd": res["usd"], "cached": res["cached"],
+    _print({"model": res["model"], "usd": res["usd"], "cached": res["cached"], "attempts": res.get("attempts"),
             "text": res["text"] if not a.out else f"→ {a.out}"})
 
 
@@ -280,7 +281,7 @@ def cmd_research_import(a):
 
 def cmd_respondents(a):
     from .research import run_synthetic
-    _print(run_synthetic(a.personas, a.guide, a.followups, a.rotate, _split(a.only), pid=a.project))
+    _print(run_synthetic(a.personas, a.guide, a.followups, a.rotate, _split(a.only), pid=a.project, out_subdir=a.out_dir))
 
 
 def cmd_interviews(a):
@@ -573,6 +574,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--stage")
     s.add_argument("--label")
     s.add_argument("--out")
+    s.add_argument("--chain", help="своя цепочка моделей через запятую (эскалация слева направо)")
+    s.add_argument("--no-cache", action="store_true")
     s = add("models", cmd_models, "модели: sync (цены OpenRouter) / list (маршруты)")
     s.add_argument("action", choices=["sync", "list"])
     s = add("research-import", cmd_research_import, "импорт JSON субагента researcher: снимки + сверка цитат")
@@ -584,6 +587,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--followups", type=int, default=1)
     s.add_argument("--rotate", action="store_true")
     s.add_argument("--only")
+    s.add_argument("--out-dir", default="synthetic", help="подпапка research/interviews/ для транскриптов")
     s = add("interviews", cmd_interviews, "анализ транскриптов интервью")
     s.add_argument("folder")
     s.add_argument("--synthetic", action="store_true")

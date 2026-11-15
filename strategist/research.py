@@ -51,19 +51,19 @@ def load_guide(path: Path) -> list[str]:
 
 
 def run_synthetic(personas_file: str, guide_file: str, max_followups: int = 1, rotate: bool = False,
-                  only: list[str] | None = None, pid=None) -> list[dict]:
+                  only: list[str] | None = None, pid=None, out_subdir: str = "synthetic") -> list[dict]:
     d = project_dir(pid)
     personas = read_yaml(Path(personas_file), [])
     guide = load_guide(Path(guide_file))
     cfg = task_cfg("respondent")
     pool = cfg.get("rotate_pool", cfg["models"]) if rotate else cfg["models"]
-    out_dir = d / "research" / "interviews" / "synthetic"
+    out_dir = d / "research" / "interviews" / out_subdir
     out_dir.mkdir(parents=True, exist_ok=True)
     results = []
     for i, p in enumerate(personas):
         if only and p["id"] not in only:
             continue
-        key = f"synthetic:{p['id']}:{sha256_text(yaml.safe_dump(p, allow_unicode=True) + '|'.join(guide))[:12]}"
+        key = f"synthetic:{out_subdir}:{p['id']}:{sha256_text(yaml.safe_dump(p, allow_unicode=True) + '|'.join(guide))[:12]}"
         from .project import already_done
         done = already_done(key, pid)
         if done:  # устойчивость: уже проведённое интервью не повторяется (и не оплачивается)
@@ -100,7 +100,7 @@ def run_synthetic(personas_file: str, guide_file: str, max_followups: int = 1, r
                 "## Транскрипт"]
         body += [f"**{'Интервьюер' if who == 'И' else 'Респондент (синт.)'}:** {txt}\n" for who, txt in transcript]
         fname.write_text("\n".join(body), encoding="utf-8")
-        src = add_source(f"Синтетическое интервью: {p.get('label', p['id'])}", kind="synthetic",
+        src = add_source(f"Синтетическое интервью ({used_model}): {p.get('label', p['id'])}", kind="synthetic",
                          path=fname.relative_to(d).as_posix(), reliability="D",
                          notes=f"модель {used_model}; стоимость ${usd:.4f}; не доказывает спрос", pid=pid)
         journal("synthetic_interview", f"{p['id']} → {fname.name} ({used_model}, ${usd:.4f})", pid=pid,
@@ -175,7 +175,7 @@ def analyze_interviews(folder: str, synthetic: bool = False, pid=None) -> dict:
         lines.append("")
     unv = sum(c["unverified_quotes"] for c in coded)
     lines.append(f"_Неподтверждённых (не найденных дословно) цитат отброшено: {unv}. Стоимость кодирования: ${total_usd:.4f}._")
-    out = d / "research" / "interviews" / f"analysis-{'synthetic' if synthetic else 'real'}.md"
+    out = d / "research" / "interviews" / f"analysis-{Path(folder).name}.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     journal("interviews_analyzed", f"{len(coded)} {label} → {out.name}", pid=pid, actor="tool", usd=round(total_usd, 5))
     return {"file": out.relative_to(d).as_posix(), "n": len(coded), "themes": len(themes), "usd": total_usd,
