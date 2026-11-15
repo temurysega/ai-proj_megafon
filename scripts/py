@@ -1,0 +1,12 @@
+#!/bin/sh
+# Запуск Python одинаково на Windows (Git Bash: python), macOS и Linux (часто только python3).
+# Использование: sh scripts/py <скрипт.py | -m модуль> [аргументы]
+# Нужен хукам Claude Code и git pre-commit: если Python не найден, выходим с кодом 2 —
+# хук блокирует действие (а не пропускает его молча, как при «command not found»).
+for p in python python3 py; do
+  if command -v "$p" >/dev/null 2>&1 && "$p" -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" >/dev/null 2>&1; then
+    exec "$p" "$@"
+  fi
+done
+echo "[Стратег] Не найден Python 3.10+ (python / python3 / py). Установите Python и выполните: pip install -r requirements.txt" >&2
+exit 2
