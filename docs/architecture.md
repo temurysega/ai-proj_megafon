@@ -61,11 +61,12 @@ flowchart LR
 
 | Задача | Модель (OpenRouter) | Фолбэк | Почему |
 |---|---|---|---|
-| классификация, реранк | qwen/qwen3.7-flash | glm-5.3-flash, deepseek-v4-flash | короткий JSON, $0,03/$0,13 за 1 млн |
+| классификация | z-ai/glm-5.3-flash | deepseek-v4-flash, qwen3.7-flash | **по замеру** (`evals/routing_bench.py`): 93,8% за $0,17/1000 вызовов; Kimi K3.1 Pro — та же точность в 5 раз дороже |
+| реранк | qwen/qwen3.7-flash | deepseek-v4-flash | короткий JSON, $0,03/$0,13 за 1 млн, рассуждения отключены |
 | извлечение утверждений, кодирование интервью | deepseek/deepseek-v4.1-flash | qwen3.8-flash | длинный контекст 1 млн, дёшево |
 | сжатие | qwen/qwen3.7-flash | deepseek-v4-flash | экономия контекста основной модели |
 | модельные респонденты, интервьюер | deepseek-v4-flash / qwen3.7-flash | qwen3.8-flash | ролевая генерация; ротация — опция |
-| судья, критик | deepseek/deepseek-v4-pro, moonshotai/kimi-k2.6 | qwen3.7-plus | **другое семейство**, чем основная модель |
+| судья, критик | deepseek/deepseek-v4-pro | kimi-k2.6, qwen3.7-plus | **другое семейство**, чем основная модель; Kimi сильный, но отвечает 3–6 мин — запасной |
 | зрение | qwen/qwen3.8-flash | glm-5.3-flash | скриншоты интерфейсов |
 | аудио | qwen/qwen3.8-omni-flash | xiaomi/mimo-v2.6-flash | расшифровка интервью |
 | синтез стратегии | основная модель IDE | — | цена ошибки максимальна |

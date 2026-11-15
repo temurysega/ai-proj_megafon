@@ -37,7 +37,17 @@ DEFAULT = ["qwen/qwen3.7-flash", "z-ai/glm-5.3-flash", "z-ai/glm-5.3", "deepseek
 catalog = "\n".join(f"- {k}: {v[0]}" for k, v in SKILLS.items())
 
 
+def show():
+    rows = json.loads((ROOT / "evals" / "results" / "routing_bench.json").read_text(encoding="utf-8"))
+    print(f"{'Модель':<30} {'Точность':>9} {'$ за 1000 вызовов':>19} {'с/вызов':>8}")
+    for r in sorted(rows, key=lambda r: (-r["accuracy_pct"], r["usd_per_1000_calls"])):
+        print(f"{r['model']:<30} {r['accuracy_pct']:>8}% {r['usd_per_1000_calls']:>19} {r['sec_per_call']:>8}")
+    print(f"\n{len(CASES)} размеченных запросов · выбрано: GLM-5.3-flash первой, DeepSeek V4 flash и Qwen 3.7 flash — запасные")
+
+
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "--show":
+        return show()
     models = sys.argv[1].split(",") if len(sys.argv) > 1 else DEFAULT
     out = []
     for m in models:
