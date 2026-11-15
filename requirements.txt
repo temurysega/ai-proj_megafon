@@ -11,6 +11,7 @@ markdown>=3.5
 rich>=13.7
 python-dotenv>=1.0
 snowballstemmer>=2.2
+matplotlib>=3.8  # графики в воспроизводимых скриптах анализа данных (sf data run)
 # Интеграции (рекомендуется)
 mcp>=1.2  # поддерживаются 1.x (FastMCP) и 2.x (MCPServer)
 playwright>=1.45

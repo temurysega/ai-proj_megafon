@@ -368,7 +368,7 @@ def cmd_doctor(a):
             rows.append(f"❌ {mod} — pip install -r requirements.txt")
             ok = False
     for mod, why in [("mcp", "MCP-сервер"), ("playwright", "скриншоты/PDF"), ("snowballstemmer", "стемминг поиска"),
-                     ("imageio_ffmpeg", "видео")]:
+                     ("matplotlib", "графики в скриптах анализа данных"), ("imageio_ffmpeg", "видео")]:
         try:
             importlib.import_module(mod)
             rows.append(f"✅ {mod} ({why})")
