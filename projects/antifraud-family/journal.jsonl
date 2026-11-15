@@ -344,3 +344,10 @@
 {"ts": "2026-11-15T11:24:06+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
 {"ts": "2026-11-15T11:24:24+03:00", "actor": "agent", "action": "file_write", "detail": "research/quality/red-team-strategy.md", "status": "ok"}
 {"ts": "2026-11-15T11:25:04+03:00", "actor": "agent", "action": "checkpoint", "detail": "стратегия v2 после красной команды и факт-чека; пересмотр по новым данным ЦБ (C048→C074); базовая линия получена", "status": "ok", "next_action": "оценка жюри: агент против обычного чата; затем отчёт render --pdf и ворота G3"}
+{"ts": "2026-11-15T11:26:02+03:00", "actor": "agent", "action": "stage", "detail": "strategy → review (in_progress) стратегия v2 прошла красную команду и проверку фактов", "status": "ok"}
+{"ts": "2026-11-15T11:26:06+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
+{"ts": "2026-11-15T11:27:09+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:28:02+03:00", "actor": "agent", "action": "claim_added", "detail": "C077 [fact] По описанию МегаФона: «Моя безопасность +» (149 ₽ за 30 дней) — ИИ-защита и разъединение подозрительных разговоров для с", "status": "ok"}
+{"ts": "2026-11-15T11:28:12+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:29:55+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-15T11:29:59+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}

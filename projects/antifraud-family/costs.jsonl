@@ -15,3 +15,5 @@
 {"type": "subagent", "usd": 0.37, "note": "red-team стратегии", "tokens": 62262, "stage": "strategy", "model": "claude-sonnet", "ts": "2026-11-15T11:24:44+03:00"}
 {"type": "subagent", "usd": 0.24, "note": "fact-checker стратегии", "tokens": 119465, "stage": "strategy", "model": "claude-haiku", "ts": "2026-11-15T11:24:44+03:00"}
 {"type": "subagent", "usd": 0.36, "note": "базовая линия: обычный чат", "tokens": 60071, "stage": "eval", "model": "claude-sonnet", "ts": "2026-11-15T11:24:45+03:00"}
+{"type": "subagent", "usd": 0.35, "note": "jury слепая оценка", "tokens": 58310, "stage": "eval", "model": "claude-sonnet", "ts": "2026-11-15T11:28:52+03:00"}
+{"type": "subagent", "usd": 0.14, "note": "jury слепая оценка", "tokens": 71297, "stage": "eval", "model": "claude-haiku", "ts": "2026-11-15T11:28:53+03:00"}

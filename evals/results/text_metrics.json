@@ -1,0 +1,28 @@
+{
+  "agent": {
+    "chars": 54834,
+    "distinct_urls": 0,
+    "claim_refs": 64,
+    "numbers": 118,
+    "options": 7,
+    "has_status_quo": true,
+    "has_close": true,
+    "objections": 30,
+    "marks_hypotheses": true,
+    "marks_unknowns": true,
+    "validation_plan": true
+  },
+  "baseline": {
+    "chars": 18518,
+    "distinct_urls": 0,
+    "claim_refs": 0,
+    "numbers": 1,
+    "options": 4,
+    "has_status_quo": true,
+    "has_close": true,
+    "objections": 15,
+    "marks_hypotheses": true,
+    "marks_unknowns": true,
+    "validation_plan": true
+  }
+}

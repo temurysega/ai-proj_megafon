@@ -142,7 +142,12 @@ def stop(ev: dict) -> None:
     tp = ev.get("transcript_path")
     if tp:
         try:
-            usage = costs.ide_usage_from_transcript(tp)
+            from .project import load_state
+            created = load_state(pid).get("created", "")
+            # считаем только сообщения после создания проекта (UTC в транскрипте → сравнение по UTC)
+            import datetime as _dt
+            since = _dt.datetime.fromisoformat(created).astimezone(_dt.timezone.utc).isoformat() if created else ""
+            usage = costs.ide_usage_from_transcript(tp, since)
             if usage.get("messages"):
                 costs.upsert_ide_session(pid, ev.get("session_id", "unknown"), usage)
         except Exception:

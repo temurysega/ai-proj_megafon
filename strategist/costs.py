@@ -40,8 +40,8 @@ def price_for_model(model: str) -> dict:
     return prices.get("claude-opus", DEFAULT_IDE_PRICES["claude-opus"])
 
 
-def ide_usage_from_transcript(transcript_path: str) -> dict:
-    """Суммирует usage сообщений ассистента в JSONL-транскрипте Claude Code."""
+def ide_usage_from_transcript(transcript_path: str, since: str = "") -> dict:
+    """Суммирует usage сообщений ассистента в JSONL-транскрипте Claude Code (только после момента since, ISO)."""
     tot = {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0, "usd": 0.0, "model": "", "messages": 0}
     seen = set()
     p = Path(transcript_path)
@@ -54,6 +54,8 @@ def ide_usage_from_transcript(transcript_path: str) -> dict:
             except Exception:
                 continue
             msg = r.get("message") or {}
+            if since and r.get("timestamp") and str(r["timestamp"])[:19] < since[:19]:
+                continue
             u = msg.get("usage")
             if not u or r.get("type") != "assistant":
                 continue
