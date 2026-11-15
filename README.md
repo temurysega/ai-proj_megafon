@@ -12,6 +12,7 @@
 | **Результат демо** | 41 источник, 72 активных утверждения с цитатами, 7 вариантов, продуктовая и коммуникационная стратегии, план проверки, журнал решений; 0 ошибок `sf check` |
 | **Второй проект** | [`projects/esim-travel`](projects/esim-travel) — «eSIM для путешествий», проведён отдельным агентом **с нуля без участия человека** ([one-pager](projects/esim-travel/strategy/one-pager.md), [PDF](projects/esim-travel/report/index.pdf)) |
 | **Сравнение с обычным чатом** | 6 слепых оценок судьями двух производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12 — [`evals/results/summary.md`](evals/results/summary.md) |
+| **Сайт** | [`site/index.html`](site/index.html) — основные пути работы агента: новая задача, проверяемость, пауза и продолжение, пересмотр при новых данных, сопровождение решения. Публикуется через GitHub Pages (`.github/workflows/pages.yml`) |
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Стратег Фабрики продуктов</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: одна колонка-«досье» шириной ~1040px; каждый путь работы — раздел с картой шагов и реальным примером из демо-проекта. */
+:root{
+  --paper:#f5f7f8; --sheet:#ffffff; --ink:#15212b; --muted:#5a6773; --line:#d9e0e5;
+  --accent:#0b6e7a; --accent-soft:#e1f1f2; --hypo:#a8650a; --hypo-soft:#fbf0dc; --stop:#b4232f; --stop-soft:#fbe5e7;
+  --human:#3b4fb8; --human-soft:#e7eaff;
+  --f-display:"Manrope","Segoe UI",Arial,sans-serif; --f-body:"Golos Text","Segoe UI",Arial,sans-serif; --f-mono:"JetBrains Mono",Consolas,"Courier New",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f161c; --sheet:#151f27; --ink:#e6edf2; --muted:#9aa8b4; --line:#2a3743;
+  --accent:#4cc3cf; --accent-soft:#12343a; --hypo:#e4a64a; --hypo-soft:#3a2c14; --stop:#f07a84; --stop-soft:#3c1b20;
+  --human:#9aa8ff; --human-soft:#22284a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f161c; --sheet:#151f27; --ink:#e6edf2; --muted:#9aa8b4; --line:#2a3743;
+  --accent:#4cc3cf; --accent-soft:#12343a; --hypo:#e4a64a; --hypo-soft:#3a2c14; --stop:#f07a84; --stop-soft:#3c1b20;
+  --human:#9aa8ff; --human-soft:#22284a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.08;font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);font-weight:800;line-height:1.2}
+h3{font-size:17px;font-weight:800}
+p{margin:0}
+.eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+code,.mono{font-family:var(--f-mono);font-size:.88em}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center;padding-block:12px 36px;border-bottom:1px solid var(--line)}
+.hero > *{min-width:0}
+.lead{font-size:19px;max-width:60ch;margin-top:14px}
+.request{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
+.request .q{font-size:15.5px;margin:8px 0 14px}
+.arrow{font:600 12px var(--f-mono);color:var(--muted);margin:10px 0}
+.out{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font:600 12px/1 var(--f-mono);padding:6px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+
+/* nav */
+.paths{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
+.paths a{font:600 13px var(--f-body);text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--sheet);border-radius:999px;padding:7px 13px}
+.paths a:hover{border-color:var(--accent);color:var(--accent)}
+
+section.path{padding-block:46px 8px;display:grid;gap:18px}
+section.path > *{min-width:0}
+.path-head{display:grid;gap:8px;max-width:72ch}
+
+/* stage rail */
+.rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;counter-reset:st}
+.stage{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px;align-content:start;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.stage[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.stage .n{font:600 11px var(--f-mono);color:var(--muted)}
+.stage b{font:800 14px/1.25 var(--f-display)}
+.gate{font:600 11px/1 var(--f-mono);color:var(--human);background:var(--human-soft);padding:4px 6px;border-radius:6px;justify-self:start}
+.stage-detail{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.stage-detail > *{min-width:0}
+.stage-detail ul{margin:8px 0 0;padding-left:18px}
+.cmd{font:13px/1.5 var(--f-mono);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-x:auto;white-space:pre}
+
+/* evidence chain */
+.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch}
+.node{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start;position:relative}
+.node .id{font:600 13px var(--f-mono);color:var(--accent)}
+.node:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);font:700 16px var(--f-mono);color:var(--muted)}
+.types{display:flex;flex-wrap:wrap;gap:6px}
+.t{font:600 12px/1 var(--f-mono);padding:6px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent)}
+.t.h{border-color:var(--hypo);color:var(--hypo);border-style:dashed}
+.t.s{border-color:var(--muted);color:var(--muted);border-style:dotted}
+.doc{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.doc p{max-width:75ch}
+button.c{font:600 12px/1 var(--f-mono);color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:2px 5px;cursor:pointer;vertical-align:1px}
+button.c.h{color:var(--hypo);border-color:var(--hypo);border-style:dashed}
+button.c[aria-expanded="true"]{background:var(--accent-soft)}
+.claim-card{border-left:3px solid var(--accent);background:var(--paper);border-radius:0 10px 10px 0;padding:12px 14px;font-size:14.5px}
+.claim-card .q{font-style:italic;color:var(--muted);margin-top:6px}
+
+/* two-col generic */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.split > *{min-width:0}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:start}
+.term{font:12.5px/1.55 var(--f-mono);background:#10181f;color:#dbe6ee;border-radius:12px;padding:14px;overflow-x:auto;white-space:pre}
+.term .g{color:#8ce99a}.term .y{color:#ffd166}.term .b{color:#9ec5ff}.term .r{color:#ff8f8f}
+.steps{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.steps .k{font:600 12px/28px var(--f-mono);text-align:center;border-radius:8px;background:var(--accent-soft);color:var(--accent)}
+.steps .k.hm{background:var(--human-soft);color:var(--human)}
+
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{font:600 12px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.tbl{overflow-x:auto;background:var(--sheet);border:1px solid var(--line);border-radius:14px}
+.was{color:var(--stop)} .now{color:var(--accent)}
+.status{font:600 11px/1 var(--f-mono);padding:4px 7px;border-radius:6px;white-space:nowrap}
+.st-due{background:var(--hypo-soft);color:var(--hypo)} .st-block{background:var(--stop-soft);color:var(--stop)} .st-ok{background:var(--accent-soft);color:var(--accent)}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.roles .card b{font:800 15px var(--f-display)}
+.bench{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:150px 1fr 52px;gap:10px;align-items:center;font-size:13.5px}
+.bar .track{height:10px;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.bar .fill{height:100%;background:var(--accent)}
+.bar .fill.lo{background:var(--muted)}
+.bar span:last-child{font:600 13px var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+
+/* proof */
+.proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.proof .card b{font:800 30px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.score{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+
+.run{display:grid;gap:10px}
+.run > *{min-width:0}
+.runline{display:flex;gap:8px;align-items:stretch}
+.runline .cmd{flex:1;min-width:0}
+.copy{font:600 12px var(--f-body);border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:10px;padding:0 12px;cursor:pointer}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:grid;gap:6px}
+
+@media (max-width:880px){
+  .hero,.stage-detail,.split{grid-template-columns:1fr}
+  .rail{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .chain{grid-template-columns:1fr 1fr}
+  .node:nth-child(2)::after{display:none}
+  .roles,.proof{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .rail{grid-template-columns:1fr 1fr}
+  .chain,.roles,.proof,.score{grid-template-columns:1fr}
+  .node::after{display:none}
+  .bar{grid-template-columns:110px 1fr 46px}
+}
+@media (prefers-reduced-motion:no-preference){.stage,.paths a{transition:border-color .15s,color .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">ИИ-агент для руководителя цифрового продукта</p>
+      <h1>Стратег Фабрики продуктов</h1>
+      <p class="lead">Ведёт от размытого запроса до продуктовой и коммуникационной стратегии и не бросает после решения. Каждое существенное утверждение связано с источником и дословной цитатой, поэтому вывод можно проверить, а не принять на веру.</p>
+      <nav class="paths" aria-label="Пути работы">
+        <a href="#p1">Новая задача</a><a href="#p2">Проверяемость</a><a href="#p3">Пауза и продолжение</a>
+        <a href="#p4">Новые данные</a><a href="#p5">После решения</a><a href="#roles">Кто что делает</a><a href="#run">Запуск</a>
+      </nav>
+    </div>
+    <aside class="request" aria-label="Пример запроса">
+      <p class="eyebrow">Запрос из демо-проекта</p>
+      <p class="q">«Базовую защиту от мошенников все операторы дают бесплатно. Что делать с семейной защитой — развивать как платную, сделать бесплатной или свернуть? И что говорить людям?»</p>
+      <p class="arrow">↓ через 2 сессии</p>
+      <div class="out"><span class="pill">41 источник</span><span class="pill">72 утверждения</span><span class="pill">7 вариантов</span><span class="pill">стратегии</span><span class="pill">план проверки</span><span class="pill">журнал решений</span></div>
+    </aside>
+  </header>
+
+  <!-- Путь 1 -->
+  <section class="path" id="p1">
+    <div class="path-head">
+      <p class="eyebrow">Путь 1</p>
+      <h2>Новая задача: от запроса до стратегии</h2>
+      <p class="muted">Агент сам выбирает следующее действие внутри стадии. Человек подключается на трёх воротах и когда нужен новый источник. Нажмите на стадию.</p>
+    </div>
+    <div class="rail" role="group" aria-label="Стадии">
+      <button class="stage" data-s="0" aria-pressed="true"><span class="n">0</span><b>Постановка</b><span class="gate">G1 · человек</span></button>
+      <button class="stage" data-s="1" aria-pressed="false"><span class="n">1</span><b>Материалы</b></button>
+      <button class="stage" data-s="2" aria-pressed="false"><span class="n">2</span><b>Исследование</b></button>
+      <button class="stage" data-s="3" aria-pressed="false"><span class="n">3</span><b>Варианты</b><span class="gate">G2 · человек</span></button>
+      <button class="stage" data-s="4" aria-pressed="false"><span class="n">4</span><b>Стратегия</b></button>
+      <button class="stage" data-s="5" aria-pressed="false"><span class="n">5</span><b>Проверка</b><span class="gate">G3 · человек</span></button>
+      <button class="stage" data-s="6" aria-pressed="false"><span class="n">6</span><b>Сопровождение</b></button>
+    </div>
+    <div class="stage-detail" id="stage-detail" aria-live="polite"></div>
+  </section>
+
+  <!-- Путь 2 -->
+  <section class="path" id="p2">
+    <div class="path-head">
+      <p class="eyebrow">Путь 2</p>
+      <h2>Проверяемость: от источника до строки стратегии</h2>
+      <p class="muted">Факт нельзя записать без источника и цитаты. Ссылки в документах проверяются сразу при записи и перед показом человеку.</p>
+    </div>
+    <div class="chain">
+      <div class="node"><span class="id">S014</span><b>Источник</b><span class="muted">КонсультантПлюс, текст 210-ФЗ. Снимок сохранён, отпечаток sha256, проверка на «инструкции для ИИ».</span></div>
+      <div class="node"><span class="id">C023</span><b>Утверждение</b><span class="muted">Тип «факт», дословная цитата, локатор «ч. 10–11», статус «активно».</span></div>
+      <div class="node"><span class="id">[C023]</span><b>Документ</b><span class="muted">Ссылка в стратегии. В отчёте наведение на метку показывает текст и источник.</span></div>
+      <div class="node"><span class="id">sf check</span><b>Проверка</b><span class="muted">Битая ссылка, факт без цитаты, опора на отозванное или синтетика как довод о спросе — ошибка.</span></div>
+    </div>
+    <div class="doc">
+      <p class="eyebrow">Фрагмент стратегии демо-проекта · нажмите на метку</p>
+      <p>С 01.03.2027 оператор отвечает деньгами за переводы после звонков с номеров, которые он не заблокировал вопреки обязанностям <button class="c" data-c="C023" aria-expanded="false">C023</button>. Пожилые чаще других сталкиваются с попытками мошенничества <button class="c" data-c="C028" aria-expanded="false">C028</button>, а покупатель семейной защиты — вероятно, их взрослые дети <button class="c h" data-c="C058" aria-expanded="false">C058</button>.</p>
+      <div class="claim-card" id="claim-card" hidden></div>
+      <div class="types" aria-label="Типы утверждений">
+        <span class="t">факт</span><span class="t">расчёт</span><span class="t">мнение</span><span class="t h">гипотеза</span><span class="t h">прогноз</span><span class="t h">допущение</span><span class="t s">синтетика</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Путь 3 -->
+  <section class="path" id="p3">
+    <div class="path-head">
+      <p class="eyebrow">Путь 3</p>
+      <h2>Пауза и продолжение в новом чате</h2>
+      <p class="muted">Состояние задачи живёт в файлах проекта, а не в истории переписки. Поэтому продолжить можно в новом чате или в другой среде.</p>
+    </div>
+    <div class="split">
+      <div class="card">
+        <ol class="steps">
+          <li><span class="k hm">1</span><span>Человек пишет «стоп». Агент завершает текущий шаг и сохраняет чекпойнт с конкретным следующим действием.</span></li>
+          <li><span class="k hm">2</span><span>Новый чат, одно слово: «продолжай».</span></li>
+          <li><span class="k">3</span><span>Хук при старте сам подаёт состояние: стадию, ворота, открытые вопросы, сроки обязательств.</span></li>
+          <li><span class="k">4</span><span>Агент не переспрашивает бриф и не повторяет исследование. Выполненные шаги не оплачиваются второй раз.</span></li>
+        </ol>
+        <p class="muted">На демо так и было: сессия оборвалась на вопросе о выборе варианта, и в новом чате агент сразу задал его снова.</p>
+      </div>
+<div class="term" aria-label="Что видит агент в новом чате">[Стратег] Восстановлено состояние проекта из файлов.
+Проект: <span class="b">antifraud-family</span>
+Режим: checkpoints · Стадия: <span class="y">3. Варианты и выбор (waiting_human)</span>
+Ворота: G1=<span class="g">passed</span>, G2=<span class="y">pending</span>, G3=pending
+Следующее действие: показать варианты человеку
+  и получить выбор (ворота G2)
+Доказательная база: источников 39, утверждений 67
+Последние действия:
+  checkpoint: options.md v2 после красной команды
+  check: ошибок <span class="g">0</span></div>
+    </div>
+  </section>
+
+  <!-- Путь 4 -->
+  <section class="path" id="p4">
+    <div class="path-head">
+      <p class="eyebrow">Путь 4</p>
+      <h2>Новые данные: что из выводов теперь неверно</h2>
+      <p class="muted">Агент меняет статус конкретного основания и проходит по графу зависимостей: какие расчёты, разделы и решения от него зависят.</p>
+    </div>
+    <div class="split">
+      <div class="card">
+        <ol class="steps">
+          <li><span class="k">1</span><span><b>Новое:</b> с 1 января 2026 года Банк России считает мошеннические операции по 12 признакам вместо 6 <span class="mono muted">(S041)</span>.</span></li>
+          <li><span class="k">2</span><span><code>sf revisit S041</code> — кандидаты: утверждения со статистикой ЦБ.</span></li>
+          <li><span class="k">3</span><span><code>sf impact C013</code> — граф нашёл три зависимых расчёта и четыре раздела.</span></li>
+          <li><span class="k">4</span><span>Вывод заменён, разделы помечены к пересмотру и обновлены, скрипт данных пересчитан.</span></li>
+        </ol>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Было</th><th>Стало</th></tr></thead>
+          <tbody>
+            <tr><td class="was">«После спада хищения снова растут: +12,4% за I полугодие 2026»</td><td class="now">«Направление 2026 года не установлено: сравнение с 2025 некорректно из-за смены методики»</td></tr>
+            <tr><td>Решение D1</td><td><span class="status st-ok">не затронуто</span> — оно не опиралось на рост 2026 года</td></tr>
+            <tr><td>Старый вывод</td><td>не удалён: статус «заменено» и ссылка на замену, история проверяема</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Путь 5 -->
+  <section class="path" id="p5">
+    <div class="path-head">
+      <p class="eyebrow">Путь 5</p>
+      <h2>После решения: обязательства и условия пересмотра</h2>
+      <p class="muted">Решение записывается с основаниями, владельцами, метриками, сроками и триггерами. Агент подсказывает, что решать сейчас.</p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Что</th><th>Кто</th><th>Срок</th><th>Состояние</th></tr></thead>
+        <tbody>
+          <tr><td>K1 · Выгрузка: кто платит, что использует, отток, затраты на номер</td><td>аналитик продукта</td><td class="mono">27.11</td><td><span class="status st-due">скоро срок</span></td></tr>
+          <tr><td>K7 · Нужен ли близкому смартфон, есть ли SMS-согласие</td><td>руководитель продукта</td><td class="mono">27.11</td><td><span class="status st-due">скоро срок</span></td></tr>
+          <tr><td>K3 · Правки страницы и пути подключения, A/B-тест</td><td>руководитель продукта</td><td class="mono">18.12</td><td><span class="status st-block">ждёт K2, K7, K5</span></td></tr>
+          <tr><td>K4 · Эксперимент на неплатящих</td><td>аналитик продукта</td><td class="mono">01.02</td><td><span class="status st-block">ждёт K1, K2, K3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="split">
+      <div class="card"><h3>Триггеры пересмотра</h3><p class="muted">Дата (вступление закона 01.03.2027), смена статуса ключевого основания (например, конкурент изменил условия), порог метрики (доля согласий близких ниже 40% — остановка).</p></div>
+      <div class="card"><h3>Правило решения</h3><p class="muted">Решение о бесплатной базе — по нижней границе доверительного интервала эффекта. «Незначимо» не трактуется как «эффекта нет».</p></div>
+    </div>
+  </section>
+
+  <!-- Роли -->
+  <section class="path" id="roles">
+    <div class="path-head">
+      <p class="eyebrow">Кто что делает</p>
+      <h2>Сильная модель думает, узкие задачи — специалистам</h2>
+    </div>
+    <div class="roles">
+      <div class="card"><b>Основная модель IDE</b><p class="muted">Постановка, синтез, варианты, стратегия — там, где цена ошибки выше. Читает правила из AGENTS.md и навыки стадий.</p></div>
+      <div class="card"><b>Субагенты</b><p class="muted">Исследователи по одному решающему вопросу, проверка фактов, красная команда, разбор интерфейсов, модельные респонденты, жюри. Читающие не могут писать в проект.</p></div>
+      <div class="card"><b>Китайские модели</b><p class="muted">Через OpenRouter: классификация, извлечение утверждений, интервью, судьи, зрение, аудио. У каждой задачи — цепочка запасных моделей.</p></div>
+    </div>
+    <div class="card">
+      <h3>Модель выбирается замером, а не по новизне</h3>
+      <p class="muted">Точность выбора процесса на 16 размеченных запросах.</p>
+      <div class="bench" role="img" aria-label="Точность моделей: GLM-5.3-flash 93,8%, Kimi K3.1 Pro 93,8%, DeepSeek V4 flash 81,2%, GLM-5.3 81,2%, Qwen 3.7 flash 62,5%">
+        <div class="bar"><span>GLM-5.3-flash ✓</span><span class="track"><span class="fill" style="width:93.8%;display:block"></span></span><span>93,8%</span></div>
+        <div class="bar"><span>Kimi K3.1 Pro</span><span class="track"><span class="fill lo" style="width:93.8%;display:block"></span></span><span>93,8%</span></div>
+        <div class="bar"><span>DeepSeek V4 flash</span><span class="track"><span class="fill lo" style="width:81.2%;display:block"></span></span><span>81,2%</span></div>
+        <div class="bar"><span>GLM-5.3</span><span class="track"><span class="fill lo" style="width:81.2%;display:block"></span></span><span>81,2%</span></div>
+        <div class="bar"><span>Qwen 3.7 flash</span><span class="track"><span class="fill lo" style="width:62.5%;display:block"></span></span><span>62,5%</span></div>
+      </div>
+      <p class="muted">Большая новая модель оказалась хуже своей быстрой версии. Выбрана GLM-5.3-flash, остальные — запасные.</p>
+    </div>
+  </section>
+
+  <!-- Доказательства -->
+  <section class="path" id="proof">
+    <div class="path-head">
+      <p class="eyebrow">Проверено на деле</p>
+      <h2>Два проекта и слепое сравнение с обычным чатом</h2>
+    </div>
+    <div class="proof">
+      <div class="card"><b>2</b><span class="muted">проекта: демо с человеком на воротах и второй, сделанный агентом с нуля без участия человека</span></div>
+      <div class="card"><b>0</b><span class="muted">ошибок проверки доказательной базы в обоих проектах</span></div>
+      <div class="card"><b>12/12</b><span class="muted">решающих фактов у агента против 0–4 у обычного чата</span></div>
+      <div class="card"><b>6</b><span class="muted">слепых оценок судьями трёх производителей: Claude, DeepSeek, Qwen</span></div>
+    </div>
+    <div class="score">
+      <div class="card"><h3>Агент</h3><div class="bar"><span>средний балл</span><span class="track"><span class="fill" style="width:93%;display:block"></span></span><span>8,8–10</span></div></div>
+      <div class="card"><h3>Обычный чат</h3><div class="bar"><span>средний балл</span><span class="track"><span class="fill lo" style="width:48%;display:block"></span></span><span>3,0–6,6</span></div></div>
+    </div>
+    <p class="muted">Обычный чат предложил сделать бесплатным то, за что пакет сегодня берёт деньги: без источников он не знал состав пакета.</p>
+  </section>
+
+  <!-- Запуск -->
+  <section class="path" id="run">
+    <div class="path-head">
+      <p class="eyebrow">Запуск</p>
+      <h2>Три команды и задача агенту</h2>
+      <p class="muted">Python 3.10+ и среда с агентом: Claude Code, Cursor, Codex или Copilot. Ключ OpenRouter не обязателен.</p>
+    </div>
+    <div class="run">
+      <div class="runline"><div class="cmd" id="c1">pip install -r requirements.txt</div><button class="copy" data-copy="c1">Копировать</button></div>
+      <div class="runline"><div class="cmd" id="c2">python -m playwright install chromium</div><button class="copy" data-copy="c2">Копировать</button></div>
+      <div class="runline"><div class="cmd" id="c3">python sf.py doctor --install-git-hook</div><button class="copy" data-copy="c3">Копировать</button></div>
+      <p class="muted">Затем откройте папку в среде с агентом и напишите задачу своими словами. Продолжить после перерыва — «продолжай» в новом чате.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Репозиторий: <span class="mono">github.com/temurysega/ai-proj_megafon</span></span>
+    <span>Решение команды для хакатона «Стратег Фабрики продуктов». Не официальный ресурс компании; в работе использованы только открытые данные.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var stages=[
+    {t:"Постановка задачи",d:["Читает запрос и приложенные материалы, заполняет бриф по шаблону.","Задаёт не больше трёх вопросов: у каждого «зачем» и значение по умолчанию.","Неизвестное записывает допущением в реестр, а не придумывает."],o:"brief.md · ворота G1: человек подтверждает",c:"python sf.py new antifraud-family --title \"…\"\npython sf.py ask add --text \"Что важнее: удержание или выручка?\"\npython sf.py gate G1 pass --note \"…\""},
+    {t:"Сбор материалов",d:["Ищет открытые источники только на разрешённых доменах.","Сохраняет снимок страницы с отпечатком и проверяет текст на «инструкции для ИИ».","Принимает файлы: PDF, Word, таблицы, скриншоты, аудио, видео."],o:"реестр источников S001…",c:"python sf.py fetch https://www.cbr.ru/… --reliability A\npython sf.py ingest interview.mp3 --transcribe\npython sf.py capture https://… --name page"},
+    {t:"Исследование",d:["Строит план от вопросов, ответ на которые может изменить решение.","Запускает исследователей параллельно, сверяет их цитаты со снимками.","Пишет картину: известно, предполагаем, не знаем, противоречия."],o:"research/plan.md · research/findings.md",c:"python sf.py research-import DQ1.json\npython sf.py data run research/data/cbr_quarterly.py\npython sf.py respondents --personas personas.yaml --guide guide.md"},
+    {t:"Варианты",d:["Не меньше трёх содержательно разных вариантов, включая «оставить как есть» и «закрыть».","Для каждого — сильные возражения и что должно быть правдой.","Красная команда ищет слабые места до показа человеку."],o:"options.md · ворота G2: человек выбирает",c:"python sf.py llm critic --prompt-file options.md\npython sf.py check\npython sf.py gate G2 pass --note \"выбран A+\""},
+    {t:"Стратегия",d:["Продуктовая: аудитория и задача, альтернативы, направление, отказы, польза и затраты.","Коммуникационная: барьер, ключевое сообщение и его подтверждение, роль каналов.","Каждое обещание сверено со свойством продукта; план проверки с критериями решения."],o:"strategy/product.md · communication.md · validation.md",c:"python sf.py check\npython sf.py impact C054 --mark-stale"},
+    {t:"Проверка качества",d:["Проверка фактов дешёвой моделью по снимкам источников.","Красная команда по стратегии, жюри по рубрике.","Резюме для руководителя на одну страницу и отчёт HTML/PDF."],o:"one-pager.md · report/index.pdf · ворота G3",c:"python sf.py render --pdf\npython sf.py gate G3 pass --note \"…\""},
+    {t:"Сопровождение решения",d:["Журнал решений: основания, владельцы, метрики, обязательства с зависимостями.","Подсказывает, что решать сейчас и что заблокировано.","Новые данные — пересмотр по графу зависимостей."],o:"decisions.yaml",c:"python sf.py decisions due\npython sf.py decisions observe --decision D1 --metric \"…\" --value 38\npython sf.py revisit S041"}
+  ];
+  var claims={
+    C023:{k:"факт",t:"210-ФЗ (ст. 9, с 01.03.2027): оператор связи возмещает перевод без добровольного согласия, если тот стал результатом звонка с номера, который оператор не заблокировал вопреки обязанностям.",q:"«оператор связи возмещает такому физическому лицу сумму перевода»",s:"S014 · КонсультантПлюс · надёжность A"},
+    C028:{k:"факт",t:"94% россиян за год сталкивались со случаями мошенничества; чаще других — люди старше 60 лет (98%) и работающие студенты (99%).",q:"«Чаще сталкивались с попытками мошенничества опрошенные старше 60 лет (98%), работающие учащиеся и студенты (99%)»",s:"S018 · НАФИ · надёжность A"},
+    C058:{k:"гипотеза",t:"Покупатель семейной защиты — взрослые дети 30–50 лет. Косвенно: более 65% подключивших ассистента — мужчины 31–45 лет. Проверяется выгрузкой: возраст владельцев и защищаемых номеров.",q:"",s:"основано на C034, C028 · уверенность низкая"}
+  };
+  var det=document.getElementById("stage-detail");
+  function esc(x){return x.replace(/[&<>]/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[ch];});}
+  function show(i){
+    var s=stages[i];
+    det.innerHTML='<div><p class="eyebrow">Стадия '+i+'</p><h3>'+s.t+'</h3><ul>'+s.d.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+
+      '</ul><p class="muted" style="margin-top:10px">Результат: '+esc(s.o)+'</p></div><div class="cmd">'+esc(s.c)+'</div>';
+    document.querySelectorAll(".stage").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.s===String(i)));});
+  }
+  document.querySelectorAll(".stage").forEach(function(b){b.addEventListener("click",function(){show(+b.dataset.s);});});
+  show(0);
+  var card=document.getElementById("claim-card");
+  document.querySelectorAll("button.c").forEach(function(b){
+    b.addEventListener("click",function(){
+      var open=b.getAttribute("aria-expanded")==="true";
+      document.querySelectorAll("button.c").forEach(function(x){x.setAttribute("aria-expanded","false");});
+      if(open){card.hidden=true;return;}
+      var c=claims[b.dataset.c];
+      card.innerHTML='<b class="mono">'+b.dataset.c+'</b> · '+c.k+'<div>'+esc(c.t)+'</div>'+(c.q?'<div class="q">'+esc(c.q)+'</div>':'')+'<div class="muted mono" style="margin-top:6px;font-size:12px">'+esc(c.s)+'</div>';
+      card.style.borderLeftColor=c.k==="гипотеза"?"var(--hypo)":"var(--accent)";
+      card.hidden=false; b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.querySelectorAll(".copy").forEach(function(b){
+    b.addEventListener("click",function(){
+      var el=document.getElementById(b.dataset.copy), txt=el.textContent;
+      function sel(){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+      try{navigator.clipboard.writeText(txt).then(function(){b.textContent="Скопировано";setTimeout(function(){b.textContent="Копировать";},1500);},function(){sel();b.textContent="Выделено";});}
+      catch(e){sel();b.textContent="Выделено";}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
