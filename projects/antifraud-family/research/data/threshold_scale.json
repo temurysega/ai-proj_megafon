@@ -1,0 +1,93 @@
+{
+ "bases_monthly": [
+  0.01,
+  0.015,
+  0.025
+ ],
+ "thresholds": {
+  "C — бесплатная база + платный слой": {
+   "0.010": {
+    "control_quarterly_pct": 2.97,
+    "delta_pp": [
+     0.079,
+     0.121
+    ],
+    "relative_quarterly_pct": [
+     2.67,
+     4.06
+    ]
+   },
+   "0.015": {
+    "control_quarterly_pct": 4.433,
+    "delta_pp": [
+     0.118,
+     0.179
+    ],
+    "relative_quarterly_pct": [
+     2.66,
+     4.04
+    ]
+   },
+   "0.025": {
+    "control_quarterly_pct": 7.314,
+    "delta_pp": [
+     0.193,
+     0.293
+    ],
+    "relative_quarterly_pct": [
+     2.63,
+     4.0
+    ]
+   }
+  },
+  "защита ранее неплатящих семей": {
+   "0.010": {
+    "control_quarterly_pct": 2.97,
+    "delta_pp": [
+     0.038,
+     0.138
+    ],
+    "relative_quarterly_pct": [
+     1.29,
+     4.66
+    ]
+   },
+   "0.015": {
+    "control_quarterly_pct": 4.433,
+    "delta_pp": [
+     0.057,
+     0.205
+    ],
+    "relative_quarterly_pct": [
+     1.28,
+     4.63
+    ]
+   },
+   "0.025": {
+    "control_quarterly_pct": 7.314,
+    "delta_pp": [
+     0.093,
+     0.335
+    ],
+    "relative_quarterly_pct": [
+     1.27,
+     4.59
+    ]
+   }
+  },
+  "B — всем бесплатно": {
+   "0.015": {
+    "control_quarterly_pct": 4.433,
+    "delta_pp": [
+     0.175,
+     0.92
+    ],
+    "relative_quarterly_pct": [
+     3.94,
+     20.75
+    ]
+   }
+  }
+ },
+ "example_1_5pct_4pct_delta_pp": 0.1747
+}

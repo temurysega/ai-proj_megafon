@@ -30,6 +30,9 @@ projects/*/sources/raw/**/*.mp4
 projects/*/sources/raw/**/*.mov
 projects/*/sources/raw/**/*.wav
 projects/*/sources/raw/**/*.mp3
+# демонстрационные медиа с синтетическим голосом (без ПДн) — нужны, чтобы проверить ingest на чистом клоне
+!projects/antifraud-family/sources/raw/demo-interview.mp3
+!projects/antifraud-family/sources/raw/demo-video.mp4
 
 # Песочница smoke-тестов
 projects/zz-smoke*/

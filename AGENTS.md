@@ -25,7 +25,7 @@
 | 2 research | `.claude/skills/research/SKILL.md` (+ `interviews`, `ux-review`, `data-analysis` по необходимости) | `research/plan.md`, `research/findings.md`, утверждения | ответы на решающие вопросы или названные пробелы |
 | 3 options | `.claude/skills/options/SKILL.md` | `options.md` (≥3 варианта + «оставить» + «закрыть» + возражения) | **ворота G2**: человек выбирает вариант |
 | 4 strategy | `product-strategy`, `comms-strategy`, `validation-plan` | `strategy/*.md` | согласованы между собой |
-| 5 review | `.claude/skills/report/SKILL.md` | `one-pager.md`, `sf check` = 0 ошибок, отчёт | **ворота G3**: человек принимает |
+| 5 review | `.claude/skills/report/SKILL.md` | `one-pager.md`, `sf check --strict` = 0 ошибок, отчёт | **ворота G3**: человек принимает |
 | 6 support | `decision-support`, `revisit` | `decisions.yaml`, обновления | обязательства и триггеры под контролем |
 
 Переход: `python sf.py stage <стадия>`. Ворота: `python sf.py gate G1 pass --note "..."` — **только после
@@ -46,7 +46,7 @@
 - Противоречие источников → оба утверждения, статус `disputed`, разбор в `findings.md`.
 - Чего не знаешь — пиши явно: что неизвестно, почему, как влияет на решение, как узнать.
 - Твои собственные выводы — `hypothesis`, пока не подтверждены источником. Память агента — не факт.
-- Перед показом человеку: `python sf.py check` → 0 ошибок (ворота качества: `knowledge/checklists/quality-gate.md`).
+- Перед показом человеку: `python sf.py check` → 0 ошибок; перед приёмкой (G3) и сдачей — `python sf.py check --strict` → 0 ошибок: он заново сверяет каждую цитату с актуальным снимком, требует результатов текущей стадии и превращает числа без ссылок в ошибки (ворота качества: `knowledge/checklists/quality-gate.md`).
 
 ## 4. Взаимодействие с человеком
 - **Вопросы**: только те, от ответа на которые зависит следующий шаг; не больше 3 за раз; у каждого —

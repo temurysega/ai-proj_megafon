@@ -155,6 +155,9 @@ def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str
     if quote.strip() and sources:
         d = project_dir(pid)
         quote_status = _quote_status(quote, (snapshot_text(known_s[s], d) for s in sources))
+    if kind == "fact" and not quote.strip() and not (unverified_quote and locator.strip()):
+        raise StrategistError("Факт требует дословной цитаты из снимка источника (--quote). Если цитаты нет — это hypothesis; "
+                              "для скана или изображения без текста укажите --locator и --unverified-quote.")
     if kind == "fact" and quote_status == "not_found" and not unverified_quote:
         raise StrategistError("Цитата не найдена дословно в снимке источника — факт не записан. Исправьте цитату по снимку "
                               "(`sources/raw/…`); если вывод ваш — запишите его как hypothesis. Для скана или изображения без "
@@ -169,6 +172,8 @@ def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str
            "method": method, "status": "active", "created": now(), "updated": now(), "note": note}
     if quote_status:
         rec["quote_status"] = quote_status
+    if unverified_quote:
+        rec["unverified_quote"] = True
     claims.append(rec)
     write_jsonl(_claims_path(pid), claims)
     journal("claim_added", f"{cid} [{kind}] {text[:120]}" + (f" (цитата: {quote_status})" if quote_status else ""), pid=pid)
@@ -312,8 +317,11 @@ def check(pid=None, strict: bool = False) -> dict:
                 errors.append(f"{c['id']}: ссылка на несуществующий источник {s}")
         if c["kind"] in ("fact", "opinion") and not c.get("sources"):
             errors.append(f"{c['id']}: {c['kind']} без источника")
-        if c["kind"] == "fact" and c.get("status") == "active" and not (c.get("quote") or c.get("locator")):
-            warnings.append(f"{c['id']}: факт без цитаты/локатора — сложно проверить")
+        if c["kind"] == "fact" and c.get("status") == "active" and not (c.get("quote") or "").strip():
+            if c.get("unverified_quote") and c.get("locator"):
+                warnings.append(f"{c['id']}: факт со скана без текстовой цитаты — проверить по локатору «{c['locator']}»")
+            else:  # ревью 18.11: факт с пустой цитатой проходил обычную проверку с одним предупреждением
+                errors.append(f"{c['id']}: факт без дословной цитаты — добавьте цитату из снимка или смените тип на hypothesis")
         if c["kind"] == "fact" and c.get("status") == "active":
             if strict:
                 ids = [sid for sid in c.get("sources", []) if sid in srcs]

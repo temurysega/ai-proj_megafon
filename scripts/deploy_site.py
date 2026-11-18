@@ -27,6 +27,17 @@ VIDEO = {
 }
 
 
+def has_audio(path: Path) -> bool:
+    """Есть ли в видео звуковая дорожка (ffmpeg из imageio-ffmpeg)."""
+    try:
+        import imageio_ffmpeg
+    except ImportError:
+        return True  # проверить нечем — не блокируем
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner", "-i", str(path)], capture_output=True, text=True,
+                       encoding="utf-8", errors="replace")
+    return "Audio:" in r.stderr
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     host = os.environ.get("STRATEGIST_DEPLOY_HOST")
@@ -50,6 +61,10 @@ def main():
     media = 0
     for name, candidates in VIDEO.items():
         src = next((ROOT / "docs" / "video" / c for c in candidates if (ROOT / "docs" / "video" / c).exists()), None)
+        if src and name.endswith(".mp4") and not has_audio(src):
+            # 18.11: озвученный файл переименовали, и на сайт ушла немая версия под заголовком «Видео с голосом»
+            print(f"⚠ {src.name} без звуковой дорожки — видео не выложено. Соберите голос: python scripts/voiceover.py")
+            continue
         if src:
             subprocess.run(["scp", *ssh_opts, "-q", str(src), f"{host}:{remote}/files/{name}"], check=True)
             media += 1

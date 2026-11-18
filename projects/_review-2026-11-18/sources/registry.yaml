@@ -1,0 +1,26 @@
+- id: S001
+  title: Протокол испытаний и сверки с первичными файлами
+  kind: analysis
+  url: ''
+  path: sources/raw/protocol.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: a9ec0e4bf84b517f898a34de71579baa3ef09fddfe0d627c7f0a8600c7f7bf72
+  injection_flags: []
+  notes: ''
+  text_path: sources/raw/protocol.md
+- id: S002
+  title: Результаты проверки поставляемых обработчиков
+  kind: analysis
+  url: ''
+  path: sources/raw/guardrails.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: dc110a04e2a1c0865b4ec8066f3ca560cb3b81b9a087a5208cc4a0913581e9f7
+  injection_flags: []
+  notes: ''
+  text_path: sources/raw/guardrails.md

@@ -1,0 +1,34 @@
+project: _review-2026-11-18
+title: Аудит конкурсного проекта по четырём критериям
+request: ''
+created: '2026-11-18T17:07:28+03:00'
+updated: '2026-11-18T17:14:26+03:00'
+mode: checkpoints
+stage: intake
+stage_status: waiting_human
+gates:
+  G1_brief:
+    status: pending
+  G2_option:
+    status: pending
+  G3_strategy:
+    status: pending
+next_action: Перед подачей заменить немой ролик сайта озвученной версией и согласовать единицы порогов эксперимента
+  в основном кейсе.
+open_questions:
+- id: Q1
+  question: Можно открыть опубликованный сайт и Google Drive без авторизации?
+  why: Проверить путь жюри на двух доменах вне списка проекта
+  default: Проверить локальные файлы
+  status: answered
+  asked: '2026-11-18T17:08:48+03:00'
+  answer: Да, проверить обе ссылки
+  answered: '2026-11-18T17:08:59+03:00'
+stale: []
+history:
+- ts: '2026-11-18T17:07:28+03:00'
+  event: created
+  stage: intake
+last_checkpoint:
+  ts: '2026-11-18T17:14:26+03:00'
+  note: Аудит завершён. Баллы и проверяемые замечания — в review.md. Строгая проверка прошла.

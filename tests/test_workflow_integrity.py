@@ -161,3 +161,17 @@ def test_one_pager_cost_must_match_ledger(workspace):
     assert any("расходится с журналом" in e for e in evidence.check()["errors"])
     (workspace / "strategy" / "one-pager.md").write_text("# Резюме\n**Стоимость проекта ≈ $1,00**\n", encoding="utf-8")
     assert not any("расходится" in e for e in evidence.check()["errors"])
+
+
+def test_fact_without_quote_is_refused_and_flagged(workspace, tmp_path):
+    # ревью 18.11: `claim add` сохранял активный факт с источником и пустой цитатой, обычный check давал только предупреждение
+    note = tmp_path / "заметка.md"
+    note.write_text("Абонентов стало больше.", encoding="utf-8")
+    src = ingest.ingest(str(note))
+    with pytest.raises(StrategistError, match="цитат"):
+        evidence.add_claim("Абонентов стало больше", "fact", [src["id"]])
+    claims = evidence.load_claims()
+    claims.append({"id": "C900", "text": "старый факт без цитаты", "kind": "fact", "sources": [src["id"]], "quote": "",
+                   "locator": "", "status": "active"})
+    evidence.write_jsonl(evidence._claims_path(None), claims)
+    assert any("C900" in e and "без дословной цитаты" in e for e in evidence.check()["errors"])
