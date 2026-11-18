@@ -1,6 +1,6 @@
 # Видео: сквозной путь агента «Стратег»
 
-Смотреть: https://mgim.neblanki.tech/#video (файл 50 МБ в репозитории не хранится; собирается заново скриптами ниже) · длительность 08:17 · 1280×720 ·
+Смотреть: https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing · https://mgim.neblanki.tech/#video (файл 50 МБ в репозитории не хранится; собирается заново скриптами ниже) · длительность 08:17 · 1280×720 ·
 субтитры `docs/video/subtitles-voice.srt` / `demo-voice.vtt`. Видео записано автоматически скриптом `scripts/record_video.py`;
 голос наложен `scripts/voiceover.py`: каждая фраза стоит на своей подписи (опорные точки — `docs/video/voice_anchors.json`),
 где фраза длиннее сцены, кадр удерживается.
