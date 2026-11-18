@@ -1,0 +1,228 @@
+{
+  "cases": 26,
+  "topics": [
+    "логистика",
+    "образование",
+    "розница",
+    "финтех"
+  ],
+  "routes": {
+    "rules": 14,
+    "rules-weak": 12
+  },
+  "correct_without_question": 14,
+  "wrong_without_question": 0,
+  "questions": 12,
+  "forced_choice_correct": 17,
+  "forced_choice_wrong": 9,
+  "results": [
+    {
+      "topic": "образование",
+      "skill": "intake",
+      "request": "«Хочу что-нибудь с репетиторами» — такое поручение пришло от директора. Какие детали согласовать с ним в первую очередь?",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "логистика",
+      "skill": "intake",
+      "request": "Помоги подготовить бриф перед стартом работы над личным кабинетом перевозчика.",
+      "proposed_skill": "intake",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "розница",
+      "skill": "source-collection",
+      "request": "Собери ссылки на публичные условия программ лояльности у трёх продуктовых сетей.",
+      "proposed_skill": "source-collection",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "source-collection",
+      "request": "У меня есть коммерческое предложение в PDF и таблица с расписанием курсов. Зарегистрируй оба файла.",
+      "proposed_skill": "source-collection",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "логистика",
+      "skill": "research",
+      "request": "Почему покупатели отказываются от постаматов? Сопоставь объяснения магазинов с наблюдениями перевозчиков.",
+      "proposed_skill": "research",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "финтех",
+      "skill": "research",
+      "request": "Какие пробелы остаются в наших знаниях о том, как небольшие магазины выбирают эквайринг?",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "розница",
+      "skill": "interviews",
+      "request": "Составь гайд интервью с кассирами о том, как они возвращают деньги покупателям.",
+      "proposed_skill": "interviews",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "interviews",
+      "request": "По этим записям бесед с учителями выдели причины, по которым они перестали выдавать задания через сервис.",
+      "proposed_skill": "research",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "логистика",
+      "skill": "ux-review",
+      "request": "На скриншоте экрана выбора ячейки курьеры путают два действия. Что видно на макете?",
+      "proposed_skill": "ux-review",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "финтех",
+      "skill": "ux-review",
+      "request": "Разбери путь от первого экрана заявки на карту до подтверждения доставки по этим картинкам.",
+      "proposed_skill": "ux-review",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "образование",
+      "skill": "data-analysis",
+      "request": "Посчитай, как менялась доля учеников, завершивших второй урок, по неделям регистрации. Выгрузка в CSV приложена.",
+      "proposed_skill": "data-analysis",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "логистика",
+      "skill": "data-analysis",
+      "request": "Есть журнал «время заказа — время вручения». Покажи медиану и девяностый процентиль по каждому городу.",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "розница",
+      "skill": "options",
+      "request": "Сравни варианты подписки на доставку, включая её полное закрытие. Какие возражения есть к каждому варианту?",
+      "proposed_skill": "options",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "options",
+      "request": "Нужны три разных способа обойти дефицит наставников. Для каждого объясни, чем мы рискуем.",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "финтех",
+      "skill": "product-strategy",
+      "request": "Для платёжного терминала уже выбран фокус на самозанятых. Зафиксируй их задачу, обещанную пользу, экономику и то, что исключаем из продукта.",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "логистика",
+      "skill": "product-strategy",
+      "request": "Переведи выбор «доставка для аптек» в продуктовую стратегию с позиционированием и моделью монетизации.",
+      "proposed_skill": "product-strategy",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "розница",
+      "skill": "comms-strategy",
+      "request": "Как объяснить владельцам магазинов ценность электронных ценников? Выбери канал и ключевое сообщение для закупщика.",
+      "proposed_skill": "comms-strategy",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "comms-strategy",
+      "request": "Родители считают занятия игрой. Что обещать им в рекламе и чем подкрепить обещание?",
+      "proposed_skill": "comms-strategy",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "финтех",
+      "skill": "validation-plan",
+      "request": "Спроектируй эксперимент для новой формы заявки. Нужны метрика успеха, критерий остановки и срок наблюдения.",
+      "proposed_skill": "validation-plan",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "розница",
+      "skill": "validation-plan",
+      "request": "Сколько недель наблюдать за покупателями и с кем их сравнивать, чтобы понять, помогла ли отмена купона?",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "логистика",
+      "skill": "decision-support",
+      "request": "Какой дедлайн поставили ответственному за интеграцию с перевозчиком и что у него заблокировано?",
+      "proposed_skill": "decision-support",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "decision-support",
+      "request": "После утверждения программы школы какие обещания мы должны исполнить к пятнице и кто за них отвечает?",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "финтех",
+      "skill": "revisit",
+      "request": "Появились новые данные о доле отказов эквайринга. Покажи, какие из прошлых выводов придётся пересмотреть.",
+      "proposed_skill": "revisit",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "розница",
+      "skill": "revisit",
+      "request": "Поставщик поднял стоимость доставки вдвое. На какие части уже принятого решения это влияет?",
+      "proposed_skill": "intake",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    },
+    {
+      "topic": "логистика",
+      "skill": "report",
+      "request": "Подготовь итог обсуждения для директора склада — резюме и полный отчёт для его команды.",
+      "proposed_skill": "report",
+      "method": "rules",
+      "outcome": "correct"
+    },
+    {
+      "topic": "образование",
+      "skill": "report",
+      "request": "Завтра совет школы. Уложи результаты уже законченного исследования в один лист для обсуждения.",
+      "proposed_skill": "research",
+      "method": "rules-weak",
+      "outcome": "clarify"
+    }
+  ]
+}

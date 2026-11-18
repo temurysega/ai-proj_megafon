@@ -18,6 +18,7 @@ GATES = {
     "G3_strategy": "Стратегия принята человеком",
 }
 GATE_ALIASES = {"G1": "G1_brief", "G2": "G2_option", "G3": "G3_strategy"}
+GATE_STAGES = {"materials": "G1_brief", "strategy": "G2_option", "support": "G3_strategy"}
 DEFAULT_NEXT = {
     "materials": "Собрать материалы по навыку source-collection; параллельно составить research/plan.md",
     "research": "Ответить на решающие вопросы из research/plan.md (навык research) и написать research/findings.md",
@@ -128,16 +129,25 @@ def new_project(pid: str, title: str, request: str = "", mode: str = "checkpoint
     return d
 
 
+def missing_gates(state: dict, stage: str) -> list[str]:
+    gates = state.get("gates", {})
+    return [GATE_STAGES[s] for s in STAGES[:STAGES.index(stage) + 1]
+            if s in GATE_STAGES and gates.get(GATE_STAGES[s], {}).get("status") != "passed"]
+
+
 def set_stage(stage: str, status: str = "in_progress", pid: str | None = None, note: str = "") -> dict:
     if stage not in STAGES:
         raise StrategistError(f"Неизвестная стадия '{stage}'. Допустимо: {', '.join(STAGES)}")
     st = load_state(pid)
-    # ворота: нельзя уйти в стратегию без выбранного варианта (если режим checkpoints)
-    if st.get("mode") == "checkpoints":
-        need = {"materials": "G1_brief", "strategy": "G2_option", "support": "G3_strategy"}.get(stage)
-        if need and st["gates"].get(need, {}).get("status") != "passed":
-            raise StrategistError(f"Ворота {need} ({GATES[need]}) не пройдены. Сначала получите решение "
-                                  f"человека: `python sf.py gate {need[:2]} pass --note \"...\"`.")
+    pending = missing_gates(st, stage)
+    if pending:
+        gate_id = pending[0]
+        if st.get("mode") == "autopilot":
+            action, decision = "запишите основание допущения", "assume"
+        else:
+            action, decision = "получите и запишите решение человека", "pass"
+        raise StrategistError(f"Для стадии {stage} нужны ворота {gate_id} ({GATES[gate_id]}). "
+                              f"Сначала {action}: python sf.py gate {gate_id[:2]} {decision} --note \"...\"")
     prev = st.get("stage")
     st["stage"], st["stage_status"] = stage, status
     if prev != stage:

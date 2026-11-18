@@ -15,6 +15,7 @@ import yaml
 
 from .common import StrategistError, now, read_yaml, sha256_text, slugify
 from .evidence import add_claim, add_source
+from .importer import verify_quote
 from .llm import ask, task_cfg
 from .project import journal, project_dir
 from .safety import scrub_pii
@@ -124,6 +125,36 @@ CODE_PROMPT = """Закодируй транскрипт интервью для
 {data}"""
 
 
+def has_interview_consent(text: str) -> bool:
+    """Проверить метаданные согласия перед чтением транскрипта внешней моделью."""
+    lines = text.lstrip("\ufeff\r\n").splitlines()
+    if lines and lines[0].strip() == "---":
+        try:
+            end = lines.index("---", 1)
+            metadata = yaml.load("\n".join(lines[1:end]), Loader=yaml.BaseLoader)
+        except (ValueError, yaml.YAMLError):
+            return False
+        consent = metadata.get("consent") if isinstance(metadata, dict) else None
+    else:
+        # В существующих файлах R01–R05 метаданные следуют за комментарием
+        # и заканчиваются пустой строкой. Реплики собеседников в шапку не входят.
+        if lines and re.fullmatch(r"<!--.*-->", lines[0].strip()):
+            lines = lines[1:]
+        values = []
+        for line in lines:
+            key, sep, value = line.partition(":")
+            if not sep or key.lower() not in {
+                "id", "consent", "роль", "семья", "метод", "дата", "date", "role", "method",
+            }:
+                break
+            if key.lower() == "consent":
+                values.append(value.strip())
+        consent = values[0] if len(values) == 1 else None
+    return isinstance(consent, str) and bool(re.fullmatch(
+        r"(yes|да)(?:\s+[—–-]\s+.+)?", consent.strip(), re.IGNORECASE
+    ))
+
+
 def analyze_interviews(folder: str, synthetic: bool = False, pid=None) -> dict:
     d = project_dir(pid)
     files = sorted(Path(folder).glob("*.md"))
@@ -133,11 +164,9 @@ def analyze_interviews(folder: str, synthetic: bool = False, pid=None) -> dict:
     from .safety import quarantine
     for f in files:
         text = f.read_text(encoding="utf-8")
-        if not synthetic:
-            meta = re.search(r"consent:\s*(yes|да)", text, re.I)
-            if not meta:
-                journal("interview_rejected", f"{f.name}: нет отметки согласия consent: yes", pid=pid, status="skipped")
-                continue
+        if not synthetic and not has_interview_consent(text):
+            journal("interview_rejected", f"{f.name}: нет отметки согласия consent: yes", pid=pid, status="skipped")
+            continue
         text, pii = scrub_pii(text)
         res = ask("code_interview", CODE_PROMPT.format(data=quarantine(text, f.stem)), pid=pid, stage="research",
                   label=f"code:{f.stem}",
@@ -149,7 +178,7 @@ def analyze_interviews(folder: str, synthetic: bool = False, pid=None) -> dict:
         for cat in ("jobs", "pains", "current_solutions", "barriers", "triggers"):
             for it in j.get(cat, []):
                 qt = (it.get("quote") or "").strip(" .«»\"")
-                it["quote_verified"] = bool(qt) and qt[:60].lower() in text.lower()
+                it["quote_verified"] = verify_quote(qt, text) == "verbatim"
                 bad += 0 if it["quote_verified"] else 1
         coded.append({"file": f.name, "coded": j, "pii_removed": pii, "unverified_quotes": bad})
     # агрегация: тема → сколько интервью
@@ -157,11 +186,12 @@ def analyze_interviews(folder: str, synthetic: bool = False, pid=None) -> dict:
     for c in coded:
         for cat in ("pains", "barriers", "jobs", "triggers"):
             for it in c["coded"].get(cat, []):
+                if not it["quote_verified"]:
+                    continue
                 k = f"{cat}: {it['text'][:90]}"
                 t = themes.setdefault(k, {"cat": cat, "text": it["text"], "files": set(), "quotes": []})
                 t["files"].add(c["file"])
-                if it.get("quote_verified"):
-                    t["quotes"].append(f"«{it['quote']}» ({c['file']})")
+                t["quotes"].append(f"«{it['quote']}» ({c['file']})")
     label = "синтетических" if synthetic else "реальных"
     lines = [f"# Анализ {label} интервью ({len(coded)} шт.)", ""]
     if synthetic:

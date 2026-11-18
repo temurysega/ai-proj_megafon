@@ -8,6 +8,7 @@ from __future__ import annotations
 import html
 import re
 from pathlib import Path
+from urllib.parse import quote, urlsplit
 
 import markdown as md
 
@@ -50,7 +51,8 @@ code{background:var(--chip);padding:1px 4px;border-radius:4px;font-size:90%}
 section.doc{page-break-before:always}nav ol{columns:2;font-size:14px}
 .kpi{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.kpi div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:140px}
 .kpi b{display:block;font-size:20px}
-@media print{a.c{border:none;padding:0}nav{display:none}}
+.print-only{display:none}
+@media print{a.c{border:none;padding:0}nav,.screen-only{display:none}.print-only{display:inline}}
 """
 
 
@@ -73,6 +75,33 @@ def _claim_links(text: str, claims: dict, srcs: dict) -> str:
                 parts.append(f'<a class="c st-retracted" title="не найдено">{t}?</a>')
         return "".join(parts)
     return re.sub(r"\[([^\[\]]{2,120})\](?!\()", rep_block, text)
+
+
+def _source_location(source: dict, project: Path) -> str:
+    links = []
+    url = source.get("url") or ""
+    if urlsplit(url).scheme in ("http", "https"):
+        links.append(f'<a href="{html.escape(url, quote=True)}">Страница источника</a>')
+    for rel in (source.get("text_path"), source.get("path")):
+        if not rel:
+            continue
+        snapshot = (project / rel).resolve()
+        if not snapshot.is_relative_to(project.resolve()) or not snapshot.is_file():
+            continue
+        name = snapshot.relative_to(project.resolve()).as_posix()
+        links.append(f'<a class="screen-only" href="../{quote(name)}">Сохранённый снимок</a>'
+                     f'<span class="print-only">{html.escape(name)}</span>')
+        break
+    return "<br>".join(links) or "В реестре нет доступного снимка"
+
+
+def _claim_basis(claim: dict, claims: dict, sources: dict) -> str:
+    ids = claim.get("sources", []) + claim.get("depends_on", [])
+    parts = [_claim_links("[" + ", ".join(ids) + "]", claims, sources)] if ids else []
+    for field in ("locator", "method"):
+        if claim.get(field):
+            parts.append(html.escape(claim[field]))
+    return "<br>".join(parts) or "—"
 
 
 def build(pid=None, pdf: bool = False) -> dict:
@@ -111,23 +140,37 @@ def build(pid=None, pdf: bool = False) -> dict:
     decs = load_decisions(pid)
     if decs:
         rows = "".join(f"<tr><td>{x['id']}</td><td>{html.escape(x.get('title', ''))}</td><td>{html.escape(str(x.get('chosen', '')))}</td>"
-                       f"<td>{', '.join(x.get('rationale_claims', []))}</td><td>{len(x.get('commitments', []))}</td>"
+                       f"<td>[{', '.join(x.get('rationale_claims', []))}]</td><td>{len(x.get('commitments', []))}</td>"
                        f"<td>{'; '.join(html.escape(str(t.get('note') or t.get('value') or t.get('claim'))) for t in x.get('review_triggers', []))}</td></tr>"
                        for x in decs)
         sections.append("<section class='doc' id='decisions'><h2>Журнал решений</h2><table><tr><th>ID</th><th>Решение</th>"
                         "<th>Выбрано</th><th>Основания</th><th>Обязательств</th><th>Условия пересмотра</th></tr>"
                         f"{_claim_links(rows, claims, srcs)}</table></section>")
         toc.append("<li><a href='#decisions'>Журнал решений</a></li>")
+        commitments = []
+        for decision in decs:
+            tasks = decision.get("commitments", [])
+            status_by_id = {task["id"]: task.get("status", "open") for task in tasks}
+            for task in tasks:
+                waiting = [key for key in task.get("depends_on", []) if status_by_id.get(key) != "done"]
+                status = {"done": "Выполнено", "open": "К выполнению"}.get(task.get("status"), task.get("status") or "К выполнению")
+                if waiting and task.get("status") != "done":
+                    status = "Ожидает " + ", ".join(waiting)
+                cells = [f"{decision['id']}/{task['id']}", task.get("what"), task.get("owner"), task.get("due"), status]
+                commitments.append("<tr>" + "".join(f"<td>{html.escape(str(cell or '—'))}</td>" for cell in cells) + "</tr>")
+        if commitments:
+            sections.append("<section id='commitments'><h3>Обязательства</h3><table><tr><th>ID</th><th>Что сделать</th>"
+                            "<th>Ответственный</th><th>Срок</th><th>Статус</th></tr>" + "".join(commitments) + "</table></section>")
     # реестры
     crow = "".join(
         f"<tr id='{c['id']}'><td>{c['id']}</td><td>{CLAIM_KIND_RU.get(c['kind'], c['kind'])}</td><td>{html.escape(c['text'])}"
-        f"{'<br><i>«' + html.escape(c['quote'][:300]) + '»</i>' if c.get('quote') else ''}</td>"
-        f"<td>{' '.join(c.get('sources', [])) or ', '.join(c.get('depends_on', []))}</td><td>{c.get('confidence', '')}</td>"
+        f"{'<br><i>«' + html.escape(c['quote']) + '»</i>' if c.get('quote') else ''}</td>"
+        f"<td>{_claim_basis(c, claims, srcs)}</td><td>{c.get('confidence', '')}</td>"
         f"<td>{c.get('status')}</td></tr>" for c in claims.values())
     srow = "".join(
-        f"<tr id='{s['id']}'><td>{s['id']}</td><td>{html.escape(s['title'])}</td><td>{s.get('publisher', '')}</td>"
+        f"<tr id='{s['id']}'><td>{s['id']}</td><td>{html.escape(s['title'])}</td><td>{html.escape(s.get('publisher') or '')}</td>"
         f"<td>{s.get('published', '')}</td><td>{s.get('reliability')}</td>"
-        f"<td>{'<a href=' + chr(34) + html.escape(s['url']) + chr(34) + '>ссылка</a>' if s.get('url') else html.escape(s.get('path', ''))}</td>"
+        f"<td>{_source_location(s, d)}</td>"
         f"<td>{'⚠ ' + str(len(s.get('injection_flags', []))) if s.get('injection_flags') else ''}</td></tr>" for s in srcs.values())
     sections.append(f"<section class='doc' id='claims'><h2>Реестр утверждений</h2><table><tr><th>ID</th><th>Тип</th><th>Утверждение и цитата</th>"
                     f"<th>Основание</th><th>Уверенность</th><th>Статус</th></tr>{crow}</table></section>")

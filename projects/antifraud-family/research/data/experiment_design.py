@@ -32,12 +32,21 @@ for u in (0.1, 0.2, 0.5):
         n = n_per_group(u * r)
         rows.append({"uptake_pct": int(u * 100), "cace_effect_pct": int(r * 100), "itt_effect_pct": round(u * r * 100, 1),
                      "n_per_group": n, "direct_cost_mln_rub": round(n * u * COST * 3 / 1e6, 2)})
-res = {"quarterly_churn_pct": round(p0 * 100, 2), "rows": rows,
-       "reading": ("Порог варианта C (эффект 2,7–4,1% на защищённое домохозяйство) напрямую не проверяется при реалистичной "
-                   "доле принявших: даже при uptake 50% эффект 4% требует более миллиона домохозяйств на группу. "
-                   "Эксперимент на заинтересованных (uptake ≈50%) различает эффект ≥15% при десятках тысяч домохозяйств. "
-                   "Поэтому решение о C — по нижней границе доверительного интервала, опережающим индикаторам и экономике "
-                   "каннибализации из выгрузки, а «незначимо» не трактуется как «эффекта нет».")}
+def group_size_at_half_uptake(effect_pct):
+    row = next(row for row in rows if row["uptake_pct"] == 50 and row["cace_effect_pct"] == effect_pct)
+    return f"{row['n_per_group']:,}".replace(",", " ")
+
+
+res = {
+    "quarterly_churn_pct": round(p0 * 100, 2),
+    "rows": rows,
+    "reading": (
+        f"При принятии 50% эффект 4% требует {group_size_at_half_uptake(4)} домохозяйств на группу. "
+        f"Для эффекта 15% нужно {group_size_at_half_uptake(15)} на группу. "
+        "Если интервал эффекта пересекает порог окупаемости C, сохраняем A+. "
+        "Решение для всей базы требует отдельной оценки удержания и потери маржи у платящих."
+    ),
+}
 (HERE / "experiment_design.json").write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
 md = ["# Дизайн эксперимента с учётом доли принявших (v2)", "",
       f"_Квартальный отток контроля {p0 * 100:.2f}% (допущение C056). α=0,05, мощность 80%. Затраты — только на принявших "

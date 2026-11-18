@@ -382,3 +382,15 @@
   sha256: ''
   injection_flags: []
   notes: 'Синтетика: гипотезы, не доказательство спроса'
+- id: S033
+  title: Расходы первого прогона eSIM по журналу
+  kind: analysis
+  url: ''
+  path: research/data/run-cost.md
+  publisher: ''
+  published: ''
+  retrieved: '2026-11-18'
+  reliability: A
+  sha256: ''
+  injection_flags: []
+  notes: Расчёт из costs.jsonl

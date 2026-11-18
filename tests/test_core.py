@@ -127,3 +127,12 @@ def test_address_scrub_does_not_break_words():
     assert "уведомлений" in text and "два дома" in text and "[АДРЕС]" not in text
     text, _ = scrub_pii("Живу на ул. Ленина, д. 5, кв. 12")
     assert "Ленина" not in text and "кв. 12" not in text
+
+
+def test_pause_hint_ignores_system_notifications(capsys, monkeypatch):
+    from strategist import hooks
+    monkeypatch.setattr(hooks, "_active", lambda: "demo")
+    hooks.user_prompt({"prompt": "<task-notification>агент: стоп-правило по обращениям</task-notification>"})
+    assert capsys.readouterr().out == ""
+    hooks.user_prompt({"prompt": "стоп, давай на паузу"})
+    assert "паузу" in capsys.readouterr().out

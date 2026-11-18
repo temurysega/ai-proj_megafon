@@ -6,11 +6,13 @@
 from __future__ import annotations
 
 import re
+from collections import Counter
 from pathlib import Path
+from typing import Iterable
 
-from .common import (CLAIM_KINDS, CLAIM_STATUSES, StrategistError, next_id, now, read_jsonl, read_yaml,
+from .common import (CLAIM_KINDS, CLAIM_STATUSES, STAGES, StrategistError, next_id, now, read_jsonl, read_yaml,
                      today, write_jsonl, write_yaml)
-from .project import journal, load_state, project_dir, save_state
+from .project import journal, load_state, missing_gates, project_dir, save_state
 
 REF_BLOCK = re.compile(r"\[([^\[\]]{2,200})\]")
 CLAIM_TOKEN = re.compile(r"\bC\d{3,}\b")
@@ -47,6 +49,14 @@ def snapshot_text(src: dict, d: Path) -> str:
         if p.exists() and p.suffix.lower() in (".md", ".txt"):
             return p.read_text(encoding="utf-8", errors="replace")
     return ""
+
+
+def _quote_status(quote: str, snapshots: Iterable[str]) -> str:
+    from .importer import verify_quote
+    if not quote.strip():
+        return "no_quote"
+    rank = ["verbatim", "partial", "not_found", "no_snapshot", "no_quote"]
+    return min((verify_quote(quote, text) for text in snapshots), default="no_snapshot", key=rank.index)
 
 
 # ---------- источники ----------
@@ -143,11 +153,8 @@ def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str
     # автоматическая сверка цитаты со снимком источника (замечание агента второго проекта)
     quote_status = ""
     if quote.strip() and sources:
-        from .importer import verify_quote
         d = project_dir(pid)
-        statuses = [verify_quote(quote, snapshot_text(known_s[s], d)) for s in sources]
-        rank = ["verbatim", "partial", "not_found", "no_snapshot", "no_quote"]
-        quote_status = min(statuses, key=lambda x: rank.index(x) if x in rank else 99)
+        quote_status = _quote_status(quote, (snapshot_text(known_s[s], d) for s in sources))
     cid = next_id("C", known_c)
     rec = {"id": cid, "text": text.strip(), "kind": kind, "sources": sources, "quote": quote.strip(),
            "locator": locator, "confidence": confidence, "tags": tags or [], "depends_on": depends_on,
@@ -269,14 +276,14 @@ STRUCTURE = {
     "strategy/validation.md": ["ожидаемое изменение", "с чем сравниваем", "срок", "нежелательн"],
     "strategy/one-pager.md": ["решение", "риск", "проверить"],
 }
-STAGE_REQUIRES = {
-    "materials": ["brief.md"],
-    "research": ["brief.md", "research/plan.md"],
-    "options": ["brief.md", "research/plan.md", "research/findings.md"],
-    "strategy": ["options.md"],
-    "review": ["strategy/product.md", "strategy/communication.md", "strategy/validation.md"],
-    "support": ["strategy/product.md", "strategy/communication.md", "strategy/validation.md",
-                "strategy/one-pager.md", "decisions.yaml"],
+STAGE_OUTPUTS = {
+    "intake": ["brief.md"],
+    "materials": ["sources/registry.yaml"],
+    "research": ["research/plan.md", "research/findings.md"],
+    "options": ["options.md"],
+    "strategy": ["strategy/product.md", "strategy/communication.md", "strategy/validation.md"],
+    "review": ["strategy/one-pager.md"],
+    "support": ["decisions.yaml"],
 }
 
 
@@ -287,6 +294,8 @@ def check(pid=None, strict: bool = False) -> dict:
     claims = {c["id"]: c for c in load_claims(pid)}
     srcs = {s["id"]: s for s in load_sources(pid)}
     errors, warnings = [], []
+    snapshot_cache: dict[str, str] = {}
+    quote_checks = Counter()
 
     # 1. утверждения
     for c in claims.values():
@@ -297,8 +306,20 @@ def check(pid=None, strict: bool = False) -> dict:
             errors.append(f"{c['id']}: {c['kind']} без источника")
         if c["kind"] == "fact" and c.get("status") == "active" and not (c.get("quote") or c.get("locator")):
             warnings.append(f"{c['id']}: факт без цитаты/локатора — сложно проверить")
-        if c["kind"] == "fact" and c.get("status") == "active" and c.get("quote_status") in ("not_found", "no_snapshot"):
-            warnings.append(f"{c['id']}: цитата не подтверждена снимком источника ({c.get('quote_status')}) — сверить")
+        if c["kind"] == "fact" and c.get("status") == "active":
+            if strict:
+                ids = [sid for sid in c.get("sources", []) if sid in srcs]
+                for sid in ids:
+                    if sid not in snapshot_cache:
+                        snapshot_cache[sid] = snapshot_text(srcs[sid], d)
+                match = _quote_status(c.get("quote") or "", (snapshot_cache[sid] for sid in ids))
+                quote_checks[match] += 1
+                if match == "partial":
+                    warnings.append(f"{c['id']}: цитата совпала с актуальным снимком только частично")
+                elif match != "verbatim":
+                    errors.append(f"{c['id']}: цитата не подтверждена актуальным снимком ({match})")
+            elif c.get("quote_status") in ("not_found", "no_snapshot"):
+                warnings.append(f"{c['id']}: цитата не подтверждена снимком источника ({c.get('quote_status')}) — сверить")
         if c["kind"] == "estimate" and not c.get("method"):
             warnings.append(f"{c['id']}: расчёт без указания метода/скрипта (--method)")
         src_kinds = {srcs[s]["kind"] for s in c.get("sources", []) if s in srcs}
@@ -369,13 +390,17 @@ def check(pid=None, strict: bool = False) -> dict:
         for head, body in sections(opt.read_text(encoding="utf-8")):
             if head.lower().startswith("вариант ") and "возражени" not in body.lower():
                 errors.append(f"options.md: у «{head[:50]}» нет сильных возражений")
-    order = ["intake", "materials", "research", "options", "strategy", "review", "support"]
-    stage_idx = order.index(st["stage"])
-    for stage, files in STAGE_REQUIRES.items():
-        if order.index(stage) <= stage_idx:
-            for rel in files:
-                if not (d / rel).exists():
-                    warnings.append(f"стадия {st['stage']}: ожидался файл {rel}")
+    current = st["stage"]
+    for gate_id in missing_gates(st, current):
+        errors.append(f"стадия {current}: отсутствует решение по воротам {gate_id}")
+    for stage in STAGES[:STAGES.index(current) + 1]:
+        # Текущий результат может быть в работе. При строгой проверке он уже нужен для сдачи.
+        required = stage != current or strict or st.get("stage_status") == "done"
+        problems = errors if required else warnings
+        for rel in STAGE_OUTPUTS[stage]:
+            artifact = d / rel
+            if not artifact.is_file() or not artifact.stat().st_size:
+                problems.append(f"стадия {current}: ожидается непустой файл {rel}")
     # 4. метрики
     active = [c for c in claims.values() if c.get("status") == "active"]
     facts = [c for c in active if c["kind"] == "fact"]
@@ -393,6 +418,7 @@ def check(pid=None, strict: bool = False) -> dict:
         "reliability_mix": {r: sum(1 for s in srcs.values() if s.get("reliability") == r) for r in RELIABILITY},
     }
     if strict:
+        metrics["quote_matches_in_current_snapshots"] = dict(quote_checks)
         errors += [f"[strict] {w}" for w in warnings if "число без ссылки" in w]
     res = {"errors": sorted(set(errors)), "warnings": sorted(set(warnings)), "metrics": metrics}
     journal("check", f"ошибок {len(res['errors'])}, предупреждений {len(res['warnings'])}", pid=pid,

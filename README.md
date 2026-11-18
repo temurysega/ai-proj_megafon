@@ -13,7 +13,7 @@
 | **Демо-проект** | [`projects/antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников: что делать с продуктом и как о нём говорить» (брифа МегаФона ещё нет — задача сформулирована командой, только открытые данные). Читать: [one-pager](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [HTML](projects/antifraud-family/report/index.html) |
 | **Результат демо** | 51 источник (в том числе 5 реальных интервью с согласием), 84 активных утверждения с цитатами, 7 вариантов, продуктовая и коммуникационная стратегии, план проверки, журнал решений; 0 ошибок `sf check` |
 | **Второй проект** | [`projects/esim-travel`](projects/esim-travel) — «eSIM для путешествий», проведён отдельным агентом **с нуля без участия человека** ([one-pager](projects/esim-travel/strategy/one-pager.md), [PDF](projects/esim-travel/report/index.pdf)) |
-| **Сравнение с обычным чатом** | 6 слепых оценок судьями трёх производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12 — [`evals/results/summary.md`](evals/results/summary.md) |
+| **Сравнение с обычным чатом** | 6 слепых оценок судьями трёх производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12. **При одинаковом входе без поиска у обоих** (учебный кейс, рубрика зафиксирована заранее, слепой судья): агент 9/10, чат 6/10, решение одинаковое — разница в полноте ([`evals/equal_input/`](evals/equal_input)) — [`evals/results/summary.md`](evals/results/summary.md) |
 | **Сайт** | **https://mgim.neblanki.tech** — основные пути работы агента: новая задача, проверяемость, пауза и продолжение, пересмотр при новых данных, сопровождение решения; там же PDF. Исходник — [`site/index.html`](site/index.html), выкладка — `scripts/deploy_site.py` |
 | **Видео** | [mgim.neblanki.tech/#video](https://mgim.neblanki.tech/#video) — сквозной путь за 8 минут, с голосом: запрос, исследование, варианты, обрыв сессии и продолжение, стратегия, новые данные, сопровождение, защита, второй проект. Текст, главы и закадровый текст — [`docs/video/script.md`](docs/video/script.md); запись — `scripts/record_video.py`, голос по таймингам — `scripts/voiceover.py` |
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
@@ -22,8 +22,7 @@
 
 ### Проверить за 5 минут
 1. **Посмотреть:** [видео](https://mgim.neblanki.tech/#video) или [one-pager](projects/antifraud-family/strategy/one-pager.md) → [отчёт PDF](projects/antifraud-family/report/index.pdf).
-2. **Запустить** (без сети и ключей): `pip install -r requirements.txt` → `python scripts/smoke_test.py` (36 проверок) →
-   `python sf.py use antifraud-family` → `python sf.py check` (0 ошибок и метрики доказательной базы) → `python sf.py decisions due`.
+2. **Проверить локально.** Установите зависимости командой `python -m pip install -r requirements.txt`. Затем без ключей и сети выполните `python scripts/smoke_test.py`, `python sf.py -p antifraud-family check --strict` и `python sf.py -p esim-travel check --strict`. Для обязательств и сроков выполните `python sf.py -p antifraud-family decisions due`.
 3. **Проверить любую цифру:** метка `[C023]` в документе → утверждение в `projects/antifraud-family/evidence/claims.jsonl` (цитата, источник) →
    снимок источника `projects/antifraud-family/sources/raw/S0xx.md`.
 4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
@@ -36,7 +35,7 @@
 
 ## Быстрый старт (3 шага, ≈5 минут)
 
-**Нужно:** Python 3.10+ и одна из IDE с агентом. Ключи не обязательны.
+**Нужно:** Python 3.10+ и IDE с моделью для ведения новой задачи. Готовые отчёты открываются без установки. Для локальной проверки достаточно Python и зависимостей. Первичная загрузка пакетов и Chromium требует интернета. OpenRouter оплачивается по использованию, модель IDE — по условиям вашей подписки или провайдера.
 
 1. Установить зависимости и проверить окружение:
    ```bash
@@ -113,8 +112,9 @@ python sf.py decisions due
 
 ## Данные и безопасность
 Только открытые источники из `config/sources_allowlist.yaml` и собственные материалы; содержимое источников — данные, не инструкции;
-секреты только в `.env` (gitignore + хук + pre-commit + `sf doctor`); ПДн вычищаются до отправки моделям; реальные интервью — только с
-`consent: yes`. Платные сервисы: OpenRouter (необязательно), подписка IDE с агентом.
+Секреты хранятся в `.env`. Для реального интервью оставьте запись вне проекта и расшифруйте её на своём устройстве: `python scripts/transcribe_local.py <запись> --out projects/<id>/research/interviews/real/R06.md --id R06 --consent "yes — …"` (faster-whisper, без отправки во внешние сервисы; ПДн вычищаются, согласие пишется в шапку). Проверьте текст вручную: автоматическая очистка распознаёт только известные форматы идентификаторов. Команда `sf interviews` проверяет согласие и очищает текст перед кодированием моделью.
+
+Изображения, аудио и видео можно импортировать с `--public-media`, когда файл открыт или синтетический и проверен на отсутствие ПДн. Например, `python sf.py ingest public-demo.mp3 --public-media --transcribe`. Модель получает сам файл или кадры и дорожку видео. В проекте сохраняется обработанный снимок, исходный ответ мультимодальной модели в кэш не записывается.
 
 ## Проверка
 ```bash

@@ -54,8 +54,15 @@ def session_start(ev: dict) -> None:
     _out({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": ctx}})
 
 
+_SYSTEM_EVENT = re.compile(r"<task-notification>|\[SYSTEM NOTIFICATION|<side-sessions-event>|<ci-monitor-event>")
+
+
 def user_prompt(ev: dict) -> None:
     prompt = ev.get("prompt", "")
+    # Служебные уведомления IDE (итог субагента, фоновой задачи) — не слова человека: «стоп-правило» в отчёте
+    # субагента не просьба о паузе (ложное срабатывание 18.11.2026).
+    if _SYSTEM_EVENT.search(prompt):
+        return
     if STOP_WORDS.search(prompt) and _active():
         _out({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext":
               "[Стратег] Человек просит паузу. Заверши текущий атомарный шаг, выполни "

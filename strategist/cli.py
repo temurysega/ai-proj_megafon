@@ -119,7 +119,7 @@ def cmd_capture(a):
 def cmd_ingest(a):
     from .ingest import ingest
     r = ingest(a.file, a.title or "", a.kind or "", a.reliability, a.publisher or "", a.published or "",
-               a.describe, a.transcribe, a.notes or "", pid=a.project)
+               a.describe, a.transcribe, a.notes or "", pid=a.project, public_media=a.public_media)
     _print({k: r.get(k) for k in ("id", "title", "kind", "text_path", "chars", "injection_flags")})
 
 
@@ -499,6 +499,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--published")
     s.add_argument("--describe", action="store_true", help="описать изображение/кадры vision-моделью")
     s.add_argument("--transcribe", action="store_true", help="расшифровать аудио")
+    s.add_argument("--public-media", action="store_true",
+                   help="подтверждаю: медиа открытое или синтетическое, без ПДн, пригодно для хранения "
+                        "в проекте и передачи модели при --describe/--transcribe")
     s.add_argument("--notes")
 
     s = add("claim", cmd_claim, "реестр утверждений: add/update/retract")

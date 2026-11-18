@@ -2,6 +2,7 @@
 воспроизводимый запуск аналитических скриптов с фиксацией хэшей входов и выходов."""
 from __future__ import annotations
 
+import csv
 import re
 import subprocess
 import sys
@@ -11,11 +12,25 @@ from .common import StrategistError, now, sha256_bytes
 from .project import journal, project_dir
 
 
-def _read(path: Path):
+def read_delimited_table(path: Path):
+    """Ограниченный набор разделителей сохраняет CSV из одного столбца."""
     import pandas as pd
+    delimiter = "\t"
+    if path.suffix.lower() != ".tsv":
+        with path.open(encoding="utf-8-sig", newline="") as stream:
+            sample = stream.read(16384)
+        try:
+            delimiter = csv.Sniffer().sniff(sample, delimiters=",;\t|").delimiter
+        except csv.Error:
+            delimiter = ","
+    return pd.read_csv(path, sep=delimiter)
+
+
+def _read(path: Path):
     if path.suffix.lower() in (".xlsx", ".xls"):
+        import pandas as pd
         return pd.read_excel(path)
-    return pd.read_csv(path, sep=None, engine="python")
+    return read_delimited_table(path)
 
 
 def _resolve(path: str, pid, what: str) -> Path:
