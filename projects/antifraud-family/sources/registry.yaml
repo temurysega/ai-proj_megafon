@@ -617,3 +617,94 @@
   sha256: ''
   injection_flags: []
   notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'
+- id: S052
+  title: 'Реальное интервью R06: взрослый ребёнок, 40 (мать на другом операторе)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R06.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S053
+  title: 'Реальное интервью R07: родитель, 71 (сын на другом операторе)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R07.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S054
+  title: 'Реальное интервью R08: родитель, 82, живёт одна, кнопочный телефон'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R08.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S055
+  title: 'Реальное интервью R09: взрослый ребёнок, 48 (отец живёт один в другом городе)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R09.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S056
+  title: 'Реальное интервью R10: взрослый ребёнок, 38 (уже платят за МТС «Защитник»)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R10.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S057
+  title: 'Реальное интервью R11: родитель, 77 (семья платит за «Семейную безопасность»)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R11.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
+- id: S058
+  title: 'Реальное интервью R12: взрослый ребёнок, 34 (защиту подключали и отключили)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R12.md
+  publisher: интервью руководителя продукта по гайду (второй раунд)
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имён нет, города → [город]); 1 из 12 интервью, качественные данные — не доля
+    рынка'
