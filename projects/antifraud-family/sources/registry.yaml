@@ -554,3 +554,63 @@
   injection_flags: []
   notes: ''
   text_path: sources/raw/S046.md
+- id: S047
+  title: 'Реальное интервью R01: взрослый ребёнок, 41, инженер (пара с R05)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R01.md
+  publisher: интервью руководителя продукта по гайду
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'
+- id: S048
+  title: 'Реальное интервью R02: взрослый ребёнок, 37, пекарь (пара с R04)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R02.md
+  publisher: интервью руководителя продукта по гайду
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'
+- id: S049
+  title: 'Реальное интервью R03: взрослый ребёнок, 45, водитель трамвая'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R03.md
+  publisher: интервью руководителя продукта по гайду
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'
+- id: S050
+  title: 'Реальное интервью R04: родитель, 69, пчеловод (пара с R02)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R04.md
+  publisher: интервью руководителя продукта по гайду
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'
+- id: S051
+  title: 'Реальное интервью R05: родитель, 68 (пара с R01)'
+  kind: interview
+  url: ''
+  path: research/interviews/real/R05.md
+  publisher: интервью руководителя продукта по гайду
+  published: '2026-11-18'
+  retrieved: '2026-11-18'
+  reliability: B
+  sha256: ''
+  injection_flags: []
+  notes: 'consent: yes; обезличено (имена → [имя]); 1 из 5 интервью, качественные данные — не доля рынка'

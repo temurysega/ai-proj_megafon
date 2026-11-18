@@ -119,3 +119,11 @@ def test_html_without_charset_is_not_mojibake():
     assert "Роуминг" in decode_html(page.encode("cp1251"), "text/html")
     assert "Роуминг" in decode_html(('<meta charset="windows-1251">' + page).encode("cp1251"), "text/html")
     assert looks_blocked("403 Error\nForbidden\nДоступ к сайту www.example.ru запрещен.")
+
+
+def test_address_scrub_does_not_break_words():
+    # «уведомлений» превращалось в «уве[АДРЕС]», а «два дома» — в адрес (реальные интервью, 18.11.2026)
+    text, _ = scrub_pii("Мне хватило бы уведомлений о тех случаях. Мама живёт через два дома.")
+    assert "уведомлений" in text and "два дома" in text and "[АДРЕС]" not in text
+    text, _ = scrub_pii("Живу на ул. Ленина, д. 5, кв. 12")
+    assert "Ленина" not in text and "кв. 12" not in text
