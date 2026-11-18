@@ -126,7 +126,7 @@ def get_claim(cid: str, pid=None) -> dict:
 
 def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str = "", locator: str = "",
               confidence: str = "medium", tags: list[str] | None = None, depends_on: list[str] | None = None,
-              method: str = "", note: str = "", pid=None) -> dict:
+              method: str = "", note: str = "", pid=None, unverified_quote: bool = False) -> dict:
     if kind not in CLAIM_KINDS:
         raise StrategistError(f"Тип утверждения '{kind}' неизвестен: {CLAIM_KINDS}")
     sources = [s.strip() for s in (sources or []) if s.strip()]
@@ -155,6 +155,14 @@ def add_claim(text: str, kind: str, sources: list[str] | None = None, quote: str
     if quote.strip() and sources:
         d = project_dir(pid)
         quote_status = _quote_status(quote, (snapshot_text(known_s[s], d) for s in sources))
+    if kind == "fact" and quote_status == "not_found" and not unverified_quote:
+        raise StrategistError("Цитата не найдена дословно в снимке источника — факт не записан. Исправьте цитату по снимку "
+                              "(`sources/raw/…`); если вывод ваш — запишите его как hypothesis. Для скана или изображения без "
+                              "текста укажите --locator и --unverified-quote (будет помечено в журнале).")
+    if kind == "fact" and quote_status == "no_snapshot" and not locator.strip():
+        raise StrategistError("У источника нет текстового снимка — цитату нельзя сверить. Укажите --locator (страница, раздел, кадр).")
+    if unverified_quote and quote_status == "not_found":
+        note = (note + "; " if note else "") + "цитата не сверена автоматически (скан/изображение) — проверить по локатору"
     cid = next_id("C", known_c)
     rec = {"id": cid, "text": text.strip(), "kind": kind, "sources": sources, "quote": quote.strip(),
            "locator": locator, "confidence": confidence, "tags": tags or [], "depends_on": depends_on,
@@ -401,6 +409,22 @@ def check(pid=None, strict: bool = False) -> dict:
             artifact = d / rel
             if not artifact.is_file() or not artifact.stat().st_size:
                 problems.append(f"стадия {current}: ожидается непустой файл {rel}")
+    # 3б. стоимость в резюме сверяется с журналом расходов (ревью 18.11: цифры расходились между документами)
+    onep = d / "strategy" / "one-pager.md"
+    if onep.is_file():
+        m = re.search(r"(?:стоимость проекта|итого)[^$\n]{0,12}\$\s?(\d+(?:[.,]\d+)?)", onep.read_text(encoding="utf-8"), re.I)
+        if m:
+            # та же формула, что `sf cost` (costs.summary → project_usd), но по журналу именно этого проекта
+            recs = read_jsonl(d / "costs.jsonl")
+            usd = lambda r: float(r.get("usd") or 0)  # noqa: E731
+            external = sum(usd(r) for r in recs if r.get("type", "llm") == "llm" and not r.get("cached"))
+            ide = sum(usd(r) for r in recs if r.get("type") in ("ide_session", "subagent", "manual"))
+            session = sum(usd(r) for r in recs if r.get("type") == "ide_session")
+            actual = round(external + ide - (session if st.get("session_cost_mixed") else 0), 4)
+            stated = float(m.group(1).replace(",", "."))
+            if actual and abs(stated - actual) > max(0.05, 0.03 * actual):
+                errors.append(f"strategy/one-pager.md: стоимость проекта ${stated:g} расходится с журналом "
+                              f"(`sf cost`: ${actual:.2f}) — обновите резюме")
     # 4. метрики
     active = [c for c in claims.values() if c.get("status") == "active"]
     facts = [c for c in active if c["kind"] == "fact"]

@@ -118,11 +118,13 @@ def import_research(json_file: str, fetch_sources: bool = True, pid=None) -> dic
         kind = c.get("kind", "fact")
         if kind not in ("fact", "opinion", "forecast", "hypothesis", "estimate", "assumption"):
             kind = "fact"
+        if kind == "fact" and status == "not_found":
+            kind = "hypothesis"  # факт без подтверждённой цитаты не записывается как факт
         if not allowed:
             kind, conf, status = "hypothesis", "low", "outside_allowlist"
         note = f"quote_status={status}; от субагента researcher ({dq})"
         if status == "not_found":
-            note += "; цитата исследователя не найдена дословно в снимке — проверить вручную"
+            note += "; цитата исследователя не найдена дословно в снимке — записано как гипотеза, проверить вручную"
         claim = add_claim(c["text"], kind, [src["id"]] if src else [], quote,
                           c.get("locator", ""), conf, [dq, "researcher"], pid=pid, note=note)
         update_claim(claim["id"], pid=pid, quote_status=status)

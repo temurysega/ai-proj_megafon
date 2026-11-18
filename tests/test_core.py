@@ -136,3 +136,15 @@ def test_pause_hint_ignores_system_notifications(capsys, monkeypatch):
     assert capsys.readouterr().out == ""
     hooks.user_prompt({"prompt": "стоп, давай на паузу"})
     assert "паузу" in capsys.readouterr().out
+
+
+def test_gate_pass_needs_human_confirmation(capsys, monkeypatch):
+    import json as _json
+    from strategist import hooks
+    monkeypatch.setattr(hooks, "_log_guard", lambda *a: None)  # не писать в журнал демо-проекта
+    for cmd, expect in [("python sf.py gate G3 pass --note ok", "ask"), ("python sf.py -p demo gate G1_brief reject", "ask"),
+                        ("python sf.py gate G2 assume --note autopilot", None), ("python sf.py status", None)]:
+        hooks.pre_tool({"tool_name": "Bash", "tool_input": {"command": cmd}})
+        out = capsys.readouterr().out
+        got = _json.loads(out)["hookSpecificOutput"]["permissionDecision"] if out.strip() else None
+        assert got == expect, (cmd, got)

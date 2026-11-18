@@ -54,6 +54,8 @@ def session_start(ev: dict) -> None:
     _out({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": ctx}})
 
 
+# `sf gate G1 pass` / `sf -p demo gate G3 reject` — решение человека; agent-only `assume` (autopilot) не спрашиваем
+GATE_DECISION = re.compile(r"\bsf(?:\.py)?\b[^\n|;&]*\bgate\s+(?:G[123]\w*)\s+(?:pass|reject)\b", re.I)
 _SYSTEM_EVENT = re.compile(r"<task-notification>|\[SYSTEM NOTIFICATION|<side-sessions-event>|<ci-monitor-event>")
 
 
@@ -102,6 +104,9 @@ def pre_tool(ev: dict) -> None:
             return decide("deny", "[Стратег] Нельзя коммитить .env и обходить проверки (--no-verify).")
         if find_secrets(cmd):
             return decide("deny", "[Стратег] В команде похоже на секрет — используйте переменные окружения из .env.")
+        if GATE_DECISION.search(cmd):
+            return decide("ask", "[Стратег] Ворота G1–G3 проходит человек. Подтвердите, что это ваше решение, принятое в чате "
+                                 "(агент не может пройти ворота сам; в режиме autopilot — `gate … assume`).")
         for url in re.findall(r"(?:curl|wget|iwr|invoke-webrequest)\s+[^\n]*?(https?://[^\s'\"]+)", cmd, re.I):
             ok, why = domain_allowed(url)
             if not ok:

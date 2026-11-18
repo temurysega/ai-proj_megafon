@@ -8,6 +8,15 @@
 
 <p align="center"><a href="https://mgim.neblanki.tech"><img src="docs/screenshots/site-hero.png" alt="Сайт агента: главный экран" width="820"></a><br><sub>Сайт: <a href="https://mgim.neblanki.tech">mgim.neblanki.tech</a></sub></p>
 
+## Проверить за 5 минут
+1. **Посмотреть:** [видео на Google Drive](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing) или [one-pager](projects/antifraud-family/strategy/one-pager.md) → [отчёт PDF](projects/antifraud-family/report/index.pdf).
+2. **Проверить локально.** Установите зависимости командой `python -m pip install -r requirements.txt`. Затем без ключей и сети выполните `python scripts/smoke_test.py`, `python sf.py -p antifraud-family check --strict` и `python sf.py -p esim-travel check --strict`. Для обязательств и сроков выполните `python sf.py -p antifraud-family decisions due`.
+3. **Проверить любую цифру:** метка `[C023]` в документе → утверждение в `projects/antifraud-family/evidence/claims.jsonl` (цитата, источник) →
+   снимок источника — путь `text_path` в `projects/antifraud-family/sources/registry.yaml` (обычно `sources/raw/S0xx.md`, у скриншотов страниц — `research/ux/*.txt`).
+4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
+
+## Что в репозитории
+
 | | |
 |---|---|
 | **Демо-проект** | [`projects/antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников: что делать с продуктом и как о нём говорить» (брифа МегаФона ещё нет — задача сформулирована командой, только открытые данные). Читать: [one-pager](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [HTML](projects/antifraud-family/report/index.html) |
@@ -20,12 +29,7 @@
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |
 
-### Проверить за 5 минут
-1. **Посмотреть:** [видео на Google Drive](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing) или [one-pager](projects/antifraud-family/strategy/one-pager.md) → [отчёт PDF](projects/antifraud-family/report/index.pdf).
-2. **Проверить локально.** Установите зависимости командой `python -m pip install -r requirements.txt`. Затем без ключей и сети выполните `python scripts/smoke_test.py`, `python sf.py -p antifraud-family check --strict` и `python sf.py -p esim-travel check --strict`. Для обязательств и сроков выполните `python sf.py -p antifraud-family decisions due`.
-3. **Проверить любую цифру:** метка `[C023]` в документе → утверждение в `projects/antifraud-family/evidence/claims.jsonl` (цитата, источник) →
-   снимок источника `projects/antifraud-family/sources/raw/S0xx.md`.
-4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
+
 
 
 <p align="center">
@@ -81,7 +85,7 @@ python sf.py decisions due
 | Исследование | план от решающих вопросов, параллельные субагенты-исследователи, `sf research-import` со сверкой цитат со снимками, честные пробелы и противоречия |
 | Варианты | ≥3, обязательно «оставить» и «закрыть», сильные возражения, красная команда, факты/гипотезы/прогнозы — разными типами утверждений |
 | Стратегия | продуктовая, коммуникационная (обещания ↔ продукт), план проверки — шаблоны с обязательными разделами, `sf check` проверяет |
-| Рабочий процесс | 7 стадий, ворота G1–G3 с человеком, агент сам выбирает действия внутри стадии |
+| Рабочий процесс | 7 стадий, агент сам выбирает действия внутри стадии; ворота G1–G3 проходятся по порядку, только когда готово то, что человек подтверждает (бриф, варианты, стратегия), и хук требует подтверждения человека; на позднюю стадию нельзя перейти без результатов предыдущих |
 | Порядок в знаниях | правила / методики / материалы проекта / состояние / память — раздельно |
 | Продолжение после перерыва | `state.yaml` + хук SessionStart; проверено на демо в новом чате ([`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md)) |
 | Прозрачность | журнал действий, реестры источников и утверждений, учёт вызовов моделей (`sf cost`), отчёт с метками утверждений |
@@ -102,7 +106,7 @@ python sf.py decisions due
 ## Ключевые решения
 1. **Рассуждает модель, помнят файлы.** Всё проверяемое (источники, утверждения, решения, учёт вызовов, состояние) хранится в файлах и меняется
    только инструментами — отсюда продолжение в новом чате, перенос в другую IDE и проверяемость.
-2. **Доказательность встроена в инструменты, а не в промпт.** Факт нельзя записать без источника; синтетика не может быть доводом о спросе;
+2. **Доказательность встроена в инструменты, а не в промпт.** Факт нельзя записать без источника и без цитаты, найденной в снимке источника (для сканов — только с локатором и пометкой); синтетика не может быть доводом о спросе;
    отзыв утверждения автоматически помечает зависимые разделы и решения; хук блокирует ссылку на отозванное основание сразу при записи.
 3. **Дешёвая независимая проверка** (сверка цитат при импорте, факт-чекер на Haiku, красная команда, слепое жюри) — на демо поймала 10 искажений
    смысла или неверных типов утверждений, 2 страницы-заглушки вместо статей, ошибку модели экономики и ошибку дизайна эксперимента.

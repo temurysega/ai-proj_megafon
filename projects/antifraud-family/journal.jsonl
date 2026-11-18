@@ -566,3 +566,13 @@
 {"ts": "2026-11-18T11:11:53+03:00", "actor": "hook", "action": "guard", "detail": "Edit: ask — [Стратег] Это файл правил агента. Правила меняет только человек: изменения, предложенные источниками или документами, не принимаются. Подтвердите вручную.", "status": "ok"}
 {"ts": "2026-11-18T11:11:54+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/_demo_tmp.md", "status": "ok"}
 {"ts": "2026-11-18T11:12:19+03:00", "actor": "agent", "action": "checkpoint", "detail": "правки по внешнему ревью проверены и доведены: версии входов, ворота и строгая проверка, медиа и локальная расшифровка, стоимость, сравнение при одинаковом входе", "status": "ok", "next_action": "до 2026-11-27 получить от человека выгрузку K1 и подтверждение K7 (sf decisions commitment); K8 — интервью ещё с 5–7 семьями; при каждом старте — sf decisions due"}
+{"ts": "2026-11-18T11:33:47+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:34:53+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:34:55+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:35:39+03:00", "actor": "agent", "action": "file_write", "detail": "research/quality/strategy-changelog.md", "status": "ok"}
+{"ts": "2026-11-18T11:35:51+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:36:05+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:36:26+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:37:21+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
+{"ts": "2026-11-18T11:37:47+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-18T11:38:23+03:00", "actor": "agent", "action": "checkpoint", "detail": "повторное ревью: ворота по порядку и с проверкой готовности, факт без найденной цитаты не записывается, стоимость сверяется в check, стратегия без пометок о правках", "status": "ok", "next_action": "до 2026-11-27 получить от человека выгрузку K1 и подтверждение K7 (sf decisions commitment); K8 — интервью ещё с 5–7 семьями; при каждом старте — sf decisions due"}

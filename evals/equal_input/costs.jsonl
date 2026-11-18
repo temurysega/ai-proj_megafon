@@ -1,0 +1,3 @@
+{"type": "subagent", "usd": 0.1, "note": "jury: equal-input (предварительная, ответ агента видел рубрику — не используется)", "tokens": 17426, "stage": "support", "model": "sonnet", "ts": "2026-11-18T11:06:22+03:00"}
+{"type": "subagent", "usd": 0.43, "note": "агент вслепую: equal-input", "tokens": 71615, "stage": "support", "model": "sonnet", "ts": "2026-11-18T11:08:59+03:00"}
+{"type": "subagent", "usd": 0.12, "note": "jury: equal-input, честный прогон", "tokens": 20468, "stage": "support", "model": "sonnet", "ts": "2026-11-18T11:09:39+03:00"}

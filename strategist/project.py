@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
 
@@ -148,6 +149,13 @@ def set_stage(stage: str, status: str = "in_progress", pid: str | None = None, n
             action, decision = "получите и запишите решение человека", "pass"
         raise StrategistError(f"Для стадии {stage} нужны ворота {gate_id} ({GATES[gate_id]}). "
                               f"Сначала {action}: python sf.py gate {gate_id[:2]} {decision} --note \"...\"")
+    # результаты всех предыдущих стадий должны существовать: нельзя «перепрыгнуть» исследование и варианты
+    from .evidence import STAGE_OUTPUTS  # отложенный импорт: evidence импортирует project
+    d = project_dir(pid)
+    missing = [rel for s in STAGES[:STAGES.index(stage)] for rel in STAGE_OUTPUTS[s]
+               if not (d / rel).is_file() or not (d / rel).stat().st_size]
+    if missing:
+        raise StrategistError(f"Для стадии {stage} не готовы результаты предыдущих стадий: {', '.join(missing)}")
     prev = st.get("stage")
     st["stage"], st["stage_status"] = stage, status
     if prev != stage:
@@ -159,6 +167,39 @@ def set_stage(stage: str, status: str = "in_progress", pid: str | None = None, n
     return st
 
 
+GATE_ORDER = {"G2_option": "G1_brief", "G3_strategy": "G2_option"}
+
+
+def gate_prerequisites(gate_id: str, d: Path) -> list[str]:
+    """Что должно быть готово, чтобы показывать человеку решение на воротах (иначе подтверждать нечего)."""
+    from .evidence import STRUCTURE, sections  # отложенный импорт: evidence импортирует project
+
+    def text(rel: str) -> str:
+        p = d / rel
+        return p.read_text(encoding="utf-8") if p.is_file() else ""
+
+    problems: list[str] = []
+    if gate_id == "G1_brief":
+        brief = text("brief.md")
+        if not brief.strip():
+            return ["brief.md отсутствует или пуст — сначала постановка задачи (навык intake)"]
+        filled = [(h.lower(), b.strip()) for h, b in sections(brief)]
+        for kw in STRUCTURE["brief.md"]:
+            if not any(kw in h and b for h, b in filled):
+                problems.append(f"brief.md: раздел «{kw}…» отсутствует или не заполнен")
+    elif gate_id == "G2_option":
+        n = len(re.findall(r"^##\s+Вариант", text("options.md"), re.M))
+        if n < 3:
+            problems.append(f"options.md: вариантов {n}, нужно не меньше 3")
+        if not text("research/findings.md").strip():
+            problems.append("research/findings.md отсутствует или пуст — варианты должны опираться на картину ситуации")
+    elif gate_id == "G3_strategy":
+        for rel in ("strategy/product.md", "strategy/communication.md", "strategy/validation.md", "strategy/one-pager.md"):
+            if not text(rel).strip():
+                problems.append(f"{rel} отсутствует или пуст")
+    return problems
+
+
 def gate(gate_id: str, decision: str, note: str = "", by: str = "human", pid: str | None = None) -> dict:
     gate_id = GATE_ALIASES.get(gate_id, gate_id)
     if gate_id not in GATES:
@@ -168,6 +209,14 @@ def gate(gate_id: str, decision: str, note: str = "", by: str = "human", pid: st
     st = load_state(pid)
     if decision == "assume" and st.get("mode") != "autopilot":
         raise StrategistError("assume разрешён только в режиме autopilot; в checkpoints решает человек.")
+    if decision in ("pass", "assume"):
+        before = GATE_ORDER.get(gate_id)
+        if before and st["gates"].get(before, {}).get("status") != "passed":
+            raise StrategistError(f"Сначала ворота {before} ({GATES[before]}): ворота проходятся по порядку G1 → G2 → G3.")
+        problems = gate_prerequisites(gate_id, project_dir(pid))
+        if problems:
+            raise StrategistError(f"Ворота {gate_id} нельзя пройти — не готово то, что человек должен подтвердить: "
+                                  + "; ".join(problems))
     st["gates"][gate_id] = {"status": {"pass": "passed", "reject": "rejected", "assume": "passed"}[decision],
                             "at": now(), "by": "assumed" if decision == "assume" else by, "note": note}
     if decision != "reject" and st.get("stage_status") == "waiting_human":

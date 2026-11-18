@@ -10,6 +10,7 @@
   sha256: a66b7d60a83fa18f34e549d6ea4760e51f6fb59726426c6fa6baadc66e6bcb14
   injection_flags: []
   notes: 'снят 2026-11-14, видимый текст: research/ux/megafon-eva.txt'
+  text_path: research/ux/megafon-eva.txt
 - id: S002
   title: 'Скриншот: mts-zashchitnik'
   kind: image
@@ -22,6 +23,7 @@
   sha256: fef1fdba3f6535f09591472a2d012b36ce320cad48d8c8ebff17d34fa468077b
   injection_flags: []
   notes: 'снят 2026-11-14, видимый текст: research/ux/mts-zashchitnik.txt'
+  text_path: research/ux/mts-zashchitnik.txt
 - id: S003
   title: 'Скриншот: t2-safewall'
   kind: image
@@ -34,6 +36,7 @@
   sha256: b2245b0bda07abca24cfa9faaef24412b8d50c6cd3e2ea65a36819ed3d373fad
   injection_flags: []
   notes: 'снят 2026-11-14, видимый текст: research/ux/t2-safewall.txt'
+  text_path: research/ux/t2-safewall.txt
 - id: S004
   title: Сервисы безопасности в мобильных приложениях операторов
   kind: web

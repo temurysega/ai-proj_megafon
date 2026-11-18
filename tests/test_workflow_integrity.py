@@ -76,17 +76,37 @@ def test_identical_media_can_be_enriched_once(workspace, tmp_path, monkeypatch):
     assert "кадр с ценой" in text and "расшифровка" in text
 
 
+BRIEF = ("# Бриф\n## Решаемый вопрос\nПочему падает удержание\n## Цель\nВернуть удержание\n## Получатель\nCPO\n"
+         "## Ограничения\nТолько открытые данные\n## Доступные данные\nОтчёты\n")
+
+
 def test_late_stage_checks_all_earlier_gates(workspace):
     with pytest.raises(StrategistError, match="G1_brief"):
         project.set_stage("review")
     assert project.load_state()["stage"] == "intake"
+    # ворота нельзя пройти, пока нечего подтверждать (ревью 18.11: пустой проект проходил G1 и G2)
+    with pytest.raises(StrategistError, match="brief.md"):
+        project.gate("G1", "pass")
+    (workspace / "brief.md").write_text(BRIEF, encoding="utf-8")
     project.gate("G1", "pass")
-    with pytest.raises(StrategistError, match="G2_option"):
-        project.set_stage("review")
+    with pytest.raises(StrategistError, match="options.md"):
+        project.gate("G2", "pass")
+    (workspace / "options.md").write_text("".join(f"## Вариант {x}\nтекст\n" for x in "ABC"), encoding="utf-8")
+    (workspace / "research" / "findings.md").write_text("# Картина\nизвестно\n", encoding="utf-8")
     project.gate("G2", "pass")
-    project.set_stage("review")
-    with pytest.raises(StrategistError, match="G3_strategy"):
+    # ворота пройдены, но результатов стадий материалов и исследования нет — перепрыгнуть нельзя
+    with pytest.raises(StrategistError, match="результаты предыдущих стадий"):
+        project.set_stage("review")
+    with pytest.raises(StrategistError, match="G3_strategy|результаты"):
         project.set_stage("support")
+
+
+def test_gates_go_in_order(workspace):
+    (workspace / "brief.md").write_text(BRIEF, encoding="utf-8")
+    with pytest.raises(StrategistError, match="по порядку"):
+        project.gate("G2", "pass")
+    with pytest.raises(StrategistError, match="по порядку"):
+        project.gate("G3", "pass")
 
 
 def test_check_requires_previous_stages_and_strict_requires_current_output(workspace):
@@ -118,3 +138,26 @@ def test_strict_rechecks_quotes_after_source_changes(workspace, tmp_path):
     failed = evidence.check(strict=True)
     assert failed["metrics"]["quote_matches_in_current_snapshots"] == {"not_found": 2}
     assert any("C001" in error for error in failed["errors"])
+
+
+def test_fact_with_invented_quote_is_refused(workspace, tmp_path):
+    # ревью 18.11: `claim add --kind fact --quote "выдуманная цитата"` проходил с кодом 0
+    note = tmp_path / "отчёт.md"
+    note.write_text("Выручка выросла на 12% в 2025 году.", encoding="utf-8")
+    src = ingest.ingest(str(note))
+    with pytest.raises(StrategistError, match="не найдена"):
+        evidence.add_claim("Выручка выросла", "fact", [src["id"]], quote="выдуманная цитата")
+    ok = evidence.add_claim("Выручка выросла на 12%", "fact", [src["id"]], quote="Выручка выросла на 12% в 2025 году")
+    assert ok["quote_status"] == "verbatim"
+    scan = evidence.add_claim("Цифра со скана", "fact", [src["id"]], quote="3,999", locator="стр. 4, таблица 2",
+                              unverified_quote=True)
+    assert "не сверена" in scan["note"]
+
+
+def test_one_pager_cost_must_match_ledger(workspace):
+    (workspace / "strategy" / "one-pager.md").write_text("# Резюме\n## Решение\nx\n## Стоимость\n**Стоимость проекта ≈ $9,99**\n",
+                                                          encoding="utf-8")
+    (workspace / "costs.jsonl").write_text('{"type": "subagent", "usd": 1.0, "tokens": 1000}\n', encoding="utf-8")
+    assert any("расходится с журналом" in e for e in evidence.check()["errors"])
+    (workspace / "strategy" / "one-pager.md").write_text("# Резюме\n**Стоимость проекта ≈ $1,00**\n", encoding="utf-8")
+    assert not any("расходится" in e for e in evidence.check()["errors"])

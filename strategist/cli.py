@@ -127,7 +127,8 @@ def cmd_claim(a):
     from .evidence import add_claim, retract_claim, update_claim
     if a.action == "add":
         _print(add_claim(a.text, a.kind, _split(a.src), a.quote or "", a.locator or "", a.conf, _split(a.tags),
-                         _split(a.depends), a.method or "", a.note or "", pid=a.project))
+                         _split(a.depends), a.method or "", a.note or "", pid=a.project,
+                         unverified_quote=a.unverified_quote))
     elif a.action == "update":
         fields = {k: v for k, v in {"status": a.status, "kind": a.kind_new, "confidence": a.conf_new,
                                     "note": a.note, "text": a.text_new, "quote": a.quote}.items() if v}
@@ -521,6 +522,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--kind-new")
     s.add_argument("--conf-new")
     s.add_argument("--text-new")
+    s.add_argument("--unverified-quote", action="store_true",
+                   help="факт со сканом/изображением: цитату нельзя сверить по тексту — нужен --locator")
     s.add_argument("--reason", default="")
     s.add_argument("--by", help="id утверждения-замены (superseded)")
     s = add("claims", cmd_claims, "список утверждений")
