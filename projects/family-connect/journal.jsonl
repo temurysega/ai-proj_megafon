@@ -56,3 +56,46 @@
 {"ts": "2026-11-20T18:54:38+03:00", "actor": "agent", "action": "stage", "detail": "research → options (in_progress)", "status": "ok"}
 {"ts": "2026-11-20T18:54:39+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
 {"ts": "2026-11-20T18:54:54+03:00", "actor": "agent", "action": "checkpoint", "detail": "options.md: 6 вариантов (A оставить … F закрыть), сравнение, рекомендация B (пилот сигнала организатору во II кв.)", "status": "ok", "next_action": "получить выбор варианта человеком (G2), затем stage strategy и документ из пяти частей"}
+{"ts": "2026-11-20T18:56:28+03:00", "actor": "hook", "action": "guard", "detail": "Bash: ask — [Стратег] Ворота G1–G3 проходит человек. Подтвердите, что это ваше решение, принятое в чате (агент не может пройти ворота сам; в режиме autopilot — `gate … assu", "status": "ok"}
+{"ts": "2026-11-20T18:56:33+03:00", "actor": "human", "action": "gate", "detail": "G2_option: pass — Человек выбрал вариант B в чате 20.11.2026: «B — пилот сигнала» (сигнал организатору о низком остатке у близкого, пилот во II кв.)", "status": "ok"}
+{"ts": "2026-11-20T18:56:34+03:00", "actor": "agent", "action": "stage", "detail": "options → strategy (in_progress)", "status": "ok"}
+{"ts": "2026-11-20T18:57:19+03:00", "actor": "agent", "action": "file_write", "detail": "research/data/strategy_calc.py", "status": "ok"}
+{"ts": "2026-11-20T18:57:21+03:00", "actor": "tool", "action": "analysis_run", "detail": "strategy_calc.py: код 0, входы {}, выходы {'strategy_calc.md': '9fe2608f85425bfa', 'strategy_calc.json': '950c0d84786840ca'}", "status": "ok"}
+{"ts": "2026-11-20T18:57:49+03:00", "actor": "agent", "action": "claim_added", "detail": "C030 [assumption] Допущение A6 (не данные кейса): при обычном обслуживании интернет ограничивают у 10–15% участников в течение 7 дней посл", "status": "ok"}
+{"ts": "2026-11-20T18:57:49+03:00", "actor": "agent", "action": "claim_added", "detail": "C031 [assumption] Допущение A7: минимальное важное улучшение — снижение доли ограничений на 3 п.п. (при базе 12% — на четверть); порог сог", "status": "ok"}
+{"ts": "2026-11-20T18:57:50+03:00", "actor": "agent", "action": "claim_added", "detail": "C032 [assumption] Допущение A8 (не данные кейса): впервые подходящий низкий остаток случается в 75–300 группах в неделю (около 1–4% подклю", "status": "ok"}
+{"ts": "2026-11-20T18:57:50+03:00", "actor": "agent", "action": "claim_added", "detail": "C033 [assumption] Допущение A9 (не данные кейса): после запуска с III квартала сигнал повышает долю активных среди подключённых групп на 4", "status": "ok"}
+{"ts": "2026-11-20T18:57:51+03:00", "actor": "agent", "action": "claim_added", "detail": "C034 [assumption] Допущение A10 (не данные кейса): разрешение участника видеть остаток дают 50% групп в основном ходе и 30% в менее благоп", "status": "ok"}
+{"ts": "2026-11-20T18:57:51+03:00", "actor": "agent", "action": "claim_added", "detail": "C035 [assumption] Допущение A11 (не данные кейса): активация за 14 дней растёт на 2 п.п. в основном ходе и не растёт в менее благоприятном", "status": "ok"}
+{"ts": "2026-11-20T18:57:52+03:00", "actor": "agent", "action": "claim_added", "detail": "C036 [assumption] Допущение A12 (не данные кейса): сигнал как довод создать группу в приложении добавляет 300 подключённых групп к прогноз", "status": "ok"}
+{"ts": "2026-11-20T18:57:52+03:00", "actor": "agent", "action": "claim_added", "detail": "C037 [estimate] Пилот B: при доле ограничений 12% без сигнала и важном улучшении на 3 п.п. нужно ≈1 640 групп на ветку, набор при 75–300", "status": "ok"}
+{"ts": "2026-11-20T18:57:52+03:00", "actor": "agent", "action": "claim_added", "detail": "C038 [estimate] Прогноз планового года с вариантом B (основной / менее благоприятный): валовая прибыль ≈279,2 / 279,0 млн руб. (цель 285", "status": "ok"}
+{"ts": "2026-11-20T18:57:53+03:00", "actor": "agent", "action": "claim_added", "detail": "C039 [estimate] Предельные вложения в вариант B, которые вернутся к концу третьего года через удержание охваченной когорты: от ≈0,95 млн", "status": "ok"}
+{"ts": "2026-11-20T18:58:18+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/product.md", "status": "ok"}
+{"ts": "2026-11-20T18:58:29+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/communication.md", "status": "ok"}
+{"ts": "2026-11-20T18:58:41+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/validation.md", "status": "ok"}
+{"ts": "2026-11-20T18:58:43+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 1", "status": "ok"}
+{"ts": "2026-11-20T19:00:16+03:00", "actor": "agent", "action": "checkpoint", "detail": "Написаны strategy/product.md, communication.md, validation.md по варианту B", "status": "ok", "next_action": "Написать strategy/document.md из пяти частей по шаблону брифа"}
+{"ts": "2026-11-20T19:02:23+03:00", "actor": "tool", "action": "analysis_run", "detail": "strategy_calc.py: код 0, входы {}, выходы {'strategy_calc.md': '07ee039831da631d', 'strategy_calc.json': 'fbff103de770cfa3'}", "status": "ok"}
+{"ts": "2026-11-20T19:02:36+03:00", "actor": "agent", "action": "claim_added", "detail": "C040 [estimate] При ≈1 640 группах на ветку и базе 12% половина ширины 95% интервала разницы долей ограничений ≈2,1 п.п. Правило решения", "status": "ok"}
+{"ts": "2026-11-20T19:02:36+03:00", "actor": "agent", "action": "claim_added", "detail": "C041 [assumption] Допущение A13 (ориентир, не данные кейса): к концу третьего года 10 000 семейных групп активны в последний месяц года — ", "status": "ok"}
+{"ts": "2026-11-20T19:02:43+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/validation.md", "status": "ok"}
+{"ts": "2026-11-20T19:02:45+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/validation.md", "status": "ok"}
+{"ts": "2026-11-20T19:04:39+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:04:45+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 1", "status": "ok"}
+{"ts": "2026-11-20T19:04:52+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:12+03:00", "actor": "agent", "action": "checkpoint", "detail": "Написан strategy/document.md из пяти частей; добавлены C040 (интервал) и C041 (ориентир 3-го года)", "status": "ok", "next_action": "Стадия review: one-pager, check --strict, render --pdf"}
+{"ts": "2026-11-20T19:05:12+03:00", "actor": "agent", "action": "stage", "detail": "strategy → review (in_progress)", "status": "ok"}
+{"ts": "2026-11-20T19:05:33+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/communication.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:35+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/communication.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:37+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:40+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:41+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:05:46+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/document.md", "status": "ok"}
+{"ts": "2026-11-20T19:06:27+03:00", "actor": "agent", "action": "file_write", "detail": "strategy/one-pager.md", "status": "ok"}
+{"ts": "2026-11-20T19:06:28+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-20T19:06:43+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
+{"ts": "2026-11-20T19:07:56+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
+{"ts": "2026-11-20T19:08:43+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
+{"ts": "2026-11-20T19:09:06+03:00", "actor": "agent", "action": "checkpoint", "detail": "Стратегия и документ из пяти частей готовы: check --strict 0 ошибок, отчёт PDF собран", "status": "ok", "next_action": "Человек принимает стратегию или просит правки (ворота G3)"}
+{"ts": "2026-11-20T19:09:06+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}

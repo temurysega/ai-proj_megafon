@@ -39,8 +39,12 @@ def text_metrics(text: str) -> dict:
 def project_text(pid: str) -> str:
     base = ROOT / "projects" / pid
     parts = []
-    for rel in ["strategy/one-pager.md", "research/findings.md", "options.md", "strategy/product.md",
-                "strategy/communication.md", "strategy/validation.md"]:
+    rels = ["strategy/one-pager.md", "research/findings.md", "options.md", "strategy/product.md",
+            "strategy/communication.md", "strategy/validation.md"]
+    deliv = ((read_yaml(base / "state.yaml", {}) or {}).get("deliverable") or {}).get("file")
+    if deliv and deliv not in rels:
+        rels.insert(1, deliv)
+    for rel in rels:
         f = base / rel
         if f.exists():
             parts.append(f.read_text(encoding="utf-8"))

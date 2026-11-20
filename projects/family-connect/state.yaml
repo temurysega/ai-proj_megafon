@@ -4,9 +4,9 @@ request: Решите, кому помочь в первую очередь, ч�
   Подготовьте план на ближайший год и задайте ориентир на конец третьего года работы. (бриф организаторов, учебный
   кейс)
 created: '2026-11-20T18:45:49+03:00'
-updated: '2026-11-20T18:54:54+03:00'
+updated: '2026-11-20T19:09:06+03:00'
 mode: checkpoints
-stage: options
+stage: review
 stage_status: waiting_human
 gates:
   G1_brief:
@@ -15,10 +15,14 @@ gates:
     by: human
     note: 'Человек подтвердил бриф в чате 20.11.2026: «Да, по умолчанию» (данные — только бриф; режим checkpoints)'
   G2_option:
-    status: pending
+    status: passed
+    at: '2026-11-20T18:56:33+03:00'
+    by: human
+    note: 'Человек выбрал вариант B в чате 20.11.2026: «B — пилот сигнала» (сигнал организатору о низком остатке
+      у близкого, пилот во II кв.)'
   G3_strategy:
     status: pending
-next_action: получить выбор варианта человеком (G2), затем stage strategy и документ из пяти частей
+next_action: Человек принимает стратегию или просит правки (ворота G3)
 open_questions:
 - id: Q1
   question: Опираться только на учебные числа брифа или дополнять допущения открытыми данными рынка (например, типичные
@@ -64,6 +68,18 @@ history:
   to: options
   status: in_progress
   note: ''
+- ts: '2026-11-20T18:56:34+03:00'
+  event: stage
+  from: options
+  to: strategy
+  status: in_progress
+  note: ''
+- ts: '2026-11-20T19:05:12+03:00'
+  event: stage
+  from: strategy
+  to: review
+  status: in_progress
+  note: ''
 deliverable:
   file: strategy/document.md
   template: strategy-document-5parts
@@ -74,6 +90,8 @@ deliverable:
   - Стратегический выбор и план по кварталам
   - Ресурсы, риски и решение руководителя
 last_checkpoint:
-  ts: '2026-11-20T18:54:54+03:00'
-  note: 'options.md: 6 вариантов (A оставить … F закрыть), сравнение, рекомендация B (пилот сигнала организатору
-    во II кв.)'
+  ts: '2026-11-20T19:09:06+03:00'
+  note: 'Стратегия и документ из пяти частей готовы: check --strict 0 ошибок, отчёт PDF собран'
+session_cost_mixed: true
+session_cost_note: В той же сессии IDE дорабатывался сам агент (шаблон «пять частей», порядок ворот, проверка структуры),
+  поэтому оценка основного чата показывается отдельно и в стоимость проекта не входит.

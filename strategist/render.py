@@ -52,7 +52,7 @@ section.doc{page-break-before:always}nav ol{columns:2;font-size:14px}
 .kpi{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.kpi div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:140px}
 .kpi b{display:block;font-size:20px}
 .print-only{display:none}
-@media print{a.c{border:none;padding:0}nav,.screen-only{display:none}.print-only{display:inline}}
+@media print{a.c{border:none;padding:0}nav,.screen-only{display:none}.print-only{display:inline}table{display:table;overflow:visible;font-size:11.5px}th,td{padding:4px 5px;overflow-wrap:break-word}}
 """
 
 
@@ -126,7 +126,12 @@ def build(pid=None, pdf: bool = False) -> dict:
             "<span><a class='c k-synthetic'>C003</a> синтетика</span><span><a class='c st-retracted'>C004</a> отозвано</span>"
             " — наведите курсор на метку, чтобы увидеть утверждение и источник.</p>"]
     toc, sections = [], []
-    for rel, title in ORDER:
+    order = list(ORDER)
+    deliv = (st.get("deliverable") or {}).get("file")
+    if deliv and deliv not in [r for r, _ in order]:
+        # документ, которого требует бриф (например, «пять частей»), идёт сразу после резюме
+        order.insert(1, (deliv, "Стратегия в формате брифа"))
+    for rel, title in order:
         f = d / rel
         if not f.exists():
             continue

@@ -188,3 +188,15 @@ def test_deliverable_structure_from_brief_is_checked(workspace):
     errors = evidence.check()["errors"]
     assert any("Ресурсы, риски и решение руководителя" in e for e in errors)
     assert not any("«Клиент и его проблема»" in e for e in errors)
+
+
+def test_report_includes_brief_required_document(workspace):
+    # документ, которого требует бриф, попадает в отчёт сразу после резюме
+    from strategist import render
+    project.set_deliverable("strategy/document.md", template="strategy-document-5parts")
+    (workspace / "strategy" / "one-pager.md").write_text("# Резюме\n## Решение\nПилот\n", encoding="utf-8")
+    (workspace / "strategy" / "document.md").write_text("# Стратегия\n## 1. Клиент и его проблема\nтекст\n", encoding="utf-8")
+    out = render.build(pdf=False)
+    html_text = (workspace / out["html"]).read_text(encoding="utf-8")
+    assert "Стратегия в формате брифа" in html_text and "Клиент и его проблема" in html_text
+    assert html_text.index("Резюме для руководителя") < html_text.index("Стратегия в формате брифа")

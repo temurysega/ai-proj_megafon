@@ -1,0 +1,164 @@
+{
+ "pilot": [
+  {
+   "base": 0.1,
+   "mde_pp": 0.03,
+   "relative": 0.3,
+   "n_per_arm": 1356,
+   "weeks": {
+    "75": 38,
+    "150": 20,
+    "300": 11
+   }
+  },
+  {
+   "base": 0.1,
+   "mde_pp": 0.04,
+   "relative": 0.4,
+   "n_per_arm": 721,
+   "weeks": {
+    "75": 21,
+    "150": 11,
+    "300": 6
+   }
+  },
+  {
+   "base": 0.1,
+   "mde_pp": 0.05,
+   "relative": 0.5,
+   "n_per_arm": 435,
+   "weeks": {
+    "75": 13,
+    "150": 7,
+    "300": 4
+   }
+  },
+  {
+   "base": 0.12,
+   "mde_pp": 0.03,
+   "relative": 0.25,
+   "n_per_arm": 1638,
+   "weeks": {
+    "75": 45,
+    "150": 23,
+    "300": 12
+   }
+  },
+  {
+   "base": 0.12,
+   "mde_pp": 0.04,
+   "relative": 0.333,
+   "n_per_arm": 882,
+   "weeks": {
+    "75": 25,
+    "150": 13,
+    "300": 7
+   }
+  },
+  {
+   "base": 0.12,
+   "mde_pp": 0.05,
+   "relative": 0.417,
+   "n_per_arm": 539,
+   "weeks": {
+    "75": 16,
+    "150": 9,
+    "300": 5
+   }
+  },
+  {
+   "base": 0.15,
+   "mde_pp": 0.03,
+   "relative": 0.2,
+   "n_per_arm": 2036,
+   "weeks": {
+    "75": 56,
+    "150": 29,
+    "300": 15
+   }
+  },
+  {
+   "base": 0.15,
+   "mde_pp": 0.04,
+   "relative": 0.267,
+   "n_per_arm": 1109,
+   "weeks": {
+    "75": 31,
+    "150": 16,
+    "300": 9
+   }
+  },
+  {
+   "base": 0.15,
+   "mde_pp": 0.05,
+   "relative": 0.333,
+   "n_per_arm": 686,
+   "weeks": {
+    "75": 20,
+    "150": 11,
+    "300": 6
+   }
+  }
+ ],
+ "forecast": {
+  "основной": {
+   "profit": 279.19,
+   "active": 5520,
+   "connected": 8300,
+   "owners": 1000,
+   "activation": 47,
+   "covered_numbers": 12450,
+   "extra_paid_months": 374,
+   "profit_gap_mln": 5.81
+  },
+  "менее благоприятный": {
+   "profit": 279.0,
+   "active": 5080,
+   "connected": 8000,
+   "owners": 1000,
+   "activation": 45,
+   "covered_numbers": 7200,
+   "extra_paid_months": 0,
+   "profit_gap_mln": 6.0
+  }
+ },
+ "investment": [
+  {
+   "coverage": 0.3,
+   "rel_churn": 0.05,
+   "covered_numbers": 7200,
+   "max_invest_mln_to_y3": 0.95
+  },
+  {
+   "coverage": 0.3,
+   "rel_churn": 0.1,
+   "covered_numbers": 7200,
+   "max_invest_mln_to_y3": 1.91
+  },
+  {
+   "coverage": 0.3,
+   "rel_churn": 0.2,
+   "covered_numbers": 7200,
+   "max_invest_mln_to_y3": 3.88
+  },
+  {
+   "coverage": 0.5,
+   "rel_churn": 0.05,
+   "covered_numbers": 12000,
+   "max_invest_mln_to_y3": 1.58
+  },
+  {
+   "coverage": 0.5,
+   "rel_churn": 0.1,
+   "covered_numbers": 12000,
+   "max_invest_mln_to_y3": 3.19
+  },
+  {
+   "coverage": 0.5,
+   "rel_churn": 0.2,
+   "covered_numbers": 12000,
+   "max_invest_mln_to_y3": 6.47
+  }
+ ],
+ "ci_half_width_pp": 2.1
+}
