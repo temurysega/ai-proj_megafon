@@ -4,18 +4,21 @@ request: Решите, кому помочь в первую очередь, ч�
   Подготовьте план на ближайший год и задайте ориентир на конец третьего года работы. (бриф организаторов, учебный
   кейс)
 created: '2026-11-20T18:45:49+03:00'
-updated: '2026-11-20T18:47:27+03:00'
+updated: '2026-11-20T18:54:54+03:00'
 mode: checkpoints
-stage: intake
+stage: options
 stage_status: waiting_human
 gates:
   G1_brief:
-    status: pending
+    status: passed
+    at: '2026-11-20T18:50:40+03:00'
+    by: human
+    note: 'Человек подтвердил бриф в чате 20.11.2026: «Да, по умолчанию» (данные — только бриф; режим checkpoints)'
   G2_option:
     status: pending
   G3_strategy:
     status: pending
-next_action: получить подтверждение брифа и ответы на 2 вопроса (G1), затем stage materials
+next_action: получить выбор варианта человеком (G2), затем stage strategy и документ из пяти частей
 open_questions:
 - id: Q1
   question: Опираться только на учебные числа брифа или дополнять допущения открытыми данными рынка (например, типичные
@@ -24,20 +27,43 @@ open_questions:
     допущений обоснованнее'
   default: Только числа брифа; открытые данные — лишь как ориентир для границ диапазонов, с пометкой «не данные
     кейса»
-  status: open
+  status: answered
   asked: '2026-11-20T18:47:26+03:00'
+  answer: 'По умолчанию: только числа брифа; открытые данные — лишь ориентир для границ диапазонов, с пометкой «не
+    данные кейса»'
+  answered: '2026-11-20T18:50:39+03:00'
 - id: Q2
   question: Вести работу с подтверждением на воротах G1–G3 или в режиме autopilot до готового документа из пяти
     частей?
   why: Checkpoints — вы выбираете группу клиентов и вариант; autopilot — быстрее, допущения проверяете в конце
   default: С подтверждением на воротах (checkpoints)
-  status: open
+  status: answered
   asked: '2026-11-20T18:47:26+03:00'
+  answer: 'По умолчанию: с подтверждением на воротах (checkpoints)'
+  answered: '2026-11-20T18:50:39+03:00'
 stale: []
 history:
 - ts: '2026-11-20T18:45:49+03:00'
   event: created
   stage: intake
+- ts: '2026-11-20T18:50:48+03:00'
+  event: stage
+  from: intake
+  to: materials
+  status: in_progress
+  note: ''
+- ts: '2026-11-20T18:50:50+03:00'
+  event: stage
+  from: materials
+  to: research
+  status: in_progress
+  note: ''
+- ts: '2026-11-20T18:54:38+03:00'
+  event: stage
+  from: research
+  to: options
+  status: in_progress
+  note: ''
 deliverable:
   file: strategy/document.md
   template: strategy-document-5parts
@@ -48,5 +74,6 @@ deliverable:
   - Стратегический выбор и план по кварталам
   - Ресурсы, риски и решение руководителя
 last_checkpoint:
-  ts: '2026-11-20T18:47:27+03:00'
-  note: 'бриф по брифу организаторов заполнен: факты C001–C015, структура «пять частей» включена'
+  ts: '2026-11-20T18:54:54+03:00'
+  note: 'options.md: 6 вариантов (A оставить … F закрыть), сравнение, рекомендация B (пилот сигнала организатору
+    во II кв.)'

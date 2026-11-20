@@ -1,0 +1,74 @@
+{
+ "active_share_pct": {
+  "plan_base": 66.7,
+  "est_base": 61.5,
+  "no_change": 62.5,
+  "target": 66.7
+ },
+ "active_gap_base": {
+  "total": -1000,
+  "fewer_connected": -641,
+  "lower_active_share": -359
+ },
+ "penetration_pct": {
+  "groups_est_base": 6.5,
+  "groups_target": 12.0,
+  "owners_est_base": 2.0,
+  "owners_no_change": 2.5,
+  "owners_target": 5.0
+ },
+ "target_vs_no_change": {
+  "connected": 4000,
+  "active": 3000,
+  "owners": 1000,
+  "activation_pp": 15,
+  "profit_mln": 6,
+  "net_connected_vs_start": 5500
+ },
+ "gap_extra_paid_months": 12000,
+ "retention_boundary": {
+  "live_months": 6,
+  "numbers_in_target_groups": [
+   30000,
+   42000
+  ],
+  "grid": [
+   {
+    "monthly_churn": 0.01,
+    "rel_reduction": 0.05,
+    "extra_months_per_number": 0.0102,
+    "numbers_needed": 1180672
+   },
+   {
+    "monthly_churn": 0.01,
+    "rel_reduction": 0.1,
+    "extra_months_per_number": 0.0203,
+    "numbers_needed": 589843
+   },
+   {
+    "monthly_churn": 0.01,
+    "rel_reduction": 0.2,
+    "extra_months_per_number": 0.0408,
+    "numbers_needed": 294428
+   },
+   {
+    "monthly_churn": 0.02,
+    "rel_reduction": 0.05,
+    "extra_months_per_number": 0.0197,
+    "numbers_needed": 609932
+   },
+   {
+    "monthly_churn": 0.02,
+    "rel_reduction": 0.1,
+    "extra_months_per_number": 0.0394,
+    "numbers_needed": 304455
+   },
+   {
+    "monthly_churn": 0.02,
+    "rel_reduction": 0.2,
+    "extra_months_per_number": 0.0791,
+    "numbers_needed": 151717
+   }
+  ]
+ }
+}
