@@ -317,7 +317,7 @@ def status_text(pid: str | None = None, brief: bool = False) -> str:
         pass
     tot = _costs.summary(d.name)
     lines.append(f"Стоимость проекта ≈${tot['project_usd']:.2f}: внешние модели ${tot['external_usd']:.4f} "
-                 f"({tot['external_calls']} вызовов), субагенты ≈${tot['subagent_usd']:.2f}"
+                 f"({tot['external_calls']} вызовов), субагенты и ручные оценки ≈${tot['subagent_usd']:.2f}"
                  + (f"; основной чат ≈${tot['session_usd']:.2f} — отдельно ({tot['session_note']})" if tot["session_mixed"]
                     else (f", основной чат ≈${tot['session_usd']:.2f}" if tot["session_usd"] else "")))
     if not brief:
