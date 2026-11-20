@@ -99,3 +99,9 @@
 {"ts": "2026-11-20T19:08:43+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
 {"ts": "2026-11-20T19:09:06+03:00", "actor": "agent", "action": "checkpoint", "detail": "Стратегия и документ из пяти частей готовы: check --strict 0 ошибок, отчёт PDF собран", "status": "ok", "next_action": "Человек принимает стратегию или просит правки (ворота G3)"}
 {"ts": "2026-11-20T19:09:06+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-20T19:13:17+03:00", "actor": "human", "action": "gate", "detail": "G3_strategy: pass — Человек принял стратегию по варианту B и документ из пяти частей (20.11.2026)", "status": "ok"}
+{"ts": "2026-11-20T19:13:17+03:00", "actor": "agent", "action": "stage", "detail": "review → support (in_progress)", "status": "ok"}
+{"ts": "2026-11-20T19:14:09+03:00", "actor": "agent", "action": "file_write", "detail": "decisions.yaml", "status": "ok"}
+{"ts": "2026-11-20T19:14:22+03:00", "actor": "agent", "action": "checkpoint", "detail": "G3 пройдены, журнал решений D1: 10 обязательств, условия пересмотра и стоп-критерии", "status": "ok", "next_action": "Получить от человека итоги K4, K1, K2 к 04.12.2026 и сверить допущения A6, A8 с выгрузкой"}
+{"ts": "2026-11-20T19:14:23+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-20T19:14:26+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}
