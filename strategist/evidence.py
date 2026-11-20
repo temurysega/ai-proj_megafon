@@ -417,6 +417,19 @@ def check(pid=None, strict: bool = False) -> dict:
             artifact = d / rel
             if not artifact.is_file() or not artifact.stat().st_size:
                 problems.append(f"стадия {current}: ожидается непустой файл {rel}")
+    # 3а. структура итогового документа, которую задал бриф (`sf deliverable`)
+    deliv = st.get("deliverable")
+    if deliv and STAGES.index(st["stage"]) >= STAGES.index("strategy"):
+        required = strict or STAGES.index(st["stage"]) >= STAGES.index("review")
+        target = errors if required else warnings
+        doc = d / deliv["file"]
+        if not doc.is_file():
+            target.append(f"{deliv['file']}: итоговый документ, который требует бриф, ещё не создан")
+        else:
+            heads = [h.lower() for h, _ in sections(doc.read_text(encoding="utf-8"))]
+            for part in deliv["sections"]:
+                if not any(part.lower() in h for h in heads):
+                    target.append(f"{deliv['file']}: нет обязательной части «{part}» (требование брифа)")
     # 3б. стоимость в резюме сверяется с журналом расходов (ревью 18.11: цифры расходились между документами)
     onep = d / "strategy" / "one-pager.md"
     if onep.is_file():

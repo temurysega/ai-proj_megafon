@@ -175,3 +175,16 @@ def test_fact_without_quote_is_refused_and_flagged(workspace, tmp_path):
                    "locator": "", "status": "active"})
     evidence.write_jsonl(evidence._claims_path(None), claims)
     assert any("C900" in e and "без дословной цитаты" in e for e in evidence.check()["errors"])
+
+
+def test_deliverable_structure_from_brief_is_checked(workspace):
+    # бриф организаторов задаёт «один документ из пяти частей» — sf check требует все части
+    deliv = project.set_deliverable("strategy/document.md", template="strategy-document-5parts")
+    assert len(deliv["sections"]) == 5 and deliv["sections"][0] == "Клиент и его проблема"
+    state = project.load_state()
+    state["stage"] = "review"
+    project.save_state(state)
+    (workspace / "strategy" / "document.md").write_text("# Стратегия\n## 1. Клиент и его проблема\nтекст\n", encoding="utf-8")
+    errors = evidence.check()["errors"]
+    assert any("Ресурсы, риски и решение руководителя" in e for e in errors)
+    assert not any("«Клиент и его проблема»" in e for e in errors)

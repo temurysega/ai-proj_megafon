@@ -1,0 +1,18 @@
+- id: S001
+  title: 'Бриф организаторов: Связь для близких и собственных устройств'
+  kind: pdf
+  url: ''
+  path: sources/raw/originals/558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5.pdf
+  publisher: организаторы хакатона
+  published: '2026-11-20'
+  retrieved: '2026-11-20'
+  reliability: A
+  sha256: 558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5
+  injection_flags: []
+  notes: 'учебный кейс вымышленного оператора: все числа учебные (так сказано в брифе); источник постановки и исходных
+    данных'
+  original_name: Пример брифа.pdf
+  text_path: sources/raw/S001.md
+  described: false
+  transcribed: false
+  chars: 29825

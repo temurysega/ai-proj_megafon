@@ -226,6 +226,24 @@ def gate(gate_id: str, decision: str, note: str = "", by: str = "human", pid: st
     return st
 
 
+def set_deliverable(file: str, template: str = "", sections: list[str] | None = None, pid: str | None = None) -> dict:
+    """Требуемая структура итогового документа (например, бриф организаторов «пять частей»): её проверяет `sf check`."""
+    from .common import ROOT
+    sections = [s.strip() for s in (sections or []) if s.strip()]
+    if template:
+        tpl = ROOT / "knowledge" / "templates" / f"{template}.md"
+        if not tpl.is_file():
+            raise StrategistError(f"Нет шаблона {tpl.relative_to(ROOT)}")
+        sections = [m.group(1).strip() for m in re.finditer(r"^##\s+\d+\.\s+(.+)$", tpl.read_text(encoding="utf-8"), re.M)]
+    if not sections:
+        raise StrategistError("Укажите --template или --sections \"Часть 1;Часть 2;...\"")
+    st = load_state(pid)
+    st["deliverable"] = {"file": file, "template": template, "sections": sections}
+    save_state(st, pid)
+    journal("deliverable_set", f"{file}: {len(sections)} обязательных частей" + (f" ({template})" if template else ""), pid=pid)
+    return st["deliverable"]
+
+
 def checkpoint(note: str = "", next_action: str | None = None, waiting_human: bool = False,
                pid: str | None = None) -> dict:
     st = load_state(pid)

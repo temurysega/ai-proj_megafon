@@ -84,6 +84,15 @@ def cmd_checkpoint(a):
     _print(f"Чекпойнт сохранён. Следующее действие: {st.get('next_action')}")
 
 
+def cmd_deliverable(a):
+    from .project import set_deliverable
+    _print(set_deliverable(a.file, a.template or "", _split_semicolon(a.sections), a.project))
+
+
+def _split_semicolon(s):
+    return [x for x in (s or "").split(";") if x.strip()]
+
+
 def cmd_ask(a):
     from .project import add_question, answer_question
     if a.action == "add":
@@ -460,6 +469,10 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("note")
     s.add_argument("--next")
     s.add_argument("--waiting", action="store_true", help="ждём ответа человека")
+    s = add("deliverable", cmd_deliverable, "структура итогового документа, которую требует бриф (проверяет sf check)")
+    s.add_argument("--file", default="strategy/document.md")
+    s.add_argument("--template", help="шаблон из knowledge/templates, например strategy-document-5parts")
+    s.add_argument("--sections", help="или список частей через «;»")
     s = add("ask", cmd_ask, "вопросы человеку")
     s.add_argument("action", choices=["add", "answer"])
     s.add_argument("qid", nargs="?")
