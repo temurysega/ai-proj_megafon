@@ -1,6 +1,8 @@
 """Регрессии проверки стратегии, версий входных файлов и восстановления источников."""
 import shutil
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -200,3 +202,49 @@ def test_report_includes_brief_required_document(workspace):
     html_text = (workspace / out["html"]).read_text(encoding="utf-8")
     assert "Стратегия в формате брифа" in html_text and "Клиент и его проблема" in html_text
     assert html_text.index("Резюме для руководителя") < html_text.index("Стратегия в формате брифа")
+
+
+def test_import_preserves_checkpoint_and_refuses_to_overwrite(workspace, tmp_path, monkeypatch):
+    from strategist import cli, common
+
+    project.checkpoint("Выбран следующий шаг", "Собрать материалы", waiting_human=True)
+    archive_root = tmp_path / "archives"
+    archive_root.mkdir()
+    monkeypatch.setattr(cli, "ROOT", archive_root)
+    cli.cmd_export(SimpleNamespace(project=workspace.name))
+
+    projects_copy = tmp_path / "Копия репозитория" / "projects"
+    projects_copy.mkdir(parents=True)
+    monkeypatch.setattr(common, "PROJECTS", projects_copy)
+    args = SimpleNamespace(zip=archive_root / f"{workspace.name}-export.zip")
+    cli.cmd_import(args)
+    state = projects_copy / workspace.name / "state.yaml"
+    assert common.read_yaml(state)["next_action"] == "Собрать материалы"
+    state.write_text("stage: materials\n", encoding="utf-8")
+    with pytest.raises(StrategistError, match="уже существует"):
+        cli.cmd_import(args)
+    assert common.read_yaml(state)["stage"] == "materials"
+
+
+def test_scan_secrets_in_unpacked_repository(tmp_path):
+    from strategist.safety import scan_repo_secrets
+
+    (tmp_path / "notes.txt").write_text("sk-or-v1-" + "a1" * 16, encoding="utf-8")
+    assert scan_repo_secrets(tmp_path) == ["notes.txt: OpenRouter key: sk-or-v1-a…"]
+
+
+def test_download_checks_each_redirect_before_request(monkeypatch):
+    from strategist import web
+
+    source_url = "https://www.cbr.ru/start"
+    intermediate_url = "https://www.cbr.ru/next"
+    session = MagicMock(max_redirects=5, headers={})
+    session.__enter__.return_value = session
+    session.get.side_effect = [SimpleNamespace(url=source_url), SimpleNamespace(url=intermediate_url)]
+    session.get_redirect_target.side_effect = ["/next", "https://outside.invalid/doc"]
+    monkeypatch.setattr(web.requests, "Session", lambda: session)
+
+    with pytest.raises(StrategistError, match="Переадресация запрещена"):
+        web._download(source_url)
+    assert [call.args[0] for call in session.get.call_args_list] == [source_url, intermediate_url]
+    assert all(call.kwargs["allow_redirects"] is False for call in session.get.call_args_list)

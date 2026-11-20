@@ -38,5 +38,6 @@ projects/*/sources/raw/**/*.mp3
 projects/zz-smoke*/
 projects/.active
 
-# Видео демо — большой файл, хранится на сайте (mgim.neblanki.tech/files/demo.mp4), не в git
+# Старые видео демо хранятся отдельно. Запись по брифу входит в комплект.
 docs/video/*.mp4
+!docs/video/family-connect.mp4

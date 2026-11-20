@@ -9,6 +9,7 @@ from __future__ import annotations
 import io
 import re
 from pathlib import Path
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -94,13 +95,49 @@ def looks_blocked(text: str) -> bool:
     return len(text) < 2500 and bool(BLOCK_PATTERNS.search(text))
 
 
+def _download(url: str) -> requests.Response:
+    with requests.Session() as session:
+        session.headers.update({"User-Agent": UA, "Accept-Language": "ru,en;q=0.8"})
+        for _ in range(session.max_redirects + 1):
+            ok, why = domain_allowed(url)
+            if not ok:
+                raise StrategistError(f"Переадресация запрещена: {why}")
+            response = session.get(url, timeout=60, allow_redirects=False)
+            redirect = session.get_redirect_target(response)
+            if redirect is None:
+                return response
+            url = urljoin(response.url, redirect)
+    raise StrategistError("Превышен предел переадресаций")
+
+
+def _guard_document_requests(context, page) -> None:
+    """Chromium проверяет адрес документа на каждом шаге навигации, включая HTTP-редиректы."""
+    session = context.new_cdp_session(page)
+
+    def check(event):
+        request = {"requestId": event["requestId"]}
+        allowed, _ = domain_allowed(event["request"]["url"])
+        if allowed:
+            session.send("Fetch.continueRequest", request)
+        else:
+            session.send("Fetch.failRequest", {**request, "errorReason": "BlockedByClient"})
+
+    session.on("Fetch.requestPaused", check)
+    session.send("Fetch.enable", {"patterns": [{"resourceType": "Document", "requestStage": "Request"}]})
+
+
 def render_with_browser(url: str) -> str:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         b = p.chromium.launch()
-        pg = b.new_page(user_agent=UA, locale="ru-RU")
+        context = b.new_context(user_agent=UA, locale="ru-RU")
+        pg = context.new_page()
+        _guard_document_requests(context, pg)
         resp = pg.goto(url, wait_until="domcontentloaded", timeout=90000)
         pg.wait_for_timeout(5000)  # тяжёлые сайты никогда не «затихают» в сети — ждём отрисовку
+        allowed, why = domain_allowed(pg.url)
+        if not allowed:
+            raise StrategistError(f"Переадресация запрещена: {why}")
         html = pg.content()
         b.close()
     if resp is not None and resp.status >= 400:
@@ -124,7 +161,7 @@ def fetch(url: str, title: str = "", publisher: str = "", published: str = "", r
             raw = render_with_browser(url).encode("utf-8")
             ctype = "text/html; charset=utf-8"  # без charset requests решал, что это ISO-8859-1 → «кракозябры»
         else:
-            r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "ru,en;q=0.8"}, timeout=60)
+            r = _download(url)
             if r.status_code >= 400:
                 raise StrategistError(f"HTTP {r.status_code}")
             raw, ctype = r.content, r.headers.get("content-type", "")
@@ -141,7 +178,9 @@ def fetch(url: str, title: str = "", publisher: str = "", published: str = "", r
         if len(text) < 400 and not render:
             journal("fetch_thin", f"{url}: мало текста ({len(text)}), пробую браузерный рендер", pid=pid, actor="tool")
             try:
-                auto_title, text = html_to_text(render_with_browser(url))
+                html_rendered = render_with_browser(url)
+                auto_title, text = html_to_text(html_rendered)
+                raw = html_rendered.encode("utf-8")
             except Exception as e:
                 journal("render_failed", f"{url}: {e}", pid=pid, status="failed", actor="tool")
     if looks_blocked(text):
@@ -182,6 +221,7 @@ def capture(url: str, name: str = "", mobile: bool = False, full_page: bool = Tr
         ctx = b.new_context(viewport={"width": 390, "height": 844} if mobile else {"width": 1366, "height": 900},
                             device_scale_factor=1, locale="ru-RU", user_agent=UA, is_mobile=mobile)
         pg = ctx.new_page()
+        _guard_document_requests(ctx, pg)
         pg.goto(url, wait_until="domcontentloaded", timeout=90000)
         pg.wait_for_timeout(6000)
         for _ in range(6):  # прокрутка для ленивой загрузки блоков
@@ -189,6 +229,9 @@ def capture(url: str, name: str = "", mobile: bool = False, full_page: bool = Tr
             pg.wait_for_timeout(500)
         pg.evaluate("window.scrollTo(0, 0)")
         pg.wait_for_timeout(800)
+        allowed, why = domain_allowed(pg.url)
+        if not allowed:
+            raise StrategistError(f"Переадресация запрещена: {why}")
         pg.screenshot(path=str(out_png), full_page=full_page)
         visible = pg.inner_text("body")
         b.close()

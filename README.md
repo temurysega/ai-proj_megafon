@@ -6,26 +6,22 @@
 Это не программа, а **папка-агент**: инструкции (`AGENTS.md`, навыки, субагенты), база знаний (`knowledge/`), инструменты на Python
 (CLI `sf` и MCP-сервер) и проекты с состоянием (`projects/`). Открывается в Claude Code, Cursor, Codex, Copilot и других средах.
 
-<p align="center"><a href="https://mgim.neblanki.tech"><img src="docs/screenshots/site-hero.png" alt="Сайт агента: главный экран" width="820"></a><br><sub>Сайт: <a href="https://mgim.neblanki.tech">mgim.neblanki.tech</a></sub></p>
-
 ## Проверить за 5 минут
-1. **Посмотреть:** [видео на Google Drive](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing) или [one-pager](projects/antifraud-family/strategy/one-pager.md) → [отчёт PDF](projects/antifraud-family/report/index.pdf).
-2. **Проверить локально.** Установите зависимости командой `python -m pip install -r requirements.txt`. Затем без ключей и сети выполните `python scripts/smoke_test.py`, `python sf.py -p antifraud-family check --strict`, `python sf.py -p esim-travel check --strict` и `python sf.py -p family-connect check --strict`. Для обязательств и сроков выполните `python sf.py -p antifraud-family decisions due`.
-3. **Проверить любую цифру:** метка `[C023]` в документе → утверждение в `projects/antifraud-family/evidence/claims.jsonl` (цитата, источник) →
-   снимок источника — путь `text_path` в `projects/antifraud-family/sources/registry.yaml` (обычно `sources/raw/S0xx.md`, у скриншотов страниц — `research/ux/*.txt`).
+1. **Посмотреть демо по брифу организаторов.** [Видео с субтитрами](docs/video/family-connect.mp4) · [резюме](projects/family-connect/strategy/one-pager.md) · [стратегия из пяти частей](projects/family-connect/strategy/document.md) · [отчёт PDF](projects/family-connect/report/index.pdf).
+2. **Проверить локально.** После `python -m pip install -r requirements.txt` выполните `python sf.py -p family-connect check --strict` и `python sf.py -p family-connect decisions due`. Для проверки рабочего процесса выполните `python scripts/smoke_test.py`. Эти команды работают без ключей OpenRouter и доступа к сети.
+3. **Проследить основание.** Например, метка `[C003]` у годовой прибыли ведёт к цитате в [реестре утверждений](projects/family-connect/evidence/claims.jsonl). Источник S001 есть в [реестре источников](projects/family-connect/sources/registry.yaml) и в [оригинале брифа PDF](projects/family-connect/sources/raw/originals/558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5.pdf).
 4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
 
 ## Что в репозитории
 
 | | |
 |---|---|
-| **Демо-проект** | [`projects/antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников: что делать с продуктом и как о нём говорить» (брифа МегаФона ещё нет — задача сформулирована командой, только открытые данные). Читать: [one-pager](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [HTML](projects/antifraud-family/report/index.html) |
-| **Результат демо** | 58 источников (в том числе 12 реальных интервью из 10 семей, с согласием), 98 активных утверждений с цитатами, 7 вариантов, продуктовая и коммуникационная стратегии, план проверки, журнал решений; 0 ошибок `sf check` |
-| **Второй проект** | [`projects/esim-travel`](projects/esim-travel) — «eSIM для путешествий», проведён отдельным агентом **с нуля без участия человека** ([one-pager](projects/esim-travel/strategy/one-pager.md), [PDF](projects/esim-travel/report/index.pdf)) |
-| **Бриф организаторов** | [`projects/family-connect`](projects/family-connect) — «Связь для близких и собственных устройств»: бриф загружен как источник, исходные числа записаны фактами с дословными цитатами; бриф подтверждён (G1), выбран вариант «сигнал организатору о низком остатке у близкого» (G2). Итог — **один документ из пяти частей**, как требует бриф: [документ](projects/family-connect/strategy/document.md) · [one-pager](projects/family-connect/strategy/one-pager.md) · [отчёт PDF](projects/family-connect/report/index.pdf). Шаблон — [`knowledge/templates/strategy-document-5parts.md`](knowledge/templates/strategy-document-5parts.md), `sf check` требует все пять частей. Стратегия принята (G3), обязательства и условия пересмотра — в [`decisions.yaml`](projects/family-connect/decisions.yaml) |
+| **Демо по брифу организаторов** | [`family-connect`](projects/family-connect) — «Связь для близких и собственных устройств». Из шести вариантов выбран пилот сигнала организатору о низком остатке у близкого. Бриф, выбор и стратегия прошли G1–G3. [План проверки](projects/family-connect/strategy/validation.md) · [обязательства и условия пересмотра](projects/family-connect/decisions.yaml). |
+| **Кейс с открытыми данными** | [`antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников». Здесь показаны реальные и модельные интервью, исследование рынка, UX-анализ и пересмотр вывода при новых данных. [Резюме](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [видео кейса](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing). |
+| **Независимый прогон** | [`esim-travel`](projects/esim-travel) — «eSIM для путешествий». Отдельный агент прошёл путь с нуля в режиме autopilot. [Отчёт PDF](projects/esim-travel/report/index.pdf) · [разбор времени и стоимости](projects/esim-travel/research/data/run-cost.md). |
 | **Сравнение с обычным чатом** | 6 слепых оценок судьями трёх производителей (Claude, DeepSeek, Qwen): агент **8,8–10** из 10, обычный чат 3,0–6,6; решающие факты 12/12 против 0–4/12. **При одинаковом входе без поиска у обоих** (учебный кейс, рубрика зафиксирована заранее, слепой судья): агент 9/10, чат 6/10, решение одинаковое — разница в полноте ([`evals/equal_input/`](evals/equal_input)) — [`evals/results/summary.md`](evals/results/summary.md) |
-| **Сайт** | **https://mgim.neblanki.tech** — основные пути работы агента: новая задача, проверяемость, пауза и продолжение, пересмотр при новых данных, сопровождение решения; там же PDF. Исходник — [`site/index.html`](site/index.html), выкладка — `scripts/deploy_site.py` |
-| **Видео** | **[Google Drive](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing)** · [mgim.neblanki.tech/#video](https://mgim.neblanki.tech/#video) — сквозной путь за 8 минут, с голосом: запрос, исследование, варианты, обрыв сессии и продолжение, стратегия, новые данные, сопровождение, защита, второй проект. Текст, главы и закадровый текст — [`docs/video/script.md`](docs/video/script.md); запись — `scripts/record_video.py`, голос по таймингам — `scripts/voiceover.py` |
+| **Сайт** | Исходник — [`site/index.html`](site/index.html). `python scripts/deploy_site.py --build-only` собирает страницу с видео и PDF в `.cache/site-dist` для локального просмотра. |
+| **Видео по брифу** | [MP4](docs/video/family-connect.mp4) · [субтитры](docs/video/family-connect.vtt). Проход по сохранённому проекту с повторной проверкой в отдельных процессах. Для пересборки из Git-клона с историей установите Chromium и `python -m pip install imageio-ffmpeg`, затем выполните `python scripts/record_family_connect.py`. |
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |
@@ -33,45 +29,40 @@
 
 
 
-<p align="center">
-  <img src="docs/screenshots/site-stages.png" alt="Семь шагов, три решения — за человеком" width="49%">
-  <img src="docs/screenshots/site-proof-dark.png" alt="Каждое утверждение — с источником и цитатой" width="49%">
-</p>
-
 ## Быстрый старт (3 шага, ≈5 минут)
 
 **Нужно:** Python 3.10+ и IDE с моделью для ведения новой задачи. Готовые отчёты открываются без установки. Для локальной проверки достаточно Python и зависимостей. Первичная загрузка пакетов и Chromium требует интернета. OpenRouter оплачивается по использованию, модель IDE — по условиям вашей подписки или провайдера.
 
 1. Установить зависимости и проверить окружение:
    ```bash
-   pip install -r requirements.txt
+   python -m pip install -r requirements.txt
    ```
    ```bash
    python -m playwright install chromium
    ```
    (на чистом Linux браузеру нужны системные библиотеки: `python -m playwright install --with-deps chromium`)
    ```bash
-   python sf.py doctor --install-git-hook
+   python sf.py doctor
    ```
 2. *(Необязательно)* Ключ OpenRouter для китайских моделей (классификация, извлечение, модельные респонденты, судьи, зрение, аудио):
-   скопировать `.env.example` в `.env` и вписать `OPENROUTER_API_KEY=...`. **Без ключа всё работает** на модели IDE и субагентах.
+   скопировать `.env.example` в `.env` и вписать `OPENROUTER_API_KEY=...`. Без ключа основной процесс ведёт модель IDE, а проверки и расчёты выполняются локально. Автоматические вызовы моделей через OpenRouter требуют ключа.
 3. Открыть папку в IDE и написать агенту задачу, например:
    > «Почему падает удержание в нашем приложении для родителей? Нужно понять, что делать в следующем квартале.»
 
    В Claude Code — также `/new <задача>`. Агент создаст проект, задаст до трёх вопросов и поведёт работу по стадиям.
 
-**Продолжить после перерыва:** открыть новый чат и написать «продолжай» (или `/resume`) — состояние подаётся из файлов автоматически.
+**Продолжить после перерыва:** открыть новый чат и написать «продолжай». В Claude Code статус подаёт хук SessionStart, в другой IDE агент читает `python sf.py status` по инструкции из `AGENTS.md`. Для выбора другого сохранённого проекта используйте `python sf.py use <id>`.
 **Остановить:** «стоп» или `/pause` — агент сохранит чекпойнт и скажет, как продолжить. **Посмотреть прогресс:** `python sf.py status`.
 
 **Посмотреть готовое демо без IDE** (на свежем клоне проект не выбран):
 ```bash
-python sf.py use antifraud-family
+python sf.py use family-connect
 ```
 ```bash
 python sf.py status
 ```
 ```bash
-python sf.py check
+python sf.py check --strict
 ```
 ```bash
 python sf.py decisions due
@@ -102,14 +93,14 @@ python sf.py decisions due
 модели      route · llm · models list/sync · cost
 результат   render --pdf · export · import · doctor · eval metrics/judge
 ```
-Справка: `python sf.py -h`, по команде — `python sf.py <команда> -h`. Те же функции — MCP-сервер `strategist` (подключается из `.mcp.json`).
+Справка: `python sf.py -h`, по команде — `python sf.py <команда> -h`. Часть команд доступна через MCP-сервер `strategist`, который подключается из `.mcp.json`.
 
 ## Ключевые решения
 1. **Рассуждает модель, помнят файлы.** Всё проверяемое (источники, утверждения, решения, учёт вызовов, состояние) хранится в файлах и меняется
    только инструментами — отсюда продолжение в новом чате, перенос в другую IDE и проверяемость.
 2. **Доказательность встроена в инструменты, а не в промпт.** Факт нельзя записать без источника и без цитаты, найденной в снимке источника (для сканов — только с локатором и пометкой); синтетика не может быть доводом о спросе;
    отзыв утверждения автоматически помечает зависимые разделы и решения; хук блокирует ссылку на отозванное основание сразу при записи.
-3. **Дешёвая независимая проверка** (сверка цитат при импорте, факт-чекер на Haiku, красная команда, слепое жюри) — на демо поймала 10 искажений
+3. **Независимая проверка** (сверка цитат при импорте, факт-чекер на Haiku, красная команда, слепое жюри) — на кейсе антифрода поймала 10 искажений
    смысла или неверных типов утверждений, 2 страницы-заглушки вместо статей, ошибку модели экономики и ошибку дизайна эксперимента.
 4. **Маршрутизация по задаче и по замеру:** синтез — сильная модель IDE; массовые операции — китайские модели через OpenRouter с фолбэками;
    модель для задачи выбирается замером на размеченных примерах, а не по новизне (`evals/routing_bench.py`).
@@ -117,7 +108,7 @@ python sf.py decisions due
 
 ## Данные и безопасность
 Только открытые источники из `config/sources_allowlist.yaml` и собственные материалы; содержимое источников — данные, не инструкции;
-Секреты хранятся в `.env`. Для реального интервью оставьте запись вне проекта и расшифруйте её на своём устройстве: `python scripts/transcribe_local.py <запись> --out projects/<id>/research/interviews/real/R06.md --id R06 --consent "yes — …"` (faster-whisper, без отправки во внешние сервисы; ПДн вычищаются, согласие пишется в шапку). Проверьте текст вручную: автоматическая очистка распознаёт только известные форматы идентификаторов. Команда `sf interviews` проверяет согласие и очищает текст перед кодированием моделью.
+Секреты хранятся в `.env`. Для локальной расшифровки нужны `python -m pip install faster-whisper imageio-ffmpeg`. Оставьте запись реального интервью вне проекта и выполните `python scripts/transcribe_local.py <запись> --out projects/<id>/research/interviews/real/R06.md --id R06 --consent "yes — …"`. Расшифровка выполняется на устройстве, ПДн вычищаются, согласие пишется в шапку. Проверьте текст вручную: автоматическая очистка распознаёт только известные форматы идентификаторов. Команда `sf interviews` проверяет согласие и очищает текст перед кодированием моделью.
 
 Изображения, аудио и видео можно импортировать с `--public-media`, когда файл открыт или синтетический и проверен на отсутствие ПДн. Например, `python sf.py ingest public-demo.mp3 --public-media --transcribe`. Модель получает сам файл или кадры и дорожку видео. В проекте сохраняется обработанный снимок, исходный ответ мультимодальной модели в кэш не записывается.
 
@@ -128,7 +119,15 @@ python scripts/smoke_test.py
 ```bash
 python -m pytest -q
 ```
-Дымовой тест (36 проверок сквозного пути без сети и ключей) и модульные тесты (в т. ч. регрессии найденных на демо ошибок).
+Последний прогон в отдельном клоне с новым окружением Python 3.12 дал 36/36 дымовых проверок и 38/38 тестов. MCP перечислил 16 инструментов и успешно выполнил `project_status`. Экспорт и импорт в другую рабочую копию сохранили следующий шаг.
+Если Windows закрывает доступ к каталогу pytest в системном TEMP, в PowerShell выполните:
+
+```powershell
+New-Item -ItemType Directory -Force .pytest_cache | Out-Null
+python -m pytest -q --basetemp .pytest_cache/agent-tests
+```
+
+В Git-клоне дополнительно установите проверку секретов перед коммитом командой `python sf.py doctor --install-git-hook`.
 
 ## Структура
 ```text

@@ -387,17 +387,18 @@ def cmd_doctor(a):
     rows.append("✅ OPENROUTER_API_KEY задан (значение не показывается)" if has_key() else
                 "➖ OPENROUTER_API_KEY не задан → внешние модели недоступны; агент работает на IDE-модели (см. AGENTS.md «Без ключа»)")
     probs = check_routing_models()
-    rows.append("✅ все модели из config/routing.yaml есть в OpenRouter" if not probs else "⚠ " + "; ".join(probs[:5]))
+    rows.append("✅ все модели из config/routing.yaml есть в локальном каталоге OpenRouter" if not probs else
+                "⚠ " + "; ".join(probs[:5]))
     sec = scan_repo_secrets()
     rows.append("✅ секретов в файлах репозитория не найдено" if not sec else "❌ найдены секреты: " + "; ".join(sec[:5]))
     ok = ok and not sec
-    hook = ROOT / ".git" / "hooks" / "pre-commit"
-    if a.install_git_hook and (ROOT / ".git").exists():
-        hook.write_text((ROOT / "scripts" / "pre-commit").read_text(encoding="utf-8"), encoding="utf-8")
-        rows.append("✅ git pre-commit хук на секреты установлен")
-    elif (ROOT / ".git").exists():
-        rows.append("✅ git pre-commit хук установлен" if hook.exists() else
-                    "➖ git pre-commit хук не установлен: python sf.py doctor --install-git-hook")
+    if (ROOT / ".git").exists():
+        installed, hook_report = _doctor_git_hook(a.install_git_hook)
+        rows.append(hook_report)
+        ok = ok and (installed or not a.install_git_hook)
+    elif a.install_git_hook:
+        rows.append("⚠ Для установки pre-commit хука нужна копия с Git.")
+        ok = False
     try:
         from playwright.sync_api import sync_playwright
         with sync_playwright() as p:
@@ -411,24 +412,75 @@ def cmd_doctor(a):
         sys.exit(1)
 
 
+def _doctor_git_hook(install: bool) -> tuple[bool, str]:
+    import os
+    import subprocess
+
+    try:
+        result = subprocess.run(["git", "rev-parse", "--git-path", "hooks/pre-commit"], cwd=ROOT,
+                                capture_output=True, check=True, timeout=10)
+        hook = ROOT / result.stdout.decode("utf-8").strip()
+        hook_source = (ROOT / "scripts" / "pre-commit").read_bytes()
+        other_hook = "➖ Уже есть другой git pre-commit хук. Для проверки секретов подключите к нему scripts/pre-commit."
+        if hook.is_symlink():
+            return False, other_hook
+        previous = hook.read_bytes() if hook.exists() else None
+        if previous is not None and previous.replace(b"\r\n", b"\n") != hook_source:
+            return False, other_hook
+        if install:
+            hook.parent.mkdir(parents=True, exist_ok=True)
+            if previous is None:
+                with hook.open("xb") as f:
+                    f.write(hook_source)
+            elif previous != hook_source:
+                hook.write_bytes(hook_source)
+            hook.chmod(hook.stat().st_mode | 0o111)
+        if (previous == hook_source or install) and (os.name == "nt" or hook.stat().st_mode & 0o111):
+            return True, "✅ git pre-commit хук на секреты установлен"
+        return False, "➖ git pre-commit хук не установлен: python sf.py doctor --install-git-hook"
+    except (OSError, UnicodeError, subprocess.SubprocessError) as e:
+        return False, f"⚠ Не удалось проверить или установить git pre-commit хук: {e}"
+
+
 def cmd_export(a):
     import shutil
     from .project import project_dir
     d = project_dir(a.project)
     out = shutil.make_archive(str(ROOT / f"{d.name}-export"), "zip", d.parent, d.name)
-    _print(f"Проект упакован: {out}. Перенос: распаковать в projects/ другой копии репозитория и `python sf.py use {d.name}`.")
+    _print(f"Проект упакован: {out}. В другой копии выполните `python sf.py import \"{out}\"`, "
+           f"затем `python sf.py use {d.name}`.")
 
 
 def cmd_import(a):
+    from pathlib import PurePosixPath
+    from tempfile import TemporaryDirectory
     import zipfile
+
     from .common import PROJECTS
-    with zipfile.ZipFile(a.zip) as z:
-        names = {n.split("/")[0] for n in z.namelist()}
-        for n in z.namelist():
-            if n.startswith("/") or ".." in Path(n).parts:
-                raise StrategistError(f"Небезопасный путь в архиве: {n}")
-        z.extractall(PROJECTS)
-    _print(f"Импортировано: {', '.join(names)}")
+
+    try:
+        with zipfile.ZipFile(a.zip) as archive:
+            roots = set()
+            for name in archive.namelist():
+                path = PurePosixPath(name)
+                if not path.parts or path.is_absolute() or ".." in path.parts or "\\" in name or ":" in name:
+                    raise StrategistError(f"Недопустимый путь в архиве: {name}")
+                roots.add(path.parts[0])
+            if len(roots) != 1:
+                raise StrategistError("Архив должен содержать одну папку проекта.")
+            project = roots.pop()
+            destination = PROJECTS / project
+            if destination.exists():
+                raise StrategistError(f"Проект '{project}' уже существует. Для импорта выберите копию репозитория без него.")
+            with TemporaryDirectory(prefix=".import-", dir=PROJECTS) as temporary:
+                archive.extractall(temporary)
+                incoming = Path(temporary) / project
+                if not (incoming / "state.yaml").is_file():
+                    raise StrategistError("В архиве проекта отсутствует state.yaml.")
+                incoming.rename(destination)
+    except (OSError, zipfile.BadZipFile) as e:
+        raise StrategistError(f"Не удалось импортировать проект: {e}") from e
+    _print(f"Импортировано: {project}. Для продолжения выполните `python sf.py use {project}`.")
 
 
 # ---------------- парсер ----------------

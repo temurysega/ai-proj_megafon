@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import fnmatch
+import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -95,20 +96,35 @@ def find_secrets(text: str) -> list[str]:
 
 
 def scan_repo_secrets(root: Path = ROOT) -> list[str]:
-    """Проверка отслеживаемых git-файлов (или всех, если git недоступен) на секреты."""
+    """Проверка файлов репозитория на секреты, включая распакованную копию без Git."""
     import subprocess
-    files: list[Path]
-    try:
-        out = subprocess.run(["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
-                             cwd=root, capture_output=True, timeout=30)
-        files = [root / p for p in out.stdout.decode("utf-8", "replace").split("\0") if p]
-    except Exception:
-        files = [p for p in root.rglob("*") if p.is_file() and ".git" not in p.parts]
+
+    git_files = None
+    if (root / ".git").exists():
+        try:
+            out = subprocess.run(["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+                                 cwd=root, capture_output=True, check=True, timeout=30)
+            git_files = set(out.stdout.decode("utf-8", "replace").split("\0")) - {""}
+        except (OSError, subprocess.SubprocessError):
+            pass
+    if git_files is None:
+        files = []
+        ignored_dirs = {".git", ".cache", ".pytest_cache", ".venv", "venv", "__pycache__"}
+        for directory, subdirs, names in os.walk(root):
+            subdirs[:] = [name for name in subdirs if name not in ignored_dirs]
+            files.extend(Path(directory) / name for name in names)
+    else:
+        files = [root / name for name in sorted(git_files)]
+
     hits = []
     for f in files:
+        if f.name == ".env" or (f.name.startswith(".env.") and f.name != ".env.example"):
+            if git_files is not None and f.exists():
+                hits.append(f"{f.relative_to(root).as_posix()}: файл с секретами должен быть исключён из Git")
+            continue
         if f.suffix.lower() in {".png", ".jpg", ".jpeg", ".pdf", ".zip", ".mp3", ".wav", ".mp4", ".xlsx", ".docx"}:
             continue
-        if f.name == ".env" or not f.exists() or f.stat().st_size > 3_000_000:
+        if f.is_symlink() or not f.is_file() or f.stat().st_size > 3_000_000:
             continue
         try:
             t = f.read_text(encoding="utf-8", errors="ignore")
@@ -128,10 +144,14 @@ def allowlist() -> dict:
 
 def domain_allowed(url: str) -> tuple[bool, str]:
     cfg = allowlist()
-    host = (urlparse(url).hostname or "").lower()
+    try:
+        parsed = urlparse(url)
+        host = (parsed.hostname or "").lower()
+    except ValueError:
+        return False, "некорректный адрес источника"
     if not host:
         return False, "не удалось определить домен"
-    if urlparse(url).scheme not in ("http", "https"):
+    if parsed.scheme not in ("http", "https"):
         return False, "разрешены только http/https"
     for pat in cfg.get("deny", []):
         if fnmatch.fnmatch(host, pat) or host.endswith("." + pat.lstrip("*.")):

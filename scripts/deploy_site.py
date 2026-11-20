@@ -7,6 +7,7 @@
   STRATEGIST_DEPLOY_KEY   путь к приватному SSH-ключу (необязательно)
   STRATEGIST_DEPLOY_DIR   каталог на сервере (по умолчанию /opt/strategist-site/html)
 """
+import argparse
 import os
 import shutil
 import subprocess
@@ -16,9 +17,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FILES = {
     "files/description.pdf": ROOT / "docs" / "report" / "description.pdf",
+    "files/family-connect.pdf": ROOT / "projects" / "family-connect" / "report" / "index.pdf",
     "files/antifraud-family.pdf": ROOT / "projects" / "antifraud-family" / "report" / "index.pdf",
     "files/esim-travel.pdf": ROOT / "projects" / "esim-travel" / "report" / "index.pdf",
 }
+FILES.update({
+    f"files/{name}": ROOT / "docs" / "video" / name
+    for name in ("family-connect.mp4", "family-connect.vtt", "family-connect-poster.jpg")
+})
 # Видео: имя на сайте → локальные файлы по приоритету (версия с голосом из scripts/voiceover.py, если собрана).
 VIDEO = {
     "demo.mp4": ["demo-voice.mp4", "demo.mp4"],
@@ -38,37 +44,47 @@ def has_audio(path: Path) -> bool:
     return "Audio:" in r.stderr
 
 
-def main():
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    host = os.environ.get("STRATEGIST_DEPLOY_HOST")
-    if not host:
-        sys.exit("Задайте STRATEGIST_DEPLOY_HOST, например: set STRATEGIST_DEPLOY_HOST=root@example.com")
-    remote = os.environ.get("STRATEGIST_DEPLOY_DIR", "/opt/strategist-site/html")
-    key = os.environ.get("STRATEGIST_DEPLOY_KEY")
-    ssh_opts = ["-o", "IdentitiesOnly=yes", "-i", key] if key else []
+def build_site():
     dist = ROOT / ".cache" / "site-dist"
-    shutil.rmtree(dist, ignore_errors=True)
-    (dist / "files").mkdir(parents=True)
-    shutil.copy2(ROOT / "site" / "index.html", dist / "index.html")
+    (dist / "files").mkdir(parents=True, exist_ok=True)
     for rel, src in FILES.items():
-        if not src.exists():
-            sys.exit(f"Нет файла {src} — соберите отчёты: python sf.py render --pdf; python scripts/build_description.py")
+        if not src.is_file():
+            sys.exit(f"Нет файла из комплекта сайта: {src.relative_to(ROOT)}")
         shutil.copy2(src, dist / rel)
-    subprocess.run(["ssh", *ssh_opts, host, f"mkdir -p {remote}/files"], check=True)
-    subprocess.run(["scp", *ssh_opts, "-q", str(dist / "index.html"), f"{host}:{remote}/index.html"], check=True)
-    subprocess.run(["scp", *ssh_opts, "-q", *[str(dist / r) for r in FILES], f"{host}:{remote}/files/"], check=True)
-    # Видео демо (scripts/record_video.py): большой файл не хранится в git, выкладывается, если записан локально.
-    media = 0
+    optional = []
     for name, candidates in VIDEO.items():
         src = next((ROOT / "docs" / "video" / c for c in candidates if (ROOT / "docs" / "video" / c).exists()), None)
         if src and name.endswith(".mp4") and not has_audio(src):
             # 18.11: озвученный файл переименовали, и на сайт ушла немая версия под заголовком «Видео с голосом»
-            print(f"⚠ {src.name} без звуковой дорожки — видео не выложено. Соберите голос: python scripts/voiceover.py")
+            print(f"⚠ {src.name} без звуковой дорожки — не выложено. Соберите голос: python scripts/voiceover.py")
             continue
         if src:
-            subprocess.run(["scp", *ssh_opts, "-q", str(src), f"{host}:{remote}/files/{name}"], check=True)
-            media += 1
-    print(f"Выложено: index.html, {len(FILES)} PDF и {media} файлов видео → {host}:{remote}")
+            dest = dist / "files" / name
+            shutil.copy2(src, dest)
+            optional.append(dest)
+    shutil.copy2(ROOT / "site" / "index.html", dist / "index.html")
+    return dist, [*(dist / rel for rel in FILES), *optional]
+
+
+def main():
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    parser = argparse.ArgumentParser(description="Собрать и выложить сайт агента")
+    parser.add_argument("--build-only", action="store_true", help="собрать локально, без SSH")
+    args = parser.parse_args()
+    host = os.environ.get("STRATEGIST_DEPLOY_HOST")
+    if not args.build_only and not host:
+        sys.exit("Задайте STRATEGIST_DEPLOY_HOST или запустите с --build-only")
+    dist, files = build_site()
+    if args.build_only:
+        print(f"Собрано: {dist.relative_to(ROOT)}")
+        return
+    remote = os.environ.get("STRATEGIST_DEPLOY_DIR", "/opt/strategist-site/html")
+    key = os.environ.get("STRATEGIST_DEPLOY_KEY")
+    ssh_opts = ["-o", "IdentitiesOnly=yes", "-i", key] if key else []
+    subprocess.run(["ssh", *ssh_opts, host, f"mkdir -p {remote}/files"], check=True)
+    subprocess.run(["scp", *ssh_opts, "-q", *map(str, files), f"{host}:{remote}/files/"], check=True)
+    subprocess.run(["scp", *ssh_opts, "-q", str(dist / "index.html"), f"{host}:{remote}/index.html"], check=True)
+    print(f"Выложено: index.html и {len(files)} файлов → {host}:{remote}")
 
 
 if __name__ == "__main__":
