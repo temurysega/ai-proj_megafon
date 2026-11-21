@@ -206,6 +206,8 @@ def gate(gate_id: str, decision: str, note: str = "", by: str = "human", pid: st
         raise StrategistError(f"Неизвестные ворота '{gate_id}'. Допустимо: G1, G2, G3")
     if decision not in ("pass", "reject", "assume"):
         raise StrategistError("Решение: pass | reject | assume (assume — только в режиме autopilot)")
+    d = project_dir(pid)
+    pid = pid or d.name
     st = load_state(pid)
     if decision == "assume" and st.get("mode") != "autopilot":
         raise StrategistError("assume разрешён только в режиме autopilot; в checkpoints решает человек.")
@@ -213,10 +215,17 @@ def gate(gate_id: str, decision: str, note: str = "", by: str = "human", pid: st
         before = GATE_ORDER.get(gate_id)
         if before and st["gates"].get(before, {}).get("status") != "passed":
             raise StrategistError(f"Сначала ворота {before} ({GATES[before]}): ворота проходятся по порядку G1 → G2 → G3.")
-        problems = gate_prerequisites(gate_id, project_dir(pid))
+        problems = gate_prerequisites(gate_id, d)
         if problems:
             raise StrategistError(f"Ворота {gate_id} нельзя пройти — не готово то, что человек должен подтвердить: "
                                   + "; ".join(problems))
+        if gate_id == "G3_strategy":
+            from .evidence import check  # отложенный импорт: evidence импортирует project
+            errors = check(pid=pid, strict=True, stage="review")["errors"]
+            if errors:
+                details = "\n".join(f"- {error}" for error in errors)
+                raise StrategistError(f"Ворота {gate_id} требуют строгой проверки без ошибок. "
+                                      f"Найдено ошибок: {len(errors)}.\n{details}")
     st["gates"][gate_id] = {"status": {"pass": "passed", "reject": "rejected", "assume": "passed"}[decision],
                             "at": now(), "by": "assumed" if decision == "assume" else by, "note": note}
     if decision != "reject" and st.get("stage_status") == "waiting_human":

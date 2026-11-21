@@ -453,11 +453,11 @@ footer hr{border:0;border-top:1px solid var(--line);margin:4px 0}
     <h2 class="h-l">Три команды. И ваша задача.</h2>
     <p class="lead" style="margin-top:18px">Python 3.10+ и среда с агентом: Claude Code, Cursor, Codex или Copilot.</p>
     <div class="cmds">
-      <div class="cmd"><code id="c1">pip install -r requirements.txt</code><button class="copy" data-copy="c1">Копировать</button></div>
+      <div class="cmd"><code id="c1">python -m pip install -r requirements.txt</code><button class="copy" data-copy="c1">Копировать</button></div>
       <div class="cmd"><code id="c2">python -m playwright install chromium</code><button class="copy" data-copy="c2">Копировать</button></div>
-      <div class="cmd"><code id="c3">python sf.py doctor --install-git-hook</code><button class="copy" data-copy="c3">Копировать</button></div>
+      <div class="cmd"><code id="c3">python sf.py doctor</code><button class="copy" data-copy="c3">Копировать</button></div>
     </div>
-    <p class="lead" style="margin-top:28px;font-size:17px">Затем откройте папку в среде с агентом и напишите задачу своими словами.</p>
+    <p class="lead" style="margin-top:28px;font-size:17px">Выполните команды из корня репозитория. Откройте папку в среде с агентом и напишите задачу своими словами. Условия запуска и проверка без ключа описаны в <a href="https://github.com/temurysega/ai-proj_megafon#быстрый-старт-3-шага-5-минут">README</a>.</p>
   </div>
 </section>
 
@@ -472,12 +472,12 @@ footer hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 <script>
 (function(){
   var stages=[
-    {t:"Постановка задачи",w:"Ворота G1 — подтверждаете вы",d:["Читает запрос и приложенные материалы.","Задаёт не больше трёх вопросов, у каждого — зачем и значение по умолчанию.","Неизвестное записывает допущением, а не придумывает."],c:"$ python sf.py new antifraud-family\n$ python sf.py ask add --text \"Что важнее: удержание или выручка?\"\n$ python sf.py gate G1 pass"},
-    {t:"Сбор материалов",w:"Агент",d:["Ищет открытые источники только на разрешённых сайтах.","Сохраняет снимок каждой страницы и проверяет её на скрытые инструкции.","Принимает PDF, Word, таблицы, скриншоты, аудио и видео."],c:"$ python sf.py fetch https://www.cbr.ru/…\n$ python sf.py ingest interview.mp3 --transcribe\n$ python sf.py capture https://… --name page"},
-    {t:"Исследование",w:"Агент и субагенты",d:["План строится от вопросов, ответ на которые может изменить решение.","Исследователи работают параллельно, их цитаты сверяются со снимками.","Итог: что известно, что предполагаем, чего не знаем, где источники спорят."],c:"$ python sf.py research-import DQ1.json\n$ python sf.py data run research/data/cbr_quarterly.py\n$ python sf.py respondents --personas personas.yaml"},
+    {t:"Постановка задачи",w:"Ворота G1 — подтверждаете вы",d:["Читает запрос и приложенные материалы.","Задаёт не больше трёх вопросов, у каждого — зачем и значение по умолчанию.","Фиксирует допущения для проверки."],c:"$ python sf.py new retention-study --title \"Удержание в приложении\"\n$ python sf.py ask add --text \"Что важнее: удержание или выручка?\" --why \"Задаёт критерий выбора\" --default \"Удержание\""},
+    {t:"Сбор материалов",w:"Агент",d:["Ищет открытые источники только на разрешённых сайтах.","Сохраняет снимок каждой страницы и проверяет её на скрытые инструкции.","Принимает PDF, Word, таблицы, скриншоты, аудио и видео."],c:"$ python sf.py fetch https://www.cbr.ru/…\n$ python sf.py ingest public-demo.mp3 --public-media --transcribe\n$ python sf.py capture https://… --name page"},
+    {t:"Исследование",w:"Агент и субагенты",d:["План строится от вопросов, ответ на которые может изменить решение.","Исследователи работают параллельно, их цитаты сверяются со снимками.","Итог: что известно, что предполагаем, чего не знаем, где источники спорят."],c:"$ python sf.py research-import DQ1.json\n$ python sf.py -p antifraud-family data run research/data/cbr_quarterly.py\n$ python sf.py respondents --personas personas.yaml --guide guide.md"},
     {t:"Варианты",w:"Ворота G2 — выбираете вы",d:["Не меньше трёх разных вариантов, включая «оставить как есть» и «закрыть».","У каждого — сильные возражения и что должно быть правдой.","Красная команда ищет слабые места до того, как вы их увидите."],c:"$ python sf.py llm critic --prompt-file options.md\n$ python sf.py check\n$ python sf.py gate G2 pass"},
     {t:"Стратегия",w:"Агент",d:["Продуктовая: аудитория, альтернативы, направление, осознанные отказы.","Коммуникационная: барьер, ключевое сообщение, подтверждение, каналы.","Каждое обещание сверено со свойством продукта. План проверки с критериями решения."],c:"$ python sf.py check\n$ python sf.py impact C054 --mark-stale"},
-    {t:"Проверка качества",w:"Ворота G3 — принимаете вы",d:["Проверка фактов по снимкам источников.","Красная команда по стратегии и оценка по рубрике.","Резюме на одну страницу и отчёт в PDF."],c:"$ python sf.py render --pdf\n$ python sf.py gate G3 pass"},
+    {t:"Проверка качества",w:"Ворота G3 — принимаете вы",d:["Проверка фактов по снимкам источников.","Красная команда по стратегии и оценка по рубрике.","Резюме на одну страницу и отчёт в PDF."],c:"$ python sf.py check --strict\n$ python sf.py render --pdf\n$ python sf.py gate G3 pass"},
     {t:"Сопровождение решения",w:"Агент",d:["Журнал решений: основания, владельцы, метрики, сроки.","Подсказывает, что решать сейчас и что заблокировано.","Новые данные — пересмотр по графу зависимостей."],c:"$ python sf.py decisions due\n$ python sf.py revisit S041"}
   ];
   var claims={

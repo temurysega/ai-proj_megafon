@@ -1,0 +1,39 @@
+name: Verify repository
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  clean-checkout:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python sf.py doctor
+      - run: python -m pytest -q
+      - run: python scripts/smoke_test.py
+      - run: python scripts/demo_guardrails.py
+      - run: python sf.py -p family-connect check --strict
+      - run: python sf.py -p family-connect decisions check
+      - run: python sf.py -p antifraud-family check --strict
+      - run: python sf.py -p esim-travel check --strict
+      - run: python sf.py import evals/cold_start/library-finder-audit.zip
+      - run: python sf.py -p library-finder-audit check --strict
+      - run: python sf.py -p library-finder-audit decisions check
+      - run: python sf.py -p library-finder-audit status --plain --brief
+      - run: python sf.py -p library-finder-audit decisions due
+      - run: python scripts/deploy_site.py --build-only

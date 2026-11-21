@@ -619,3 +619,5 @@
 {"ts": "2026-11-18T17:28:18+03:00", "actor": "hook", "action": "guard", "detail": "Bash: ask — [Стратег] Загрузка вне allowlist: домен mgim.neblanki.tech не в config/sources_allowlist.yaml. Спросите человека и добавьте домен, если источник открытый и допу", "status": "ok"}
 {"ts": "2026-11-18T17:29:55+03:00", "actor": "agent", "action": "checkpoint", "detail": "внешнее ревью 3: порог и пилот в одной шкале (C104), C071 уточнено (K7), факт без цитаты — ошибка, приёмка по --strict", "status": "ok", "next_action": "до 2026-11-27 получить от человека выгрузку K1 и подтверждение K7 (sf decisions commitment); затем K3 после K2; при каждом старте — sf decisions due"}
 {"ts": "2026-11-20T18:48:24+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-21T11:51:46+03:00", "actor": "agent", "action": "check", "detail": "ошибок 0, предупреждений 0", "status": "ok"}
+{"ts": "2026-11-21T11:51:50+03:00", "actor": "tool", "action": "report_rendered", "detail": "{'html': 'report/index.html', 'pdf': 'report/index.pdf'}", "status": "ok"}

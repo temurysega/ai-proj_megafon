@@ -15,8 +15,9 @@ from .common import (CLAIM_KINDS, CLAIM_STATUSES, STAGES, StrategistError, next_
 from .project import journal, load_state, missing_gates, project_dir, save_state
 
 REF_BLOCK = re.compile(r"\[([^\[\]]{2,200})\]")
-CLAIM_TOKEN = re.compile(r"\bC\d{3,}\b")
-SOURCE_TOKEN = re.compile(r"\bS\d{3,}\b")
+REF_TOKEN = re.compile(r"\b([CS]\d{3,})\b(?:\s*[-–—]\s*\b([CS]\d{3,})\b)?")
+# Размер диапазона ограничен, чтобы опечатка в номере не раздувала проверку и отчёт.
+MAX_REFERENCE_RANGE = 1000
 SOURCE_KINDS = ["web", "pdf", "document", "table", "dataset", "image", "audio", "video", "interview",
                 "synthetic", "user_material", "analysis"]
 RELIABILITY = {"A": "первичный/официальный", "B": "авторитетный вторичный (СМИ, аналитики)",
@@ -256,12 +257,34 @@ def logical_paragraphs(text: str) -> list[str]:
     return paras
 
 
-def refs_in_text(text: str) -> tuple[set[str], set[str]]:
+def reference_ids(block: str, *, references_only: bool = False) -> tuple[list[str], list[str]]:
+    """Разобрать содержимое скобок и вернуть ссылки по порядку и некорректные диапазоны."""
+    if references_only and re.search(r"[^\s,;]", REF_TOKEN.sub("", block)):
+        return [], []
+    ids, invalid = [], []
+    for match in REF_TOKEN.finditer(block):
+        first, last = match.groups()
+        ids.append(first)
+        if last is None or last == first:
+            continue
+        start, end = int(first[1:]), int(last[1:])
+        if first[0] != last[0] or not 0 <= end - start < MAX_REFERENCE_RANGE:
+            invalid.append(match.group())
+        else:
+            width = min(len(first), len(last)) - 1
+            ids.extend(f"{first[0]}{n:0{width}d}" for n in range(start + 1, end))
+        ids.append(last)
+    return ids, invalid
+
+
+def refs_in_text(text: str, *, invalid_ranges: list[str] | None = None) -> tuple[set[str], set[str]]:
     cs, ss = set(), set()
     for m in REF_BLOCK.finditer(text):
-        inner = m.group(1)
-        cs |= set(CLAIM_TOKEN.findall(inner))
-        ss |= set(SOURCE_TOKEN.findall(inner))
+        ids, invalid = reference_ids(m.group(1))
+        cs.update(ref for ref in ids if ref.startswith("C"))
+        ss.update(ref for ref in ids if ref.startswith("S"))
+        if invalid_ranges is not None:
+            invalid_ranges.extend(invalid)
     return cs, ss
 
 
@@ -300,10 +323,11 @@ STAGE_OUTPUTS = {
 }
 
 
-def check(pid=None, strict: bool = False) -> dict:
+def check(pid=None, strict: bool = False, *, stage: str | None = None) -> dict:
     """Проверка целостности. Возвращает {errors, warnings, metrics}."""
     d = project_dir(pid)
     st = load_state(pid)
+    current = stage or st["stage"]
     claims = {c["id"]: c for c in load_claims(pid)}
     srcs = {s["id"]: s for s in load_sources(pid)}
     errors, warnings = [], []
@@ -360,7 +384,9 @@ def check(pid=None, strict: bool = False) -> dict:
                     pc, ps = refs_in_text(para)
                     covered += 1 if (pc or ps) else 0
         for ln_no, line in enumerate(text.splitlines(), 1):
-            cs, ss = refs_in_text(line)
+            invalid_ranges: list[str] = []
+            cs, ss = refs_in_text(line, invalid_ranges=invalid_ranges)
+            errors.extend(f"{rel}:{ln_no}: некорректный диапазон ссылок «{span}»" for span in invalid_ranges)
             used |= cs
             for cid in cs:
                 if cid not in claims:
@@ -406,7 +432,6 @@ def check(pid=None, strict: bool = False) -> dict:
         for head, body in sections(opt.read_text(encoding="utf-8")):
             if head.lower().startswith("вариант ") and "возражени" not in body.lower():
                 errors.append(f"options.md: у «{head[:50]}» нет сильных возражений")
-    current = st["stage"]
     for gate_id in missing_gates(st, current):
         errors.append(f"стадия {current}: отсутствует решение по воротам {gate_id}")
     for stage in STAGES[:STAGES.index(current) + 1]:
@@ -419,8 +444,8 @@ def check(pid=None, strict: bool = False) -> dict:
                 problems.append(f"стадия {current}: ожидается непустой файл {rel}")
     # 3а. структура итогового документа, которую задал бриф (`sf deliverable`)
     deliv = st.get("deliverable")
-    if deliv and STAGES.index(st["stage"]) >= STAGES.index("strategy"):
-        required = strict or STAGES.index(st["stage"]) >= STAGES.index("review")
+    if deliv and STAGES.index(current) >= STAGES.index("strategy"):
+        required = strict or STAGES.index(current) >= STAGES.index("review")
         target = errors if required else warnings
         doc = d / deliv["file"]
         if not doc.is_file():
@@ -477,7 +502,9 @@ def lint_file(path: Path, pid=None) -> list[str]:
     srcs = {s["id"] for s in load_sources(pid)}
     problems = []
     for ln_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        cs, ss = refs_in_text(line)
+        invalid_ranges: list[str] = []
+        cs, ss = refs_in_text(line, invalid_ranges=invalid_ranges)
+        problems.extend(f"строка {ln_no}: некорректный диапазон ссылок «{span}»" for span in invalid_ranges)
         for cid in cs:
             if cid not in claims:
                 problems.append(f"строка {ln_no}: нет утверждения {cid} — добавьте `sf claim add` или исправьте ссылку")

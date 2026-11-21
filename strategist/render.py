@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 from .common import CLAIM_KIND_RU, STAGE_TITLES, StrategistError, now
 from .costs import summary as cost_summary
 from .decisions import load_decisions
-from .evidence import load_claims, load_sources
+from .evidence import REF_BLOCK, load_claims, load_sources, reference_ids
 from .project import journal, load_state, project_dir
 from .common import read_jsonl
 
@@ -59,9 +59,10 @@ section.doc{page-break-before:always}nav ol{columns:2;font-size:14px}
 
 def _claim_links(text: str, claims: dict, srcs: dict) -> str:
     def rep_block(m):
-        inner = m.group(1)
-        toks = re.findall(r"\b([CS]\d{3,})\b", inner)
-        if not toks or re.sub(r"[\sCS\d,;]", "", inner):
+        if text.startswith("(", m.end()):
+            return m.group(0)
+        toks, invalid = reference_ids(m.group(1), references_only=True)
+        if not toks or invalid:
             return m.group(0)
         parts = []
         for t in toks:
@@ -75,7 +76,7 @@ def _claim_links(text: str, claims: dict, srcs: dict) -> str:
             else:
                 parts.append(f'<a class="c st-retracted" title="не найдено">{t}?</a>')
         return "".join(parts)
-    return re.sub(r"\[([^\[\]]{2,120})\](?!\()", rep_block, text)
+    return REF_BLOCK.sub(rep_block, text)
 
 
 def _source_location(source: dict, project: Path) -> str:
