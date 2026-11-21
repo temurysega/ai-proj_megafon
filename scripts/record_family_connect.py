@@ -159,6 +159,13 @@ def collect_shots(temp: Path) -> list[Shot]:
     forecast = json.loads(read(current / PROJECT / "research" / "data" / "strategy_calc.json"))["forecast"]["основной"]
     profit = f'{forecast["profit"]:.2f}'.replace(".", ",")
     gap = f'{forecast["profit_gap_mln"]:.2f}'.replace(".", ",")
+    budget_script = (PROJECT / "research" / "data" / "kpi_budget.py").as_posix()
+    capture(current, budget_script)
+    budget = json.loads(read(current / PROJECT / "research" / "data" / "kpi_budget.json"))
+    high_response = budget["cases"]["основной"]["высокий отклик"]
+    package_floor = f'{high_response["package_budget_rub"] / 1_000_000:.2f}'.replace(".", ",")
+    profit_needed = high_response["finance"]["gross_contribution_to_hit_target_before_pilot_rub"]
+    profit_floor = f'{profit_needed / 1_000_000:.2f}'.replace(".", ",")
     report_path = current / PROJECT / "report" / "index.pdf"
     if not report_path.read_bytes().startswith(b"%PDF"):
         raise RuntimeError("Итоговый PDF отсутствует или повреждён.")
@@ -236,6 +243,11 @@ def collect_shots(temp: Path) -> list[Shot]:
                    ("Условия остановки", "Повторный вычет или видимость остатка после отзыва согласия."),
                    ("Третий год", "10 000 активных групп — условный ориентир, пересматриваемый по данным пилота [C041].")]),
              "В II квартале проверяют исполнение и понятность. Решение по ограничениям принимают по достаточному набору и правилу интервала.", 18),
+        Shot("Стратегия", strategy, "Два отдельных решения о вложениях",
+             rows([("Годовые цели", f"Условная смета четырёх показателей использования начинается с {package_floor} млн ₽ при высоком отклике. Сверяем охват, конверсию и затраты [C054]."),
+                   ("Годовая прибыль", f"При нижней смете нужен новый валовой вклад ≈{profit_floor} млн ₽ плюс прямые расходы пилота [C055]."),
+                   ("Полный кабинет", "Прототип начислений и истории, затем сравнение с B при одинаковом сигнале. Решающие условия: польза, безопасность и добавочная окупаемость [C048, C049].")]),
+             "Смету можно повторить. Для финансирования кабинета проверяют пользу начислений и истории сверх простого сигнала.", 15),
         Shot("Проверка", fresh, "Строгая проверка перед сдачей",
              terminal("python sf.py -p family-connect check --strict --json",
                       json.dumps({"errors": result["errors"], "warnings": result["warnings"]}, ensure_ascii=False, indent=2),

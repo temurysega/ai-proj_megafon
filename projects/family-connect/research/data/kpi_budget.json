@@ -1,0 +1,457 @@
+{
+  "assumptions": {
+    "высокий отклик": {
+      "family_incremental_conversion": 0.05,
+      "family_survival_to_december": 0.98,
+      "activation_without_changes": 0.55,
+      "new_group_december_activity": 0.665,
+      "existing_group_activity_lift": 0.12,
+      "owner_incremental_conversion": 0.06,
+      "cost_per_family_reached": 10,
+      "cost_per_owner_reached": 10,
+      "cost_per_created_group": 5,
+      "cost_per_existing_group_reached": 5,
+      "cost_per_person_month": 200000,
+      "family_person_months": 1.5,
+      "onboarding_person_months": 2,
+      "activity_person_months": 0.5,
+      "owner_person_months": 2
+    },
+    "опорный": {
+      "family_incremental_conversion": 0.03333333333333333,
+      "family_survival_to_december": 0.95,
+      "activation_without_changes": 0.5,
+      "new_group_december_activity": 0.625,
+      "existing_group_activity_lift": 0.08,
+      "owner_incremental_conversion": 0.04,
+      "cost_per_family_reached": 15,
+      "cost_per_owner_reached": 15,
+      "cost_per_created_group": 10,
+      "cost_per_existing_group_reached": 10,
+      "cost_per_person_month": 275000,
+      "family_person_months": 2,
+      "onboarding_person_months": 3,
+      "activity_person_months": 1,
+      "owner_person_months": 2.5
+    },
+    "низкий отклик": {
+      "family_incremental_conversion": 0.02,
+      "family_survival_to_december": 0.9,
+      "activation_without_changes": 0.45,
+      "new_group_december_activity": 0.55,
+      "existing_group_activity_lift": 0.04,
+      "owner_incremental_conversion": 0.02,
+      "cost_per_family_reached": 25,
+      "cost_per_owner_reached": 25,
+      "cost_per_created_group": 20,
+      "cost_per_existing_group_reached": 20,
+      "cost_per_person_month": 350000,
+      "family_person_months": 3,
+      "onboarding_person_months": 4,
+      "activity_person_months": 1.5,
+      "owner_person_months": 3
+    }
+  },
+  "cases": {
+    "основной": {
+      "высокий отклик": {
+        "connected": {
+          "gap": 3700,
+          "new_groups_created_vs_control": 4720,
+          "reach": 74000,
+          "unique_contacts_per_week": 5693,
+          "reach_limit_before_actual_targeting": 82700,
+          "minimum_incremental_conversion_at_limit": 0.044740024183796856
+        },
+        "activation": {
+          "created_q4": 6295,
+          "activated_without_onboarding": 3334,
+          "extra_first_actions_needed": 443,
+          "incremental_lift_needed": 0.07037331215250199
+        },
+        "active": {
+          "gap": 2480,
+          "net_active_from_new_groups": 2460,
+          "extra_active_needed_among_existing": 20,
+          "reach": 167,
+          "reach_limit_before_deduplication": 2780
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 16667,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 740000,
+            "people_rub": 300000,
+            "person_months": 1.5
+          },
+          "activation": {
+            "direct_rub": 31475,
+            "people_rub": 400000,
+            "person_months": 2
+          },
+          "active": {
+            "direct_rub": 835,
+            "people_rub": 100000,
+            "person_months": 0.5
+          },
+          "owners": {
+            "direct_rub": 166670,
+            "people_rub": 400000,
+            "person_months": 2
+          }
+        },
+        "direct_rub": 938980,
+        "people_rub": 1200000,
+        "person_months": 6.0,
+        "package_budget_rub": 2138980,
+        "package_budget_using_full_remaining_family_reach_rub": 2225980,
+        "reach_passes_upper_bound_check": true,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6028364,
+          "gross_contribution_to_hit_target_before_pilot_rub": 6967344,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 8167344,
+          "paid_months_to_hit_target_before_pilot": 13935,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 9400,
+          "one_causal_paid_line_per_new_connection_example_rub": 4700000,
+          "still_needed_in_one_line_example_before_pilot_rub": 2267344
+        }
+      },
+      "опорный": {
+        "connected": {
+          "gap": 3700,
+          "new_groups_created_vs_control": 4869,
+          "reach": 111000,
+          "unique_contacts_per_week": 8539,
+          "reach_limit_before_actual_targeting": 82700,
+          "minimum_incremental_conversion_at_limit": 0.044740024183796856
+        },
+        "activation": {
+          "created_q4": 6444,
+          "activated_without_onboarding": 3172,
+          "extra_first_actions_needed": 695,
+          "incremental_lift_needed": 0.10785226567349472
+        },
+        "active": {
+          "gap": 2480,
+          "net_active_from_new_groups": 2312,
+          "extra_active_needed_among_existing": 168,
+          "reach": 2100,
+          "reach_limit_before_deduplication": 2780
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 25000,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 1665000,
+            "people_rub": 550000,
+            "person_months": 2
+          },
+          "activation": {
+            "direct_rub": 64440,
+            "people_rub": 825000,
+            "person_months": 3
+          },
+          "active": {
+            "direct_rub": 21000,
+            "people_rub": 275000,
+            "person_months": 1
+          },
+          "owners": {
+            "direct_rub": 375000,
+            "people_rub": 687500,
+            "person_months": 2.5
+          }
+        },
+        "direct_rub": 2125440,
+        "people_rub": 2337500,
+        "person_months": 8.5,
+        "package_budget_rub": 4462940,
+        "package_budget_using_full_remaining_family_reach_rub": null,
+        "reach_passes_upper_bound_check": false,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6028364,
+          "gross_contribution_to_hit_target_before_pilot_rub": 8153804,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 10491304,
+          "paid_months_to_hit_target_before_pilot": 16308,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 9400,
+          "one_causal_paid_line_per_new_connection_example_rub": 4700000,
+          "still_needed_in_one_line_example_before_pilot_rub": 3453804
+        }
+      },
+      "низкий отклик": {
+        "connected": {
+          "gap": 3700,
+          "new_groups_created_vs_control": 5139,
+          "reach": 185000,
+          "unique_contacts_per_week": 14231,
+          "reach_limit_before_actual_targeting": 82700,
+          "minimum_incremental_conversion_at_limit": 0.044740024183796856
+        },
+        "activation": {
+          "created_q4": 6714,
+          "activated_without_onboarding": 3050,
+          "extra_first_actions_needed": 979,
+          "incremental_lift_needed": 0.14581471551980935
+        },
+        "active": {
+          "gap": 2480,
+          "net_active_from_new_groups": 2035,
+          "extra_active_needed_among_existing": 445,
+          "reach": 11125,
+          "reach_limit_before_deduplication": 2780
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 50000,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 4625000,
+            "people_rub": 1050000,
+            "person_months": 3
+          },
+          "activation": {
+            "direct_rub": 134280,
+            "people_rub": 1400000,
+            "person_months": 4
+          },
+          "active": {
+            "direct_rub": 222500,
+            "people_rub": 525000,
+            "person_months": 1.5
+          },
+          "owners": {
+            "direct_rub": 1250000,
+            "people_rub": 1050000,
+            "person_months": 3
+          }
+        },
+        "direct_rub": 6231780,
+        "people_rub": 4025000,
+        "person_months": 11.5,
+        "package_budget_rub": 10256780,
+        "package_budget_using_full_remaining_family_reach_rub": null,
+        "reach_passes_upper_bound_check": false,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6028364,
+          "gross_contribution_to_hit_target_before_pilot_rub": 12260144,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 16285144,
+          "paid_months_to_hit_target_before_pilot": 24521,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 9400,
+          "one_causal_paid_line_per_new_connection_example_rub": 4700000,
+          "still_needed_in_one_line_example_before_pilot_rub": 7560144
+        }
+      }
+    },
+    "менее благоприятный": {
+      "высокий отклик": {
+        "connected": {
+          "gap": 4000,
+          "new_groups_created_vs_control": 5103,
+          "reach": 80000,
+          "unique_contacts_per_week": 6154,
+          "reach_limit_before_actual_targeting": 83000,
+          "minimum_incremental_conversion_at_limit": 0.04819277108433735
+        },
+        "activation": {
+          "created_q4": 6303,
+          "activated_without_onboarding": 3346,
+          "extra_first_actions_needed": 436,
+          "incremental_lift_needed": 0.06917340948754562
+        },
+        "active": {
+          "gap": 3000,
+          "net_active_from_new_groups": 2660,
+          "extra_active_needed_among_existing": 340,
+          "reach": 2834,
+          "reach_limit_before_deduplication": 3000
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 16667,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 800000,
+            "people_rub": 300000,
+            "person_months": 1.5
+          },
+          "activation": {
+            "direct_rub": 31515,
+            "people_rub": 400000,
+            "person_months": 2
+          },
+          "active": {
+            "direct_rub": 14170,
+            "people_rub": 100000,
+            "person_months": 0.5
+          },
+          "owners": {
+            "direct_rub": 166670,
+            "people_rub": 400000,
+            "person_months": 2
+          }
+        },
+        "direct_rub": 1012355,
+        "people_rub": 1200000,
+        "person_months": 6.0,
+        "package_budget_rub": 2212355,
+        "package_budget_using_full_remaining_family_reach_rub": 2242355,
+        "reach_passes_upper_bound_check": true,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6000000,
+          "gross_contribution_to_hit_target_before_pilot_rub": 7012355,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 8212355,
+          "paid_months_to_hit_target_before_pilot": 14025,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 10000,
+          "one_causal_paid_line_per_new_connection_example_rub": 5000000,
+          "still_needed_in_one_line_example_before_pilot_rub": 2012355
+        }
+      },
+      "опорный": {
+        "connected": {
+          "gap": 4000,
+          "new_groups_created_vs_control": 5264,
+          "reach": 120000,
+          "unique_contacts_per_week": 9231,
+          "reach_limit_before_actual_targeting": 83000,
+          "minimum_incremental_conversion_at_limit": 0.04819277108433735
+        },
+        "activation": {
+          "created_q4": 6464,
+          "activated_without_onboarding": 3172,
+          "extra_first_actions_needed": 707,
+          "incremental_lift_needed": 0.109375
+        },
+        "active": {
+          "gap": 3000,
+          "net_active_from_new_groups": 2500,
+          "extra_active_needed_among_existing": 500,
+          "reach": 6250,
+          "reach_limit_before_deduplication": 3000
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 25000,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 1800000,
+            "people_rub": 550000,
+            "person_months": 2
+          },
+          "activation": {
+            "direct_rub": 64640,
+            "people_rub": 825000,
+            "person_months": 3
+          },
+          "active": {
+            "direct_rub": 62500,
+            "people_rub": 275000,
+            "person_months": 1
+          },
+          "owners": {
+            "direct_rub": 375000,
+            "people_rub": 687500,
+            "person_months": 2.5
+          }
+        },
+        "direct_rub": 2302140,
+        "people_rub": 2337500,
+        "person_months": 8.5,
+        "package_budget_rub": 4639640,
+        "package_budget_using_full_remaining_family_reach_rub": null,
+        "reach_passes_upper_bound_check": false,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6000000,
+          "gross_contribution_to_hit_target_before_pilot_rub": 8302140,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 10639640,
+          "paid_months_to_hit_target_before_pilot": 16605,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 10000,
+          "one_causal_paid_line_per_new_connection_example_rub": 5000000,
+          "still_needed_in_one_line_example_before_pilot_rub": 3302140
+        }
+      },
+      "низкий отклик": {
+        "connected": {
+          "gap": 4000,
+          "new_groups_created_vs_control": 5556,
+          "reach": 200000,
+          "unique_contacts_per_week": 15385,
+          "reach_limit_before_actual_targeting": 83000,
+          "minimum_incremental_conversion_at_limit": 0.04819277108433735
+        },
+        "activation": {
+          "created_q4": 6756,
+          "activated_without_onboarding": 3040,
+          "extra_first_actions_needed": 1014,
+          "incremental_lift_needed": 0.15008880994671403
+        },
+        "active": {
+          "gap": 3000,
+          "net_active_from_new_groups": 2200,
+          "extra_active_needed_among_existing": 800,
+          "reach": 20000,
+          "reach_limit_before_deduplication": 3000
+        },
+        "owners": {
+          "gap": 1000,
+          "reach": 50000,
+          "reach_limit_before_actual_targeting": 39000,
+          "minimum_incremental_conversion_at_limit": 0.02564102564102564
+        },
+        "work": {
+          "connected": {
+            "direct_rub": 5000000,
+            "people_rub": 1050000,
+            "person_months": 3
+          },
+          "activation": {
+            "direct_rub": 135120,
+            "people_rub": 1400000,
+            "person_months": 4
+          },
+          "active": {
+            "direct_rub": 400000,
+            "people_rub": 525000,
+            "person_months": 1.5
+          },
+          "owners": {
+            "direct_rub": 1250000,
+            "people_rub": 1050000,
+            "person_months": 3
+          }
+        },
+        "direct_rub": 6785120,
+        "people_rub": 4025000,
+        "person_months": 11.5,
+        "package_budget_rub": 10810120,
+        "package_budget_using_full_remaining_family_reach_rub": null,
+        "reach_passes_upper_bound_check": false,
+        "finance": {
+          "profit_shortfall_before_pilot_rub": 6000000,
+          "gross_contribution_to_hit_target_before_pilot_rub": 12785120,
+          "gross_contribution_to_hit_target_and_repay_people_before_pilot_rub": 16810120,
+          "paid_months_to_hit_target_before_pilot": 25571,
+          "one_causal_paid_line_per_new_connection_example_paid_months": 10000,
+          "one_causal_paid_line_per_new_connection_example_rub": 5000000,
+          "still_needed_in_one_line_example_before_pilot_rub": 7785120
+        }
+      }
+    }
+  }
+}

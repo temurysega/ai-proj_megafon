@@ -16,3 +16,27 @@
   described: false
   transcribed: false
   chars: 29825
+- id: S002
+  title: 't2: условия ручной передачи интернет-трафика'
+  kind: web
+  url: https://selfcare.t2.ru/option/share-gb
+  path: sources/raw/S002.md
+  publisher: t2
+  published: ''
+  retrieved: '2026-11-21'
+  reliability: B
+  sha256: 483fd1b1359b59bb5f72a32a2e34711a7406111e2ac25f80b6c5a5862f35600d
+  injection_flags: []
+  notes: ''
+- id: S003
+  title: 'билайн: настройка лимитов для дополнительных номеров'
+  kind: web
+  url: https://istra.beeline.ru/family/deli-vse-deli-gigi/
+  path: sources/raw/S003.md
+  publisher: билайн
+  published: ''
+  retrieved: '2026-11-21'
+  reliability: B
+  sha256: 9848acf28c8214dc64918a26c20e6cc7a5df52ead3306aa0f4e45e5e11ebeac6
+  injection_flags: []
+  notes: ''
