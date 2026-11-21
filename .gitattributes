@@ -5,5 +5,6 @@
 *.xlsx binary
 *.docx binary
 *.zip binary
+*.mp4 binary
 *.cmd text eol=crlf
 *.bat text eol=crlf

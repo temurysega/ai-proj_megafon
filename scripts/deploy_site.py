@@ -20,10 +20,11 @@ FILES = {
     "files/family-connect.pdf": ROOT / "projects" / "family-connect" / "report" / "index.pdf",
     "files/antifraud-family.pdf": ROOT / "projects" / "antifraud-family" / "report" / "index.pdf",
     "files/esim-travel.pdf": ROOT / "projects" / "esim-travel" / "report" / "index.pdf",
+    "files/family-connect.mp4": ROOT / "docs" / "video" / "Стратег Фабрики продуктов — демо «Связь для близких и собственных устройств».mp4",
 }
 FILES.update({
     f"files/{name}": ROOT / "docs" / "video" / name
-    for name in ("family-connect.mp4", "family-connect.vtt", "family-connect-poster.jpg")
+    for name in ("family-connect.vtt", "family-connect-poster.jpg")
 })
 # Видео: имя на сайте → локальные файлы по приоритету (версия с голосом из scripts/voiceover.py, если собрана).
 VIDEO = {

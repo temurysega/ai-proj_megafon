@@ -116,6 +116,12 @@ def summary(pid: str | None) -> dict:
             out["by_stage"][k] = round(out["by_stage"].get(k, 0) + float(r.get("usd") or 0), 6)
         elif t == "manual":
             out["ide_usd"] += float(r.get("usd") or 0)
+        elif t == "demo_run_cost_summary":
+            out["demo_runs"] = {
+                "test_runs": r["test_runs"],
+                "max_usd_per_run": r["max_usd_per_run"],
+                "note": r.get("note", ""),
+            }
     out["external_usd"] = round(out["external_usd"], 6)
     out["ide_usd"] = round(out["ide_usd"], 4)
     # Разбивка: основной чат IDE (транскрипт) отдельно от субагентов и внешних моделей.

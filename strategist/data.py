@@ -8,7 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from .common import StrategistError, now, sha256_bytes
+from .common import StrategistError, native_file_path, now, sha256_bytes
 from .project import journal, project_dir
 
 
@@ -35,10 +35,10 @@ def _read(path: Path):
 
 def _resolve(path: str, pid, what: str) -> Path:
     """Путь от текущей папки или от папки проекта (`research/data/x.py` работает из корня репозитория)."""
-    p = Path(path)
+    p = native_file_path(Path(path))
     if p.exists():
         return p
-    q = project_dir(pid) / path
+    q = native_file_path(project_dir(pid) / path)
     if q.exists():
         return q
     raise StrategistError(f"Нет {what} {path} (искали от текущей папки и от папки проекта {project_dir(pid).name})")
@@ -106,7 +106,7 @@ def profile(file: str, pid=None) -> dict:
                else (f"{c.get('min')} … {c.get('max')}" if "min" in c else ""))
         lines.append(f"| {c['col']} | {c['dtype']} | {c['missing_pct']} | {c['unique']} | {rng} | {c.get('unit_hint', '')} |")
     lines += ["", "## Что проверить перед выводами", ""] + [f"- {i}" for i in issues or ["Явных проблем не найдено"]]
-    out.write_text("\n".join(lines), encoding="utf-8")
+    native_file_path(out).write_text("\n".join(lines), encoding="utf-8")
     journal("data_profiled", f"{p.name}: {len(df)}×{df.shape[1]}, замечаний {len(issues)}", pid=pid, actor="tool")
     return {"file": out.relative_to(d).as_posix(), "rows": len(df), "cols": df.shape[1], "issues": issues}
 

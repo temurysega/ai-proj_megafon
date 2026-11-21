@@ -9,6 +9,7 @@ HERE = Path(__file__).parent
 BASELINE = {"profit": 279, "active": 5000, "connected": 8000, "owners": 1000, "activation": 45}
 TARGET = {"profit": 285, "active": 8000, "connected": 12000, "owners": 2000, "activation": 60}
 START_GROUPS = 6500
+START_OWNERS = 800
 RATE = 500
 
 # Допущения A1, A2, A4, A6–A11, A14–A16.
@@ -100,6 +101,11 @@ for coverage in ((0.30, 0.30, 0.30), SCENARIOS["основной"]["coverage"]):
 n = n_per_arm(0.12, 0.09)
 half_width = 100 * Z_ALPHA * math.sqrt((0.12 * 0.88 + 0.09 * 0.91) / n)
 out["ci_half_width_pp"] = round(half_width, 1)
+effect_threshold = min(MIN_EFFECTS)
+out["priority_sensitivity"] = [
+    {"eligible_groups_per_week": groups, "fewer_groups_with_restrictions_at_threshold": round(groups * effect_threshold, 2)}
+    for groups in (min(ELIGIBLE_PER_WEEK), max(ELIGIBLE_PER_WEEK))
+]
 md = ["# Пилот B, воронка, прибыль и вложения", "",
       "Числа брифа [C003–C012]. Сценарии опираются на проверяемые допущения [C020–C023, C030–C036, C042, C044, C045].", "",
       "## Пилот", "",
@@ -114,6 +120,14 @@ md += ["", f"Основной расчёт для базы 12% и порога 3
        f"Половина ширины 95% интервала ≈{half_width:.1f} п.п. [C037, C040].", "",
        "Набор и наблюдение при базе 12% занимают 12–45 недель. Дата решения зависит от фактического набора. "
        "Расчёты для 4 и 5 п.п. показывают чувствительность до запуска [C031, C037].", "",
+       "### Чувствительность приоритета [C056]", "",
+       "При пороге 3 п.п. разница групп с ограничением у первого участника на недельную когорту равна числу впервые подходящих "
+       "групп, умноженному на 0,03. Это сценарий, а долю своевременной помощи и частоты других проблем измеряем отдельно.", "",
+       "| Впервые подходящих групп в неделю | На сколько меньше групп с ограничением при достижении порога |",
+       "|---|---:|"]
+for row in out["priority_sensitivity"]:
+    md.append(f"| {row['eligible_groups_per_week']} | {row['fewer_groups_with_restrictions_at_threshold']:g} |")
+md += ["",
        "## Воронка привлечения за IV квартал [C042, C043]", ""]
 for name, rows in out["funnel"].items():
     md += [f"### {name.capitalize()} ход", "",
@@ -124,14 +138,44 @@ for name, rows in out["funnel"].items():
     totals = [sum(row[key] for row in rows) for key in ("reached", "control_groups", "created", "accepted", "activated")]
     md += [f"| Итого | {totals[0]} | — | {totals[1]} | {totals[2]} | {totals[3]} | {totals[4]} |", ""]
 
+main = out["forecast"]["основной"]
+adverse = out["forecast"]["менее благоприятный"]
+out["connection_balance"] = {
+    "families_without_rollout": {"start": START_GROUPS, "end": adverse["connected"]},
+    "families_with_rollout": {"start": START_GROUPS, "end": main["connected"]},
+    "owners": {"start": START_OWNERS, "end": main["owners"]},
+}
+md += ["### Годовой баланс подключений [C057]", "",
+       "Новые подключения = чистый прирост + выбытия. Фактический объём выбытий неизвестен. В двух сценариях для семей считаем его одинаковым.", "",
+       "| Сценарий | Начало | Чистый прирост | Конец |",
+       "|---|---:|---:|---:|"]
+for label, balance in zip(("Семьи без расширения B", "Семьи с расширением B", "Владельцы"), out["connection_balance"].values()):
+    balance["net_growth"] = balance["end"] - balance["start"]
+    md.append(f"| {label} | {balance['start']} | {balance['net_growth']} | {balance['end']} |")
+
+main_funnel = out["funnel"]["основной"]
+total_reach = sum(row["reached"] for row in main_funnel)
+out["channel_acquisition_cost"] = []
+md += ["", "### Сценарная цена подключения по каналу [C058]", "",
+       "Распределяем всю опорную квартальную смету B по долям уникального охвата. Фактический расход привлечения отделяем от общей сметы после замера.", "",
+       "| Канал | Условная доля прямой сметы, руб. | Дополнительные подключения | Руб. за подключение |",
+       "|---|---:|---:|---:|"]
+for row in main_funnel:
+    allocated = main["cost_rub"] * row["reached"] / total_reach
+    increment = row["accepted"] - row["control_accepted"]
+    rub_per_connection = allocated / increment if increment > 0 else None
+    out["channel_acquisition_cost"].append({"channel": row["channel"], "allocated_rub": round(allocated),
+                                            "incremental_connections": increment, "rub_per_connection": rub_per_connection})
+    price = f"{rub_per_connection:.0f}" if rub_per_connection is not None else "—"
+    md.append(f"| {row['channel']} | {allocated:.0f} | {increment} | {price} |")
+md.append("")
+
 md += ["## Прогноз по пяти строкам брифа [C038]", "",
        "| Показатель | Без изменений | Основной | Менее благоприятный | Цель |",
        "|---|---:|---:|---:|---:|"]
 labels = {"profit": "Валовая прибыль, млн руб., до вычета расходов пилота",
           "active": "Активные группы за последний месяц", "connected": "Подключённые группы на конец года",
           "owners": "Владельцы нескольких номеров на конец года", "activation": "Активированные за 14 дней, %"}
-main = out["forecast"]["основной"]
-adverse = out["forecast"]["менее благоприятный"]
 out["cost_sensitivity"] = [
     {"monthly_cost_rub": cost, "annual_increment_rub_before_pilot": main["retention_rub"] - 3 * cost}
     for cost in (10_000, 20_000, 30_000)

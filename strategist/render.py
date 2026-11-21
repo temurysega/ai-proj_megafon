@@ -8,11 +8,12 @@ from __future__ import annotations
 import html
 import re
 from pathlib import Path
-from urllib.parse import quote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 
 import markdown as md
+from bs4 import BeautifulSoup
 
-from .common import CLAIM_KIND_RU, STAGE_TITLES, now
+from .common import CLAIM_KIND_RU, STAGE_TITLES, StrategistError, now
 from .costs import summary as cost_summary
 from .decisions import load_decisions
 from .evidence import load_claims, load_sources
@@ -95,6 +96,39 @@ def _source_location(source: dict, project: Path) -> str:
     return "<br>".join(links) or "В реестре нет доступного снимка"
 
 
+def _rebase_section_links(content: str, source: Path, project: Path) -> str:
+    """Относительные ссылки в разделе отсчитываются от его Markdown-файла."""
+    soup = BeautifulSoup(content, "html.parser")
+    for link in soup.find_all("a", href=True):
+        href = urlsplit(link["href"])
+        if href.scheme or href.netloc or not href.path or href.path.startswith("/"):
+            continue
+        target = (source.parent / unquote(href.path)).resolve()
+        if target.is_relative_to(project):
+            path = "../" + quote(target.relative_to(project).as_posix())
+            link["href"] = href._replace(path=path).geturl()
+    return str(soup)
+
+
+def _use_public_pdf_links(page, link_base: str) -> None:
+    page.evaluate(
+        """(linkBase) => {
+            const projectRoot = new URL("../", document.URL).href;
+            for (const link of document.querySelectorAll("a[href]")) {
+                const href = link.getAttribute("href");
+                if (!href.startsWith("../") || !link.href.startsWith(projectRoot)) continue;
+                link.href = new URL(link.href.slice(projectRoot.length), linkBase).href;
+                if (link.classList.contains("screen-only")) {
+                    link.classList.remove("screen-only");
+                    const printLabel = link.nextElementSibling;
+                    if (printLabel?.classList.contains("print-only")) printLabel.remove();
+                }
+            }
+        }""",
+        link_base,
+    )
+
+
 def _claim_basis(claim: dict, claims: dict, sources: dict) -> str:
     ids = claim.get("sources", []) + claim.get("depends_on", [])
     parts = [_claim_links("[" + ", ".join(ids) + "]", claims, sources)] if ids else []
@@ -104,12 +138,23 @@ def _claim_basis(claim: dict, claims: dict, sources: dict) -> str:
     return "<br>".join(parts) or "—"
 
 
-def build(pid=None, pdf: bool = False) -> dict:
-    d = project_dir(pid)
+def build(pid=None, pdf: bool = False, *, link_base: str | None = None) -> dict:
+    if link_base:
+        base = urlsplit(link_base)
+        if base.scheme not in ("http", "https") or not base.hostname or base.username is not None or base.query or base.fragment:
+            raise StrategistError("--link-base: укажите HTTP(S)-адрес папки проекта без параметров и учётных данных.")
+        link_base = link_base.rstrip("/") + "/"
+    d = project_dir(pid).resolve()
     st = load_state(pid)
     claims = {c["id"]: c for c in load_claims(pid)}
     srcs = {s["id"]: s for s in load_sources(pid)}
     cs = cost_summary(d.name)
+    demo = cs.get("demo_runs")
+    demo_cost = (
+        f"<p class='meta'>По данным команды, тестовых демопрогонов: {demo['test_runs']}. "
+        f"Верхняя оценка за прогон: ${demo['max_usd_per_run']:g}. {html.escape(demo['note'])}</p>"
+        if demo else ""
+    )
     body = [f"<h1>{html.escape(st.get('title', d.name))}</h1>",
             f"<p class='meta'>Проект <code>{d.name}</code> · стадия: {STAGE_TITLES.get(st['stage'])} · "
             f"обновлено {st.get('updated', '')[:16]} · отчёт собран {now()[:16]}</p>",
@@ -117,11 +162,11 @@ def build(pid=None, pdf: bool = False) -> dict:
             f"<div><b>{len(srcs)}</b>источников</div>"
             f"<div><b>{sum(1 for c in claims.values() if c.get('status') == 'active')}</b>утверждений</div>"
             f"<div><b>{sum(1 for c in claims.values() if c['kind'] == 'fact' and c.get('status') == 'active')}</b>фактов с источником</div>"
-            f"<div><b>≈${cs['project_usd']:.2f}</b>стоимость проекта</div>"
+            f"<div><b>≈${cs['project_usd']:.2f}</b>{'учтённые расходы' if demo else 'стоимость проекта'}</div>"
             f"<div><b>${cs['external_usd']:.3f}</b>из них внешние модели</div></div>"
             + (f"<p class='meta'>В стоимость проекта входят внешние модели, субагенты и ручные оценки. Основной чат IDE "
                f"(≈${cs['session_usd']:.2f}) показан отдельно: {html.escape(cs['session_note'] or 'в том же чате шла другая работа')}.</p>"
-               if cs["session_mixed"] else ""),
+               if cs["session_mixed"] else "") + demo_cost,
             "<p class='legend'><span><a class='c'>C001</a> факт/расчёт</span><span><a class='c k-hypothesis'>C002</a> гипотеза/прогноз/допущение</span>"
             "<span><a class='c k-synthetic'>C003</a> синтетика</span><span><a class='c st-retracted'>C004</a> отозвано</span>"
             " — наведите курсор на метку, чтобы увидеть утверждение и источник.</p>"]
@@ -138,6 +183,7 @@ def build(pid=None, pdf: bool = False) -> dict:
         text = f.read_text(encoding="utf-8")
         text = re.sub(r"^#\s+.+\n", "", text, count=1)
         h = md.markdown(_claim_links(text, claims, srcs), extensions=["tables", "fenced_code", "sane_lists"])
+        h = _rebase_section_links(h, f, d)
         h = re.sub(r"<h1>", "<h3>", h).replace("</h1>", "</h3>")
         anchor = re.sub(r"[^a-z]+", "-", rel)
         toc.append(f"<li><a href='#{anchor}'>{title}</a></li>")
@@ -192,7 +238,8 @@ def build(pid=None, pdf: bool = False) -> dict:
                     f"Внешние модели: ${cs['external_usd']:.4f} за {cs['external_calls']} вызовов (из кэша без оплаты: {cs['cached_calls']}). "
                     f"Субагенты и ручные записи: ≈${cs['subagent_usd']:.2f}; основной чат IDE: ≈${cs['session_usd']:.2f}"
                     f"{' — не входит в стоимость проекта: ' + html.escape(cs['session_note']) if cs['session_mixed'] else ''}. "
-                    f"<b>Стоимость проекта: ≈${cs['project_usd']:.2f}</b> (по журналу и ручным оценкам).</p>"
+                    f"<b>{'Учтённые расходы' if demo else 'Стоимость проекта'}: ≈${cs['project_usd']:.2f}</b>"
+                    " (по журналу и ручным оценкам).</p>"
                     "<div class='chips'>" + "".join(f"<span>{html.escape(k)}: {v}</span>" for k, v in sorted(acts.items(), key=lambda x: -x[1])) + "</div>"
                     f"<h3>Внешние модели по задачам</h3><table><tr><th>Задача</th><th>USD</th></tr>{by_task}</table></section>")
     toc += ["<li><a href='#claims'>Реестр утверждений</a></li>", "<li><a href='#sources'>Источники</a></li>",
@@ -210,6 +257,8 @@ def build(pid=None, pdf: bool = False) -> dict:
             b = p.chromium.launch()
             pg = b.new_page()
             pg.goto(out.resolve().as_uri())
+            if link_base:
+                _use_public_pdf_links(pg, link_base)
             pg.emulate_media(color_scheme="light")
             pg.pdf(path=str(out.with_suffix(".pdf")), format="A4", print_background=True,
                    margin={"top": "14mm", "bottom": "14mm", "left": "12mm", "right": "12mm"})

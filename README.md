@@ -7,21 +7,31 @@
 (CLI `sf` и MCP-сервер) и проекты с состоянием (`projects/`). Открывается в Claude Code, Cursor, Codex, Copilot и других средах.
 
 ## Проверить за 5 минут
-1. **Посмотреть демо по брифу организаторов.** [Видео с субтитрами](docs/video/family-connect.mp4) · [резюме](projects/family-connect/strategy/one-pager.md) · [стратегия из пяти частей](projects/family-connect/strategy/document.md) · [отчёт PDF](projects/family-connect/report/index.pdf).
+1. **Посмотреть демо по брифу организаторов.** [Видео с озвучкой на Google Drive, 3:12](https://drive.google.com/file/d/1XChEtF3ZqPbNw9WFP4rkma6nkKAT69ah/view?usp=sharing) · [демопроект](projects/family-connect/) · [стратегия из пяти частей](projects/family-connect/strategy/document.md) · [отчёт демопроекта PDF](projects/family-connect/report/index.pdf) · [описание работы PDF](docs/report/description.pdf).
 2. **Проверить локально.** После `python -m pip install -r requirements.txt` выполните `python sf.py -p family-connect check --strict` и `python sf.py -p family-connect decisions due`. Для проверки рабочего процесса выполните `python scripts/smoke_test.py`. Эти команды работают без ключей OpenRouter и доступа к сети.
 3. **Проследить основание.** Например, метка `[C003]` у годовой прибыли ведёт к цитате в [реестре утверждений](projects/family-connect/evidence/claims.jsonl). Источник S001 есть в [реестре источников](projects/family-connect/sources/registry.yaml) и в [оригинале брифа PDF](projects/family-connect/sources/raw/originals/558d2c665caa4f4954135c8bbfb69d791e398dcdc5b625d5ded7bdb2d0eb0fa5.pdf).
 4. **Безопасность:** `python scripts/demo_guardrails.py`. **Продолжение после перерыва:** [`docs/dev-log/03`](docs/dev-log/03-resume-after-break.md).
+
+## Проверка по критериям жюри
+
+| Критерий | Что проверить и где |
+|---|---|
+| **Проработанность** | Снимки источников, факты и допущения, шесть вариантов с возражениями. Продукт и сообщение согласованы, а эффект и риски заложены в дизайн контролируемого пилота. [Исследование](projects/family-connect/research/findings.md) · [Варианты](projects/family-connect/options.md) · [Стратегия](projects/family-connect/strategy/document.md) · [План проверки](projects/family-connect/strategy/validation.md) |
+| **Масштаб использования нейротехнологий** | Навыки, хуки, субагенты, маршрутизация, память, CLI и MCP. Сравнение на исправлении источника показывает повторяемый пересчёт и возобновление в новом процессе при равной оценке итоговых записок. [Архитектура](docs/architecture.md) · [Замеры](evals/results/summary.md) · [Сравнение на пересмотре](evals/source_revision/results.md) |
+| **Имплементация** | Быстрый старт из чистого клона, сквозная проверка без ключа и восстановление состояния. Новый учебный запрос о неявках в студию прошёл путь от брифа до стратегии и обязательства. [Быстрый старт](#быстрый-старт-3-шага-5-минут) · [Новая задача](evals/cold_start/README.md) · [Демо и таймкоды](docs/video/family-connect.md) |
+| **Качество** | Руководитель подтверждает бриф, выбирает вариант и принимает стратегию. В резюме видны решение, риски и следующие шаги. Журнал раскрывает время и прямые расходы в измеренных границах. [Резюме](projects/family-connect/strategy/one-pager.md) · [Обязательства](projects/family-connect/decisions.yaml) · [Время и расходы](docs/report/description.md#9-время-расходы-ошибки-и-помощь-человека) |
 
 ## Что в репозитории
 
 | | |
 |---|---|
-| **Демо по брифу организаторов** | [`family-connect`](projects/family-connect) — «Связь для близких и собственных устройств». **23 мин 17 с** до готовой стратегии и PDF по журналу, **≈$1** прямых расходов по оценке команды. Отдельный замер участия человека — **45 минут на трёх этапах**. [Учёт времени и расходов](docs/report/description.md#9-время-расходы-ошибки-и-помощь-человека) · [План проверки](projects/family-connect/strategy/validation.md) · [Журнал решений](projects/family-connect/decisions.yaml) |
+| **Демо по брифу организаторов** | [`family-connect`](projects/family-connect) — «Связь для близких и собственных устройств». **Три тестовых прогона, до $3 прямых расходов за прогон** по данным команды. В исходном журнале **23 мин 17 с** до готовой стратегии. Отдельно измерены **45 минут участия руководителя**. [Время и расходы](docs/report/description.md#9-время-расходы-ошибки-и-помощь-человека) · [План проверки](projects/family-connect/strategy/validation.md) · [Журнал решений](projects/family-connect/decisions.yaml) |
 | **Кейс с открытыми данными** | [`antifraud-family`](projects/antifraud-family) — «Семейная защита от телефонных мошенников». Здесь показаны реальные и модельные интервью, исследование рынка, UX-анализ и пересмотр вывода при новых данных. [Резюме](projects/antifraud-family/strategy/one-pager.md) · [отчёт PDF](projects/antifraud-family/report/index.pdf) · [видео кейса](https://drive.google.com/file/d/1jOioXUGG1wlJZkKgcXxmcRfWVQjALlCG/view?usp=sharing). |
 | **Независимый прогон** | [`esim-travel`](projects/esim-travel) — «eSIM для путешествий». Отдельный агент прошёл путь с нуля в режиме autopilot. [Отчёт PDF](projects/esim-travel/report/index.pdf) · [разбор времени и стоимости](projects/esim-travel/research/data/run-cost.md). |
+| **Новая задача из чистого клона** | Модель IDE прошла путь от исходной сводки по неявкам в студию керамики до стратегий и сопровождения без ключа OpenRouter. Для проверки доступны вход, журнал, итоговый PDF и команды импорта и возобновления. [Сценарий и результаты](evals/cold_start/README.md) |
 | **Сравнение с обычным чатом** | 6 слепых оценок судьями трёх производителей дали агенту **8,8–10/10**, чату 3,0–6,6/10. При одинаковом входе без поиска агент получил **9/10 против 6/10** на анализе пробного урока и **выиграл сравнение на сверке продлений** за счёт воспроизводимого расчёта и возобновления пересмотра из файлов в новом процессе. За записки по продлениям оба получили **7/8**. [Все замеры](evals/results/summary.md) · [Пересмотр после сверки](evals/source_revision/results.md) |
 | **Сайт** | Исходник — [`site/index.html`](site/index.html). `python scripts/deploy_site.py --build-only` собирает страницу с видео и PDF в `.cache/site-dist` для локального просмотра. |
-| **Видео по брифу** | [MP4](docs/video/family-connect.mp4) · [субтитры](docs/video/family-connect.vtt). Проход по сохранённому проекту с повторной проверкой в отдельных процессах. Для пересборки из Git-клона с историей установите Chromium и `python -m pip install imageio-ffmpeg`, затем выполните `python scripts/record_family_connect.py`. |
+| **Видео по брифу** | [Смотреть на Google Drive](https://drive.google.com/file/d/1XChEtF3ZqPbNw9WFP4rkma6nkKAT69ah/view?usp=sharing) · [MP4 в репозитории](<docs/video/Стратег Фабрики продуктов — демо «Связь для близких и собственных устройств».mp4>) · [таймкоды и видеоряд](docs/video/family-connect.md). Проход по сохранённому проекту с повторной проверкой в отдельных процессах. |
 | **Описание работы** | [`docs/report/description.pdf`](docs/report/description.pdf) — архитектура, модели, промпты, расходы, ограничения, скриншоты |
 | **Архитектура** | [`docs/architecture.md`](docs/architecture.md) |
 | **История разработки** | [`docs/dev-log/`](docs/dev-log) — консультации с Sonnet/Haiku, решения, продолжение после перерыва, пересмотр при новых данных |
@@ -119,13 +129,7 @@ python scripts/smoke_test.py
 ```bash
 python -m pytest -q
 ```
-Последний прогон в отдельном клоне с новым окружением Python 3.12 дал 36/36 дымовых проверок и 38/38 тестов. MCP перечислил 16 инструментов и успешно выполнил `project_status`. Экспорт и импорт в другую рабочую копию сохранили следующий шаг.
-Если Windows закрывает доступ к каталогу pytest в системном TEMP, в PowerShell выполните:
-
-```powershell
-New-Item -ItemType Directory -Force .pytest_cache | Out-Null
-python -m pytest -q --basetemp .pytest_cache/agent-tests
-```
+Из чистой копии Git на Windows прошли 40 тестов и 36 дымовых проверок. Дымовой тест использует отдельную временную копию. Проверку переноса проекта и возобновления в новом процессе можно повторить по [инструкции холодного старта](evals/cold_start/README.md).
 
 В Git-клоне дополнительно установите проверку секретов перед коммитом командой `python sf.py doctor --install-git-hook`.
 

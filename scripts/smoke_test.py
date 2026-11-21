@@ -11,39 +11,41 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 ROOT = Path(__file__).resolve().parent.parent
 PID = "zz-smoke-test"
 ENV = {**os.environ, "PYTHONIOENCODING": "utf-8", "OPENROUTER_API_KEY": ""}
-results = []
-
-
-def sf(*args, ok=True, stdin=None):
-    r = subprocess.run([sys.executable, "sf.py", "-p", PID, *args], cwd=ROOT, capture_output=True, env=ENV,
-                       input=stdin.encode() if stdin else None, timeout=180)
-    out = r.stdout.decode("utf-8", "replace") + r.stderr.decode("utf-8", "replace")
-    passed = (r.returncode == 0) == ok
-    results.append((" ".join(args)[:70], passed))
-    if not passed:
-        print(f"FAIL: sf {' '.join(args)}\n{out[:1500]}")
-    return out
-
-
-def hook(event, payload):
-    r = subprocess.run([sys.executable, "-m", "strategist.hooks", event], cwd=ROOT, capture_output=True, env=ENV,
-                       input=json.dumps(payload, ensure_ascii=False).encode("utf-8"), timeout=60)
-    return r.stdout.decode("utf-8", "replace")
 
 
 def main():
     for st in (sys.stdout, sys.stderr):
         st.reconfigure(encoding="utf-8", errors="replace")
     t0 = time.time()
-    proj = ROOT / "projects" / PID
-    active = ROOT / "projects" / ".active"
-    prev_active = active.read_text(encoding="utf-8") if active.exists() else None
-    shutil.rmtree(proj, ignore_errors=True)
-    try:
+    results = []
+
+    def sf(*args, ok=True):
+        proc = subprocess.run([sys.executable, "sf.py", "-p", PID, *args], cwd=work, capture_output=True,
+                              env=ENV, timeout=180)
+        out = proc.stdout.decode("utf-8", "replace") + proc.stderr.decode("utf-8", "replace")
+        passed = (proc.returncode == 0) == ok
+        results.append((" ".join(args)[:70], passed))
+        if not passed:
+            print(f"FAIL: sf {' '.join(args)}\n{out[:1500]}")
+        return out
+
+    def hook(event, payload):
+        proc = subprocess.run([sys.executable, "-m", "strategist.hooks", event], cwd=work, capture_output=True,
+                              env=ENV, input=json.dumps(payload, ensure_ascii=False).encode("utf-8"), timeout=60)
+        return proc.stdout.decode("utf-8", "replace")
+
+    with TemporaryDirectory(prefix="sf-smoke-") as directory:
+        work = Path(directory)
+        for name in ("strategist", "config", "knowledge", "projects/_template"):
+            shutil.copytree(ROOT / name, work / name, ignore=shutil.ignore_patterns("__pycache__"))
+        for name in ("sf.py", "AGENTS.md"):
+            shutil.copy2(ROOT / name, work / name)
+        proj = work / "projects" / PID
         sf("new", PID, "--title", "Дымовой тест", "--request", "Почему падает удержание?")
         sf("status", "--plain")
         sf("stage", "materials", ok=False)                      # ворота G1 не пройдены → отказ
@@ -92,10 +94,9 @@ def main():
         results.append(("PreToolUse-хук блокирует чтение .env", '"deny"' in out))
         out = hook("pre_tool", {"tool_name": "WebFetch", "tool_input": {"url": "https://evil.example.com/x"}})
         results.append(("PreToolUse-хук спрашивает о домене вне allowlist", '"ask"' in out))
-        out = hook("pre_tool", {"tool_name": "Edit", "tool_input": {"file_path": str(ROOT / "AGENTS.md"),
+        out = hook("pre_tool", {"tool_name": "Edit", "tool_input": {"file_path": str(work / "AGENTS.md"),
                                                                     "new_string": "x"}})
-        dev = (ROOT / ".dev-mode").exists()
-        results.append(("PreToolUse-хук защищает правила агента (вне dev-режима)", dev or '"ask"' in out))
+        results.append(("PreToolUse-хук защищает правила агента (вне dev-режима)", '"ask"' in out))
         out = hook("pre_tool", {"tool_name": "Write", "tool_input": {"file_path": str(proj / "x.md"),
                                                                      "content": "key sk-or-v1-" + "a1" * 20}})
         results.append(("PreToolUse-хук не даёт записать секрет", '"deny"' in out))
@@ -106,17 +107,6 @@ def main():
         results.append(("отчёт HTML собран", (proj / "report" / "index.html").exists()))
         sf("cost", "--plain")
         sf("memory", "add", "--text", "Тестовая запись", "--kind", "agent_conclusion", "--prov", "smoke")
-        sf("memory", "retract", "M001", "--reason", "тест") if False else None
-    finally:
-        shutil.rmtree(proj, ignore_errors=True)
-        mem = ROOT / "memory" / "entries.jsonl"
-        if mem.exists():
-            lines = [l for l in mem.read_text(encoding="utf-8").splitlines() if '"provenance": "smoke"' not in l]
-            mem.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
-        if prev_active:
-            active.write_text(prev_active, encoding="utf-8")
-        elif active.exists():
-            active.unlink()
     passed = sum(1 for _, p in results if p)
     for name, p in results:
         print(f"{'✅' if p else '❌'} {name}")

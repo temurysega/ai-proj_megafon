@@ -7,7 +7,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from strategist import evidence, ingest, project
-from strategist.common import StrategistError, sha256_bytes
+from strategist.common import StrategistError, native_file_path, sha256_bytes
 from strategist.data import profile
 
 
@@ -40,6 +40,32 @@ def test_versions_and_retries_keep_independent_portable_sources(workspace, tmp_p
         snapshot = evidence.snapshot_text(source, moved)
         assert "1 строк × 1 столбцов" in snapshot and str(value) in snapshot
         assert profile(str(workspace / stored))["cols"] == 1
+
+
+def test_imported_table_in_deep_checkout(tmp_path, monkeypatch):
+    projects = tmp_path / ("p" * max(1, 190 - len(str(tmp_path)))) / "projects"
+    projects.mkdir(parents=True)
+    monkeypatch.setattr(project, "PROJECTS", projects)
+    monkeypatch.setattr(project, "ACTIVE_FILE", projects / ".active")
+    workspace = project.new_project("fixture", "Длинный путь")
+    upload = tmp_path / "Показатели.csv"
+    data = b"total\n20\n"
+    upload.write_bytes(data)
+    digest = sha256_bytes(data)
+    stored = workspace / "sources" / "raw" / "originals" / f"{digest}.csv"
+    profile_path = workspace / "research" / "data" / f"profile-{digest}.md"
+    assert len(str(stored)) > 260
+    try:
+        source = ingest.ingest(str(upload))
+        assert ingest.ingest(str(upload)) == source
+        assert workspace / source["path"] == stored
+        assert native_file_path(stored).read_bytes() == data
+        assert profile(source["path"])["cols"] == 1
+        assert native_file_path(profile_path).is_file()
+    finally:
+        # Старые функции очистки Windows не видят имена длиной >260 без префикса.
+        native_file_path(profile_path).unlink(missing_ok=True)
+        native_file_path(stored).unlink(missing_ok=True)
 
 
 def test_internal_file_named_like_snapshot_is_archived(workspace):
@@ -202,6 +228,22 @@ def test_report_includes_brief_required_document(workspace):
     html_text = (workspace / out["html"]).read_text(encoding="utf-8")
     assert "Стратегия в формате брифа" in html_text and "Клиент и его проблема" in html_text
     assert html_text.index("Резюме для руководителя") < html_text.index("Стратегия в формате брифа")
+
+
+def test_report_links_keep_project_paths_and_internal_anchors(workspace):
+    from strategist import render
+
+    (workspace / "strategy" / "one-pager.md").write_text(
+        "# Резюме\n[План](validation.md) · [Бриф](../brief.md#goal) · "
+        "[Цитата](#C001) · [Источник](https://example.org/page)\n",
+        encoding="utf-8",
+    )
+    out = render.build()
+    text = (workspace / out["html"]).read_text(encoding="utf-8")
+    assert 'href="../strategy/validation.md"' in text
+    assert 'href="../brief.md#goal"' in text
+    assert 'href="#C001"' in text
+    assert 'href="https://example.org/page"' in text
 
 
 def test_import_preserves_checkpoint_and_refuses_to_overwrite(workspace, tmp_path, monkeypatch):

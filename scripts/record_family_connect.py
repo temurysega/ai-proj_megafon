@@ -1,4 +1,4 @@
-"""Собрать демо Family Connect из архива проекта и свежих запусков CLI.
+"""Собрать видеоряд без звука из архива проекта и свежих запусков CLI.
 
 Подготовка для записи: requirements.txt, Chromium для Playwright и imageio-ffmpeg.
 Запуск: python scripts/record_family_connect.py
@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import argparse
 import html
 import io
 import json
@@ -26,7 +27,6 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = Path("projects") / "family-connect"
-OUT = ROOT / "docs" / "video"
 INTAKE = "65c29ba"
 PAUSED = "7fb6003"
 REVIEW = "57ce7f7"
@@ -139,6 +139,7 @@ def collect_shots(temp: Path) -> list[Shot]:
     result = json.loads(strict)
     if result["errors"] or result["warnings"]:
         raise RuntimeError(f"Строгая проверка вернула замечания:\n{strict}")
+    costs = json.loads(sf(current, "cost", "--plain"))["demo_runs"]
     decisions_check = sf(current, "decisions", "check")
     due = sf(current, "decisions", "due")
     due_lines = due.splitlines()
@@ -255,6 +256,15 @@ def collect_shots(temp: Path) -> list[Shot]:
              + rows([("Активных утверждений", str(result["metrics"]["claims_active"])),
                      ("Дословных совпадений", str(result["metrics"]["quote_matches_in_current_snapshots"].get("verbatim", 0)))]),
              "Проверка запущена на готовой копии. Она сверяет цитаты со снимком и проверяет полноту стратегии.", 12),
+        Shot("Проверка", fresh, "Оценка расходов на демо",
+             terminal("python sf.py -p family-connect cost --plain",
+                      json.dumps(
+                          {k: costs[k] for k in ("test_runs", "max_usd_per_run")},
+                          ensure_ascii=False, indent=2),
+                      "Количество прогонов и верхняя оценка из журнала расходов")
+             + excerpt("Источник оценки", costs["note"]),
+             "По данным владельца проекта проведены три тестовых прогона. Прямые расходы на один — до трёх долларов.",
+             12),
         Shot("Сопровождение", "Архивная приёмка · новый запуск в копии", "Что контролировать после решения",
              excerpt("Журнал · исходное подтверждение G3", g3)
              + terminal("python sf.py -p family-connect decisions check", decisions_check)
@@ -314,6 +324,9 @@ def stamp(seconds: int) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Собрать видеоряд демо без звука")
+    parser.add_argument("--out-dir", type=Path, default=ROOT / ".cache" / "family-connect-silent")
+    out = parser.parse_args().out_dir
     with tempfile.TemporaryDirectory(prefix="strategist-family-video-") as work:
         temp = Path(work)
         shots = collect_shots(temp)
@@ -350,9 +363,10 @@ def main() -> None:
             "-vf", "fps=24,format=yuv420p", "-t", str(total), "-c:v", "libx264",
             "-crf", "21", "-preset", "fast", "-movflags", "+faststart", str(video),
         ], check=True, timeout=160)
-        shutil.copy2(temp / "frame-01.jpg", OUT / "family-connect-poster.jpg")
-        shutil.copy2(video, OUT / video.name)
-        (OUT / "family-connect.vtt").write_text("\n".join(vtt), encoding="utf-8")
+        out.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(temp / "frame-01.jpg", out / "family-connect-poster.jpg")
+        shutil.copy2(video, out / video.name)
+        (out / "family-connect.vtt").write_text("\n".join(vtt), encoding="utf-8")
     print(f"{video.name} | {WIDTH}x{HEIGHT} | {total // 60}:{total % 60:02d}")
 
 

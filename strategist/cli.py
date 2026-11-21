@@ -314,7 +314,7 @@ def cmd_data(a):
 
 def cmd_render(a):
     from .render import build
-    _print(build(a.project, a.pdf))
+    _print(build(a.project, a.pdf, link_base=a.link_base))
 
 
 def cmd_cost(a):
@@ -343,7 +343,12 @@ def cmd_cost(a):
             t.add_row(f"  задача: {k}", f"{v:.4f}")
         for k, v in sorted(s["by_model"].items(), key=lambda x: -x[1]):
             t.add_row(f"  модель: {k}", f"{v:.4f}")
-        t.add_row("[bold]Стоимость проекта, USD[/bold]", f"[bold]{s['project_usd']:.2f}[/bold]")
+        demo = s.get("demo_runs")
+        cost_label = "Учтённые расходы" if demo else "Стоимость проекта"
+        t.add_row(f"[bold]{cost_label}, USD[/bold]", f"[bold]{s['project_usd']:.2f}[/bold]")
+        if demo:
+            t.add_row("Тестовых демопрогонов", str(demo["test_runs"]))
+            t.add_row("Верхняя оценка одного демопрогона, USD", f"{demo['max_usd_per_run']:.2f}")
         con.print(t)
     else:
         _print(s)
@@ -370,7 +375,7 @@ def cmd_doctor(a):
     from .safety import scan_repo_secrets
     ok = True
     rows = [f"Python {platform.python_version()} ({sys.executable})"]
-    for mod in ["yaml", "requests", "bs4", "pypdf", "docx", "openpyxl", "pandas", "markdown", "rich", "dotenv"]:
+    for mod in ["yaml", "requests", "bs4", "pypdf", "docx", "openpyxl", "xlrd", "pandas", "markdown", "rich", "dotenv"]:
         try:
             importlib.import_module(mod)
             rows.append(f"✅ {mod}")
@@ -672,6 +677,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("file")
     s = add("render", cmd_render, "собрать отчёт HTML (и PDF)")
     s.add_argument("--pdf", action="store_true")
+    s.add_argument("--link-base", help="публичный URL папки проекта для локальных ссылок в PDF")
     s = add("cost", cmd_cost, "стоимость проекта")
     s.add_argument("--add", type=float, help="добавить ручную запись (USD)")
     s.add_argument("--kind", default="manual", choices=["manual", "subagent"])

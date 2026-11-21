@@ -40,3 +40,27 @@
   sha256: 9848acf28c8214dc64918a26c20e6cc7a5df52ead3306aa0f4e45e5e11ebeac6
   injection_flags: []
   notes: ''
+- id: S004
+  title: 'МТС: роли и отдельные разрешения в семейной группе'
+  kind: web
+  url: https://support.mts.ru/semeinaya_gruppa/obschaya-informatsiya/kakie-est-roli-v-semeinoi-gruppe
+  path: sources/raw/S004.md
+  publisher: МТС Поддержка
+  published: ''
+  retrieved: '2026-11-21'
+  reliability: B
+  sha256: e9ac515c3715bf7b8f68f7a468251eed572a911c20265dbf6a0aa113d2dd1c97
+  injection_flags: []
+  notes: ''
+- id: S005
+  title: 'МТС: оплата отдельных пакетов участников группы'
+  kind: web
+  url: https://support.mts.ru/mts_mobilnaya_svyaz/gruppi-dlya-blizkih/gruppa-dlya-blizkih
+  path: sources/raw/S005.md
+  publisher: МТС Поддержка
+  published: ''
+  retrieved: '2026-11-21'
+  reliability: B
+  sha256: 06ed9b6e4a84bea012e711c1b5ae5d13c734d8f2034285d1f850b2ea39ce6d6c
+  injection_flags: []
+  notes: ''

@@ -76,6 +76,18 @@ def sha256_text(s: str) -> str:
     return sha256_bytes(s.encode("utf-8"))
 
 
+def native_file_path(path: Path) -> Path:
+    """Разрешить длинный путь для файловых операций Windows, сохранив исходный путь в реестре."""
+    if os.name != "nt":
+        return path
+    absolute = os.path.abspath(path)
+    if len(absolute) < 248 or absolute.startswith(("\\\\?\\", "\\\\.\\")):
+        return path
+    if absolute.startswith("\\\\"):
+        return Path("\\\\?\\UNC\\" + absolute[2:])
+    return Path("\\\\?\\" + absolute)
+
+
 def read_yaml(path: Path, default: Any = None) -> Any:
     if not path.exists():
         return default

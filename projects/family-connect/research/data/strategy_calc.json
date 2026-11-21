@@ -239,6 +239,53 @@
     }
   ],
   "ci_half_width_pp": 2.1,
+  "priority_sensitivity": [
+    {
+      "eligible_groups_per_week": 75,
+      "fewer_groups_with_restrictions_at_threshold": 2.25
+    },
+    {
+      "eligible_groups_per_week": 300,
+      "fewer_groups_with_restrictions_at_threshold": 9.0
+    }
+  ],
+  "connection_balance": {
+    "families_without_rollout": {
+      "start": 6500,
+      "end": 8000,
+      "net_growth": 1500
+    },
+    "families_with_rollout": {
+      "start": 6500,
+      "end": 8300,
+      "net_growth": 1800
+    },
+    "owners": {
+      "start": 800,
+      "end": 1000,
+      "net_growth": 200
+    }
+  },
+  "channel_acquisition_cost": [
+    {
+      "channel": "Приложение",
+      "allocated_rub": 33333,
+      "incremental_connections": 204,
+      "rub_per_connection": 163.39869281045753
+    },
+    {
+      "channel": "Продажи",
+      "allocated_rub": 16667,
+      "incremental_connections": 60,
+      "rub_per_connection": 277.77777777777777
+    },
+    {
+      "channel": "Поддержка",
+      "allocated_rub": 10000,
+      "incremental_connections": 36,
+      "rub_per_connection": 277.77777777777777
+    }
+  ],
   "cost_sensitivity": [
     {
       "monthly_cost_rub": 10000,

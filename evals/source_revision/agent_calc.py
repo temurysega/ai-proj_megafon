@@ -7,6 +7,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shutil
 from statistics import NormalDist
 import subprocess
 import sys
@@ -16,7 +17,7 @@ import zipfile
 
 CASE = Path(__file__).resolve().parent
 REPO = CASE.parent.parent
-REVISION = "6143ef4bfb78f4606554c3c8644bc6913c703307"
+RUNTIME = ("sf.py", "strategist", "config", "projects/_template")
 SEGMENTS = ("Малые", "Средние", "Крупные")
 
 
@@ -83,15 +84,29 @@ def write_decisions(project, decisions):
     (project / "decisions.yaml").write_text(json.dumps(decisions, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def replay(brief, sections):
+def replay(brief, sections, revision=None):
+    archive = None
+    if revision:
+        git = shutil.which("git")
+        if not git:
+            raise SystemExit("Для --revision нужен Git. Запустите --replay без --revision для проверки доставленной версии CLI.")
+        archive = subprocess.run([git, "archive", "--format=zip", revision, "--", *RUNTIME], cwd=REPO,
+                                 capture_output=True)
+        if archive.returncode:
+            raise SystemExit(f"Ревизия {revision} недоступна. Используйте полный Git-клон или запустите --replay без --revision.")
     cache = REPO / ".cache"
     cache.mkdir(exist_ok=True)
     scratch = Path(tempfile.mkdtemp(prefix="source-revision-", dir=cache))
-    archive = subprocess.check_output(
-        ["git", "archive", "--format=zip", REVISION, "sf.py", "strategist", "config", "projects/_template"], cwd=REPO
-    )
-    with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
-        bundle.extractall(scratch)
+    if archive:
+        with zipfile.ZipFile(io.BytesIO(archive.stdout)) as bundle:
+            bundle.extractall(scratch)
+    else:
+        for name in RUNTIME:
+            source = REPO / name
+            if source.is_dir():
+                shutil.copytree(source, scratch / name, ignore=shutil.ignore_patterns("__pycache__"))
+            else:
+                shutil.copy2(source, scratch / name)
     print(f"Изолированная копия: {scratch}", flush=True)
     for label, source in sections.items():
         (scratch / f"{label}.md").write_text(source + "\n", encoding="utf-8")
@@ -224,12 +239,15 @@ def replay(brief, sections):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--replay", action="store_true", help="дополнительно воспроизвести пересмотр в CLI")
+    parser.add_argument("--revision", help="использовать указанную Git-ревизию CLI вместо доставленных файлов")
     args = parser.parse_args()
+    if args.revision and not args.replay:
+        parser.error("--revision используется с --replay")
     brief = (CASE / "brief.md").read_text(encoding="utf-8")
     sections = sources(brief)
     calculate(sections)
     if args.replay:
-        replay(brief, sections)
+        replay(brief, sections, args.revision)
 
 
 if __name__ == "__main__":
